@@ -1,0 +1,235 @@
+{
+	"model": {
+		"modelName": "New GraphQL model",
+		"dbVersion": "",
+		"dbVendor": "GraphQL"
+	},
+	"container": {
+		"name": "New Graph",
+		"schemaRootTypes": {
+			"rootQuery": "Query",
+			"rootMutation": "Mutation",
+			"rootSubscription": "Subscription"
+		},
+		"isActivated": true
+	},
+	"collection": {
+		"collectionName": "Query",
+		"entityType": "request",
+		"snippet": "requestStructure",
+		"subtype": "requestBody",
+		"isActivated": true
+	},
+	"nestedCollection": {
+		"collectionName": "Response",
+		"entityType": "response",
+		"snippet": "responseStructure",
+		"subtype": "response",
+		"isActivated": true
+	},
+	"field": {
+		"hackoladeMeta": {
+			"valueDependencies": [
+				{
+					"value": {
+						"disableAdd": false
+					},
+					"dependency": {
+						"key": "childType",
+						"value": "componentObject"
+					}
+				},{
+					"value": {
+						"disableAppend": true,
+						"disableDelete": true,
+						"disableAdd": true,
+						"disableReference": true
+					},
+					"dependency": {
+						"type" : "and",
+						"values": [{
+							"key": "childType",
+							"value": "expression"
+						}, {
+							"level": "parent",
+							"key": "childType",
+							"value": "link"
+						}]
+					}
+				},
+				{
+					"value": {
+						"disableAppend": true,
+						"disableReference": false
+					},
+					"dependency": {
+						"level": "parent",
+						"key": "subtype",
+						"value": "structuralSchema"
+					}
+				},{
+					"value": {
+						"disableAdd": false,
+						"disableDelete": false,
+						"disableAppend": true,
+						"resetInsteadOfDelete": true,
+						"disableChoices": true
+					},
+					"dependency": [
+						{
+							"key": "subtype",
+							"value": "anyParameter"
+						}
+					]
+				},{
+					"value": {
+						"disableDelete": false,
+						"disableAppend": false,
+						"resetInsteadOfDelete": false,
+						"displayNameFromField": false
+					},
+					"dependency": {
+							"level": "parent",
+							"key": "childType",
+							"value": "componentObject"
+					}
+				},
+				{
+					"value": {
+						"disableReference": true
+					},
+					"dependency": {
+						"key": "childType",
+						"value": "media"
+					}
+				},
+				{
+					"value": {
+						"disableAppend": false,
+						"disableDelete": false,
+						"disableReference": false,
+						"resetInsteadOfDelete": false
+					},
+					"dependency": {	
+						"level": "parent",
+						"key": "subtype",
+						"value": "schema"
+					}
+				},{
+					"value": {
+						"disableAppend": true,
+						"disableReference": true
+					},
+					"dependency": [{
+						"type": "and",
+						"values": [{
+							"key": "childType",
+							"value": "object"
+						},{
+							"type": "not",
+							"values": {
+								"key": "subtype",
+								"value": "schema"
+							}
+						}]
+					}]
+				}
+			]
+		},
+		"name": {
+			"value": "New field",
+			"valueDependencies": [{
+				"value": "requestBody",
+				"dependency": {
+					"key": "childType",
+					"value": "requestBody" 
+				}
+			},{
+				"value": "application/json",
+				"dependency": {
+					"level": "parent",
+					"key": "subtype",
+					"value": "media" 
+				}
+			},{
+				"value": "response",
+				"dependency": {
+					"level": "parent",
+					"key": "subtype",
+					"value": "response" 
+				}
+			},{
+				"value": "parameterName",
+				"dependency": {
+					"level": "parent",
+					"key": "subtype",
+					"value": "anyParameter" 
+				}
+			},{
+				"value": "schema",
+				"dependency": {
+					"level": "parent",
+					"key": "subtype",
+					"value": "structuralSchema" 
+				}
+			},{
+				"value": "schema",
+				"dependency": {
+					"level": "parent",
+					"key": "type",
+					"value": "subschema" 
+				}
+			}]
+		},
+		"structureType": {
+			"valueDependencies": [{
+				"value": true,
+				"dependency": [
+					{
+						"key": "subtype",
+						"value": "anyParameter" 
+					},
+					{
+						"type": "and",
+						"values": [{
+							"key": "childType",
+							"value": "object"
+						},{
+							"type": "not",
+							"values": [{
+								"key": "subtype",
+								"value": "schema"
+							}]
+						}]
+					}]
+			}]
+		},
+		"schemeType": "apiKey",
+		"required": {
+			"valueDependencies": [{
+				"value": true,
+				"dependency": 
+					{
+						"key": "childType",
+						"value": "parameter (path)"
+					}
+			}],
+			"value": false
+		}
+	},
+	"patternField": {
+		"name": "^New Pattern Field$"
+	},
+	"multipleField": {
+		"primaryKey": false
+	},
+	"subschema": {},
+	"arrayItem": {},
+	"choice": {},
+	"relationship": {},
+	"user": {},
+	"view": {
+		"viewOn": "",
+		"pipeline": ""
+	}
+}

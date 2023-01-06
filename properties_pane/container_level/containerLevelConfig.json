@@ -1,0 +1,236 @@
+/*
+* Copyright © 2016-2017 by IntegrIT S.A. dba Hackolade.  All rights reserved.
+*
+* The copyright to the computer software herein is the property of IntegrIT S.A.
+* The software may be used and/or copied only with the written permission of 
+* IntegrIT S.A. or in accordance with the terms and conditions stipulated in 
+* the agreement/contract under which the software has been supplied. 
+
+
+In order to define custom properties for any object's properties pane, you may copy/paste from the following,
+making sure that you maintain a proper JSON format.
+
+			{
+				"propertyName": "Simple text",
+				"propertyKeyword": "simpletextProp",
+				"propertyType": "text",
+				"sampleGen": "&containerName|&entityName|&random|<value>"
+			},
+			{
+				"propertyName": "Text area",
+				"propertyKeyword": "textareaProp",
+				"propertyTooltip": "Popup for multi-line text entry",
+				"propertyType": "details",
+				"template": "textarea"
+			},
+			{
+				"propertyName": "Dropdown selection",
+				"propertyKeyword": "dropdownProp",
+				"propertyTooltip": "Select from list of options",
+				"propertyType": "select",
+				"options": [
+					"Option 1",
+					"Option 2",
+					"Option 3",
+					"Option 4"
+				]
+			},
+			{
+				"propertyName": "Numeric",
+				"propertyKeyword": "numericProp",
+				"propertyType": "numeric",
+				"valueType": "number",
+				"allowNegative": false,
+				"sampleGen": "&containerName|&entityName|&random|<value>"
+			},
+			{
+				"propertyName": "Checkbox",
+				"propertyKeyword": "checkboxProp",
+				"propertyType": "checkbox"
+			},
+			{
+				"propertyName": "Group",
+				"propertyKeyword": "grpProp",
+				"propertyTooltip": "",
+				"propertyType": "group",
+				"structure": [
+					{
+						"propertyName": "Simple Grp Text",
+						"propertyKeyword": "simpleGrpText",
+						"propertyTooltip": "",
+						"propertyType": "text"
+					},
+					{
+						"propertyName": "Group Number",
+						"propertyKeyword": "grpNumber",
+						"propertyType": "numeric",
+						"valueType": "number",
+						"allowNegative": false
+					}
+				]
+			},
+// “groupInput” can have the following states - 0 items, 1 item, and many items.
+// “blockInput” has only 2 states - 0 items or 1 item. 
+// This gives us an easy way to represent it as an object and not as an array internally which is beneficial for processing 
+// and forward-engineering in particular.
+			{
+				"propertyName": "Block",
+				"propertyKeyword": "grpProp",
+				"propertyType": "block",
+				"propertyTooltip": "",
+				"structure": [
+					{
+						"propertyName": "Simple Grp Text",
+						"propertyKeyword": "simpleGrpText",
+						"propertyTooltip": "",
+						"propertyType": "text"
+					},
+					{
+						"propertyName": "Group Number",
+						"propertyKeyword": "grpNumber",
+						"propertyType": "numeric",
+						"valueType": "number",
+						"allowNegative": false
+					}
+				]
+			},
+			{
+				"propertyName": "Field List",
+				"propertyKeyword": "keyList",
+				"propertyType": "fieldList",
+				"template": "orderedList"
+			}, 
+			{
+				"propertyName": "List with attribute",
+				"propertyKeyword": "keyListOrder",
+				"propertyType": "fieldList",
+				"template": "orderedList",
+				"attributeList": [
+					"ascending",
+					"descending"
+				]
+			}
+
+*/
+
+[
+	{
+		"lowerTab": "Details",
+		"containerLevelKeys": [],
+		"structure": [
+			{
+				"propertyName": "Graph name",
+				"propertyKeyword": "name",
+				"propertyTooltip": "Enter the name of the GraphAPI",
+				"propertyType": "text"
+			},
+			{
+				"fieldName": "Technical name",
+				"fieldKeyword": "code",
+				"fieldType": "coupled"
+			},
+			{
+				"propertyName": "Description",
+				"propertyKeyword": "description",
+				"propertyTooltip": "description",
+				"propertyType": "details",
+				"template": "textarea"
+			},
+			{
+				"propertyName": "Schema root types",
+				"propertyKeyword": "schemaRootTypes",
+				"propertyType": "block",
+				"propertyTooltip": "",
+				"structure": [
+					{
+						"propertyName": "Query name",
+						"propertyKeyword": "rootQuery",
+						"propertyTooltip": "Change to a different name if needed",
+						"propertyType": "text"
+					},
+					{
+						"propertyName": "Mutation name",
+						"propertyKeyword": "rootMutation",
+						"propertyTooltip": "Change to a different name if needed",
+						"propertyType": "text"
+					},
+					{
+						"propertyName": "Subscription name",
+						"propertyKeyword": "rootSubscription",
+						"propertyTooltip": "Change to a different name if needed",
+						"propertyType": "text"
+					}
+				]
+			},
+			{
+				"propertyName": "Activated",
+				"propertyKeyword": "isActivated",
+				"propertyType": "checkbox",
+				"propertyTooltip": "Deactivated item will be commented out in the schema"
+			},
+			{
+				"propertyName": "Directives",
+				"propertyKeyword": "directives",
+				"propertyTooltip": "",
+				"propertyType": "group",
+				"structure": [
+					{
+						"propertyName": "Directive",
+						"propertyKeyword": "directive",
+						"propertyTooltip": "",
+						"propertyType": "text"
+					},
+					{
+						"propertyName": "Description",
+						"propertyKeyword": "description",
+						"propertyTooltip": "Popup for multi-line text entry",
+						"propertyType": "details",
+						"template": "textarea"
+					},
+					{
+						"propertyName": "Arguments",
+						"propertyKeyword": "arguments",
+						"propertyTooltip": "Popup for multi-line text entry",
+						"propertyType": "details",
+						"template": "textarea",
+						"markdown": false
+					},
+					{
+						"propertyName": "Applicable elements",
+						"propertyKeyword": "dropdownProp",
+						"propertyTooltip": "Select from list of options",
+						"propertyType": "multipleCheckboxSelect",
+						"options": [
+							"ARGUMENT_DEFINITION",
+							"ENUM",
+							"ENUM_VALUE",
+							"FIELD",
+							"FIELD_DEFINITION",
+							"FRAGMENT_DEFINITION",
+							"FRAGMENT_SPREAD",
+							"INLINE_FRAGMENT",
+							"INPUT_FIELD_DEFINITION",
+							"INPUT_OBJECT",
+							"INTERFACE",
+							"MUTATION",
+							"OBJECT",
+							"QUERY",
+							"SCALAR",
+							"SCHEMA",
+							"SUBSCRIPTION",
+							"UNION",
+							"VARIABLE_DEFINITION"
+						]
+					}
+				]
+			},
+			{
+				"propertyName": "Comments",
+				"propertyKeyword": "comments",
+				"propertyTooltip": "comments",
+				"propertyType": "details",
+				"template": "textarea"
+			}
+		]
+	}
+]

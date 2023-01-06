@@ -1,0 +1,34 @@
+{
+	"name": "ID",
+	"erdAbbreviation": "<ID>",
+	"dtdAbbreviation": "{ID}",
+	"parentType": "string",
+	"useSample": true,
+	"hiddenOnEntity": "view",
+	"sample": "50554d6e-29bb-11e5-b345-feff819cdc9e",
+	"defaultValues": {
+		"primaryKey": false,
+		"relationshipType": "",
+		"parentRelationship": "",
+		"childRelationships": [],
+		"foreignCollection": "",
+		"foreignField": [],
+		"default": "",
+		"minLength": "",
+		"maxLength": "",
+		"enum": [],
+		"sample":"",
+		"pattern": "",
+		"comments":""
+	},
+	"compatibilityTypes": [
+		{
+			"from": {
+				"type": "uuid"
+			},
+			"to": {
+				"type": "blob"
+			}
+		}
+	]
+}

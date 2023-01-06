@@ -1,0 +1,50 @@
+{
+	"name": "definitions",
+	"subtype": "snippetChildrenOnly",
+	"parentType": "definitions",
+	"properties": [
+		{
+			"name": "scalars",
+			"type": "componentObject",
+			"subtype": "schema",
+			"hackoladeMeta": {
+				"source": true
+			}
+		},
+		{
+			"name": "enums",
+			"type": "componentObject",
+			"subtype": "schema"
+		},
+		{
+			"name": "types",
+			"type": "componentObject",
+			"subtype": "schema"
+		},
+		{
+			"name": "interfaces",
+			"type": "componentObject",
+			"subtype": "schema"
+		},
+		{
+			"name": "unions",
+			"type": "componentObject",
+			"subtype": "schema"
+		},
+		{
+			"name": "inputs",
+			"type": "componentObject",
+			"subtype": "schema"
+		},
+		{
+			"name": "extends",
+			"type": "componentObject",
+			"subtype": "schema"
+		},
+		{
+			"name": "directives",
+			"type": "componentObject",
+			"subtype": "schema"
+		}
+	]
+}

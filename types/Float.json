@@ -1,0 +1,26 @@
+{
+	"name": "Float",
+	"erdAbbreviation": "<flt>",
+	"dtdAbbreviation": "{flt}",
+	"parentType": "numeric",
+	"sample": 15,
+	"useSample": true,
+	"defaultValues": {
+		"unit": "",
+		"minimum": "",
+		"exclusiveMinimum": false,
+		"maximum": "",
+		"exclusiveMaximum": false,
+		"multipleOf": "",
+		"divisibleBy": "",
+		"default": "",
+		"primaryKey": false,
+		"relationshipType": "",
+		"parentRelationship": "",
+		"childRelationships": [],
+		"foreignCollection": "",
+		"foreignField": [],
+		"enum": [],
+		"sample": ""
+	}
+}

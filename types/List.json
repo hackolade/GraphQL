@@ -1,0 +1,17 @@
+{
+	"name": "List",
+	"erdAbbreviation": "<arr>",
+	"dtdAbbreviation": "[...]",
+	"parentType": "array",
+	"useSample": true,
+	"hiddenOnEntity": "view",
+	"defaultValues": {
+		"subtype": "list<str>",
+		"properties": [],
+		"primaryKey": false,
+		"additionalItems": true,
+		"minItems": "",
+		"maxItems": "",
+		"uniqueItems": false
+	}
+}
