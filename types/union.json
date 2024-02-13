@@ -1,0 +1,24 @@
+{
+	"name": "union",
+	"erdAbbreviation": "<union>",
+	"dtdAbbreviation": "{...}",
+	"parentType": "document",
+	"defaultValues": {
+		"relationshipType": "",
+		"parentRelationship": "",
+		"childRelationships": [],
+		"foreignCollection": "",
+		"foreignField": [],
+		"properties": [],
+		"dependencies": [],
+		"ignore_z_value": true,
+		"minProperties": "",
+		"maxProperties": "",
+		"additionalProperties": false,
+		"enum": [],
+		"snippet": "union"
+	},
+	"subtypes": {
+		"snippetChildrenOnly": {}
+	}
+}

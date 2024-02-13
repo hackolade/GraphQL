@@ -139,12 +139,54 @@
 		"name": {
 			"value": "New field",
 			"valueDependencies": [{
-				"value": "requestBody",
+				"value": "NewScalar",
 				"dependency": {
 					"key": "childType",
-					"value": "requestBody" 
+					"value": "scalar" 
 				}
 			},{
+				"value": "NewEnum",
+				"dependency": {
+					"key": "childType",
+					"value": "enum" 
+				}
+			},{
+				"value": "NewType",
+				"dependency": {
+					"key": "childType",
+					"value": "type" 
+				}
+			},{
+				"value": "NewInterface",
+				"dependency": {
+					"key": "childType",
+					"value": "interface" 
+				}
+			},{
+				"value": "NewUnion",
+				"dependency": {
+					"key": "childType",
+					"value": "union" 
+				}
+			},{
+				"value": "NewInput",
+				"dependency": {
+					"key": "childType",
+					"value": "input" 
+				}
+			},{
+				"value": "@newDirective",
+				"dependency": {
+					"key": "childType",
+					"value": "directive" 
+				}
+			},
+			
+			
+			
+			
+			
+			{
 				"value": "application/json",
 				"dependency": {
 					"level": "parent",

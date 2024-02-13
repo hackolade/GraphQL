@@ -45,7 +45,7 @@
 				"plugin": true,
 				"apiSchema": false
 			},
-			"disablePatternField": false,
+			"disablePatternField": true,
 			"disableChoices": {
 				"allOf": true,
 				"anyOf": true,

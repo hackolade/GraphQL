@@ -6,45 +6,45 @@
 		{
 			"name": "scalars",
 			"type": "componentObject",
-			"subtype": "schema",
+			"subtype": "scalar",
 			"hackoladeMeta": {
-				"source": true
+				"source": true // TODO: source is used to indicate that the component is a parent of definitions, should be checked
 			}
 		},
 		{
 			"name": "enums",
 			"type": "componentObject",
-			"subtype": "schema"
+			"subtype": "enum"
 		},
 		{
 			"name": "types",
 			"type": "componentObject",
-			"subtype": "schema"
+			"subtype": "type"
 		},
 		{
 			"name": "interfaces",
 			"type": "componentObject",
-			"subtype": "schema"
+			"subtype": "interface"
 		},
 		{
 			"name": "unions",
 			"type": "componentObject",
-			"subtype": "schema"
+			"subtype": "union"
 		},
 		{
 			"name": "inputs",
 			"type": "componentObject",
-			"subtype": "schema"
+			"subtype": "input"
 		},
 		{
 			"name": "extends",
 			"type": "componentObject",
-			"subtype": "schema"
+			"subtype": "extend"
 		},
 		{
 			"name": "directives",
 			"type": "componentObject",
-			"subtype": "schema"
+			"subtype": "directive"
 		}
 	]
 }

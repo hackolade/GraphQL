@@ -1,9 +1,10 @@
 {
-	"name": "string",
+	"name": "String",
 	"erdAbbreviation": "<str>",
 	"dtdAbbreviation": "{ABC}",
 	"useSample": true,
 	"default": true,
+	"parentType": "string",
 	"defaultValues": {
 		"minLength": "",
 		"maxLength": "",
