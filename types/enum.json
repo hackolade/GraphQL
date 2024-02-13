@@ -1,0 +1,25 @@
+{
+	"name": "enum",
+	"erdAbbreviation": "<enum>",
+	"dtdAbbreviation": "<enum>",
+	"parentType": "string",
+	"defaultValues": {
+		"relationshipType": "",
+		"parentRelationship": "",
+		"childRelationships": [],
+		"foreignCollection": "",
+		"foreignField": [],
+		"ignore_z_value": true,
+		"subtype": "snippetChildrenOnly",
+		"hackoladeMeta": {
+			"disableAdd": true,
+			"disableAppend": true
+		},
+		"enum": []
+	},
+	"subtypes": {
+		"snippetChildrenOnly": {
+			"childValueType": {}
+		}
+	}
+}

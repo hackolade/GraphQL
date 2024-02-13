@@ -119,7 +119,7 @@ making sure that you maintain a proper JSON format.
 {
 	"lowerTab": "JsonDetails",
 	"structure": {
-		"string": [
+		"String": [
 			{
 				"fieldName": "Name",
 				"fieldKeyword": "name",
@@ -293,7 +293,7 @@ making sure that you maintain a proper JSON format.
 			"sample",
 			"comments"
 		],
-		"boolean": [
+		"Boolean": [
 			{
 				"fieldName": "Name",
 				"fieldKeyword": "name",
@@ -328,63 +328,6 @@ making sure that you maintain a proper JSON format.
 			"sample",
 			"comments"
 		],
-		"object": [
-			{
-				"fieldName": "Name",
-				"fieldKeyword": "name",
-				"fieldType": "coupled",
-				"disabledOnCondition": [{
-					"level": "parent",
-					"key": "childType",
-					"value": "response"
-				},{
-					"key": "subtype",
-					"value": "media"
-				},{
-					"key": "subtype",
-					"value": "example"
-				},{
-					"key": "subtype",
-					"value": "encoding"
-				}]
-			},{
-				"fieldName": "Technical name",
-				"fieldKeyword": "code",
-				"fieldType": "coupled",
-				"disabledOnCondition": [{
-					"level": "parent",
-					"key": "childType",
-					"value": "response"
-				},{
-					"key": "subtype",
-					"value": "media"
-				},{
-					"key": "subtype",
-					"value": "example"
-				},{
-					"key": "subtype",
-					"value": "encoding"
-				}]
-			},
-			"sampleName",
-			"schemaId",
-			"refPath",
-			{
-				"fieldKeyword": "type",
-				"disabledOnCondition": {
-					"type": "not",
-					"values": {
-						"key": "subtype",
-						"value": "schema"
-					}
-				}
-			},
-			"description",
-			"required",
-			"minProperties",
-			"maxProperties",
-			"comments"
-		],
 		"List": [
 			{
 				"fieldName": "Name",
@@ -413,6 +356,148 @@ making sure that you maintain a proper JSON format.
 				"oneOf"
 			]
 		}],
-		"definitions": []
+		"definitions": [],
+		"componentObject": [
+			{
+				"fieldName": "Name",
+				"fieldKeyword": "name",
+				"fieldType": "text",
+				"disabled": true
+			},
+			{
+				"fieldName": "Technical name",
+				"fieldKeyword": "code",
+				"fieldType": "text",
+				"disabled": true,
+				"hidden": true
+			},
+			{
+				"fieldName": "Type",
+				"fieldKeyword": "type",
+				"fieldType": "text",
+				"disabled": true
+			},
+			{
+				"fieldName": "Comments",
+				"fieldKeyword": "comments",
+				"fieldType": "details",
+				"template": "textarea",
+				"disabled": true,
+				"hidden": true
+			},
+			{
+				"fieldName": "Description",
+				"fieldKeyword": "description",
+				"fieldType": "details",
+				"disabled": true,
+				"hidden": true
+			}
+		],
+		"scalar": [
+			"name",
+			"description",
+			"comments"
+		],
+		"enum": [
+			"name",
+			"enum",
+			"description",
+			"comments"
+		],
+		"type": [
+			"name",
+			"description",
+			"required",
+			"minProperties",
+			"maxProperties",
+			"comments"
+		],
+		"interface": [
+			"name",
+			"description",
+			"required",
+			"minProperties",
+			"maxProperties",
+			"comments"
+		],
+		"union": [
+			"name",
+			"description",
+			"required",
+			"comments"
+		],
+		"input": [
+			"name",
+			"description",
+			"required",
+			"comments"
+		],
+		"directive": [
+			"name",
+			"description",
+			{
+				"propertyName": "Directive locations:",
+				"propertyType": "block",
+				"propertyKeyword": "directiveLocations",
+				"structure": [
+					{
+						"propertyName": "SCHEMA",
+						"propertyKeyword": "schema",
+						"propertyType": "checkbox"
+					},
+					{
+						"propertyName": "SCALAR",
+						"propertyKeyword": "scalar",
+						"propertyType": "checkbox"
+					},
+					{
+						"propertyName": "OBJECT",
+						"propertyKeyword": "object",
+						"propertyType": "checkbox"
+					},
+					{
+						"propertyName": "FIELD_DEFINITION",
+						"propertyKeyword": "fieldDefinition",
+						"propertyType": "checkbox"
+					},
+					{
+						"propertyName": "ARGUMENT_DEFINITION",
+						"propertyKeyword": "argumentDefinition",
+						"propertyType": "checkbox"
+					},
+					{
+						"propertyName": "INTERFACE",
+						"propertyKeyword": "interface",
+						"propertyType": "checkbox"
+					},
+					{
+						"propertyName": "UNION",
+						"propertyKeyword": "union",
+						"propertyType": "checkbox"
+					},
+					{
+						"propertyName": "ENUM",
+						"propertyKeyword": "enum",
+						"propertyType": "checkbox"
+					},
+					{
+						"propertyName": "ENUM_VALUE",
+						"propertyKeyword": "enumValue",
+						"propertyType": "checkbox"
+					},
+					{
+						"propertyName": "INPUT_OBJECT",
+						"propertyKeyword": "inputObject",
+						"propertyType": "checkbox"
+					},
+					{
+						"propertyName": "INPUT_FIELD_DEFINITION",
+						"propertyKeyword": "inputFieldDefinition",
+						"propertyType": "checkbox"
+					}
+				]
+			},
+			"comments"
+		]
 	}
 }

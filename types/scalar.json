@@ -1,0 +1,24 @@
+{
+	"name": "scalar",
+	"erdAbbreviation": "<sclr>",
+	"dtdAbbreviation": "<sclr>",
+	"parentType": "string",
+	"defaultValues": {
+		"relationshipType": "",
+		"parentRelationship": "",
+		"childRelationships": [],
+		"foreignCollection": "",
+		"foreignField": [],
+		"ignore_z_value": true,
+		"subtype": "snippetChildrenOnly",
+		"hackoladeMeta": {
+			"disableAdd": true,
+			"disableAppend": true
+		}
+	},
+	"subtypes": {
+		"snippetChildrenOnly": {
+			"childValueType": {}
+		}
+	}
+}

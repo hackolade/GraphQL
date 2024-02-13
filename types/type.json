@@ -1,0 +1,35 @@
+{
+	"name": "type",
+	"erdAbbreviation": "<type>",
+	"dtdAbbreviation": "{...}",
+	"parentType": "document",
+	"defaultValues": {
+		"relationshipType": "",
+		"parentRelationship": "",
+		"childRelationships": [],
+		"foreignCollection": "",
+		"foreignField": [],
+		"properties": [],
+		"dependencies": [],
+		"ignore_z_value": true,
+		"minProperties": "",
+		"maxProperties": "",
+		"additionalProperties": false,
+		"enum": []
+	},
+	"subtypes": {
+		"snippetChildrenOnly": {
+			"childValueType": [
+				"String",
+				"ID",
+				"Int",
+				"Float",
+				"Boolean",
+				"type",
+				"interface",
+				"union",
+				"enum"
+			]
+		}
+	}
+}
