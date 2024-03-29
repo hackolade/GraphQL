@@ -14,10 +14,9 @@
 		"isActivated": true
 	},
 	"collection": {
-		"collectionName": "Query",
+		"collectionName": "newOperation",
 		"entityType": "request",
-		"snippet": "requestStructure",
-		"subtype": "requestBody",
+		"operationType": "Query",
 		"isActivated": true
 	},
 	"nestedCollection": {
