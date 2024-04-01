@@ -47,7 +47,6 @@
 			},
 			"disablePatternField": true,
 			"disableChoices": true,
-			"enhancedChoices": true,
 			"enableJsonType": false,
 			"disableNamingConvention": {
 				"entityLevel": true,
