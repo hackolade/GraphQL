@@ -333,38 +333,49 @@ making sure that you maintain a proper JSON format.
 				"fieldName": "Name",
 				"fieldKeyword": "name",
 				"fieldType": "coupled",
-				"disabledOnCondition": [{
-					"level": "parent",
-					"key": "childType",
-					"value": "response"
-				},{
-					"key": "subtype",
-					"value": "media"
-				},{
-					"key": "subtype",
-					"value": "example"
-				},{
-					"key": "subtype",
-					"value": "encoding"
-				}]
-			},{
+				"disabledOnCondition": [
+					{
+						"level": "parent",
+						"key": "childType",
+						"value": "response"
+					},
+					{
+						"key": "subtype",
+						"value": "media"
+					},
+					{
+						"key": "subtype",
+						"value": "example"
+					},
+					{
+						"key": "subtype",
+						"value": "encoding"
+					}
+				]
+			},
+			{
 				"fieldName": "Technical name",
 				"fieldKeyword": "code",
 				"fieldType": "coupled",
-				"disabledOnCondition": [{
-					"level": "parent",
-					"key": "childType",
-					"value": "response"
-				},{
-					"key": "subtype",
-					"value": "media"
-				},{
-					"key": "subtype",
-					"value": "example"
-				},{
-					"key": "subtype",
-					"value": "encoding"
-				}]
+				"disabledOnCondition": [
+					{
+						"level": "parent",
+						"key": "childType",
+						"value": "response"
+					},
+					{
+						"key": "subtype",
+						"value": "media"
+					},
+					{
+						"key": "subtype",
+						"value": "example"
+					},
+					{
+						"key": "subtype",
+						"value": "encoding"
+					}
+				]
 			},
 			"sampleName",
 			"schemaId",
@@ -405,14 +416,14 @@ making sure that you maintain a proper JSON format.
 			"additionalItems",
 			"comments"
 		],
-		"choice": [{
-			"fieldName": "choice",
-			"fieldKeyword": "choice",
-			"fieldType": "select",
-			"options": [
-				"oneOf"
-			]
-		}],
+		"choice": [
+			{
+				"fieldName": "choice",
+				"fieldKeyword": "choice",
+				"fieldType": "select",
+				"options": ["oneOf"]
+			}
+		],
 		"definitions": []
 	}
 }

@@ -44,7 +44,7 @@ function mapParameter(data, required, isParentActivated = false) {
 		schema: mapSchema(get(data, ['properties', schemaKeyword]), 'schema', isActivated),
 		example: data.sample,
 		examples: getExamples(get(data, 'properties.examples')),
-		content: getContent(get(data, 'properties.content'), isActivated)
+		content: getContent(get(data, 'properties.content'), isActivated),
 	};
 	const extensions = getExtensions(data.scopesExtensions);
 
@@ -56,7 +56,7 @@ function getIn(parameterType) {
 		'parameter (query)': 'query',
 		'parameter (cookie)': 'cookie',
 		'parameter (path)': 'path',
-		'parameter (header)': 'header'
+		'parameter (header)': 'header',
 	};
 
 	return parameterTypeToIn[parameterType];
@@ -73,7 +73,7 @@ function getHeaders(data, isParentActivated = false) {
 			return {
 				key,
 				value: mapHeader(value, isActivated && isParentActivated),
-				isActivated
+				isActivated,
 			};
 		})
 		.reduce((acc, { key, value, isActivated }) => {
@@ -85,24 +85,24 @@ function getHeaders(data, isParentActivated = false) {
 function mapHeader(data, isParentActivated = false) {
 	if (!data) {
 		return;
-	} 
+	}
 	if (hasRef(data)) {
 		return commentDeactivatedItemInner(getRef(data), data.isActivated, isParentActivated);
 	}
 
 	delete data.parameterName;
-    return mapParameter(data, false, isParentActivated);
+	return mapParameter(data, false, isParentActivated);
 }
 
 function getContent(data, isParentActivated) {
-    if (!data || !data.properties) {
-        return;
-    }
+	if (!data || !data.properties) {
+		return;
+	}
 
-    const result = Object.keys(data.properties).reduce((acc, key) => {
+	const result = Object.keys(data.properties).reduce((acc, key) => {
 		const properties = get(data, ['properties', key, 'properties']);
-        if (!properties) {
-            return acc;
+		if (!properties) {
+			return acc;
 		}
 		const schemaKeyword = getSchemaKeyword(properties);
 
@@ -110,22 +110,22 @@ function getContent(data, isParentActivated) {
 			return acc;
 		}
 
-		const isSchemaEmpty = properties[schemaKeyword] && get(properties, [schemaKeyword, 'type']) === 'object' && !get(properties, [schemaKeyword, 'properties']);
+		const isSchemaEmpty =
+			properties[schemaKeyword] &&
+			get(properties, [schemaKeyword, 'type']) === 'object' &&
+			!get(properties, [schemaKeyword, 'properties']);
 		const isExamplesEmpty = !get(properties, 'examples.properties');
 		if (isSchemaEmpty && isExamplesEmpty) {
 			return acc;
 		}
 		const isActivated = data.properties[key].isActivated;
-        acc[key] = commentDeactivatedItemInner(
-			mapMediaTypeObject(
-				data.properties[key],
-				isActivated && isParentActivated
-			),
+		acc[key] = commentDeactivatedItemInner(
+			mapMediaTypeObject(data.properties[key], isActivated && isParentActivated),
 			isActivated,
-			isParentActivated
+			isParentActivated,
 		);
-        return acc;
-    }, {});
+		return acc;
+	}, {});
 
 	if (!Object.keys(result).length) {
 		return;
@@ -135,56 +135,60 @@ function getContent(data, isParentActivated) {
 }
 
 function mapMediaTypeObject(data, isParentActivated = false) {
-    if (!data || !data.properties) {
-        return;
+	if (!data || !data.properties) {
+		return;
 	}
 	const schemaKeyword = getSchemaKeyword(data.properties);
 	let schema = mapSchema(get(data, ['properties', schemaKeyword]), 'schema', isParentActivated);
 	if (!schema && hasChoice(data)) {
-		schema = mapSchema({
-			type: 'object',
-			allOf: data.allOf,
-			oneOf: data.oneOf,
-			anyOf: data.anyOf,
-			not: data.not
-		}, 'schema', isParentActivated);
+		schema = mapSchema(
+			{
+				type: 'object',
+				allOf: data.allOf,
+				oneOf: data.oneOf,
+				anyOf: data.anyOf,
+				not: data.not,
+			},
+			'schema',
+			isParentActivated,
+		);
 	}
-    const examples = getExamples(get(data, 'properties.examples'));
-    const encoding = mapEncoding(get(data, 'properties.encoding'));
+	const examples = getExamples(get(data, 'properties.examples'));
+	const encoding = mapEncoding(get(data, 'properties.encoding'));
 	let example;
 	try {
 		example = JSON.parse(data.sample);
-	} catch(err) {
+	} catch (err) {
 		example = data.sample;
 	}
 	const mediaTypeObj = { schema, examples, encoding, example };
-    const extensions = getExtensions(data.scopesExtensions);
+	const extensions = getExtensions(data.scopesExtensions);
 
-    return Object.assign({}, mediaTypeObj, extensions);
+	return Object.assign({}, mediaTypeObj, extensions);
 }
 
 function mapEncoding(data) {
-    if (!data || !data.properties) {
-        return;
-    }
+	if (!data || !data.properties) {
+		return;
+	}
 
-    return Object.entries(data.properties)
-        .map(([key, value]) => {
-            const encodingObj = {
-                contentType: value.contentType,
-                headers: getHeaders(get(value, 'properties.headers')),
-                style: value.style,
-                explode: value.explode || undefined,
-                allowReserved: value.allowReserved || undefined
-            };
-            const extensions = getExtensions(value.scopesExtensions);
+	return Object.entries(data.properties)
+		.map(([key, value]) => {
+			const encodingObj = {
+				contentType: value.contentType,
+				headers: getHeaders(get(value, 'properties.headers')),
+				style: value.style,
+				explode: value.explode || undefined,
+				allowReserved: value.allowReserved || undefined,
+			};
+			const extensions = getExtensions(value.scopesExtensions);
 
-            return { key, value: Object.assign({}, encodingObj, extensions) };
-        })
-        .reduce((acc, { key, value }) => {
-            acc[key] = value;
-            return acc;
-        }, {});
+			return { key, value: Object.assign({}, encodingObj, extensions) };
+		})
+		.reduce((acc, { key, value }) => {
+			acc[key] = value;
+			return acc;
+		}, {});
 }
 
 function prepareHeadersComponents(headers) {
@@ -200,7 +204,7 @@ function prepareHeadersComponents(headers) {
 }
 
 function getSchemaKeyword(properties = {}) {
-	const defaultKeyword = 'schema'; 
+	const defaultKeyword = 'schema';
 	const restRequestPropNames = ['content', 'examples', 'encoding'];
 
 	if (get(properties, defaultKeyword)) {
@@ -217,5 +221,5 @@ module.exports = {
 	getHeaders,
 	mapHeader,
 	getContent,
-	prepareHeadersComponents
+	prepareHeadersComponents,
 };

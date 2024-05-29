@@ -137,11 +137,7 @@ making sure that you maintain a proper JSON format.
 				"propertyKeyword": "dropdownProp",
 				"propertyTooltip": "Select from list of options",
 				"propertyType": "select",
-				"options": [
-					"Query",
-					"Mutation",
-					"Subscription"
-				]
+				"options": ["Query", "Mutation", "Subscription"]
 			},
 			{
 				"propertyKeyword": "additionalProperties",
