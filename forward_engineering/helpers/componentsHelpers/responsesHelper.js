@@ -13,7 +13,7 @@ function getResponses(data) {
 		.map(([key, value]) => {
 			return {
 				key,
-				value: mapResponse(value)
+				value: mapResponse(value),
 			};
 		})
 		.reduce((acc, { key, value }) => {
@@ -25,7 +25,7 @@ function getResponses(data) {
 function mapResponse(data, responseCollectionDescription, shouldResponseBeCommented = false) {
 	if (!data) {
 		return;
-	} 
+	}
 	if (hasRef(data)) {
 		return getRef(data);
 	}
@@ -40,7 +40,7 @@ function mapResponse(data, responseCollectionDescription, shouldResponseBeCommen
 	}
 
 	Object.assign(response, { description, headers, content, links }, extensions);
-	
+
 	if (shouldResponseBeCommented) {
 		response[`hackoladeInnerCommentEnd`] = true;
 	}
@@ -50,5 +50,5 @@ function mapResponse(data, responseCollectionDescription, shouldResponseBeCommen
 
 module.exports = {
 	getResponses,
-	mapResponse
-}
+	mapResponse,
+};
