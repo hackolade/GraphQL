@@ -16,13 +16,13 @@ function getPaths(containers, containersIdsForCallbacks = []) {
 			const containerData = getRequestsForContainer(container, containers, [], isActivated);
 
 			if (!isActivated) {
-				acc[`hackoladeCommentStart${index}`] = true; 
+				acc[`hackoladeCommentStart${index}`] = true;
 			}
 
 			acc[name] = containerData;
 
 			if (!isActivated) {
-				acc[`hackoladeCommentEnd${index}`] = true; 
+				acc[`hackoladeCommentEnd${index}`] = true;
 			}
 			return acc;
 		}, {});
@@ -35,7 +35,7 @@ function getRequestsForContainer(container, containers, containersPath = [], isP
 	const containerData = getRequestData(collections, containers, container.id, containersPath, isPathActivated);
 	const additionalContainerData = {
 		summary,
-		description: description || undefined 
+		description: description || undefined,
 	};
 
 	const containerExtensions = getExtensions(contactExtensions);
@@ -55,10 +55,7 @@ function getRequestData(collections, containers, containerId, containersPath = [
 				description: data.description,
 				externalDocs: commonHelper.mapExternalDocs(data.externalDocs),
 				operationId: data.operationId,
-				parameters: mapRequestParameters(
-					get(data, 'properties.parameters'),
-					isRequestActivated
-				)
+				parameters: mapRequestParameters(get(data, 'properties.parameters'), isRequestActivated),
 			};
 			const extensions = getExtensions(data.scopesExtensions);
 
@@ -66,23 +63,14 @@ function getRequestData(collections, containers, containerId, containersPath = [
 				request.requestBody = mapRequestBody(
 					get(data.properties, requestBodyPropKeyword),
 					get(data, 'required', []).includes(requestBodyPropKeyword),
-					isRequestActivated
+					isRequestActivated,
 				);
 			}
 
 			request = {
 				...request,
-				responses: mapResponses(
-					collections,
-					data.GUID,
-					isRequestActivated
-				),
-				callbacks: getCallbacks(
-					get(data, 'properties.callbacks'),
-					containers,
-					containerId,
-					containersPath
-				),
+				responses: mapResponses(collections, data.GUID, isRequestActivated),
+				callbacks: getCallbacks(get(data, 'properties.callbacks'), containers, containerId, containersPath),
 				deprecated: data.deprecated,
 				security: commonHelper.mapSecurity(data.security),
 				servers: getServers(data.servers),
@@ -98,11 +86,11 @@ function getRequestData(collections, containers, containerId, containersPath = [
 			delete collection.isActivated;
 			const shouldCommentedFlagBeInserted = !isActivated && isPathActivated;
 			if (shouldCommentedFlagBeInserted) {
-				acc[`hackoladeCommentStart${index}`] = true; 
+				acc[`hackoladeCommentStart${index}`] = true;
 			}
 			acc[methodName] = collection;
 			if (shouldCommentedFlagBeInserted) {
-				acc[`hackoladeCommentEnd${index}`] = true; 
+				acc[`hackoladeCommentEnd${index}`] = true;
 			}
 			return acc;
 		}, {});
@@ -129,7 +117,11 @@ function mapResponses(collections, collectionId, isParentActivated) {
 			const responseCode = collection.collectionName;
 			const shouldResponseBeCommented = !collection.isActivated && isParentActivated;
 			const extensions = getExtensions(collection.scopesExtensions);
-			const response = mapResponse(get(collection, ['properties', Object.keys(collection.properties)[0]]), collection.description, shouldResponseBeCommented);
+			const response = mapResponse(
+				get(collection, ['properties', Object.keys(collection.properties)[0]]),
+				collection.description,
+				shouldResponseBeCommented,
+			);
 
 			return { responseCode, response: { ...response, ...extensions } };
 		})
@@ -137,7 +129,7 @@ function mapResponses(collections, collectionId, isParentActivated) {
 			acc[responseCode] = response;
 			return acc;
 		}, {});
-		
+
 	return responses;
 }
 
@@ -152,21 +144,19 @@ function getCallbacks(data, containers, containerId, containersPath = []) {
 				return;
 			}
 			if (hasRef(value)) {
-				return { [key]: { [value.callbackExpression]: getRef(value) }};
+				return { [key]: { [value.callbackExpression]: getRef(value) } };
 			}
 			const containerForCallback = containers.find(({ id }) => id === value.bucketId && id !== containerId);
 			if (!containerForCallback) {
 				return;
 			}
-			const callbackData = getRequestsForContainer(
-				containerForCallback,
-				containers,
-				[...containersPath, containerId]
-			);
+			const callbackData = getRequestsForContainer(containerForCallback, containers, [
+				...containersPath,
+				containerId,
+			]);
 			const extensions = getExtensions(value.scopesExtensions);
 
-			return { [key]: { [value.callbackExpression]: callbackData, ...extensions }};
-
+			return { [key]: { [value.callbackExpression]: callbackData, ...extensions } };
 		})
 		.reduce((acc, item) => {
 			acc = Object.assign({}, acc, item);
@@ -175,7 +165,7 @@ function getCallbacks(data, containers, containerId, containersPath = []) {
 }
 
 function getRequestBodyPropKeyword(properties = {}) {
-	const defaultKeyword = 'requestBody'; 
+	const defaultKeyword = 'requestBody';
 	const restRequestPropNames = ['parameters', 'callbacks'];
 
 	if (get(properties, defaultKeyword)) {
@@ -183,10 +173,10 @@ function getRequestBodyPropKeyword(properties = {}) {
 	}
 
 	const requestBodyKey = Object.keys(properties).find(key => !restRequestPropNames.includes(key));
-	return requestBodyKey
+	return requestBodyKey;
 }
 
 module.exports = {
 	getPaths,
-	getCallbacks
+	getCallbacks,
 };

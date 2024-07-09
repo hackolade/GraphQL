@@ -132,9 +132,7 @@ making sure that you maintain a proper JSON format.
 				"propertyKeyword": "dbVendor",
 				"propertyTooltip": "DB vendor",
 				"propertyType": "select",
-				"options": [
-					"GraphQL"
-				],
+				"options": ["GraphQL"],
 				"disabledOption": true
 			},
 			{
@@ -142,8 +140,7 @@ making sure that you maintain a proper JSON format.
 				"propertyKeyword": "dbVersion",
 				"propertyTooltip": "DB version",
 				"propertyType": "select",
-				"options": [
-				],
+				"options": [],
 				"disabledOption": true
 			},
 			{
