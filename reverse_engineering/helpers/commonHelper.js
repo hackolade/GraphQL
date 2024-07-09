@@ -1,7 +1,6 @@
 const fs = require('fs');
 const path = require('path');
 const uuid = require('node-uuid');
-const yaml = require('js-yaml');
 
 const errorHelper = require('./errorHelper');
 
@@ -30,13 +29,13 @@ const isJson = data => {
 };
 
 const isYaml = data => {
-	try {
-		yaml.load(data);
+	// try {
+	// yaml.load(data);
 
-		return true;
-	} catch (err) {
-		return false;
-	}
+	// return true;
+	// } catch (err) {
+	return false;
+	// }
 };
 
 const getPathData = (data, filePath) => {
@@ -70,7 +69,8 @@ const handleErrorObject = (error, title) => {
 };
 
 const convertYamlToJson = fileData => {
-	return yaml.load(fileData, { schema: yaml.JSON_SCHEMA });
+	return fileData;
+	// return yaml.load(fileData, { schema: yaml.JSON_SCHEMA });
 };
 
 const getNewId = () => uuid.v1();

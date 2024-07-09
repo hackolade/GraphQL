@@ -13,81 +13,81 @@
             "versions": []
         },
         "features": {
-			"nestedCollections": {
-				"level": 1
-			},
-			"disableMultipleTypes": true,
-			"enableReverseEngineering": {
-				"jsonDocument": {
-					"entities": false,
-					"model_definitions": true
-				},
-				"jsonSchema": {
-					"entities": false,
-					"model_definitions": true
-				},
-				"ddl": {
-					"entities": false,
-					"model_definitions": true
-				},
-				"xsd": {
-					"entities": false,
-					"model_definitions": true
-				},
-				"plugin": true
-			},
-			"disableDenormalization": true,
-			"enableForwardEngineering": {
-				"jsonDocument": true,
-				"jsonSchema": true,
-				"plugin": true,
-				"apiSchema": false
-			},
-			"disablePatternField": true,
-			"disableChoices": true,
-			"enableJsonType": false,
-			"disableNamingConvention": {
-				"entityLevel": true,
-				"containerLevel": true,
-				"fieldLevel": {
-					"componentObject": true,
-					"operationObject": true,
-					"extensions": true,
-					"media": true
-				}
-			},
-			"disableChildren": {
-				"entityLevel": true
-			},
-			"disableDefinitions": {
-				"internal": true
-			},
-			"disableRelationships": false,
-			"relationships": {
-				"definitionRelationships": true
-			},
-			"disableJsonPreview": false,
-			"enableErdToggle": true,
-			"enableStackedNestedCollections": true,
-			"externalDefinitionsFromTargetSchema": true,
-			"apiTarget": true,
-			"FEScriptCommentsSupported": true,
-			"displayOptions": {
-				"hideNonNullableAttributes": true
-			},
-			"openModelDefinitionsTabIfNoCollections": true,
-			"erdDefinitions": {
-				"enabled": true,
-				"propertyNames": ["schemas"]
-			}
-		}
+            "nestedCollections": {
+                "level": 1
+            },
+            "disableMultipleTypes": true,
+            "enableReverseEngineering": {
+                "jsonDocument": {
+                    "entities": false,
+                    "model_definitions": true
+                },
+                "jsonSchema": {
+                    "entities": false,
+                    "model_definitions": true
+                },
+                "ddl": {
+                    "entities": false,
+                    "model_definitions": true
+                },
+                "xsd": {
+                    "entities": false,
+                    "model_definitions": true
+                },
+                "plugin": true
+            },
+            "disableDenormalization": true,
+            "enableForwardEngineering": {
+                "jsonDocument": true,
+                "jsonSchema": true,
+                "plugin": true,
+                "apiSchema": false
+            },
+            "disablePatternField": true,
+            "disableChoices": true,
+            "enableJsonType": false,
+            "disableNamingConvention": {
+                "entityLevel": true,
+                "containerLevel": true,
+                "fieldLevel": {
+                    "componentObject": true,
+                    "operationObject": true,
+                    "extensions": true,
+                    "media": true
+                }
+            },
+            "disableChildren": {
+                "entityLevel": true
+            },
+            "disableDefinitions": {
+                "internal": true
+            },
+            "disableRelationships": false,
+            "relationships": {
+                "definitionRelationships": true
+            },
+            "disableJsonPreview": false,
+            "enableErdToggle": true,
+            "enableStackedNestedCollections": true,
+            "externalDefinitionsFromTargetSchema": true,
+            "apiTarget": true,
+            "FEScriptCommentsSupported": true,
+            "displayOptions": {
+                "hideNonNullableAttributes": true
+            },
+            "openModelDefinitionsTabIfNoCollections": true,
+            "erdDefinitions": {
+                "enabled": true,
+                "propertyNames": [
+                    "schemas"
+                ]
+            }
+        }
     },
     "description": "Hackolade plugin for GraphQL",
     "disabled": false,
     "dependencies": {
-        "@apidevtools/swagger-parser": "10.0.3",
         "comment-json": "4.1.0",
-        "js-yaml": "3.13.1",
         "lodash": "4.17.21",
         "lodash.get": "4.4.2",
         "lodash.isplainobject": "4.0.6",
