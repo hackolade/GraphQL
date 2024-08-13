@@ -1,4 +1,3 @@
-const yaml = require('js-yaml');
 const get = require('lodash.get');
 const validationHelper = require('./helpers/validationHelper');
 const getInfo = require('./helpers/infoHelper');
@@ -59,9 +58,7 @@ module.exports = {
 
 			switch (data.targetScriptOptions.format) {
 				case 'yaml': {
-					const schema = yaml.safeDump(resultSchema, { skipInvalid: true });
-					const schemaWithComments = addCommentsSigns(schema, 'yaml');
-					cb(null, schemaWithComments);
+					cb(null, resultSchema);
 					break;
 				}
 				case 'json':
@@ -88,7 +85,7 @@ module.exports = {
 
 			switch (targetScriptOptions.format) {
 				case 'yaml':
-					parsedScript = yaml.safeLoad(filteredScript);
+					// parsedScript = yaml.safeLoad(filteredScript);
 					break;
 				case 'json':
 				default:

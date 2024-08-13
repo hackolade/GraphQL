@@ -14,10 +14,9 @@
 		"isActivated": true
 	},
 	"collection": {
-		"collectionName": "Query",
+		"collectionName": "newOperation",
 		"entityType": "request",
-		"snippet": "requestStructure",
-		"subtype": "requestBody",
+		"operationType": "Query",
 		"isActivated": true
 	},
 	"nestedCollection": {
@@ -150,90 +149,98 @@
 		},
 		"name": {
 			"value": "New field",
-			"valueDependencies": [{
-				"value": "NewScalar",
-				"dependency": {
-					"key": "childType",
-					"value": "scalar" 
+			"valueDependencies": [
+				{
+					"value": "NewScalar",
+					"dependency": {
+						"key": "childType",
+						"value": "scalar"
+					}
+				},
+				{
+					"value": "NewEnum",
+					"dependency": {
+						"key": "childType",
+						"value": "enum"
+					}
+				},
+				{
+					"value": "NewType",
+					"dependency": {
+						"key": "childType",
+						"value": "type"
+					}
+				},
+				{
+					"value": "NewInterface",
+					"dependency": {
+						"key": "childType",
+						"value": "interface"
+					}
+				},
+				{
+					"value": "NewUnion",
+					"dependency": {
+						"key": "childType",
+						"value": "union"
+					}
+				},
+				{
+					"value": "NewInput",
+					"dependency": {
+						"key": "childType",
+						"value": "input"
+					}
+				},
+				{
+					"value": "@newDirective",
+					"dependency": {
+						"key": "childType",
+						"value": "directive"
+					}
+				},
+
+				{
+					"value": "application/json",
+					"dependency": {
+						"level": "parent",
+						"key": "subtype",
+						"value": "media"
+					}
+				},
+				{
+					"value": "response",
+					"dependency": {
+						"level": "parent",
+						"key": "subtype",
+						"value": "response"
+					}
+				},
+				{
+					"value": "parameterName",
+					"dependency": {
+						"level": "parent",
+						"key": "subtype",
+						"value": "anyParameter"
+					}
+				},
+				{
+					"value": "schema",
+					"dependency": {
+						"level": "parent",
+						"key": "subtype",
+						"value": "structuralSchema"
+					}
+				},
+				{
+					"value": "schema",
+					"dependency": {
+						"level": "parent",
+						"key": "type",
+						"value": "subschema"
+					}
 				}
-			},{
-				"value": "NewEnum",
-				"dependency": {
-					"key": "childType",
-					"value": "enum" 
-				}
-			},{
-				"value": "NewType",
-				"dependency": {
-					"key": "childType",
-					"value": "type" 
-				}
-			},{
-				"value": "NewInterface",
-				"dependency": {
-					"key": "childType",
-					"value": "interface" 
-				}
-			},{
-				"value": "NewUnion",
-				"dependency": {
-					"key": "childType",
-					"value": "union" 
-				}
-			},{
-				"value": "NewInput",
-				"dependency": {
-					"key": "childType",
-					"value": "input" 
-				}
-			},{
-				"value": "@newDirective",
-				"dependency": {
-					"key": "childType",
-					"value": "directive" 
-				}
-			},
-			
-			
-			
-			
-			
-			{
-				"value": "application/json",
-				"dependency": {
-					"level": "parent",
-					"key": "subtype",
-					"value": "media" 
-				}
-			},{
-				"value": "response",
-				"dependency": {
-					"level": "parent",
-					"key": "subtype",
-					"value": "response" 
-				}
-			},{
-				"value": "parameterName",
-				"dependency": {
-					"level": "parent",
-					"key": "subtype",
-					"value": "anyParameter" 
-				}
-			},{
-				"value": "schema",
-				"dependency": {
-					"level": "parent",
-					"key": "subtype",
-					"value": "structuralSchema" 
-				}
-			},{
-				"value": "schema",
-				"dependency": {
-					"level": "parent",
-					"key": "type",
-					"value": "subschema" 
-				}
-			}]
+			]
 		},
 		"structureType": {
 			"valueDependencies": [

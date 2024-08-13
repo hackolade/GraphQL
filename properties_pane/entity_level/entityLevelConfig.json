@@ -122,22 +122,42 @@ making sure that you maintain a proper JSON format.
 		"lowerTab": "Details",
 		"structure": [
 			{
-				"propertyName": "Request operation",
+				"propertyName": "Operation name",
 				"propertyKeyword": "collectionName",
-				"propertyTooltip": "Select from list of operations",
-				"propertyType": "select",
-				"options": ["get", "put", "post", "delete", "options", "head", "patch", "trace", "$ref"],
+				"propertyType": "text",
 				"dependency": {
 					"key": "entityType",
 					"value": "request"
 				}
 			},
 			{
+				"propertyName": "Response name",
+				"propertyKeyword": "collectionName",
+				"propertyType": "text",
+				"dependency": {
+					"key": "entityType",
+					"value": "response"
+				}
+			},
+			{
+				"propertyName": "Technical name",
+				"propertyKeyword": "code",
+				"propertyType": "text"
+			},
+			{
 				"propertyName": "Operation type",
-				"propertyKeyword": "dropdownProp",
-				"propertyTooltip": "Select from list of options",
+				"propertyKeyword": "operationType",
+				"propertyTooltip": "Select operation type",
 				"propertyType": "select",
-				"options": ["Query", "Mutation", "Subscription"]
+				"options": [
+					"Query",
+					"Mutation",
+					"Subscription"
+				],
+				"dependency": {
+					"key": "entityType",
+					"value": "request"
+				}
 			},
 			{
 				"propertyKeyword": "additionalProperties",

@@ -348,14 +348,14 @@ making sure that you maintain a proper JSON format.
 			"additionalItems",
 			"comments"
 		],
-		"choice": [{
-			"fieldName": "choice",
-			"fieldKeyword": "choice",
-			"fieldType": "select",
-			"options": [
-				"oneOf"
-			]
-		}],
+		"choice": [
+			{
+				"fieldName": "choice",
+				"fieldKeyword": "choice",
+				"fieldType": "select",
+				"options": ["oneOf"]
+			}
+		],
 		"definitions": [],
 		"componentObject": [
 			{
@@ -393,45 +393,12 @@ making sure that you maintain a proper JSON format.
 				"hidden": true
 			}
 		],
-		"scalar": [
-			"name",
-			"description",
-			"comments"
-		],
-		"enum": [
-			"name",
-			"enum",
-			"description",
-			"comments"
-		],
-		"type": [
-			"name",
-			"description",
-			"required",
-			"minProperties",
-			"maxProperties",
-			"comments"
-		],
-		"interface": [
-			"name",
-			"description",
-			"required",
-			"minProperties",
-			"maxProperties",
-			"comments"
-		],
-		"union": [
-			"name",
-			"description",
-			"required",
-			"comments"
-		],
-		"input": [
-			"name",
-			"description",
-			"required",
-			"comments"
-		],
+		"scalar": ["name", "description", "comments"],
+		"enum": ["name", "enum", "description", "comments"],
+		"type": ["name", "description", "required", "minProperties", "maxProperties", "comments"],
+		"interface": ["name", "description", "required", "minProperties", "maxProperties", "comments"],
+		"union": ["name", "description", "required", "comments"],
+		"input": ["name", "description", "required", "comments"],
 		"directive": [
 			"name",
 			"description",
