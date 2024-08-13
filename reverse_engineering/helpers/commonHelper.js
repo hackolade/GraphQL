@@ -29,13 +29,7 @@ const isJson = data => {
 };
 
 const isYaml = data => {
-	// try {
-	// yaml.load(data);
-
-	// return true;
-	// } catch (err) {
 	return false;
-	// }
 };
 
 const getPathData = (data, filePath) => {
@@ -70,7 +64,6 @@ const handleErrorObject = (error, title) => {
 
 const convertYamlToJson = fileData => {
 	return fileData;
-	// return yaml.load(fileData, { schema: yaml.JSON_SCHEMA });
 };
 
 const getNewId = () => uuid.v1();

@@ -85,8 +85,6 @@ module.exports = {
 
 			switch (targetScriptOptions.format) {
 				case 'yaml':
-					// parsedScript = yaml.safeLoad(filteredScript);
-					break;
 				case 'json':
 				default:
 					parsedScript = JSON.parse(filteredScript);
