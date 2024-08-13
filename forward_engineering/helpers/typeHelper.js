@@ -15,14 +15,14 @@ function getType(data, key, isParentActivated = false) {
 	if (hasRef(data)) {
 		return commentDeactivatedItemInner(getRef(data), data.isActivated, isParentActivated);
 	}
-	
+
 	return commentDeactivatedItemInner(getTypeProps(data, key, isParentActivated), data.isActivated, isParentActivated);
 }
 
 function getTypeProps(data, key, isParentActivated) {
 	const { type, properties, items, required, isActivated } = data;
 
-    const extensions = getExtensions(data.scopesExtensions);
+	const extensions = getExtensions(data.scopesExtensions);
 
 	switch (type) {
 		case 'array': {
@@ -39,7 +39,7 @@ function getTypeProps(data, key, isParentActivated) {
 				discriminator: data.discriminator,
 				readOnly: data.readOnly,
 				example: parseExample(data.sample) || getArrayItemsExample(items),
-				xml: getXml(data.xml)
+				xml: getXml(data.xml),
 			};
 			const arrayChoices = getChoices(data, key);
 
@@ -59,7 +59,7 @@ function getTypeProps(data, key, isParentActivated) {
 				discriminator: data.discriminator,
 				readOnly: data.readOnly,
 				example: parseExample(data.sample),
-				xml: getXml(data.xml)
+				xml: getXml(data.xml),
 			};
 			const objectChoices = getChoices(data, key);
 
@@ -77,7 +77,7 @@ function getTypeProps(data, key, isParentActivated) {
 
 function getRef({ $ref }) {
 	return { $ref };
-};
+}
 
 function hasRef(data = {}) {
 	return data.$ref ? true : false;
@@ -99,7 +99,7 @@ function getObjectProperties(properties, isParentActivated) {
 		acc[propName] = commentDeactivatedItemInner(
 			getType(properties[propName], propName, isParentActivated),
 			properties[propName].isActivated,
-			isParentActivated
+			isParentActivated,
 		);
 		return acc;
 	}, {});
@@ -110,13 +110,17 @@ function getXml(data) {
 		return undefined;
 	}
 
-	return Object.assign({}, {
-		name: data.xmlName,
-		namespace: data.xmlNamespace,
-		prefix: data.xmlPrefix,
-		attribute: data.xmlAttribute,
-		wrapped: data.xmlWrapped
-	}, getExtensions(data.scopesExtensions));
+	return Object.assign(
+		{},
+		{
+			name: data.xmlName,
+			namespace: data.xmlNamespace,
+			prefix: data.xmlPrefix,
+			attribute: data.xmlAttribute,
+			wrapped: data.xmlWrapped,
+		},
+		getExtensions(data.scopesExtensions),
+	);
 }
 
 function getPrimitiveTypeProps(data) {
@@ -137,45 +141,45 @@ function getPrimitiveTypeProps(data) {
 		multipleOf: data.multipleOf,
 		xml: getXml(data.xml),
 		example: data.sample,
-		...getExtensions(data.scopesExtensions)
+		...getExtensions(data.scopesExtensions),
 	};
 
 	return addIfTrue(properties, 'nullable', data.nullable);
 }
 
 function getAdditionalProperties(data) {
-	const getAdditionalPropsObject = (data) => {
+	const getAdditionalPropsObject = data => {
 		if (!data) {
 			return;
 		}
 		if (data.additionalPropertiesObjectType === 'integer') {
 			return {
 				type: data.additionalPropertiesObjectType,
-				format: data.additionalPropertiesIntegerFormat
-			}
+				format: data.additionalPropertiesIntegerFormat,
+			};
 		}
 		return { type: data.additionalPropertiesObjectType };
-	}
+	};
 
 	if (!data.additionalPropControl) {
 		return;
 	}
-	
+
 	if (data.additionalPropControl === 'Boolean') {
 		return data.additionalProperties || undefined;
 	}
-	
+
 	return getAdditionalPropsObject(data);
 }
 
 function getChoices(data, key) {
 	const mapChoice = (item, key) => {
-		const choiceValue = get(item, `properties.${key}`); 
+		const choiceValue = get(item, `properties.${key}`);
 		if (choiceValue) {
 			return getType(choiceValue);
 		}
 		return getType(item);
-	}
+	};
 
 	if (!data) {
 		return;
@@ -183,16 +187,19 @@ function getChoices(data, key) {
 	const { allOf, anyOf, oneOf, not } = data;
 	const multipleChoices = ['allOf', 'anyOf', 'oneOf', 'not'];
 
-	return multipleChoices.reduce((acc, choice) => {
-		if (acc[choice]) {
-			if (choice === 'not') {
-				acc[choice] = mapChoice(acc[choice], key);
-			} else {
-				acc[choice] = acc[choice].map(item => mapChoice(item, key)); 
+	return multipleChoices.reduce(
+		(acc, choice) => {
+			if (acc[choice]) {
+				if (choice === 'not') {
+					acc[choice] = mapChoice(acc[choice], key);
+				} else {
+					acc[choice] = acc[choice].map(item => mapChoice(item, key));
+				}
 			}
-		}
-		return acc;
-	}, { allOf, anyOf, oneOf, not });
+			return acc;
+		},
+		{ allOf, anyOf, oneOf, not },
+	);
 }
 
 function hasChoice(data) {
@@ -208,7 +215,7 @@ function hasChoice(data) {
 function parseExample(data) {
 	try {
 		return JSON.parse(data);
-	} catch(err) {
+	} catch (err) {
 		return data;
 	}
 }
@@ -219,20 +226,22 @@ function addIfTrue(data, propertyName, value) {
 	}
 
 	return Object.assign({}, data, {
-		[propertyName]: value
+		[propertyName]: value,
 	});
 }
 
 function getArrayItemsExample(items) {
 	const supportedDataTypes = ['object', 'string', 'number', 'integer', 'boolean'];
 	if (Array.isArray(items) && items.length > 1) {
-		const itemsExample = items.filter(item => item.isActivated !== false).reduce((acc, item) => {
-			if (supportedDataTypes.includes(item.type) && item.sample) {
-				const example = item.type === 'object' ? parseExample(item.sample) : item.sample;
-				return acc.concat(example);
-			}
-			return acc;
-		}, []);
+		const itemsExample = items
+			.filter(item => item.isActivated !== false)
+			.reduce((acc, item) => {
+				if (supportedDataTypes.includes(item.type) && item.sample) {
+					const example = item.type === 'object' ? parseExample(item.sample) : item.sample;
+					return acc.concat(example);
+				}
+				return acc;
+			}, []);
 		if (itemsExample.length > 1) {
 			return itemsExample;
 		}
@@ -243,5 +252,5 @@ module.exports = {
 	getType,
 	getRef,
 	hasRef,
-	hasChoice
+	hasChoice,
 };

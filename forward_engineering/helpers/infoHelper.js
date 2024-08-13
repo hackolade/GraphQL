@@ -1,4 +1,3 @@
-
 const getExtensions = require('./extensionsHelper');
 
 function getInfo({ description, version, modelVersion, title = '', termsOfService, contact, license, infoExtensions }) {
@@ -8,7 +7,7 @@ function getInfo({ description, version, modelVersion, title = '', termsOfServic
 		termsOfService,
 		contact: getContact(contact),
 		license: getLicense(license),
-		version: version || modelVersion
+		version: version || modelVersion,
 	};
 
 	const extensions = getExtensions(infoExtensions);
@@ -23,7 +22,7 @@ function getContact(contact) {
 	const contactObj = {
 		name: contact.contactName,
 		url: contact.contactURL,
-		email: contact.contactemail
+		email: contact.contactemail,
 	};
 	const extensions = getExtensions(contact.contactExtensions);
 
@@ -37,7 +36,7 @@ function getLicense(license) {
 
 	const licenseObject = {
 		name: license.licenseName,
-		url: license.licenseURL
+		url: license.licenseURL,
 	};
 	const extensions = getExtensions(license.contactExtensions);
 
