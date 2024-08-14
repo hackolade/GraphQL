@@ -1,0 +1,14 @@
+{
+	"name": "union",
+	"subtype": "snippetChildrenOnly",
+	"parentType": "union",
+	"properties": [
+		{
+			"type": "choice",
+			"choice": "oneOf",
+			"hackoladeMeta": {
+				"resetInsteadOfDelete": true
+			}
+		}
+	]
+}

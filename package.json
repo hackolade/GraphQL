@@ -43,13 +43,8 @@
                 "plugin": true,
                 "apiSchema": false
             },
-            "disablePatternField": false,
-            "disableChoices": {
-                "allOf": true,
-                "anyOf": true,
-                "oneOf": false,
-                "not": true
-            },
+            "disablePatternField": true,
+            "disableChoices": true,
             "enableJsonType": false,
             "disableNamingConvention": {
                 "entityLevel": true,
@@ -92,9 +87,7 @@
     "description": "Hackolade plugin for GraphQL",
     "disabled": false,
     "dependencies": {
-        "@apidevtools/swagger-parser": "10.0.3",
         "comment-json": "4.1.0",
-        "js-yaml": "3.13.1",
         "lodash": "4.17.21",
         "lodash.get": "4.4.2",
         "lodash.isplainobject": "4.0.6",
