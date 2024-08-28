@@ -29,5 +29,15 @@
 				"enum"
 			]
 		}
+	},
+	"dependency": {
+		"type": "not",
+		"values": [
+			{
+				"level": "root",
+				"key": "entityType",
+				"value": "response"
+			}
+		]
 	}
 }
