@@ -78,6 +78,9 @@
                 "propertyNames": [
                     "schemas"
                 ]
+            },
+            "definitionSources": {
+                "multipleSources": true
             }
         }
     },
