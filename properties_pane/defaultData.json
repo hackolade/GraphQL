@@ -295,7 +295,14 @@
 	},
 	"subschema": {},
 	"arrayItem": {},
-	"choice": {},
+	"choice": {
+		"hackoladeMeta": {
+			"resetInsteadOfDelete": true,
+			"disableAdd": false,
+			"disableAppend": true,
+			"disableReference": true
+		}
+	},
 	"relationship": {},
 	"user": {},
 	"view": {
