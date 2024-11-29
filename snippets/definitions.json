@@ -4,7 +4,7 @@
 	"parentType": "definitions",
 	"properties": [
 		{
-			"name": "scalars",
+			"name": "Scalars",
 			"type": "componentObject",
 			"subtype": "scalar",
 			"hackoladeMeta": {
@@ -12,37 +12,32 @@
 			}
 		},
 		{
-			"name": "enums",
+			"name": "Enums",
 			"type": "componentObject",
 			"subtype": "enum"
 		},
 		{
-			"name": "types",
+			"name": "Objects",
 			"type": "componentObject",
 			"subtype": "type"
 		},
 		{
-			"name": "interfaces",
+			"name": "Interfaces",
 			"type": "componentObject",
 			"subtype": "interface"
 		},
 		{
-			"name": "unions",
+			"name": "Unions",
 			"type": "componentObject",
 			"subtype": "union"
 		},
 		{
-			"name": "inputs",
+			"name": "Input objects",
 			"type": "componentObject",
 			"subtype": "input"
 		},
 		{
-			"name": "extends",
-			"type": "componentObject",
-			"subtype": "extend"
-		},
-		{
-			"name": "directives",
+			"name": "Directives",
 			"type": "componentObject",
 			"subtype": "directive"
 		}
