@@ -6,9 +6,7 @@
 		{
 			"type": "choice",
 			"choice": "oneOf",
-			"hackoladeMeta": {
-				"resetInsteadOfDelete": true
-			}
+			"createDefaultSubschemas": false
 		}
 	]
 }

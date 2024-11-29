@@ -37,7 +37,7 @@
 					},
 					"dependency": {
 						"key": "childType",
-						"value": "componentObject"
+						"value": "type"
 					}
 				},
 				{
@@ -98,7 +98,7 @@
 					"dependency": {
 						"level": "parent",
 						"key": "childType",
-						"value": "componentObject"
+						"value": "type"
 					}
 				},
 				{
@@ -297,7 +297,14 @@
 	},
 	"subschema": {},
 	"arrayItem": {},
-	"choice": {},
+	"choice": {
+		"hackoladeMeta": {
+			"resetInsteadOfDelete": true,
+			"disableAdd": false,
+			"disableAppend": true,
+			"disableReference": true
+		}
+	},
 	"relationship": {},
 	"user": {},
 	"view": {

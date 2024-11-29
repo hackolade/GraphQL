@@ -50,7 +50,7 @@
                 "entityLevel": true,
                 "containerLevel": true,
                 "fieldLevel": {
-                    "componentObject": true,
+                    "type": true,
                     "operationObject": true,
                     "extensions": true,
                     "media": true

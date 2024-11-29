@@ -358,7 +358,7 @@ making sure that you maintain a proper JSON format.
 			}
 		],
 		"definitions": [],
-		"componentObject": [
+		"type": [
 			{
 				"fieldName": "Name",
 				"fieldKeyword": "name",
@@ -396,7 +396,7 @@ making sure that you maintain a proper JSON format.
 		],
 		"scalar": ["name", "description", "comments"],
 		"enum": ["name", "enum", "description", "comments"],
-		"type": ["name", "description", "required", "minProperties", "maxProperties", "comments"],
+		"object": ["name", "description", "required", "minProperties", "maxProperties", "comments"],
 		"interface": ["name", "description", "required", "minProperties", "maxProperties", "comments"],
 		"union": ["name", "description", "required", "comments"],
 		"input": ["name", "description", "required", "comments"],

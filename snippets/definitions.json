@@ -4,46 +4,41 @@
 	"parentType": "definitions",
 	"properties": [
 		{
-			"name": "scalars",
-			"type": "componentObject",
+			"name": "Scalars",
+			"type": "type",
 			"subtype": "scalar",
 			"hackoladeMeta": {
 				"source": true // TODO: source is used to indicate that the component is a parent of definitions, should be checked
 			}
 		},
 		{
-			"name": "enums",
-			"type": "componentObject",
+			"name": "Enums",
+			"type": "type",
 			"subtype": "enum"
 		},
 		{
-			"name": "types",
-			"type": "componentObject",
-			"subtype": "type"
+			"name": "Objects",
+			"type": "type",
+			"subtype": "object"
 		},
 		{
-			"name": "interfaces",
-			"type": "componentObject",
+			"name": "Interfaces",
+			"type": "type",
 			"subtype": "interface"
 		},
 		{
-			"name": "unions",
-			"type": "componentObject",
+			"name": "Unions",
+			"type": "type",
 			"subtype": "union"
 		},
 		{
-			"name": "inputs",
-			"type": "componentObject",
+			"name": "Input objects",
+			"type": "type",
 			"subtype": "input"
 		},
 		{
-			"name": "extends",
-			"type": "componentObject",
-			"subtype": "extend"
-		},
-		{
-			"name": "directives",
-			"type": "componentObject",
+			"name": "Directives",
+			"type": "type",
 			"subtype": "directive"
 		}
 	]

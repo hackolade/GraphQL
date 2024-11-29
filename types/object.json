@@ -1,6 +1,6 @@
 {
-	"name": "union",
-	"erdAbbreviation": "<union>",
+	"name": "object",
+	"erdAbbreviation": "<object>",
 	"dtdAbbreviation": "{...}",
 	"parentType": "document",
 	"defaultValues": {
@@ -15,24 +15,21 @@
 		"minProperties": "",
 		"maxProperties": "",
 		"additionalProperties": false,
-		"enum": [],
-		"snippet": "union"
+		"enum": []
 	},
 	"subtypes": {
 		"snippetChildrenOnly": {
 			"childValueType": [
-				"object"
+				"String",
+				"ID",
+				"Int",
+				"Float",
+				"Boolean",
+				"object",
+				"interface",
+				"union",
+				"enum"
 			]
 		}
-	},
-	"dependency": {
-		"type": "not",
-		"values": [
-			{
-				"level": "root",
-				"key": "entityType",
-				"value": "request"
-			}
-		]
 	}
 }
