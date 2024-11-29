@@ -35,7 +35,7 @@
 					},
 					"dependency": {
 						"key": "childType",
-						"value": "componentObject"
+						"value": "type"
 					}
 				},
 				{
@@ -96,7 +96,7 @@
 					"dependency": {
 						"level": "parent",
 						"key": "childType",
-						"value": "componentObject"
+						"value": "type"
 					}
 				},
 				{
