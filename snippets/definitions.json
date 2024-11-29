@@ -19,7 +19,7 @@
 		{
 			"name": "Objects",
 			"type": "type",
-			"subtype": "type"
+			"subtype": "object"
 		},
 		{
 			"name": "Interfaces",
