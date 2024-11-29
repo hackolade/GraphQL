@@ -1,6 +1,6 @@
 {
-	"name": "interface",
-	"erdAbbreviation": "<i/f>",
+	"name": "object",
+	"erdAbbreviation": "<object>",
 	"dtdAbbreviation": "{...}",
 	"parentType": "document",
 	"defaultValues": {

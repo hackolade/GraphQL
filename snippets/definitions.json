@@ -5,7 +5,7 @@
 	"properties": [
 		{
 			"name": "Scalars",
-			"type": "componentObject",
+			"type": "type",
 			"subtype": "scalar",
 			"hackoladeMeta": {
 				"source": true // TODO: source is used to indicate that the component is a parent of definitions, should be checked
@@ -13,32 +13,32 @@
 		},
 		{
 			"name": "Enums",
-			"type": "componentObject",
+			"type": "type",
 			"subtype": "enum"
 		},
 		{
 			"name": "Objects",
-			"type": "componentObject",
+			"type": "type",
 			"subtype": "type"
 		},
 		{
 			"name": "Interfaces",
-			"type": "componentObject",
+			"type": "type",
 			"subtype": "interface"
 		},
 		{
 			"name": "Unions",
-			"type": "componentObject",
+			"type": "type",
 			"subtype": "union"
 		},
 		{
 			"name": "Input objects",
-			"type": "componentObject",
+			"type": "type",
 			"subtype": "input"
 		},
 		{
 			"name": "Directives",
-			"type": "componentObject",
+			"type": "type",
 			"subtype": "directive"
 		}
 	]
