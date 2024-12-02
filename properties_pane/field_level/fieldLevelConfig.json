@@ -143,9 +143,9 @@ making sure that you maintain a proper JSON format.
 				"markdown": false
 			},
 			{
-				"propertyName": "Directive",
+				"propertyName": "Directives",
 				"propertyKeyword": "directive",
-				"propertyTooltip": "Popup for multi-line text entry",
+				"propertyTooltip": "Field directives",
 				"propertyType": "details",
 				"template": "textarea",
 				"markdown": false
@@ -186,9 +186,9 @@ making sure that you maintain a proper JSON format.
 				"markdown": false
 			},
 			{
-				"propertyName": "Directive",
+				"propertyName": "Directives",
 				"propertyKeyword": "directive",
-				"propertyTooltip": "Popup for multi-line text entry",
+				"propertyTooltip": "Field directives",
 				"propertyType": "details",
 				"template": "textarea",
 				"markdown": false
@@ -231,9 +231,9 @@ making sure that you maintain a proper JSON format.
 				"markdown": false
 			},
 			{
-				"propertyName": "Directive",
+				"propertyName": "Directives",
 				"propertyKeyword": "directive",
-				"propertyTooltip": "Popup for multi-line text entry",
+				"propertyTooltip": "Field directives",
 				"propertyType": "details",
 				"template": "textarea",
 				"markdown": false
@@ -274,9 +274,9 @@ making sure that you maintain a proper JSON format.
 				"markdown": false
 			},
 			{
-				"propertyName": "Directive",
+				"propertyName": "Directives",
 				"propertyKeyword": "directive",
-				"propertyTooltip": "Popup for multi-line text entry",
+				"propertyTooltip": "Field directives",
 				"propertyType": "details",
 				"template": "textarea",
 				"markdown": false
@@ -317,9 +317,9 @@ making sure that you maintain a proper JSON format.
 				"markdown": false
 			},
 			{
-				"propertyName": "Directive",
+				"propertyName": "Directives",
 				"propertyKeyword": "directive",
-				"propertyTooltip": "Popup for multi-line text entry",
+				"propertyTooltip": "Field directives",
 				"propertyType": "details",
 				"template": "textarea",
 				"markdown": false
