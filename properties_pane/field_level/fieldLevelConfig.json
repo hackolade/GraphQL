@@ -423,7 +423,22 @@ making sure that you maintain a proper JSON format.
 			"maxProperties",
 			"comments"
 		],
-		"interface": ["name", "description", "required", "minProperties", "maxProperties", "comments"],
+		"interface": [
+			"name",
+			"description",
+			"required",
+			{
+				"propertyName": "Directives",
+				"propertyKeyword": "directive",
+				"propertyTooltip": "Interface directives",
+				"propertyType": "details",
+				"template": "textarea",
+				"markdown": false
+			},
+			"minProperties",
+			"maxProperties",
+			"comments"
+		],
 		"union": ["name", "description", "required", "comments"],
 		"input": ["name", "description", "required", "comments"],
 		"directive": [
