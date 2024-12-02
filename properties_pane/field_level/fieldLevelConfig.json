@@ -393,7 +393,19 @@ making sure that you maintain a proper JSON format.
 				"hidden": true
 			}
 		],
-		"scalar": ["name", "description", "comments"],
+		"scalar": [
+			"name",
+			"description",
+			{
+				"propertyName": "Directives",
+				"propertyKeyword": "directive",
+				"propertyTooltip": "Scalar directives",
+				"propertyType": "details",
+				"template": "textarea",
+				"markdown": false
+			},
+			"comments"
+		],
 		"enum": ["name", "enum", "description", "comments"],
 		"object": ["name", "description", "required", "minProperties", "maxProperties", "comments"],
 		"interface": ["name", "description", "required", "minProperties", "maxProperties", "comments"],
