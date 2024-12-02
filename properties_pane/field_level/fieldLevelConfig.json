@@ -406,7 +406,21 @@ making sure that you maintain a proper JSON format.
 			},
 			"comments"
 		],
-		"enum": ["name", "enum", "description", "comments"],
+		"enum": [
+			"name",
+			"enum",
+			"description",
+			"required",
+			{
+				"propertyName": "Directives",
+				"propertyKeyword": "directive",
+				"propertyTooltip": "Enum directives",
+				"propertyType": "details",
+				"template": "textarea",
+				"markdown": false
+			},
+			"comments"
+		],
 		"object": [
 			"name",
 			"description",
