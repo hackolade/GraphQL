@@ -25,11 +25,23 @@
 				"Int",
 				"Float",
 				"Boolean",
+				"List",
 				"object",
 				"interface",
 				"union",
-				"enum"
+				"enum",
+				"scalar"
 			]
 		}
+	},
+	"dependency": {
+		"type": "not",
+		"values": [
+			{
+				"level": "root",
+				"key": "entityType",
+				"value": "request"
+			}
+		]
 	}
 }

@@ -348,6 +348,7 @@ making sure that you maintain a proper JSON format.
 			"additionalItems",
 			"comments"
 		],
+		"___1": [],
 		"choice": [
 			{
 				"fieldName": "choice",
