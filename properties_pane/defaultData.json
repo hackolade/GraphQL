@@ -242,37 +242,6 @@
 				}
 			]
 		},
-		"structureType": {
-			"valueDependencies": [
-				{
-					"value": true,
-					"dependency": [
-						{
-							"key": "subtype",
-							"value": "anyParameter"
-						},
-						{
-							"type": "and",
-							"values": [
-								{
-									"key": "childType",
-									"value": "object"
-								},
-								{
-									"type": "not",
-									"values": [
-										{
-											"key": "subtype",
-											"value": "schema"
-										}
-									]
-								}
-							]
-						}
-					]
-				}
-			]
-		},
 		"schemeType": "apiKey",
 		"required": {
 			"valueDependencies": [
