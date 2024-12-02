@@ -439,7 +439,20 @@ making sure that you maintain a proper JSON format.
 			"maxProperties",
 			"comments"
 		],
-		"union": ["name", "description", "required", "comments"],
+		"union": [
+			"name",
+			"description",
+			"required",
+			{
+				"propertyName": "Directives",
+				"propertyKeyword": "directive",
+				"propertyTooltip": "Union directives",
+				"propertyType": "details",
+				"template": "textarea",
+				"markdown": false
+			},
+			"comments"
+		],
 		"input": ["name", "description", "required", "comments"],
 		"directive": [
 			"name",
