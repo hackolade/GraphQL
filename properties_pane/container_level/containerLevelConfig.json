@@ -170,59 +170,11 @@ making sure that you maintain a proper JSON format.
 			},
 			{
 				"propertyName": "Directives",
-				"propertyKeyword": "directives",
-				"propertyTooltip": "",
-				"propertyType": "group",
-				"structure": [
-					{
-						"propertyName": "Directive",
-						"propertyKeyword": "directive",
-						"propertyTooltip": "",
-						"propertyType": "text"
-					},
-					{
-						"propertyName": "Description",
-						"propertyKeyword": "description",
-						"propertyTooltip": "Popup for multi-line text entry",
-						"propertyType": "details",
-						"template": "textarea"
-					},
-					{
-						"propertyName": "Arguments",
-						"propertyKeyword": "arguments",
-						"propertyTooltip": "Popup for multi-line text entry",
-						"propertyType": "details",
-						"template": "textarea",
-						"markdown": false
-					},
-					{
-						"propertyName": "Applicable elements",
-						"propertyKeyword": "dropdownProp",
-						"propertyTooltip": "Select from list of options",
-						"propertyType": "multipleCheckboxSelect",
-						"options": [
-							"ARGUMENT_DEFINITION",
-							"ENUM",
-							"ENUM_VALUE",
-							"FIELD",
-							"FIELD_DEFINITION",
-							"FRAGMENT_DEFINITION",
-							"FRAGMENT_SPREAD",
-							"INLINE_FRAGMENT",
-							"INPUT_FIELD_DEFINITION",
-							"INPUT_OBJECT",
-							"INTERFACE",
-							"MUTATION",
-							"OBJECT",
-							"QUERY",
-							"SCALAR",
-							"SCHEMA",
-							"SUBSCRIPTION",
-							"UNION",
-							"VARIABLE_DEFINITION"
-						]
-					}
-				]
+				"propertyKeyword": "directive",
+				"propertyTooltip": "Schema directives",
+				"propertyType": "details",
+				"template": "textarea",
+				"markdown": false
 			},
 			{
 				"propertyName": "Comments",
