@@ -143,9 +143,9 @@ making sure that you maintain a proper JSON format.
 				"markdown": false
 			},
 			{
-				"propertyName": "Directive",
+				"propertyName": "Directives",
 				"propertyKeyword": "directive",
-				"propertyTooltip": "Popup for multi-line text entry",
+				"propertyTooltip": "Field directives",
 				"propertyType": "details",
 				"template": "textarea",
 				"markdown": false
@@ -186,9 +186,9 @@ making sure that you maintain a proper JSON format.
 				"markdown": false
 			},
 			{
-				"propertyName": "Directive",
+				"propertyName": "Directives",
 				"propertyKeyword": "directive",
-				"propertyTooltip": "Popup for multi-line text entry",
+				"propertyTooltip": "Field directives",
 				"propertyType": "details",
 				"template": "textarea",
 				"markdown": false
@@ -231,9 +231,9 @@ making sure that you maintain a proper JSON format.
 				"markdown": false
 			},
 			{
-				"propertyName": "Directive",
+				"propertyName": "Directives",
 				"propertyKeyword": "directive",
-				"propertyTooltip": "Popup for multi-line text entry",
+				"propertyTooltip": "Field directives",
 				"propertyType": "details",
 				"template": "textarea",
 				"markdown": false
@@ -274,9 +274,9 @@ making sure that you maintain a proper JSON format.
 				"markdown": false
 			},
 			{
-				"propertyName": "Directive",
+				"propertyName": "Directives",
 				"propertyKeyword": "directive",
-				"propertyTooltip": "Popup for multi-line text entry",
+				"propertyTooltip": "Field directives",
 				"propertyType": "details",
 				"template": "textarea",
 				"markdown": false
@@ -317,9 +317,9 @@ making sure that you maintain a proper JSON format.
 				"markdown": false
 			},
 			{
-				"propertyName": "Directive",
+				"propertyName": "Directives",
 				"propertyKeyword": "directive",
-				"propertyTooltip": "Popup for multi-line text entry",
+				"propertyTooltip": "Field directives",
 				"propertyType": "details",
 				"template": "textarea",
 				"markdown": false
@@ -394,12 +394,94 @@ making sure that you maintain a proper JSON format.
 				"hidden": true
 			}
 		],
-		"scalar": ["name", "description", "comments"],
-		"enum": ["name", "enum", "description", "comments"],
-		"object": ["name", "description", "required", "minProperties", "maxProperties", "comments"],
-		"interface": ["name", "description", "required", "minProperties", "maxProperties", "comments"],
-		"union": ["name", "description", "required", "comments"],
-		"input": ["name", "description", "required", "comments"],
+		"scalar": [
+			"name",
+			"description",
+			{
+				"propertyName": "Directives",
+				"propertyKeyword": "directive",
+				"propertyTooltip": "Scalar directives",
+				"propertyType": "details",
+				"template": "textarea",
+				"markdown": false
+			},
+			"comments"
+		],
+		"enum": [
+			"name",
+			"enum",
+			"description",
+			"required",
+			{
+				"propertyName": "Directives",
+				"propertyKeyword": "directive",
+				"propertyTooltip": "Enum directives",
+				"propertyType": "details",
+				"template": "textarea",
+				"markdown": false
+			},
+			"comments"
+		],
+		"object": [
+			"name",
+			"description",
+			"required",
+			{
+				"propertyName": "Directives",
+				"propertyKeyword": "directive",
+				"propertyTooltip": "Object directives",
+				"propertyType": "details",
+				"template": "textarea",
+				"markdown": false
+			},
+			"minProperties",
+			"maxProperties",
+			"comments"
+		],
+		"interface": [
+			"name",
+			"description",
+			"required",
+			{
+				"propertyName": "Directives",
+				"propertyKeyword": "directive",
+				"propertyTooltip": "Interface directives",
+				"propertyType": "details",
+				"template": "textarea",
+				"markdown": false
+			},
+			"minProperties",
+			"maxProperties",
+			"comments"
+		],
+		"union": [
+			"name",
+			"description",
+			"required",
+			{
+				"propertyName": "Directives",
+				"propertyKeyword": "directive",
+				"propertyTooltip": "Union directives",
+				"propertyType": "details",
+				"template": "textarea",
+				"markdown": false
+			},
+			"comments"
+		],
+		"input": [
+			"name",
+			"description",
+			"required",
+			{
+				"propertyName": "Directives",
+				"propertyKeyword": "directive",
+				"propertyTooltip": "Input directives",
+				"propertyType": "details",
+				"template": "textarea",
+				"markdown": false
+			},
+			"comments"
+		],
 		"directive": [
 			"name",
 			"description",
