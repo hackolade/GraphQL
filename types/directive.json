@@ -27,5 +27,15 @@
 				"Boolean"
 			]
 		}
+	},
+	"dependency": {
+		"type": "not",
+		"values": [
+			{
+				"level": "root",
+				"key": "entityType",
+				"exist": true
+			}
+		]
 	}
 }
