@@ -25,10 +25,12 @@
 				"Int",
 				"Float",
 				"Boolean",
+				"List",
 				"object",
 				"interface",
 				"union",
-				"enum"
+				"enum",
+				"scalar"
 			]
 		}
 	}

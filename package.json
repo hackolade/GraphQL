@@ -56,9 +56,6 @@
                     "media": true
                 }
             },
-            "disableChildren": {
-                "entityLevel": true
-            },
             "disableDefinitions": {
                 "internal": true
             },
@@ -81,6 +78,9 @@
                 "propertyNames": [
                     "schemas"
                 ]
+            },
+            "definitionSources": {
+                "multipleSources": true
             }
         }
     },

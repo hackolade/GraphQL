@@ -17,14 +17,16 @@
 		"collectionName": "newOperation",
 		"entityType": "request",
 		"operationType": "Query",
-		"isActivated": true
+		"isActivated": true,
+		"childType": "input"
 	},
 	"nestedCollection": {
 		"collectionName": "Response",
 		"entityType": "response",
 		"snippet": "responseStructure",
 		"subtype": "response",
-		"isActivated": true
+		"isActivated": true,
+		"childType": "type"
 	},
 	"field": {
 		"hackoladeMeta": {

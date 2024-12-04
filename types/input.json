@@ -19,15 +19,17 @@
 	},
 	"subtypes": {
 		"snippetChildrenOnly": {
-			"childValueType": [
-				"String",
-				"ID",
-				"Int",
-				"Float",
-				"Boolean",
-				"input",
-				"enum"
-			]
+			"childValueType": ["String", "ID", "Int", "Float", "Boolean", "List", "input", "enum", "scalar"]
 		}
+	},
+	"dependency": {
+		"type": "not",
+		"values": [
+			{
+				"level": "root",
+				"key": "entityType",
+				"value": "response"
+			}
+		]
 	}
 }
