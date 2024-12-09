@@ -57,7 +57,8 @@
                 }
             },
             "disableDefinitions": {
-                "internal": true
+                "internal": true,
+                "external": true
             },
             "disableRelationships": false,
             "relationships": {
