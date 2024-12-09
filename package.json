@@ -82,7 +82,9 @@
             },
             "definitionSources": {
                 "multipleSources": true
-            }
+            },
+            "disablePickFromFieldList": true,
+            "hideDisabledAttributeTypes": true
         }
     },
     "description": "Hackolade plugin for GraphQL",
