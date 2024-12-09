@@ -26,6 +26,9 @@
 				"Float",
 				"Boolean",
 				"List",
+				"reference"
+			],
+			"childReferenceValueType": [
 				"object",
 				"interface",
 				"union",

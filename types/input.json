@@ -19,7 +19,20 @@
 	},
 	"subtypes": {
 		"snippetChildrenOnly": {
-			"childValueType": ["String", "ID", "Int", "Float", "Boolean", "List", "input", "enum", "scalar"]
+			"childValueType": [
+				"String", 
+				"ID", 
+				"Int", 
+				"Float", 
+				"Boolean", 
+				"List", 
+				"reference"
+			],
+			"childReferenceValueType": [
+				"input",
+				"enum",
+				"scalar"
+			]
 		}
 	},
 	"dependency": {
