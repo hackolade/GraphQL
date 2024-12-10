@@ -1,32 +1,13 @@
 {
 	"name": "directive",
 	"erdAbbreviation": "<dir>",
-	"dtdAbbreviation": "{...}",
-	"parentType": "document",
+	"dtdAbbreviation": "<dir>",
+	"parentType": "string",
 	"defaultValues": {
-		"relationshipType": "",
-		"parentRelationship": "",
-		"childRelationships": [],
-		"foreignCollection": "",
-		"foreignField": [],
-		"properties": [],
-		"dependencies": [],
 		"ignore_z_value": true,
 		"minProperties": "",
 		"maxProperties": "",
-		"additionalProperties": false,
-		"enum": []
-	},
-	"subtypes": {
-		"snippetChildrenOnly": {
-			"childValueType": [
-				"String",
-				"ID",
-				"Int",
-				"Float",
-				"Boolean"
-			]
-		}
+		"additionalProperties": false
 	},
 	"dependency": {
 		"type": "not",
