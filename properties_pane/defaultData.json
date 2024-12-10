@@ -24,9 +24,8 @@
 		"collectionName": "Response",
 		"entityType": "response",
 		"snippet": "responseStructure",
-		"subtype": "response",
 		"isActivated": true,
-		"childType": "type"
+		"childType": "object"
 	},
 	"field": {
 		"hackoladeMeta": {
@@ -167,10 +166,10 @@
 					}
 				},
 				{
-					"value": "NewType",
+					"value": "NewObject",
 					"dependency": {
 						"key": "childType",
-						"value": "type"
+						"value": "object"
 					}
 				},
 				{
