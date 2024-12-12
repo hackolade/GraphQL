@@ -20,13 +20,7 @@
 		"isActivated": true,
 		"childType": "input"
 	},
-	"nestedCollection": {
-		"collectionName": "Response",
-		"entityType": "response",
-		"snippet": "responseStructure",
-		"isActivated": true,
-		"childType": "object"
-	},
+	"nestedCollection": {},
 	"field": {
 		"hackoladeMeta": {
 			"valueDependencies": [
