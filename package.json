@@ -84,6 +84,7 @@
                 "multipleSources": true
             },
             "disablePickFromFieldList": true,
+            "hideDisabledAttributeTypes": true,
             "showReferenceDefinitionNameInsteadOfType": true
         }
     },
