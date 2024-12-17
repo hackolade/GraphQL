@@ -6,12 +6,48 @@
 	"useSample": true,
 	"hiddenOnEntity": "view",
 	"defaultValues": {
-		"subtype": "list<str>",
 		"properties": [],
 		"primaryKey": false,
 		"additionalItems": true,
 		"minItems": "",
 		"maxItems": "",
-		"uniqueItems": false
+		"uniqueItems": false,
+		"subtype": "outputList"
+	},
+	"subtypes": {
+		"outputList": {
+			"childValueType": [
+				"String", 
+				"ID", 
+				"Int", 
+				"Float", 
+				"Boolean", 
+				"List", 
+				"reference"
+			],
+			"childReferenceValueType": [
+				"object",
+				"interface",
+				"union",
+				"enum",
+				"scalar"
+			]
+		},
+		"inputList": {
+			"childValueType": [
+				"String", 
+				"ID", 
+				"Int", 
+				"Float", 
+				"Boolean", 
+				"List", 
+				"reference"
+			],
+			"childReferenceValueType": [
+				"input",
+				"enum",
+				"scalar"
+			]
+		}
 	}
 }
