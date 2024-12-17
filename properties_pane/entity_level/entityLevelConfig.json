@@ -180,12 +180,34 @@ making sure that you maintain a proper JSON format.
 				"markdown": false
 			},
 			{
-				"propertyName": "Directive",
-				"propertyKeyword": "directive",
-				"propertyTooltip": "Popup for multi-line text entry",
-				"propertyType": "details",
-				"template": "textarea",
-				"markdown": false
+				"propertyName": "Directives",
+				"propertyKeyword": "typeDirectives",
+				"propertyTooltip": "Type directives",
+				"propertyType": "group",
+				"structure": [
+					{
+						"propertyName": "Directive format",
+						"propertyKeyword": "directiveFormat",
+						"propertyTooltip": "Select directive format",
+						"propertyType": "select",
+						"options": [
+							"Raw"
+						],
+						"defaultValue": "Raw"
+					},
+					{
+						"propertyName": "Raw directive",
+						"propertyKeyword": "rawDirective",
+						"propertyTooltip": "Enter raw directive",
+						"propertyType": "details",
+						"template": "textarea",
+						"markdown": false,
+						"dependency": {
+							"key": "directiveFormat",
+							"value": "Raw"
+						}
+					}
+				]
 			},
 			{
 				"propertyName": "schema",
