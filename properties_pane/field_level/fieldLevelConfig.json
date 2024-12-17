@@ -144,11 +144,33 @@ making sure that you maintain a proper JSON format.
 			},
 			{
 				"propertyName": "Directives",
-				"propertyKeyword": "directive",
+				"propertyKeyword": "fieldDirectives",
 				"propertyTooltip": "Field directives",
-				"propertyType": "details",
-				"template": "textarea",
-				"markdown": false
+				"propertyType": "group",
+				"structure": [
+					{
+						"propertyName": "Directive format",
+						"propertyKeyword": "directiveFormat",
+						"propertyTooltip": "Select directive format",
+						"propertyType": "select",
+						"options": [
+							"Raw"
+						],
+						"defaultValue": "Raw"
+					},
+					{
+						"propertyName": "Raw directive",
+						"propertyKeyword": "rawDirective",
+						"propertyTooltip": "Enter raw directive",
+						"propertyType": "details",
+						"template": "textarea",
+						"markdown": false,
+						"dependency": {
+							"key": "directiveFormat",
+							"value": "Raw"
+						}
+					}
+				]
 			},
 			"primaryKey",
 			"foreignCollection",
@@ -187,11 +209,33 @@ making sure that you maintain a proper JSON format.
 			},
 			{
 				"propertyName": "Directives",
-				"propertyKeyword": "directive",
+				"propertyKeyword": "fieldDirectives",
 				"propertyTooltip": "Field directives",
-				"propertyType": "details",
-				"template": "textarea",
-				"markdown": false
+				"propertyType": "group",
+				"structure": [
+					{
+						"propertyName": "Directive format",
+						"propertyKeyword": "directiveFormat",
+						"propertyTooltip": "Select directive format",
+						"propertyType": "select",
+						"options": [
+							"Raw"
+						],
+						"defaultValue": "Raw"
+					},
+					{
+						"propertyName": "Raw directive",
+						"propertyKeyword": "rawDirective",
+						"propertyTooltip": "Enter raw directive",
+						"propertyType": "details",
+						"template": "textarea",
+						"markdown": false,
+						"dependency": {
+							"key": "directiveFormat",
+							"value": "Raw"
+						}
+					}
+				]
 			},
 			"primaryKey",
 			"default",
@@ -232,11 +276,33 @@ making sure that you maintain a proper JSON format.
 			},
 			{
 				"propertyName": "Directives",
-				"propertyKeyword": "directive",
+				"propertyKeyword": "fieldDirectives",
 				"propertyTooltip": "Field directives",
-				"propertyType": "details",
-				"template": "textarea",
-				"markdown": false
+				"propertyType": "group",
+				"structure": [
+					{
+						"propertyName": "Directive format",
+						"propertyKeyword": "directiveFormat",
+						"propertyTooltip": "Select directive format",
+						"propertyType": "select",
+						"options": [
+							"Raw"
+						],
+						"defaultValue": "Raw"
+					},
+					{
+						"propertyName": "Raw directive",
+						"propertyKeyword": "rawDirective",
+						"propertyTooltip": "Enter raw directive",
+						"propertyType": "details",
+						"template": "textarea",
+						"markdown": false,
+						"dependency": {
+							"key": "directiveFormat",
+							"value": "Raw"
+						}
+					}
+				]
 			},
 			"default",
 			"unit",
@@ -275,11 +341,33 @@ making sure that you maintain a proper JSON format.
 			},
 			{
 				"propertyName": "Directives",
-				"propertyKeyword": "directive",
+				"propertyKeyword": "fieldDirectives",
 				"propertyTooltip": "Field directives",
-				"propertyType": "details",
-				"template": "textarea",
-				"markdown": false
+				"propertyType": "group",
+				"structure": [
+					{
+						"propertyName": "Directive format",
+						"propertyKeyword": "directiveFormat",
+						"propertyTooltip": "Select directive format",
+						"propertyType": "select",
+						"options": [
+							"Raw"
+						],
+						"defaultValue": "Raw"
+					},
+					{
+						"propertyName": "Raw directive",
+						"propertyKeyword": "rawDirective",
+						"propertyTooltip": "Enter raw directive",
+						"propertyType": "details",
+						"template": "textarea",
+						"markdown": false,
+						"dependency": {
+							"key": "directiveFormat",
+							"value": "Raw"
+						}
+					}
+				]
 			},
 			"primaryKey",
 			"foreignCollection",
@@ -318,11 +406,33 @@ making sure that you maintain a proper JSON format.
 			},
 			{
 				"propertyName": "Directives",
-				"propertyKeyword": "directive",
+				"propertyKeyword": "fieldDirectives",
 				"propertyTooltip": "Field directives",
-				"propertyType": "details",
-				"template": "textarea",
-				"markdown": false
+				"propertyType": "group",
+				"structure": [
+					{
+						"propertyName": "Directive format",
+						"propertyKeyword": "directiveFormat",
+						"propertyTooltip": "Select directive format",
+						"propertyType": "select",
+						"options": [
+							"Raw"
+						],
+						"defaultValue": "Raw"
+					},
+					{
+						"propertyName": "Raw directive",
+						"propertyKeyword": "rawDirective",
+						"propertyTooltip": "Enter raw directive",
+						"propertyType": "details",
+						"template": "textarea",
+						"markdown": false,
+						"dependency": {
+							"key": "directiveFormat",
+							"value": "Raw"
+						}
+					}
+				]
 			},
 			"default",
 			"sample",
@@ -399,11 +509,72 @@ making sure that you maintain a proper JSON format.
 			"description",
 			{
 				"propertyName": "Directives",
-				"propertyKeyword": "directive",
+				"propertyKeyword": "typeDirectives",
 				"propertyTooltip": "Scalar directives",
-				"propertyType": "details",
-				"template": "textarea",
-				"markdown": false
+				"propertyType": "group",
+				"structure": [
+					{
+						"propertyName": "Directive format",
+						"propertyKeyword": "directiveFormat",
+						"propertyTooltip": "Select directive format",
+						"propertyType": "select",
+						"options": [
+							"Raw"
+						],
+						"defaultValue": "Raw"
+					},
+					{
+						"propertyName": "Raw directive",
+						"propertyKeyword": "rawDirective",
+						"propertyTooltip": "Enter raw directive",
+						"propertyType": "details",
+						"template": "textarea",
+						"markdown": false,
+						"dependency": {
+							"key": "directiveFormat",
+							"value": "Raw"
+						}
+					}
+				],
+				"dependency": {
+					"key": "ref",
+					"exist": false
+				}
+			},
+			{
+				"propertyName": "Directives",
+				"propertyKeyword": "fieldDirectives",
+				"propertyTooltip": "Field directives",
+				"propertyType": "group",
+				"enableForReference": true,
+				"structure": [
+					{
+						"propertyName": "Directive format",
+						"propertyKeyword": "directiveFormat",
+						"propertyTooltip": "Select directive format",
+						"propertyType": "select",
+						"options": [
+							"Raw"
+						],
+						"defaultValue": "Raw"
+					},
+					{
+						"propertyName": "Raw directive",
+						"propertyKeyword": "rawDirective",
+						"propertyTooltip": "Enter raw directive",
+						"propertyType": "details",
+						"template": "textarea",
+						"markdown": false,
+						"dependency": {
+							"key": "directiveFormat",
+							"value": "Raw"
+						}
+					}
+				],
+				"dependency": {
+					"key": "ref",
+					"exist": true
+				}
 			},
 			"comments"
 		],
@@ -414,11 +585,72 @@ making sure that you maintain a proper JSON format.
 			"required",
 			{
 				"propertyName": "Directives",
-				"propertyKeyword": "directive",
+				"propertyKeyword": "typeDirectives",
 				"propertyTooltip": "Enum directives",
-				"propertyType": "details",
-				"template": "textarea",
-				"markdown": false
+				"propertyType": "group",
+				"structure": [
+					{
+						"propertyName": "Directive format",
+						"propertyKeyword": "directiveFormat",
+						"propertyTooltip": "Select directive format",
+						"propertyType": "select",
+						"options": [
+							"Raw"
+						],
+						"defaultValue": "Raw"
+					},
+					{
+						"propertyName": "Raw directive",
+						"propertyKeyword": "rawDirective",
+						"propertyTooltip": "Enter raw directive",
+						"propertyType": "details",
+						"template": "textarea",
+						"markdown": false,
+						"dependency": {
+							"key": "directiveFormat",
+							"value": "Raw"
+						}
+					}
+				],
+				"dependency": {
+					"key": "ref",
+					"exist": false
+				}
+			},
+			{
+				"propertyName": "Directives",
+				"propertyKeyword": "fieldDirectives",
+				"propertyTooltip": "Field directives",
+				"propertyType": "group",
+				"enableForReference": true,
+				"structure": [
+					{
+						"propertyName": "Directive format",
+						"propertyKeyword": "directiveFormat",
+						"propertyTooltip": "Select directive format",
+						"propertyType": "select",
+						"options": [
+							"Raw"
+						],
+						"defaultValue": "Raw"
+					},
+					{
+						"propertyName": "Raw directive",
+						"propertyKeyword": "rawDirective",
+						"propertyTooltip": "Enter raw directive",
+						"propertyType": "details",
+						"template": "textarea",
+						"markdown": false,
+						"dependency": {
+							"key": "directiveFormat",
+							"value": "Raw"
+						}
+					}
+				],
+				"dependency": {
+					"key": "ref",
+					"exist": true
+				}
 			},
 			"comments"
 		],
@@ -428,11 +660,72 @@ making sure that you maintain a proper JSON format.
 			"required",
 			{
 				"propertyName": "Directives",
-				"propertyKeyword": "directive",
+				"propertyKeyword": "typeDirectives",
 				"propertyTooltip": "Object directives",
-				"propertyType": "details",
-				"template": "textarea",
-				"markdown": false
+				"propertyType": "group",
+				"structure": [
+					{
+						"propertyName": "Directive format",
+						"propertyKeyword": "directiveFormat",
+						"propertyTooltip": "Select directive format",
+						"propertyType": "select",
+						"options": [
+							"Raw"
+						],
+						"defaultValue": "Raw"
+					},
+					{
+						"propertyName": "Raw directive",
+						"propertyKeyword": "rawDirective",
+						"propertyTooltip": "Enter raw directive",
+						"propertyType": "details",
+						"template": "textarea",
+						"markdown": false,
+						"dependency": {
+							"key": "directiveFormat",
+							"value": "Raw"
+						}
+					}
+				],
+				"dependency": {
+					"key": "ref",
+					"exist": false
+				}
+			},
+			{
+				"propertyName": "Directives",
+				"propertyKeyword": "fieldDirectives",
+				"propertyTooltip": "Field directives",
+				"propertyType": "group",
+				"enableForReference": true,
+				"structure": [
+					{
+						"propertyName": "Directive format",
+						"propertyKeyword": "directiveFormat",
+						"propertyTooltip": "Select directive format",
+						"propertyType": "select",
+						"options": [
+							"Raw"
+						],
+						"defaultValue": "Raw"
+					},
+					{
+						"propertyName": "Raw directive",
+						"propertyKeyword": "rawDirective",
+						"propertyTooltip": "Enter raw directive",
+						"propertyType": "details",
+						"template": "textarea",
+						"markdown": false,
+						"dependency": {
+							"key": "directiveFormat",
+							"value": "Raw"
+						}
+					}
+				],
+				"dependency": {
+					"key": "ref",
+					"exist": true
+				}
 			},
 			"minProperties",
 			"maxProperties",
@@ -444,11 +737,72 @@ making sure that you maintain a proper JSON format.
 			"required",
 			{
 				"propertyName": "Directives",
-				"propertyKeyword": "directive",
+				"propertyKeyword": "typeDirectives",
 				"propertyTooltip": "Interface directives",
-				"propertyType": "details",
-				"template": "textarea",
-				"markdown": false
+				"propertyType": "group",
+				"structure": [
+					{
+						"propertyName": "Directive format",
+						"propertyKeyword": "directiveFormat",
+						"propertyTooltip": "Select directive format",
+						"propertyType": "select",
+						"options": [
+							"Raw"
+						],
+						"defaultValue": "Raw"
+					},
+					{
+						"propertyName": "Raw directive",
+						"propertyKeyword": "rawDirective",
+						"propertyTooltip": "Enter raw directive",
+						"propertyType": "details",
+						"template": "textarea",
+						"markdown": false,
+						"dependency": {
+							"key": "directiveFormat",
+							"value": "Raw"
+						}
+					}
+				],
+				"dependency": {
+					"key": "ref",
+					"exist": false
+				}
+			},
+			{
+				"propertyName": "Directives",
+				"propertyKeyword": "fieldDirectives",
+				"propertyTooltip": "Field directives",
+				"propertyType": "group",
+				"enableForReference": true,
+				"structure": [
+					{
+						"propertyName": "Directive format",
+						"propertyKeyword": "directiveFormat",
+						"propertyTooltip": "Select directive format",
+						"propertyType": "select",
+						"options": [
+							"Raw"
+						],
+						"defaultValue": "Raw"
+					},
+					{
+						"propertyName": "Raw directive",
+						"propertyKeyword": "rawDirective",
+						"propertyTooltip": "Enter raw directive",
+						"propertyType": "details",
+						"template": "textarea",
+						"markdown": false,
+						"dependency": {
+							"key": "directiveFormat",
+							"value": "Raw"
+						}
+					}
+				],
+				"dependency": {
+					"key": "ref",
+					"exist": true
+				}
 			},
 			"minProperties",
 			"maxProperties",
@@ -460,11 +814,72 @@ making sure that you maintain a proper JSON format.
 			"required",
 			{
 				"propertyName": "Directives",
-				"propertyKeyword": "directive",
+				"propertyKeyword": "typeDirectives",
 				"propertyTooltip": "Union directives",
-				"propertyType": "details",
-				"template": "textarea",
-				"markdown": false
+				"propertyType": "group",
+				"structure": [
+					{
+						"propertyName": "Directive format",
+						"propertyKeyword": "directiveFormat",
+						"propertyTooltip": "Select directive format",
+						"propertyType": "select",
+						"options": [
+							"Raw"
+						],
+						"defaultValue": "Raw"
+					},
+					{
+						"propertyName": "Raw directive",
+						"propertyKeyword": "rawDirective",
+						"propertyTooltip": "Enter raw directive",
+						"propertyType": "details",
+						"template": "textarea",
+						"markdown": false,
+						"dependency": {
+							"key": "directiveFormat",
+							"value": "Raw"
+						}
+					}
+				],
+				"dependency": {
+					"key": "ref",
+					"exist": false
+				}
+			},
+			{
+				"propertyName": "Directives",
+				"propertyKeyword": "fieldDirectives",
+				"propertyTooltip": "Field directives",
+				"propertyType": "group",
+				"enableForReference": true,
+				"structure": [
+					{
+						"propertyName": "Directive format",
+						"propertyKeyword": "directiveFormat",
+						"propertyTooltip": "Select directive format",
+						"propertyType": "select",
+						"options": [
+							"Raw"
+						],
+						"defaultValue": "Raw"
+					},
+					{
+						"propertyName": "Raw directive",
+						"propertyKeyword": "rawDirective",
+						"propertyTooltip": "Enter raw directive",
+						"propertyType": "details",
+						"template": "textarea",
+						"markdown": false,
+						"dependency": {
+							"key": "directiveFormat",
+							"value": "Raw"
+						}
+					}
+				],
+				"dependency": {
+					"key": "ref",
+					"exist": true
+				}
 			},
 			"comments"
 		],
@@ -474,11 +889,72 @@ making sure that you maintain a proper JSON format.
 			"required",
 			{
 				"propertyName": "Directives",
-				"propertyKeyword": "directive",
+				"propertyKeyword": "typeDirectives",
 				"propertyTooltip": "Input directives",
-				"propertyType": "details",
-				"template": "textarea",
-				"markdown": false
+				"propertyType": "group",
+				"structure": [
+					{
+						"propertyName": "Directive format",
+						"propertyKeyword": "directiveFormat",
+						"propertyTooltip": "Select directive format",
+						"propertyType": "select",
+						"options": [
+							"Raw"
+						],
+						"defaultValue": "Raw"
+					},
+					{
+						"propertyName": "Raw directive",
+						"propertyKeyword": "rawDirective",
+						"propertyTooltip": "Enter raw directive",
+						"propertyType": "details",
+						"template": "textarea",
+						"markdown": false,
+						"dependency": {
+							"key": "directiveFormat",
+							"value": "Raw"
+						}
+					}
+				],
+				"dependency": {
+					"key": "ref",
+					"exist": false
+				}
+			},
+			{
+				"propertyName": "Directives",
+				"propertyKeyword": "fieldDirectives",
+				"propertyTooltip": "Field directives",
+				"propertyType": "group",
+				"enableForReference": true,
+				"structure": [
+					{
+						"propertyName": "Directive format",
+						"propertyKeyword": "directiveFormat",
+						"propertyTooltip": "Select directive format",
+						"propertyType": "select",
+						"options": [
+							"Raw"
+						],
+						"defaultValue": "Raw"
+					},
+					{
+						"propertyName": "Raw directive",
+						"propertyKeyword": "rawDirective",
+						"propertyTooltip": "Enter raw directive",
+						"propertyType": "details",
+						"template": "textarea",
+						"markdown": false,
+						"dependency": {
+							"key": "directiveFormat",
+							"value": "Raw"
+						}
+					}
+				],
+				"dependency": {
+					"key": "ref",
+					"exist": true
+				}
 			},
 			"comments"
 		],
