@@ -15,10 +15,9 @@
 	},
 	"collection": {
 		"collectionName": "newOperation",
-		"entityType": "request",
 		"operationType": "Query",
 		"isActivated": true,
-		"childType": "input"
+		"childType": "object"
 	},
 	"nestedCollection": {
 		"collectionName": "Response",
