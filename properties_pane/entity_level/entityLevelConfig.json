@@ -127,15 +127,6 @@ making sure that you maintain a proper JSON format.
 				"propertyType": "text"
 			},
 			{
-				"propertyName": "Response name",
-				"propertyKeyword": "collectionName",
-				"propertyType": "text",
-				"dependency": {
-					"key": "entityType",
-					"value": "response"
-				}
-			},
-			{
 				"propertyName": "Technical name",
 				"propertyKeyword": "code",
 				"propertyType": "text"
