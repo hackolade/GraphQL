@@ -193,7 +193,14 @@ making sure that you maintain a proper JSON format.
 						"options": [
 							"Raw"
 						],
-						"defaultValue": "Raw"
+						"defaultValue": "Raw",
+						"helpInfo": {
+							"type": "modal",
+							"title": "PROPERTIES_PANE___DIRECTIVES_INFO_MODAL_TITLE",
+							"content": "PROPERTIES_PANE___DIRECTIVES_INFO_MODAL_BODY",
+							"featureNameForHelp": "GraphQL directives",
+							"buttons": ["contactSupport", "ok"]
+						}
 					},
 					{
 						"propertyName": "Raw directive",
