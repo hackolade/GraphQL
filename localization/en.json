@@ -55,6 +55,8 @@
 	"PROPERTIES_PANE___MAX_VARIABLE": "Max variable",
 	"PROPERTIES_PANE___BACKWARDS": "Backwards",
 	"PROPERTIES_PANE___NORMALIZATION": "Normalization",
+	"PROPERTIES_PANE___DIRECTIVES_INFO_MODAL_TITLE": "Structured directive format not supported",
+	"PROPERTIES_PANE___DIRECTIVES_INFO_MODAL_BODY": "The current version of the GraphQL plugin allows you to attach directives as raw input. Please ensure that you follow the GraphQL specifications to generate a correct script.",
 	"CENTRAL_PANE___TAB_MONGODB_VIEW_SCRIPT": "Create View Script",
 	"CENTRAL_PANE___TAB_DIAGRAM": "Operations ERD",
 	"CONTEXT_MENU___ADD_BUCKET": "Add graph",
