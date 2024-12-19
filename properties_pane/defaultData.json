@@ -141,7 +141,8 @@
 			"resetInsteadOfDelete": true,
 			"disableAdd": false,
 			"disableAppend": true,
-			"disableReference": true
+			"disableReference": true,
+			"createDefaultSubschemas": false
 		}
 	},
 	"relationship": {},
