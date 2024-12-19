@@ -19,13 +19,7 @@
 		"isActivated": true,
 		"childType": "object"
 	},
-	"nestedCollection": {
-		"collectionName": "Response",
-		"entityType": "response",
-		"snippet": "responseStructure",
-		"isActivated": true,
-		"childType": "object"
-	},
+	"nestedCollection": {},
 	"field": {
 		"subtype": {
 			"valueDependencies": [
