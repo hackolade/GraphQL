@@ -27,15 +27,5 @@
 				"object"
 			]
 		}
-	},
-	"dependency": {
-		"type": "not",
-		"values": [
-			{
-				"level": "root",
-				"key": "entityType",
-				"value": "request"
-			}
-		]
 	}
 }
