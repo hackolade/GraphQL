@@ -5,8 +5,7 @@
 	"properties": [
 		{
 			"type": "choice",
-			"choice": "oneOf",
-			"createDefaultSubschemas": false
+			"choice": "oneOf"
 		}
 	]
 }
