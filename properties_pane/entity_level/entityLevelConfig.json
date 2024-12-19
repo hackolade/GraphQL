@@ -124,11 +124,7 @@ making sure that you maintain a proper JSON format.
 			{
 				"propertyName": "Operation name",
 				"propertyKeyword": "collectionName",
-				"propertyType": "text",
-				"dependency": {
-					"key": "entityType",
-					"value": "request"
-				}
+				"propertyType": "text"
 			},
 			{
 				"propertyName": "Technical name",
@@ -144,11 +140,7 @@ making sure that you maintain a proper JSON format.
 					"Query",
 					"Mutation",
 					"Subscription"
-				],
-				"dependency": {
-					"key": "entityType",
-					"value": "request"
-				}
+				]
 			},
 			{
 				"propertyKeyword": "additionalProperties",
@@ -177,25 +169,6 @@ making sure that you maintain a proper JSON format.
 				"propertyType": "details",
 				"template": "textarea",
 				"markdown": false
-			},
-			{
-				"propertyName": "schema",
-				"propertyKeyword": "pathItemSchema",
-				"propertyType": "fieldList",
-				"template": "orderedList",
-				"dependency": {
-					"type": "and",
-					"values": [
-						{
-							"key": "collectionName",
-							"value": "$ref"
-						},
-						{
-							"key": "entityType",
-							"value": "request"
-						}
-					]
-				}
 			},
 			{
 				"propertyName": "Comments",
