@@ -15,19 +15,43 @@
 	},
 	"collection": {
 		"collectionName": "newOperation",
-		"entityType": "request",
 		"operationType": "Query",
-		"isActivated": true,
-		"childType": "input"
-	},
-	"nestedCollection": {
-		"collectionName": "Response",
-		"entityType": "response",
-		"snippet": "responseStructure",
 		"isActivated": true,
 		"childType": "object"
 	},
+	"nestedCollection": {},
 	"field": {
+		"subtype": {
+			"valueDependencies": [
+				{
+					"value": "inputList",
+					"dependency": {
+						"type": "or",
+						"values": [
+							{
+								"type": "and",
+								"values": [
+									{
+										"key": "childType",
+										"value": "List"
+									},
+									{
+										"level": "parent",
+										"key": "childType",
+										"value": "input"
+									}
+								]
+							},
+							{
+								"level": "parent",
+								"key": "subtype",
+								"value": "inputList"
+							}
+						]
+					}
+				}
+			]
+		},
 		"hackoladeMeta": {
 			"valueDependencies": [
 				{
@@ -38,113 +62,6 @@
 						"key": "childType",
 						"value": "type"
 					}
-				},
-				{
-					"value": {
-						"disableAppend": true,
-						"disableDelete": true,
-						"disableAdd": true,
-						"disableReference": true
-					},
-					"dependency": {
-						"type": "and",
-						"values": [
-							{
-								"key": "childType",
-								"value": "expression"
-							},
-							{
-								"level": "parent",
-								"key": "childType",
-								"value": "link"
-							}
-						]
-					}
-				},
-				{
-					"value": {
-						"disableAppend": true,
-						"disableReference": false
-					},
-					"dependency": {
-						"level": "parent",
-						"key": "subtype",
-						"value": "structuralSchema"
-					}
-				},
-				{
-					"value": {
-						"disableAdd": false,
-						"disableDelete": false,
-						"disableAppend": true,
-						"resetInsteadOfDelete": true,
-						"disableChoices": true
-					},
-					"dependency": [
-						{
-							"key": "subtype",
-							"value": "anyParameter"
-						}
-					]
-				},
-				{
-					"value": {
-						"disableDelete": false,
-						"disableAppend": false,
-						"resetInsteadOfDelete": false,
-						"displayNameFromField": false
-					},
-					"dependency": {
-						"level": "parent",
-						"key": "childType",
-						"value": "type"
-					}
-				},
-				{
-					"value": {
-						"disableReference": true
-					},
-					"dependency": {
-						"key": "childType",
-						"value": "media"
-					}
-				},
-				{
-					"value": {
-						"disableAppend": false,
-						"disableDelete": false,
-						"disableReference": false,
-						"resetInsteadOfDelete": false
-					},
-					"dependency": {
-						"level": "parent",
-						"key": "subtype",
-						"value": "schema"
-					}
-				},
-				{
-					"value": {
-						"disableAppend": true,
-						"disableReference": true
-					},
-					"dependency": [
-						{
-							"type": "and",
-							"values": [
-								{
-									"key": "childType",
-									"value": "object"
-								},
-								{
-									"type": "not",
-									"values": {
-										"key": "subtype",
-										"value": "schema"
-									}
-								}
-							]
-						}
-					]
 				}
 			]
 		},
@@ -199,63 +116,10 @@
 						"key": "childType",
 						"value": "directive"
 					}
-				},
-
-				{
-					"value": "application/json",
-					"dependency": {
-						"level": "parent",
-						"key": "subtype",
-						"value": "media"
-					}
-				},
-				{
-					"value": "response",
-					"dependency": {
-						"level": "parent",
-						"key": "subtype",
-						"value": "response"
-					}
-				},
-				{
-					"value": "parameterName",
-					"dependency": {
-						"level": "parent",
-						"key": "subtype",
-						"value": "anyParameter"
-					}
-				},
-				{
-					"value": "schema",
-					"dependency": {
-						"level": "parent",
-						"key": "subtype",
-						"value": "structuralSchema"
-					}
-				},
-				{
-					"value": "schema",
-					"dependency": {
-						"level": "parent",
-						"key": "type",
-						"value": "subschema"
-					}
 				}
 			]
 		},
-		"schemeType": "apiKey",
-		"required": {
-			"valueDependencies": [
-				{
-					"value": true,
-					"dependency": {
-						"key": "childType",
-						"value": "parameter (path)"
-					}
-				}
-			],
-			"value": false
-		}
+		"schemeType": "apiKey"
 	},
 	"patternField": {
 		"name": "^New Pattern Field$"
@@ -270,7 +134,8 @@
 			"resetInsteadOfDelete": true,
 			"disableAdd": false,
 			"disableAppend": true,
-			"disableReference": true
+			"disableReference": true,
+			"createDefaultSubschemas": false
 		}
 	},
 	"relationship": {},

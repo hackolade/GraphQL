@@ -543,6 +543,17 @@ making sure that you maintain a proper JSON format.
 			"name",
 			"description",
 			{
+				"propertyName": "Required",
+				"propertyKeyword": "required",
+				"propertyType": "checkbox",
+				"propertyTooltip": "Check if this field is required",
+				"enableForReference": true,
+				"dependency": {
+					"key": "ref",
+					"exist": true
+				}
+			},
+			{
 				"propertyName": "Directives",
 				"propertyKeyword": "typeDirectives",
 				"propertyTooltip": "Scalar directives",
@@ -631,7 +642,17 @@ making sure that you maintain a proper JSON format.
 			"name",
 			"enum",
 			"description",
-			"required",
+			{
+				"propertyName": "Required",
+				"propertyKeyword": "required",
+				"propertyType": "checkbox",
+				"propertyTooltip": "Check if this field is required",
+				"enableForReference": true,
+				"dependency": {
+					"key": "ref",
+					"exist": true
+				}
+			},
 			{
 				"propertyName": "Directives",
 				"propertyKeyword": "typeDirectives",
@@ -720,7 +741,17 @@ making sure that you maintain a proper JSON format.
 		"object": [
 			"name",
 			"description",
-			"required",
+			{
+				"propertyName": "Required",
+				"propertyKeyword": "required",
+				"propertyType": "checkbox",
+				"propertyTooltip": "Check if this field is required",
+				"enableForReference": true,
+				"dependency": {
+					"key": "ref",
+					"exist": true
+				}
+			},
 			{
 				"propertyName": "Directives",
 				"propertyKeyword": "typeDirectives",
@@ -811,7 +842,17 @@ making sure that you maintain a proper JSON format.
 		"interface": [
 			"name",
 			"description",
-			"required",
+			{
+				"propertyName": "Required",
+				"propertyKeyword": "required",
+				"propertyType": "checkbox",
+				"propertyTooltip": "Check if this field is required",
+				"enableForReference": true,
+				"dependency": {
+					"key": "ref",
+					"exist": true
+				}
+			},
 			{
 				"propertyName": "Directives",
 				"propertyKeyword": "typeDirectives",
@@ -902,7 +943,17 @@ making sure that you maintain a proper JSON format.
 		"union": [
 			"name",
 			"description",
-			"required",
+			{
+				"propertyName": "Required",
+				"propertyKeyword": "required",
+				"propertyType": "checkbox",
+				"propertyTooltip": "Check if this field is required",
+				"enableForReference": true,
+				"dependency": {
+					"key": "ref",
+					"exist": true
+				}
+			},
 			{
 				"propertyName": "Directives",
 				"propertyKeyword": "typeDirectives",
@@ -991,7 +1042,17 @@ making sure that you maintain a proper JSON format.
 		"input": [
 			"name",
 			"description",
-			"required",
+			{
+				"propertyName": "Required",
+				"propertyKeyword": "required",
+				"propertyType": "checkbox",
+				"propertyTooltip": "Check if this field is required",
+				"enableForReference": true,
+				"dependency": {
+					"key": "ref",
+					"exist": true
+				}
+			},
 			{
 				"propertyName": "Directives",
 				"propertyKeyword": "typeDirectives",

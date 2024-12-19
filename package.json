@@ -13,9 +13,6 @@
             "versions": []
         },
         "features": {
-            "nestedCollections": {
-                "level": 1
-            },
             "disableMultipleTypes": true,
             "enableReverseEngineering": {
                 "jsonDocument": {
@@ -66,7 +63,6 @@
             },
             "disableJsonPreview": false,
             "enableErdToggle": true,
-            "enableStackedNestedCollections": true,
             "externalDefinitionsFromTargetSchema": true,
             "apiTarget": true,
             "FEScriptCommentsSupported": true,
@@ -84,7 +80,8 @@
                 "multipleSources": true
             },
             "disablePickFromFieldList": true,
-            "hideDisabledAttributeTypes": true
+            "hideDisabledAttributeTypes": true,
+            "showReferenceDefinitionNameInsteadOfType": true
         }
     },
     "description": "Hackolade plugin for GraphQL",
