@@ -57,6 +57,8 @@
 	"PROPERTIES_PANE___NORMALIZATION": "Normalization",
 	"PROPERTIES_PANE___DIRECTIVES_INFO_MODAL_TITLE": "Structured directive format not supported",
 	"PROPERTIES_PANE___DIRECTIVES_INFO_MODAL_BODY": "The current version of the GraphQL plugin allows you to attach directives as raw input. Please ensure that you follow the GraphQL specifications to generate a correct script.",
+	"PROPERTIES_PANE___IMPLEMENTS_INFO_MODAL_TITLE": "Current interface implementation support",
+	"PROPERTIES_PANE___IMPLEMENTS_INFO_MODAL_BODY": "The current version of the GraphQL plugin allows you to define the interfaces that an object and an interface implement. This feature simplifies modeling by copying fields from the interface to the implementing type. However, please note that there is no automatic link between the types and fields. This means that changes made to the interface will not automatically update the implementing type.\nIf you would like to request a smart link feature between interfaces and implementing types, please contact the support team. Sharing your use case and goals for using GraphQL directives will help improve the user experience and guide future enhancements.",
 	"CENTRAL_PANE___TAB_MONGODB_VIEW_SCRIPT": "Create View Script",
 	"CENTRAL_PANE___TAB_DIAGRAM": "Operations ERD",
 	"CONTEXT_MENU___ADD_BUCKET": "Add graph",
