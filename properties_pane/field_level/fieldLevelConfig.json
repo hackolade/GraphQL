@@ -116,7 +116,7 @@ making sure that you maintain a proper JSON format.
 			}
 
 */
-{
+[{
 	"lowerTab": "JsonDetails",
 	"structure": {
 		"String": [
@@ -1288,4 +1288,57 @@ making sure that you maintain a proper JSON format.
 			"comments"
 		]
 	}
-}
+},
+{
+	"lowerTab": "Implements",
+	"structure": {
+		"object": [
+			{
+				"propertyName": "Interfaces",
+				"propertyKeyword": "implementsInterfaces",
+				"propertyTooltip": "Select interfaces to implement",
+				"propertyType": "group",
+				"helpInfo": {
+					"type": "modal",
+					"title": "PROPERTIES_PANE___IMPLEMENTS_INFO_MODAL_TITLE",
+					"content": "PROPERTIES_PANE___IMPLEMENTS_INFO_MODAL_BODY",
+					"featureNameForHelp": "Implementing Interfaces in GraphQL",
+					"buttons": ["contactSupport", "ok"]
+				},
+				"structure": [
+					{
+						"propertyName": "Interface",
+						"propertyKeyword": "interface",
+						"propertyTooltip": "Select interface",
+						"propertyType": "selecthashed",
+						"template": "definitions"
+					}
+				]
+			}
+		],
+		"interface": [
+			{
+				"propertyName": "Interfaces",
+				"propertyKeyword": "implementsInterfaces",
+				"propertyTooltip": "Select interfaces to implement",
+				"propertyType": "group",
+				"helpInfo": {
+					"type": "modal",
+					"title": "PROPERTIES_PANE___IMPLEMENTS_INFO_MODAL_TITLE",
+					"content": "PROPERTIES_PANE___IMPLEMENTS_INFO_MODAL_BODY",
+					"featureNameForHelp": "Implementing Interfaces in GraphQL",
+					"buttons": ["contactSupport", "ok"]
+				},
+				"structure": [
+					{
+						"propertyName": "Interface",
+						"propertyKeyword": "interface",
+						"propertyTooltip": "Select interface",
+						"propertyType": "selecthashed",
+						"template": "definitions"
+					}
+				]
+			}
+		]
+	}
+}]

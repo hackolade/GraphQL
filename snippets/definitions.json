@@ -6,10 +6,7 @@
 		{
 			"name": "Scalars",
 			"type": "type",
-			"subtype": "scalar",
-			"hackoladeMeta": {
-				"source": true // TODO: source is used to indicate that the component is a parent of definitions, should be checked
-			}
+			"subtype": "scalar"
 		},
 		{
 			"name": "Enums",
@@ -24,7 +21,10 @@
 		{
 			"name": "Interfaces",
 			"type": "type",
-			"subtype": "interface"
+			"subtype": "interface",
+			"hackoladeMeta": {
+				"source": true // is used by "Implements interfaces" selechashed property, to indicate which definitions to show in interfaces dropdown
+			}
 		},
 		{
 			"name": "Unions",
