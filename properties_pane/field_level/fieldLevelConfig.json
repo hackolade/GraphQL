@@ -153,9 +153,7 @@ making sure that you maintain a proper JSON format.
 						"propertyKeyword": "directiveFormat",
 						"propertyTooltip": "Select directive format",
 						"propertyType": "select",
-						"options": [
-							"Raw"
-						],
+						"options": ["Raw"],
 						"defaultValue": "Raw",
 						"helpInfo": {
 							"type": "modal",
@@ -225,9 +223,7 @@ making sure that you maintain a proper JSON format.
 						"propertyKeyword": "directiveFormat",
 						"propertyTooltip": "Select directive format",
 						"propertyType": "select",
-						"options": [
-							"Raw"
-						],
+						"options": ["Raw"],
 						"defaultValue": "Raw",
 						"helpInfo": {
 							"type": "modal",
@@ -299,9 +295,7 @@ making sure that you maintain a proper JSON format.
 						"propertyKeyword": "directiveFormat",
 						"propertyTooltip": "Select directive format",
 						"propertyType": "select",
-						"options": [
-							"Raw"
-						],
+						"options": ["Raw"],
 						"defaultValue": "Raw",
 						"helpInfo": {
 							"type": "modal",
@@ -371,9 +365,7 @@ making sure that you maintain a proper JSON format.
 						"propertyKeyword": "directiveFormat",
 						"propertyTooltip": "Select directive format",
 						"propertyType": "select",
-						"options": [
-							"Raw"
-						],
+						"options": ["Raw"],
 						"defaultValue": "Raw",
 						"helpInfo": {
 							"type": "modal",
@@ -443,9 +435,7 @@ making sure that you maintain a proper JSON format.
 						"propertyKeyword": "directiveFormat",
 						"propertyTooltip": "Select directive format",
 						"propertyType": "select",
-						"options": [
-							"Raw"
-						],
+						"options": ["Raw"],
 						"defaultValue": "Raw",
 						"helpInfo": {
 							"type": "modal",
@@ -496,10 +486,15 @@ making sure that you maintain a proper JSON format.
 		"___1": [],
 		"choice": [
 			{
-				"fieldName": "choice",
+				"fieldName": "Choice",
 				"fieldKeyword": "choice",
 				"fieldType": "select",
-				"options": ["oneOf"]
+				"disabled": true
+			},
+			{
+				"fieldName": "Activated",
+				"fieldKeyword": "isActivated",
+				"hidden": true
 			}
 		],
 		"definitions": [],
@@ -564,9 +559,7 @@ making sure that you maintain a proper JSON format.
 						"propertyKeyword": "directiveFormat",
 						"propertyTooltip": "Select directive format",
 						"propertyType": "select",
-						"options": [
-							"Raw"
-						],
+						"options": ["Raw"],
 						"defaultValue": "Raw",
 						"helpInfo": {
 							"type": "modal",
@@ -606,9 +599,7 @@ making sure that you maintain a proper JSON format.
 						"propertyKeyword": "directiveFormat",
 						"propertyTooltip": "Select directive format",
 						"propertyType": "select",
-						"options": [
-							"Raw"
-						],
+						"options": ["Raw"],
 						"defaultValue": "Raw",
 						"helpInfo": {
 							"type": "modal",
@@ -667,9 +658,7 @@ making sure that you maintain a proper JSON format.
 								"propertyKeyword": "directiveFormat",
 								"propertyTooltip": "Select directive format",
 								"propertyType": "select",
-								"options": [
-									"Raw"
-								],
+								"options": ["Raw"],
 								"defaultValue": "Raw",
 								"helpInfo": {
 									"type": "modal",
@@ -718,9 +707,7 @@ making sure that you maintain a proper JSON format.
 						"propertyKeyword": "directiveFormat",
 						"propertyTooltip": "Select directive format",
 						"propertyType": "select",
-						"options": [
-							"Raw"
-						],
+						"options": ["Raw"],
 						"defaultValue": "Raw",
 						"helpInfo": {
 							"type": "modal",
@@ -760,9 +747,7 @@ making sure that you maintain a proper JSON format.
 						"propertyKeyword": "directiveFormat",
 						"propertyTooltip": "Select directive format",
 						"propertyType": "select",
-						"options": [
-							"Raw"
-						],
+						"options": ["Raw"],
 						"defaultValue": "Raw",
 						"helpInfo": {
 							"type": "modal",
@@ -817,9 +802,7 @@ making sure that you maintain a proper JSON format.
 						"propertyKeyword": "directiveFormat",
 						"propertyTooltip": "Select directive format",
 						"propertyType": "select",
-						"options": [
-							"Raw"
-						],
+						"options": ["Raw"],
 						"defaultValue": "Raw",
 						"helpInfo": {
 							"type": "modal",
@@ -859,9 +842,7 @@ making sure that you maintain a proper JSON format.
 						"propertyKeyword": "directiveFormat",
 						"propertyTooltip": "Select directive format",
 						"propertyType": "select",
-						"options": [
-							"Raw"
-						],
+						"options": ["Raw"],
 						"defaultValue": "Raw",
 						"helpInfo": {
 							"type": "modal",
@@ -918,9 +899,7 @@ making sure that you maintain a proper JSON format.
 						"propertyKeyword": "directiveFormat",
 						"propertyTooltip": "Select directive format",
 						"propertyType": "select",
-						"options": [
-							"Raw"
-						],
+						"options": ["Raw"],
 						"defaultValue": "Raw",
 						"helpInfo": {
 							"type": "modal",
@@ -960,9 +939,7 @@ making sure that you maintain a proper JSON format.
 						"propertyKeyword": "directiveFormat",
 						"propertyTooltip": "Select directive format",
 						"propertyType": "select",
-						"options": [
-							"Raw"
-						],
+						"options": ["Raw"],
 						"defaultValue": "Raw",
 						"helpInfo": {
 							"type": "modal",
@@ -1019,9 +996,7 @@ making sure that you maintain a proper JSON format.
 						"propertyKeyword": "directiveFormat",
 						"propertyTooltip": "Select directive format",
 						"propertyType": "select",
-						"options": [
-							"Raw"
-						],
+						"options": ["Raw"],
 						"defaultValue": "Raw",
 						"helpInfo": {
 							"type": "modal",
@@ -1061,9 +1036,7 @@ making sure that you maintain a proper JSON format.
 						"propertyKeyword": "directiveFormat",
 						"propertyTooltip": "Select directive format",
 						"propertyType": "select",
-						"options": [
-							"Raw"
-						],
+						"options": ["Raw"],
 						"defaultValue": "Raw",
 						"helpInfo": {
 							"type": "modal",
@@ -1118,9 +1091,7 @@ making sure that you maintain a proper JSON format.
 						"propertyKeyword": "directiveFormat",
 						"propertyTooltip": "Select directive format",
 						"propertyType": "select",
-						"options": [
-							"Raw"
-						],
+						"options": ["Raw"],
 						"defaultValue": "Raw",
 						"helpInfo": {
 							"type": "modal",
@@ -1160,9 +1131,7 @@ making sure that you maintain a proper JSON format.
 						"propertyKeyword": "directiveFormat",
 						"propertyTooltip": "Select directive format",
 						"propertyType": "select",
-						"options": [
-							"Raw"
-						],
+						"options": ["Raw"],
 						"defaultValue": "Raw",
 						"helpInfo": {
 							"type": "modal",
