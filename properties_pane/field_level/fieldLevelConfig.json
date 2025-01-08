@@ -116,1229 +116,1210 @@ making sure that you maintain a proper JSON format.
 			}
 
 */
-[{
-	"lowerTab": "JsonDetails",
-	"structure": {
-		"String": [
-			{
-				"fieldName": "Name",
-				"fieldKeyword": "name",
-				"fieldType": "coupled"
-			},
-			{
-				"fieldName": "Technical name",
-				"fieldKeyword": "code",
-				"fieldType": "coupled"
-			},
-			"schemaId",
-			"type",
-			"description",
-			"required",
-			{
-				"propertyName": "Arguments",
-				"propertyKeyword": "arguments",
-				"propertyTooltip": "Popup for multi-line text entry",
-				"propertyType": "details",
-				"template": "textarea",
-				"markdown": false
-			},
-			{
-				"propertyName": "Directives",
-				"propertyKeyword": "fieldDirectives",
-				"propertyTooltip": "Field directives",
-				"propertyType": "group",
-				"structure": [
-					{
-						"propertyName": "Directive format",
-						"propertyKeyword": "directiveFormat",
-						"propertyTooltip": "Select directive format",
-						"propertyType": "select",
-						"options": [
-							"Raw"
-						],
-						"defaultValue": "Raw",
-						"helpInfo": {
-							"type": "modal",
-							"title": "PROPERTIES_PANE___DIRECTIVES_INFO_MODAL_TITLE",
-							"content": "PROPERTIES_PANE___DIRECTIVES_INFO_MODAL_BODY",
-							"featureNameForHelp": "GraphQL directives",
-							"buttons": ["contactSupport", "ok"]
-						}
-					},
-					{
-						"propertyName": "Raw directive",
-						"propertyKeyword": "rawDirective",
-						"propertyTooltip": "Enter raw directive",
-						"propertyType": "details",
-						"template": "textarea",
-						"markdown": false,
-						"dependency": {
-							"key": "directiveFormat",
-							"value": "Raw"
-						}
-					}
-				]
-			},
-			"primaryKey",
-			"foreignCollection",
-			"foreignField",
-			"relationshipType",
-			"default",
-			"minLength",
-			"maxLength",
-			"pattern",
-			"enum",
-			"sample",
-			"comments"
-		],
-		"Float": [
-			{
-				"fieldName": "Name",
-				"fieldKeyword": "name",
-				"fieldType": "coupled"
-			},
-			{
-				"fieldName": "Technical name",
-				"fieldKeyword": "code",
-				"fieldType": "coupled"
-			},
-			"schemaId",
-			"type",
-			"description",
-			"required",
-			{
-				"propertyName": "Arguments",
-				"propertyKeyword": "arguments",
-				"propertyTooltip": "Popup for multi-line text entry",
-				"propertyType": "details",
-				"template": "textarea",
-				"markdown": false
-			},
-			{
-				"propertyName": "Directives",
-				"propertyKeyword": "fieldDirectives",
-				"propertyTooltip": "Field directives",
-				"propertyType": "group",
-				"structure": [
-					{
-						"propertyName": "Directive format",
-						"propertyKeyword": "directiveFormat",
-						"propertyTooltip": "Select directive format",
-						"propertyType": "select",
-						"options": [
-							"Raw"
-						],
-						"defaultValue": "Raw",
-						"helpInfo": {
-							"type": "modal",
-							"title": "PROPERTIES_PANE___DIRECTIVES_INFO_MODAL_TITLE",
-							"content": "PROPERTIES_PANE___DIRECTIVES_INFO_MODAL_BODY",
-							"featureNameForHelp": "GraphQL directives",
-							"buttons": ["contactSupport", "ok"]
-						}
-					},
-					{
-						"propertyName": "Raw directive",
-						"propertyKeyword": "rawDirective",
-						"propertyTooltip": "Enter raw directive",
-						"propertyType": "details",
-						"template": "textarea",
-						"markdown": false,
-						"dependency": {
-							"key": "directiveFormat",
-							"value": "Raw"
-						}
-					}
-				]
-			},
-			"primaryKey",
-			"default",
-			"unit",
-			"minimum",
-			"exclusiveMinimum",
-			"maximum",
-			"exclusiveMaximum",
-			"multipleOf",
-			"divisibleBy",
-			"enum",
-			"sample",
-			"comments"
-		],
-		"Int": [
-			{
-				"fieldName": "Name",
-				"fieldKeyword": "name",
-				"fieldType": "coupled"
-			},
-			{
-				"fieldName": "Technical name",
-				"fieldKeyword": "code",
-				"fieldType": "coupled"
-			},
-			"schemaId",
-			"type",
-			"description",
-			"primaryKey",
-			"required",
-			{
-				"propertyName": "Arguments",
-				"propertyKeyword": "arguments",
-				"propertyTooltip": "Popup for multi-line text entry",
-				"propertyType": "details",
-				"template": "textarea",
-				"markdown": false
-			},
-			{
-				"propertyName": "Directives",
-				"propertyKeyword": "fieldDirectives",
-				"propertyTooltip": "Field directives",
-				"propertyType": "group",
-				"structure": [
-					{
-						"propertyName": "Directive format",
-						"propertyKeyword": "directiveFormat",
-						"propertyTooltip": "Select directive format",
-						"propertyType": "select",
-						"options": [
-							"Raw"
-						],
-						"defaultValue": "Raw",
-						"helpInfo": {
-							"type": "modal",
-							"title": "PROPERTIES_PANE___DIRECTIVES_INFO_MODAL_TITLE",
-							"content": "PROPERTIES_PANE___DIRECTIVES_INFO_MODAL_BODY",
-							"featureNameForHelp": "GraphQL directives",
-							"buttons": ["contactSupport", "ok"]
-						}
-					},
-					{
-						"propertyName": "Raw directive",
-						"propertyKeyword": "rawDirective",
-						"propertyTooltip": "Enter raw directive",
-						"propertyType": "details",
-						"template": "textarea",
-						"markdown": false,
-						"dependency": {
-							"key": "directiveFormat",
-							"value": "Raw"
-						}
-					}
-				]
-			},
-			"default",
-			"unit",
-			"minimum",
-			"exclusiveMinimum",
-			"maximum",
-			"exclusiveMaximum",
-			"multipleOf",
-			"divisibleBy",
-			"enum",
-			"sample",
-			"comments"
-		],
-		"ID": [
-			{
-				"fieldName": "Name",
-				"fieldKeyword": "name",
-				"fieldType": "coupled"
-			},
-			{
-				"fieldName": "Technical name",
-				"fieldKeyword": "code",
-				"fieldType": "coupled"
-			},
-			"schemaId",
-			"type",
-			"description",
-			"required",
-			{
-				"propertyName": "Arguments",
-				"propertyKeyword": "arguments",
-				"propertyTooltip": "Popup for multi-line text entry",
-				"propertyType": "details",
-				"template": "textarea",
-				"markdown": false
-			},
-			{
-				"propertyName": "Directives",
-				"propertyKeyword": "fieldDirectives",
-				"propertyTooltip": "Field directives",
-				"propertyType": "group",
-				"structure": [
-					{
-						"propertyName": "Directive format",
-						"propertyKeyword": "directiveFormat",
-						"propertyTooltip": "Select directive format",
-						"propertyType": "select",
-						"options": [
-							"Raw"
-						],
-						"defaultValue": "Raw",
-						"helpInfo": {
-							"type": "modal",
-							"title": "PROPERTIES_PANE___DIRECTIVES_INFO_MODAL_TITLE",
-							"content": "PROPERTIES_PANE___DIRECTIVES_INFO_MODAL_BODY",
-							"featureNameForHelp": "GraphQL directives",
-							"buttons": ["contactSupport", "ok"]
-						}
-					},
-					{
-						"propertyName": "Raw directive",
-						"propertyKeyword": "rawDirective",
-						"propertyTooltip": "Enter raw directive",
-						"propertyType": "details",
-						"template": "textarea",
-						"markdown": false,
-						"dependency": {
-							"key": "directiveFormat",
-							"value": "Raw"
-						}
-					}
-				]
-			},
-			"primaryKey",
-			"foreignCollection",
-			"foreignField",
-			"relationshipType",
-			"default",
-			"minLength",
-			"maxLength",
-			"pattern",
-			"enum",
-			"sample",
-			"comments"
-		],
-		"Boolean": [
-			{
-				"fieldName": "Name",
-				"fieldKeyword": "name",
-				"fieldType": "coupled"
-			},
-			{
-				"fieldName": "Technical name",
-				"fieldKeyword": "code",
-				"fieldType": "coupled"
-			},
-			"schemaId",
-			"type",
-			"description",
-			"required",
-			{
-				"propertyName": "Arguments",
-				"propertyKeyword": "arguments",
-				"propertyTooltip": "Popup for multi-line text entry",
-				"propertyType": "details",
-				"template": "textarea",
-				"markdown": false
-			},
-			{
-				"propertyName": "Directives",
-				"propertyKeyword": "fieldDirectives",
-				"propertyTooltip": "Field directives",
-				"propertyType": "group",
-				"structure": [
-					{
-						"propertyName": "Directive format",
-						"propertyKeyword": "directiveFormat",
-						"propertyTooltip": "Select directive format",
-						"propertyType": "select",
-						"options": [
-							"Raw"
-						],
-						"defaultValue": "Raw",
-						"helpInfo": {
-							"type": "modal",
-							"title": "PROPERTIES_PANE___DIRECTIVES_INFO_MODAL_TITLE",
-							"content": "PROPERTIES_PANE___DIRECTIVES_INFO_MODAL_BODY",
-							"featureNameForHelp": "GraphQL directives",
-							"buttons": ["contactSupport", "ok"]
-						}
-					},
-					{
-						"propertyName": "Raw directive",
-						"propertyKeyword": "rawDirective",
-						"propertyTooltip": "Enter raw directive",
-						"propertyType": "details",
-						"template": "textarea",
-						"markdown": false,
-						"dependency": {
-							"key": "directiveFormat",
-							"value": "Raw"
-						}
-					}
-				]
-			},
-			"default",
-			"sample",
-			"comments"
-		],
-		"List": [
-			{
-				"fieldName": "Name",
-				"fieldKeyword": "name",
-				"fieldType": "coupled"
-			},
-			{
-				"fieldName": "Technical name",
-				"fieldKeyword": "code",
-				"fieldType": "coupled"
-			},
-			"schemaId",
-			"description",
-			"required",
-			"minItems",
-			"maxItems",
-			"uniqueItems",
-			"additionalItems",
-			"comments"
-		],
-		"___1": [],
-		"choice": [
-			{
-				"fieldName": "choice",
-				"fieldKeyword": "choice",
-				"fieldType": "select",
-				"options": ["oneOf"]
-			}
-		],
-		"definitions": [],
-		"type": [
-			{
-				"fieldName": "Name",
-				"fieldKeyword": "name",
-				"fieldType": "text",
-				"disabled": true
-			},
-			{
-				"fieldName": "Technical name",
-				"fieldKeyword": "code",
-				"fieldType": "text",
-				"disabled": true,
-				"hidden": true
-			},
-			{
-				"fieldName": "Type",
-				"fieldKeyword": "type",
-				"fieldType": "text",
-				"disabled": true
-			},
-			{
-				"fieldName": "Comments",
-				"fieldKeyword": "comments",
-				"fieldType": "details",
-				"template": "textarea",
-				"disabled": true,
-				"hidden": true
-			},
-			{
-				"fieldName": "Description",
-				"fieldKeyword": "description",
-				"fieldType": "details",
-				"disabled": true,
-				"hidden": true
-			}
-		],
-		"scalar": [
-			"name",
-			"description",
-			{
-				"propertyName": "Required",
-				"propertyKeyword": "required",
-				"propertyType": "checkbox",
-				"propertyTooltip": "Check if this field is required",
-				"enableForReference": true,
-				"dependency": {
-					"key": "ref",
-					"exist": true
-				}
-			},
-			{
-				"propertyName": "Directives",
-				"propertyKeyword": "typeDirectives",
-				"propertyTooltip": "Scalar directives",
-				"propertyType": "group",
-				"structure": [
-					{
-						"propertyName": "Directive format",
-						"propertyKeyword": "directiveFormat",
-						"propertyTooltip": "Select directive format",
-						"propertyType": "select",
-						"options": [
-							"Raw"
-						],
-						"defaultValue": "Raw",
-						"helpInfo": {
-							"type": "modal",
-							"title": "PROPERTIES_PANE___DIRECTIVES_INFO_MODAL_TITLE",
-							"content": "PROPERTIES_PANE___DIRECTIVES_INFO_MODAL_BODY",
-							"featureNameForHelp": "GraphQL directives",
-							"buttons": ["contactSupport", "ok"]
-						}
-					},
-					{
-						"propertyName": "Raw directive",
-						"propertyKeyword": "rawDirective",
-						"propertyTooltip": "Enter raw directive",
-						"propertyType": "details",
-						"template": "textarea",
-						"markdown": false,
-						"dependency": {
-							"key": "directiveFormat",
-							"value": "Raw"
-						}
-					}
-				],
-				"dependency": {
-					"key": "ref",
-					"exist": false
-				}
-			},
-			{
-				"propertyName": "Directives",
-				"propertyKeyword": "fieldDirectives",
-				"propertyTooltip": "Field directives",
-				"propertyType": "group",
-				"enableForReference": true,
-				"structure": [
-					{
-						"propertyName": "Directive format",
-						"propertyKeyword": "directiveFormat",
-						"propertyTooltip": "Select directive format",
-						"propertyType": "select",
-						"options": [
-							"Raw"
-						],
-						"defaultValue": "Raw",
-						"helpInfo": {
-							"type": "modal",
-							"title": "PROPERTIES_PANE___DIRECTIVES_INFO_MODAL_TITLE",
-							"content": "PROPERTIES_PANE___DIRECTIVES_INFO_MODAL_BODY",
-							"featureNameForHelp": "GraphQL directives",
-							"buttons": ["contactSupport", "ok"]
-						}
-					},
-					{
-						"propertyName": "Raw directive",
-						"propertyKeyword": "rawDirective",
-						"propertyTooltip": "Enter raw directive",
-						"propertyType": "details",
-						"template": "textarea",
-						"markdown": false,
-						"dependency": {
-							"key": "directiveFormat",
-							"value": "Raw"
-						}
-					}
-				],
-				"dependency": {
-					"key": "ref",
-					"exist": true
-				}
-			},
-			"comments"
-		],
-		"enum": [
-			"name",
-			{
-				"propertyName": "Enum values",
-				"propertyKeyword": "enumValues",
-				"propertyTooltip": "Enum values",
-				"propertyType": "group",
-				"structure": [
-					{
-						"propertyName": "Value",
-						"propertyKeyword": "value",
-						"propertyType": "text"
-					},
-					{
-						"propertyName": "Description",
-						"propertyKeyword": "description",
-						"propertyType": "text"
-					},
-					{
-						"propertyName": "Directives",
-						"propertyKeyword": "typeDirectives",
-						"propertyTooltip": "Enum directives",
-						"propertyType": "group",
-						"structure": [
-							{
-								"propertyName": "Directive format",
-								"propertyKeyword": "directiveFormat",
-								"propertyTooltip": "Select directive format",
-								"propertyType": "select",
-								"options": [
-									"Raw"
-								],
-								"defaultValue": "Raw",
-								"helpInfo": {
-									"type": "modal",
-									"title": "PROPERTIES_PANE___DIRECTIVES_INFO_MODAL_TITLE",
-									"content": "PROPERTIES_PANE___DIRECTIVES_INFO_MODAL_BODY",
-									"featureNameForHelp": "GraphQL directives",
-									"buttons": ["contactSupport", "ok"]
-								}
-							},
-							{
-								"propertyName": "Raw directive",
-								"propertyKeyword": "rawDirective",
-								"propertyTooltip": "Enter raw directive",
-								"propertyType": "details",
-								"template": "textarea",
-								"markdown": false,
-								"dependency": {
-									"key": "directiveFormat",
-									"value": "Raw"
-								}
+[
+	{
+		"lowerTab": "JsonDetails",
+		"structure": {
+			"String": [
+				{
+					"fieldName": "Name",
+					"fieldKeyword": "name",
+					"fieldType": "coupled"
+				},
+				{
+					"fieldName": "Technical name",
+					"fieldKeyword": "code",
+					"fieldType": "coupled"
+				},
+				"schemaId",
+				"type",
+				"description",
+				"required",
+				{
+					"propertyName": "Arguments",
+					"propertyKeyword": "arguments",
+					"propertyTooltip": "Popup for multi-line text entry",
+					"propertyType": "details",
+					"template": "textarea",
+					"markdown": false
+				},
+				{
+					"propertyName": "Directives",
+					"propertyKeyword": "fieldDirectives",
+					"propertyTooltip": "Field directives",
+					"propertyType": "group",
+					"structure": [
+						{
+							"propertyName": "Directive format",
+							"propertyKeyword": "directiveFormat",
+							"propertyTooltip": "Select directive format",
+							"propertyType": "select",
+							"options": ["Raw"],
+							"defaultValue": "Raw",
+							"helpInfo": {
+								"type": "modal",
+								"title": "PROPERTIES_PANE___DIRECTIVES_INFO_MODAL_TITLE",
+								"content": "PROPERTIES_PANE___DIRECTIVES_INFO_MODAL_BODY",
+								"featureNameForHelp": "GraphQL directives",
+								"buttons": ["contactSupport", "ok"]
 							}
-						]
-					}
-				]
-			},
-			"description",
-			{
-				"propertyName": "Required",
-				"propertyKeyword": "required",
-				"propertyType": "checkbox",
-				"propertyTooltip": "Check if this field is required",
-				"enableForReference": true,
-				"dependency": {
-					"key": "ref",
-					"exist": true
-				}
-			},
-			{
-				"propertyName": "Directives",
-				"propertyKeyword": "typeDirectives",
-				"propertyTooltip": "Enum directives",
-				"propertyType": "group",
-				"structure": [
-					{
-						"propertyName": "Directive format",
-						"propertyKeyword": "directiveFormat",
-						"propertyTooltip": "Select directive format",
-						"propertyType": "select",
-						"options": [
-							"Raw"
-						],
-						"defaultValue": "Raw",
-						"helpInfo": {
-							"type": "modal",
-							"title": "PROPERTIES_PANE___DIRECTIVES_INFO_MODAL_TITLE",
-							"content": "PROPERTIES_PANE___DIRECTIVES_INFO_MODAL_BODY",
-							"featureNameForHelp": "GraphQL directives",
-							"buttons": ["contactSupport", "ok"]
+						},
+						{
+							"propertyName": "Raw directive",
+							"propertyKeyword": "rawDirective",
+							"propertyTooltip": "Enter raw directive",
+							"propertyType": "details",
+							"template": "textarea",
+							"markdown": false,
+							"dependency": {
+								"key": "directiveFormat",
+								"value": "Raw"
+							}
 						}
-					},
-					{
-						"propertyName": "Raw directive",
-						"propertyKeyword": "rawDirective",
-						"propertyTooltip": "Enter raw directive",
-						"propertyType": "details",
-						"template": "textarea",
-						"markdown": false,
-						"dependency": {
-							"key": "directiveFormat",
-							"value": "Raw"
-						}
-					}
-				],
-				"dependency": {
-					"key": "ref",
-					"exist": false
-				}
-			},
-			{
-				"propertyName": "Directives",
-				"propertyKeyword": "fieldDirectives",
-				"propertyTooltip": "Field directives",
-				"propertyType": "group",
-				"enableForReference": true,
-				"structure": [
-					{
-						"propertyName": "Directive format",
-						"propertyKeyword": "directiveFormat",
-						"propertyTooltip": "Select directive format",
-						"propertyType": "select",
-						"options": [
-							"Raw"
-						],
-						"defaultValue": "Raw",
-						"helpInfo": {
-							"type": "modal",
-							"title": "PROPERTIES_PANE___DIRECTIVES_INFO_MODAL_TITLE",
-							"content": "PROPERTIES_PANE___DIRECTIVES_INFO_MODAL_BODY",
-							"featureNameForHelp": "GraphQL directives",
-							"buttons": ["contactSupport", "ok"]
-						}
-					},
-					{
-						"propertyName": "Raw directive",
-						"propertyKeyword": "rawDirective",
-						"propertyTooltip": "Enter raw directive",
-						"propertyType": "details",
-						"template": "textarea",
-						"markdown": false,
-						"dependency": {
-							"key": "directiveFormat",
-							"value": "Raw"
-						}
-					}
-				],
-				"dependency": {
-					"key": "ref",
-					"exist": true
-				}
-			},
-			"comments"
-		],
-		"object": [
-			"name",
-			"description",
-			{
-				"propertyName": "Required",
-				"propertyKeyword": "required",
-				"propertyType": "checkbox",
-				"propertyTooltip": "Check if this field is required",
-				"enableForReference": true,
-				"dependency": {
-					"key": "ref",
-					"exist": true
-				}
-			},
-			{
-				"propertyName": "Directives",
-				"propertyKeyword": "typeDirectives",
-				"propertyTooltip": "Object directives",
-				"propertyType": "group",
-				"structure": [
-					{
-						"propertyName": "Directive format",
-						"propertyKeyword": "directiveFormat",
-						"propertyTooltip": "Select directive format",
-						"propertyType": "select",
-						"options": [
-							"Raw"
-						],
-						"defaultValue": "Raw",
-						"helpInfo": {
-							"type": "modal",
-							"title": "PROPERTIES_PANE___DIRECTIVES_INFO_MODAL_TITLE",
-							"content": "PROPERTIES_PANE___DIRECTIVES_INFO_MODAL_BODY",
-							"featureNameForHelp": "GraphQL directives",
-							"buttons": ["contactSupport", "ok"]
-						}
-					},
-					{
-						"propertyName": "Raw directive",
-						"propertyKeyword": "rawDirective",
-						"propertyTooltip": "Enter raw directive",
-						"propertyType": "details",
-						"template": "textarea",
-						"markdown": false,
-						"dependency": {
-							"key": "directiveFormat",
-							"value": "Raw"
-						}
-					}
-				],
-				"dependency": {
-					"key": "ref",
-					"exist": false
-				}
-			},
-			{
-				"propertyName": "Directives",
-				"propertyKeyword": "fieldDirectives",
-				"propertyTooltip": "Field directives",
-				"propertyType": "group",
-				"enableForReference": true,
-				"structure": [
-					{
-						"propertyName": "Directive format",
-						"propertyKeyword": "directiveFormat",
-						"propertyTooltip": "Select directive format",
-						"propertyType": "select",
-						"options": [
-							"Raw"
-						],
-						"defaultValue": "Raw",
-						"helpInfo": {
-							"type": "modal",
-							"title": "PROPERTIES_PANE___DIRECTIVES_INFO_MODAL_TITLE",
-							"content": "PROPERTIES_PANE___DIRECTIVES_INFO_MODAL_BODY",
-							"featureNameForHelp": "GraphQL directives",
-							"buttons": ["contactSupport", "ok"]
-						}
-					},
-					{
-						"propertyName": "Raw directive",
-						"propertyKeyword": "rawDirective",
-						"propertyTooltip": "Enter raw directive",
-						"propertyType": "details",
-						"template": "textarea",
-						"markdown": false,
-						"dependency": {
-							"key": "directiveFormat",
-							"value": "Raw"
-						}
-					}
-				],
-				"dependency": {
-					"key": "ref",
-					"exist": true
-				}
-			},
-			"minProperties",
-			"maxProperties",
-			"comments"
-		],
-		"interface": [
-			"name",
-			"description",
-			{
-				"propertyName": "Required",
-				"propertyKeyword": "required",
-				"propertyType": "checkbox",
-				"propertyTooltip": "Check if this field is required",
-				"enableForReference": true,
-				"dependency": {
-					"key": "ref",
-					"exist": true
-				}
-			},
-			{
-				"propertyName": "Directives",
-				"propertyKeyword": "typeDirectives",
-				"propertyTooltip": "Interface directives",
-				"propertyType": "group",
-				"structure": [
-					{
-						"propertyName": "Directive format",
-						"propertyKeyword": "directiveFormat",
-						"propertyTooltip": "Select directive format",
-						"propertyType": "select",
-						"options": [
-							"Raw"
-						],
-						"defaultValue": "Raw",
-						"helpInfo": {
-							"type": "modal",
-							"title": "PROPERTIES_PANE___DIRECTIVES_INFO_MODAL_TITLE",
-							"content": "PROPERTIES_PANE___DIRECTIVES_INFO_MODAL_BODY",
-							"featureNameForHelp": "GraphQL directives",
-							"buttons": ["contactSupport", "ok"]
-						}
-					},
-					{
-						"propertyName": "Raw directive",
-						"propertyKeyword": "rawDirective",
-						"propertyTooltip": "Enter raw directive",
-						"propertyType": "details",
-						"template": "textarea",
-						"markdown": false,
-						"dependency": {
-							"key": "directiveFormat",
-							"value": "Raw"
-						}
-					}
-				],
-				"dependency": {
-					"key": "ref",
-					"exist": false
-				}
-			},
-			{
-				"propertyName": "Directives",
-				"propertyKeyword": "fieldDirectives",
-				"propertyTooltip": "Field directives",
-				"propertyType": "group",
-				"enableForReference": true,
-				"structure": [
-					{
-						"propertyName": "Directive format",
-						"propertyKeyword": "directiveFormat",
-						"propertyTooltip": "Select directive format",
-						"propertyType": "select",
-						"options": [
-							"Raw"
-						],
-						"defaultValue": "Raw",
-						"helpInfo": {
-							"type": "modal",
-							"title": "PROPERTIES_PANE___DIRECTIVES_INFO_MODAL_TITLE",
-							"content": "PROPERTIES_PANE___DIRECTIVES_INFO_MODAL_BODY",
-							"featureNameForHelp": "GraphQL directives",
-							"buttons": ["contactSupport", "ok"]
-						}
-					},
-					{
-						"propertyName": "Raw directive",
-						"propertyKeyword": "rawDirective",
-						"propertyTooltip": "Enter raw directive",
-						"propertyType": "details",
-						"template": "textarea",
-						"markdown": false,
-						"dependency": {
-							"key": "directiveFormat",
-							"value": "Raw"
-						}
-					}
-				],
-				"dependency": {
-					"key": "ref",
-					"exist": true
-				}
-			},
-			"minProperties",
-			"maxProperties",
-			"comments"
-		],
-		"union": [
-			"name",
-			"description",
-			{
-				"propertyName": "Required",
-				"propertyKeyword": "required",
-				"propertyType": "checkbox",
-				"propertyTooltip": "Check if this field is required",
-				"enableForReference": true,
-				"dependency": {
-					"key": "ref",
-					"exist": true
-				}
-			},
-			{
-				"propertyName": "Directives",
-				"propertyKeyword": "typeDirectives",
-				"propertyTooltip": "Union directives",
-				"propertyType": "group",
-				"structure": [
-					{
-						"propertyName": "Directive format",
-						"propertyKeyword": "directiveFormat",
-						"propertyTooltip": "Select directive format",
-						"propertyType": "select",
-						"options": [
-							"Raw"
-						],
-						"defaultValue": "Raw",
-						"helpInfo": {
-							"type": "modal",
-							"title": "PROPERTIES_PANE___DIRECTIVES_INFO_MODAL_TITLE",
-							"content": "PROPERTIES_PANE___DIRECTIVES_INFO_MODAL_BODY",
-							"featureNameForHelp": "GraphQL directives",
-							"buttons": ["contactSupport", "ok"]
-						}
-					},
-					{
-						"propertyName": "Raw directive",
-						"propertyKeyword": "rawDirective",
-						"propertyTooltip": "Enter raw directive",
-						"propertyType": "details",
-						"template": "textarea",
-						"markdown": false,
-						"dependency": {
-							"key": "directiveFormat",
-							"value": "Raw"
-						}
-					}
-				],
-				"dependency": {
-					"key": "ref",
-					"exist": false
-				}
-			},
-			{
-				"propertyName": "Directives",
-				"propertyKeyword": "fieldDirectives",
-				"propertyTooltip": "Field directives",
-				"propertyType": "group",
-				"enableForReference": true,
-				"structure": [
-					{
-						"propertyName": "Directive format",
-						"propertyKeyword": "directiveFormat",
-						"propertyTooltip": "Select directive format",
-						"propertyType": "select",
-						"options": [
-							"Raw"
-						],
-						"defaultValue": "Raw",
-						"helpInfo": {
-							"type": "modal",
-							"title": "PROPERTIES_PANE___DIRECTIVES_INFO_MODAL_TITLE",
-							"content": "PROPERTIES_PANE___DIRECTIVES_INFO_MODAL_BODY",
-							"featureNameForHelp": "GraphQL directives",
-							"buttons": ["contactSupport", "ok"]
-						}
-					},
-					{
-						"propertyName": "Raw directive",
-						"propertyKeyword": "rawDirective",
-						"propertyTooltip": "Enter raw directive",
-						"propertyType": "details",
-						"template": "textarea",
-						"markdown": false,
-						"dependency": {
-							"key": "directiveFormat",
-							"value": "Raw"
-						}
-					}
-				],
-				"dependency": {
-					"key": "ref",
-					"exist": true
-				}
-			},
-			"comments"
-		],
-		"input": [
-			"name",
-			"description",
-			{
-				"propertyName": "Required",
-				"propertyKeyword": "required",
-				"propertyType": "checkbox",
-				"propertyTooltip": "Check if this field is required",
-				"enableForReference": true,
-				"dependency": {
-					"key": "ref",
-					"exist": true
-				}
-			},
-			{
-				"propertyName": "Directives",
-				"propertyKeyword": "typeDirectives",
-				"propertyTooltip": "Input directives",
-				"propertyType": "group",
-				"structure": [
-					{
-						"propertyName": "Directive format",
-						"propertyKeyword": "directiveFormat",
-						"propertyTooltip": "Select directive format",
-						"propertyType": "select",
-						"options": [
-							"Raw"
-						],
-						"defaultValue": "Raw",
-						"helpInfo": {
-							"type": "modal",
-							"title": "PROPERTIES_PANE___DIRECTIVES_INFO_MODAL_TITLE",
-							"content": "PROPERTIES_PANE___DIRECTIVES_INFO_MODAL_BODY",
-							"featureNameForHelp": "GraphQL directives",
-							"buttons": ["contactSupport", "ok"]
-						}
-					},
-					{
-						"propertyName": "Raw directive",
-						"propertyKeyword": "rawDirective",
-						"propertyTooltip": "Enter raw directive",
-						"propertyType": "details",
-						"template": "textarea",
-						"markdown": false,
-						"dependency": {
-							"key": "directiveFormat",
-							"value": "Raw"
-						}
-					}
-				],
-				"dependency": {
-					"key": "ref",
-					"exist": false
-				}
-			},
-			{
-				"propertyName": "Directives",
-				"propertyKeyword": "fieldDirectives",
-				"propertyTooltip": "Field directives",
-				"propertyType": "group",
-				"enableForReference": true,
-				"structure": [
-					{
-						"propertyName": "Directive format",
-						"propertyKeyword": "directiveFormat",
-						"propertyTooltip": "Select directive format",
-						"propertyType": "select",
-						"options": [
-							"Raw"
-						],
-						"defaultValue": "Raw",
-						"helpInfo": {
-							"type": "modal",
-							"title": "PROPERTIES_PANE___DIRECTIVES_INFO_MODAL_TITLE",
-							"content": "PROPERTIES_PANE___DIRECTIVES_INFO_MODAL_BODY",
-							"featureNameForHelp": "GraphQL directives",
-							"buttons": ["contactSupport", "ok"]
-						}
-					},
-					{
-						"propertyName": "Raw directive",
-						"propertyKeyword": "rawDirective",
-						"propertyTooltip": "Enter raw directive",
-						"propertyType": "details",
-						"template": "textarea",
-						"markdown": false,
-						"dependency": {
-							"key": "directiveFormat",
-							"value": "Raw"
-						}
-					}
-				],
-				"dependency": {
-					"key": "ref",
-					"exist": true
-				}
-			},
-			"comments"
-		],
-		"directive": [
-			"name",
-			"description",
-			{
-				"propertyName": "Arguments",
-				"propertyKeyword": "arguments",
-				"propertyTooltip": "Popup for multi-line text entry",
-				"propertyType": "details",
-				"template": "textarea",
-				"markdown": false
-			},
-			{
-				"propertyName": "Directive locations:",
-				"propertyType": "block",
-				"propertyKeyword": "directiveLocations",
-				"structure": [
-					{
-						"propertyName": "QUERY",
-						"propertyKeyword": "query",
-						"propertyType": "checkbox"
-					},
-					{
-						"propertyName": "MUTATION",
-						"propertyKeyword": "mutation",
-						"propertyType": "checkbox"
-					},
-					{
-						"propertyName": "SUBSCRIPTION",
-						"propertyKeyword": "subscription",
-						"propertyType": "checkbox"
-					},
-					{
-						"propertyName": "FIELD",
-						"propertyKeyword": "field",
-						"propertyType": "checkbox"
-					},
-					{
-						"propertyName": "SCHEMA",
-						"propertyKeyword": "schema",
-						"propertyType": "checkbox"
-					},
-					{
-						"propertyName": "SCALAR",
-						"propertyKeyword": "scalar",
-						"propertyType": "checkbox"
-					},
-					{
-						"propertyName": "OBJECT",
-						"propertyKeyword": "object",
-						"propertyType": "checkbox"
-					},
-					{
-						"propertyName": "FIELD_DEFINITION",
-						"propertyKeyword": "fieldDefinition",
-						"propertyType": "checkbox"
-					},
-					{
-						"propertyName": "ARGUMENT_DEFINITION",
-						"propertyKeyword": "argumentDefinition",
-						"propertyType": "checkbox"
-					},
-					{
-						"propertyName": "INTERFACE",
-						"propertyKeyword": "interface",
-						"propertyType": "checkbox"
-					},
-					{
-						"propertyName": "UNION",
-						"propertyKeyword": "union",
-						"propertyType": "checkbox"
-					},
-					{
-						"propertyName": "ENUM",
-						"propertyKeyword": "enum",
-						"propertyType": "checkbox"
-					},
-					{
-						"propertyName": "ENUM_VALUE",
-						"propertyKeyword": "enumValue",
-						"propertyType": "checkbox"
-					},
-					{
-						"propertyName": "INPUT_OBJECT",
-						"propertyKeyword": "inputObject",
-						"propertyType": "checkbox"
-					},
-					{
-						"propertyName": "INPUT_FIELD_DEFINITION",
-						"propertyKeyword": "inputFieldDefinition",
-						"propertyType": "checkbox"
-					}
-				]
-			},
-			"comments"
-		]
-	}
-},
-{
-	"lowerTab": "Implements",
-	"structure": {
-		"object": [
-			{
-				"propertyName": "Interfaces",
-				"propertyKeyword": "implementsInterfaces",
-				"propertyTooltip": "Select interfaces to implement",
-				"propertyType": "group",
-				"helpInfo": {
-					"type": "modal",
-					"title": "PROPERTIES_PANE___IMPLEMENTS_INFO_MODAL_TITLE",
-					"content": "PROPERTIES_PANE___IMPLEMENTS_INFO_MODAL_BODY",
-					"featureNameForHelp": "Implementing Interfaces in GraphQL",
-					"buttons": ["contactSupport", "ok"]
+					]
 				},
-				"structure": [
-					{
-						"propertyName": "Interface",
-						"propertyKeyword": "interface",
-						"propertyTooltip": "Select interface",
-						"propertyType": "selecthashed",
-						"template": "definitions"
-					}
-				]
-			}
-		],
-		"interface": [
-			{
-				"propertyName": "Interfaces",
-				"propertyKeyword": "implementsInterfaces",
-				"propertyTooltip": "Select interfaces to implement",
-				"propertyType": "group",
-				"helpInfo": {
-					"type": "modal",
-					"title": "PROPERTIES_PANE___IMPLEMENTS_INFO_MODAL_TITLE",
-					"content": "PROPERTIES_PANE___IMPLEMENTS_INFO_MODAL_BODY",
-					"featureNameForHelp": "Implementing Interfaces in GraphQL",
-					"buttons": ["contactSupport", "ok"]
+				"primaryKey",
+				"foreignCollection",
+				"foreignField",
+				"relationshipType",
+				"default",
+				"minLength",
+				"maxLength",
+				"pattern",
+				"enum",
+				"sample",
+				"comments"
+			],
+			"Float": [
+				{
+					"fieldName": "Name",
+					"fieldKeyword": "name",
+					"fieldType": "coupled"
 				},
-				"structure": [
-					{
-						"propertyName": "Interface",
-						"propertyKeyword": "interface",
-						"propertyTooltip": "Select interface",
-						"propertyType": "selecthashed",
-						"template": "definitions"
+				{
+					"fieldName": "Technical name",
+					"fieldKeyword": "code",
+					"fieldType": "coupled"
+				},
+				"schemaId",
+				"type",
+				"description",
+				"required",
+				{
+					"propertyName": "Arguments",
+					"propertyKeyword": "arguments",
+					"propertyTooltip": "Popup for multi-line text entry",
+					"propertyType": "details",
+					"template": "textarea",
+					"markdown": false
+				},
+				{
+					"propertyName": "Directives",
+					"propertyKeyword": "fieldDirectives",
+					"propertyTooltip": "Field directives",
+					"propertyType": "group",
+					"structure": [
+						{
+							"propertyName": "Directive format",
+							"propertyKeyword": "directiveFormat",
+							"propertyTooltip": "Select directive format",
+							"propertyType": "select",
+							"options": ["Raw"],
+							"defaultValue": "Raw",
+							"helpInfo": {
+								"type": "modal",
+								"title": "PROPERTIES_PANE___DIRECTIVES_INFO_MODAL_TITLE",
+								"content": "PROPERTIES_PANE___DIRECTIVES_INFO_MODAL_BODY",
+								"featureNameForHelp": "GraphQL directives",
+								"buttons": ["contactSupport", "ok"]
+							}
+						},
+						{
+							"propertyName": "Raw directive",
+							"propertyKeyword": "rawDirective",
+							"propertyTooltip": "Enter raw directive",
+							"propertyType": "details",
+							"template": "textarea",
+							"markdown": false,
+							"dependency": {
+								"key": "directiveFormat",
+								"value": "Raw"
+							}
+						}
+					]
+				},
+				"primaryKey",
+				"default",
+				"unit",
+				"minimum",
+				"exclusiveMinimum",
+				"maximum",
+				"exclusiveMaximum",
+				"multipleOf",
+				"divisibleBy",
+				"enum",
+				"sample",
+				"comments"
+			],
+			"Int": [
+				{
+					"fieldName": "Name",
+					"fieldKeyword": "name",
+					"fieldType": "coupled"
+				},
+				{
+					"fieldName": "Technical name",
+					"fieldKeyword": "code",
+					"fieldType": "coupled"
+				},
+				"schemaId",
+				"type",
+				"description",
+				"primaryKey",
+				"required",
+				{
+					"propertyName": "Arguments",
+					"propertyKeyword": "arguments",
+					"propertyTooltip": "Popup for multi-line text entry",
+					"propertyType": "details",
+					"template": "textarea",
+					"markdown": false
+				},
+				{
+					"propertyName": "Directives",
+					"propertyKeyword": "fieldDirectives",
+					"propertyTooltip": "Field directives",
+					"propertyType": "group",
+					"structure": [
+						{
+							"propertyName": "Directive format",
+							"propertyKeyword": "directiveFormat",
+							"propertyTooltip": "Select directive format",
+							"propertyType": "select",
+							"options": ["Raw"],
+							"defaultValue": "Raw",
+							"helpInfo": {
+								"type": "modal",
+								"title": "PROPERTIES_PANE___DIRECTIVES_INFO_MODAL_TITLE",
+								"content": "PROPERTIES_PANE___DIRECTIVES_INFO_MODAL_BODY",
+								"featureNameForHelp": "GraphQL directives",
+								"buttons": ["contactSupport", "ok"]
+							}
+						},
+						{
+							"propertyName": "Raw directive",
+							"propertyKeyword": "rawDirective",
+							"propertyTooltip": "Enter raw directive",
+							"propertyType": "details",
+							"template": "textarea",
+							"markdown": false,
+							"dependency": {
+								"key": "directiveFormat",
+								"value": "Raw"
+							}
+						}
+					]
+				},
+				"default",
+				"unit",
+				"minimum",
+				"exclusiveMinimum",
+				"maximum",
+				"exclusiveMaximum",
+				"multipleOf",
+				"divisibleBy",
+				"enum",
+				"sample",
+				"comments"
+			],
+			"ID": [
+				{
+					"fieldName": "Name",
+					"fieldKeyword": "name",
+					"fieldType": "coupled"
+				},
+				{
+					"fieldName": "Technical name",
+					"fieldKeyword": "code",
+					"fieldType": "coupled"
+				},
+				"schemaId",
+				"type",
+				"description",
+				"required",
+				{
+					"propertyName": "Arguments",
+					"propertyKeyword": "arguments",
+					"propertyTooltip": "Popup for multi-line text entry",
+					"propertyType": "details",
+					"template": "textarea",
+					"markdown": false
+				},
+				{
+					"propertyName": "Directives",
+					"propertyKeyword": "fieldDirectives",
+					"propertyTooltip": "Field directives",
+					"propertyType": "group",
+					"structure": [
+						{
+							"propertyName": "Directive format",
+							"propertyKeyword": "directiveFormat",
+							"propertyTooltip": "Select directive format",
+							"propertyType": "select",
+							"options": ["Raw"],
+							"defaultValue": "Raw",
+							"helpInfo": {
+								"type": "modal",
+								"title": "PROPERTIES_PANE___DIRECTIVES_INFO_MODAL_TITLE",
+								"content": "PROPERTIES_PANE___DIRECTIVES_INFO_MODAL_BODY",
+								"featureNameForHelp": "GraphQL directives",
+								"buttons": ["contactSupport", "ok"]
+							}
+						},
+						{
+							"propertyName": "Raw directive",
+							"propertyKeyword": "rawDirective",
+							"propertyTooltip": "Enter raw directive",
+							"propertyType": "details",
+							"template": "textarea",
+							"markdown": false,
+							"dependency": {
+								"key": "directiveFormat",
+								"value": "Raw"
+							}
+						}
+					]
+				},
+				"primaryKey",
+				"foreignCollection",
+				"foreignField",
+				"relationshipType",
+				"default",
+				"minLength",
+				"maxLength",
+				"pattern",
+				"enum",
+				"sample",
+				"comments"
+			],
+			"Boolean": [
+				{
+					"fieldName": "Name",
+					"fieldKeyword": "name",
+					"fieldType": "coupled"
+				},
+				{
+					"fieldName": "Technical name",
+					"fieldKeyword": "code",
+					"fieldType": "coupled"
+				},
+				"schemaId",
+				"type",
+				"description",
+				"required",
+				{
+					"propertyName": "Arguments",
+					"propertyKeyword": "arguments",
+					"propertyTooltip": "Popup for multi-line text entry",
+					"propertyType": "details",
+					"template": "textarea",
+					"markdown": false
+				},
+				{
+					"propertyName": "Directives",
+					"propertyKeyword": "fieldDirectives",
+					"propertyTooltip": "Field directives",
+					"propertyType": "group",
+					"structure": [
+						{
+							"propertyName": "Directive format",
+							"propertyKeyword": "directiveFormat",
+							"propertyTooltip": "Select directive format",
+							"propertyType": "select",
+							"options": ["Raw"],
+							"defaultValue": "Raw",
+							"helpInfo": {
+								"type": "modal",
+								"title": "PROPERTIES_PANE___DIRECTIVES_INFO_MODAL_TITLE",
+								"content": "PROPERTIES_PANE___DIRECTIVES_INFO_MODAL_BODY",
+								"featureNameForHelp": "GraphQL directives",
+								"buttons": ["contactSupport", "ok"]
+							}
+						},
+						{
+							"propertyName": "Raw directive",
+							"propertyKeyword": "rawDirective",
+							"propertyTooltip": "Enter raw directive",
+							"propertyType": "details",
+							"template": "textarea",
+							"markdown": false,
+							"dependency": {
+								"key": "directiveFormat",
+								"value": "Raw"
+							}
+						}
+					]
+				},
+				"default",
+				"sample",
+				"comments"
+			],
+			"List": [
+				{
+					"fieldName": "Name",
+					"fieldKeyword": "name",
+					"fieldType": "coupled"
+				},
+				{
+					"fieldName": "Technical name",
+					"fieldKeyword": "code",
+					"fieldType": "coupled"
+				},
+				"schemaId",
+				"description",
+				"required",
+				"minItems",
+				"maxItems",
+				"uniqueItems",
+				"additionalItems",
+				"comments"
+			],
+			"___1": [],
+			"choice": [
+				{
+					"fieldName": "choice",
+					"fieldKeyword": "choice",
+					"fieldType": "select",
+					"options": ["oneOf"]
+				}
+			],
+			"definitions": [],
+			"type": [
+				{
+					"fieldName": "Name",
+					"fieldKeyword": "name",
+					"fieldType": "text",
+					"disabled": true
+				},
+				{
+					"fieldName": "Technical name",
+					"fieldKeyword": "code",
+					"fieldType": "text",
+					"disabled": true,
+					"hidden": true
+				},
+				{
+					"fieldName": "Type",
+					"fieldKeyword": "type",
+					"fieldType": "text",
+					"disabled": true
+				},
+				{
+					"fieldName": "Comments",
+					"fieldKeyword": "comments",
+					"fieldType": "details",
+					"template": "textarea",
+					"disabled": true,
+					"hidden": true
+				},
+				{
+					"fieldName": "Description",
+					"fieldKeyword": "description",
+					"fieldType": "details",
+					"disabled": true,
+					"hidden": true
+				}
+			],
+			"scalar": [
+				"name",
+				"description",
+				{
+					"propertyName": "Required",
+					"propertyKeyword": "required",
+					"propertyType": "checkbox",
+					"propertyTooltip": "Check if this field is required",
+					"enableForReference": true,
+					"dependency": {
+						"key": "ref",
+						"exist": true
 					}
-				]
-			}
-		]
+				},
+				{
+					"propertyName": "Directives",
+					"propertyKeyword": "typeDirectives",
+					"propertyTooltip": "Scalar directives",
+					"propertyType": "group",
+					"structure": [
+						{
+							"propertyName": "Directive format",
+							"propertyKeyword": "directiveFormat",
+							"propertyTooltip": "Select directive format",
+							"propertyType": "select",
+							"options": ["Raw"],
+							"defaultValue": "Raw",
+							"helpInfo": {
+								"type": "modal",
+								"title": "PROPERTIES_PANE___DIRECTIVES_INFO_MODAL_TITLE",
+								"content": "PROPERTIES_PANE___DIRECTIVES_INFO_MODAL_BODY",
+								"featureNameForHelp": "GraphQL directives",
+								"buttons": ["contactSupport", "ok"]
+							}
+						},
+						{
+							"propertyName": "Raw directive",
+							"propertyKeyword": "rawDirective",
+							"propertyTooltip": "Enter raw directive",
+							"propertyType": "details",
+							"template": "textarea",
+							"markdown": false,
+							"dependency": {
+								"key": "directiveFormat",
+								"value": "Raw"
+							}
+						}
+					],
+					"dependency": {
+						"key": "ref",
+						"exist": false
+					}
+				},
+				{
+					"propertyName": "Directives",
+					"propertyKeyword": "fieldDirectives",
+					"propertyTooltip": "Field directives",
+					"propertyType": "group",
+					"enableForReference": true,
+					"structure": [
+						{
+							"propertyName": "Directive format",
+							"propertyKeyword": "directiveFormat",
+							"propertyTooltip": "Select directive format",
+							"propertyType": "select",
+							"options": ["Raw"],
+							"defaultValue": "Raw",
+							"helpInfo": {
+								"type": "modal",
+								"title": "PROPERTIES_PANE___DIRECTIVES_INFO_MODAL_TITLE",
+								"content": "PROPERTIES_PANE___DIRECTIVES_INFO_MODAL_BODY",
+								"featureNameForHelp": "GraphQL directives",
+								"buttons": ["contactSupport", "ok"]
+							}
+						},
+						{
+							"propertyName": "Raw directive",
+							"propertyKeyword": "rawDirective",
+							"propertyTooltip": "Enter raw directive",
+							"propertyType": "details",
+							"template": "textarea",
+							"markdown": false,
+							"dependency": {
+								"key": "directiveFormat",
+								"value": "Raw"
+							}
+						}
+					],
+					"dependency": {
+						"key": "ref",
+						"exist": true
+					}
+				},
+				"comments"
+			],
+			"enum": [
+				"name",
+				{
+					"propertyName": "Enum values",
+					"propertyKeyword": "enumValues",
+					"propertyTooltip": "Enum values",
+					"propertyType": "group",
+					"structure": [
+						{
+							"propertyName": "Value",
+							"propertyKeyword": "value",
+							"propertyType": "text"
+						},
+						{
+							"propertyName": "Description",
+							"propertyKeyword": "description",
+							"propertyType": "text"
+						},
+						{
+							"propertyName": "Directives",
+							"propertyKeyword": "typeDirectives",
+							"propertyTooltip": "Enum directives",
+							"propertyType": "group",
+							"structure": [
+								{
+									"propertyName": "Directive format",
+									"propertyKeyword": "directiveFormat",
+									"propertyTooltip": "Select directive format",
+									"propertyType": "select",
+									"options": ["Raw"],
+									"defaultValue": "Raw",
+									"helpInfo": {
+										"type": "modal",
+										"title": "PROPERTIES_PANE___DIRECTIVES_INFO_MODAL_TITLE",
+										"content": "PROPERTIES_PANE___DIRECTIVES_INFO_MODAL_BODY",
+										"featureNameForHelp": "GraphQL directives",
+										"buttons": ["contactSupport", "ok"]
+									}
+								},
+								{
+									"propertyName": "Raw directive",
+									"propertyKeyword": "rawDirective",
+									"propertyTooltip": "Enter raw directive",
+									"propertyType": "details",
+									"template": "textarea",
+									"markdown": false,
+									"dependency": {
+										"key": "directiveFormat",
+										"value": "Raw"
+									}
+								}
+							]
+						}
+					]
+				},
+				"description",
+				{
+					"propertyName": "Required",
+					"propertyKeyword": "required",
+					"propertyType": "checkbox",
+					"propertyTooltip": "Check if this field is required",
+					"enableForReference": true,
+					"dependency": {
+						"key": "ref",
+						"exist": true
+					}
+				},
+				{
+					"propertyName": "Directives",
+					"propertyKeyword": "typeDirectives",
+					"propertyTooltip": "Enum directives",
+					"propertyType": "group",
+					"structure": [
+						{
+							"propertyName": "Directive format",
+							"propertyKeyword": "directiveFormat",
+							"propertyTooltip": "Select directive format",
+							"propertyType": "select",
+							"options": ["Raw"],
+							"defaultValue": "Raw",
+							"helpInfo": {
+								"type": "modal",
+								"title": "PROPERTIES_PANE___DIRECTIVES_INFO_MODAL_TITLE",
+								"content": "PROPERTIES_PANE___DIRECTIVES_INFO_MODAL_BODY",
+								"featureNameForHelp": "GraphQL directives",
+								"buttons": ["contactSupport", "ok"]
+							}
+						},
+						{
+							"propertyName": "Raw directive",
+							"propertyKeyword": "rawDirective",
+							"propertyTooltip": "Enter raw directive",
+							"propertyType": "details",
+							"template": "textarea",
+							"markdown": false,
+							"dependency": {
+								"key": "directiveFormat",
+								"value": "Raw"
+							}
+						}
+					],
+					"dependency": {
+						"key": "ref",
+						"exist": false
+					}
+				},
+				{
+					"propertyName": "Directives",
+					"propertyKeyword": "fieldDirectives",
+					"propertyTooltip": "Field directives",
+					"propertyType": "group",
+					"enableForReference": true,
+					"structure": [
+						{
+							"propertyName": "Directive format",
+							"propertyKeyword": "directiveFormat",
+							"propertyTooltip": "Select directive format",
+							"propertyType": "select",
+							"options": ["Raw"],
+							"defaultValue": "Raw",
+							"helpInfo": {
+								"type": "modal",
+								"title": "PROPERTIES_PANE___DIRECTIVES_INFO_MODAL_TITLE",
+								"content": "PROPERTIES_PANE___DIRECTIVES_INFO_MODAL_BODY",
+								"featureNameForHelp": "GraphQL directives",
+								"buttons": ["contactSupport", "ok"]
+							}
+						},
+						{
+							"propertyName": "Raw directive",
+							"propertyKeyword": "rawDirective",
+							"propertyTooltip": "Enter raw directive",
+							"propertyType": "details",
+							"template": "textarea",
+							"markdown": false,
+							"dependency": {
+								"key": "directiveFormat",
+								"value": "Raw"
+							}
+						}
+					],
+					"dependency": {
+						"key": "ref",
+						"exist": true
+					}
+				},
+				"comments"
+			],
+			"object": [
+				"name",
+				"description",
+				{
+					"propertyName": "Required",
+					"propertyKeyword": "required",
+					"propertyType": "checkbox",
+					"propertyTooltip": "Check if this field is required",
+					"enableForReference": true,
+					"dependency": {
+						"key": "ref",
+						"exist": true
+					}
+				},
+				{
+					"propertyName": "Directives",
+					"propertyKeyword": "typeDirectives",
+					"propertyTooltip": "Object directives",
+					"propertyType": "group",
+					"structure": [
+						{
+							"propertyName": "Directive format",
+							"propertyKeyword": "directiveFormat",
+							"propertyTooltip": "Select directive format",
+							"propertyType": "select",
+							"options": ["Raw"],
+							"defaultValue": "Raw",
+							"helpInfo": {
+								"type": "modal",
+								"title": "PROPERTIES_PANE___DIRECTIVES_INFO_MODAL_TITLE",
+								"content": "PROPERTIES_PANE___DIRECTIVES_INFO_MODAL_BODY",
+								"featureNameForHelp": "GraphQL directives",
+								"buttons": ["contactSupport", "ok"]
+							}
+						},
+						{
+							"propertyName": "Raw directive",
+							"propertyKeyword": "rawDirective",
+							"propertyTooltip": "Enter raw directive",
+							"propertyType": "details",
+							"template": "textarea",
+							"markdown": false,
+							"dependency": {
+								"key": "directiveFormat",
+								"value": "Raw"
+							}
+						}
+					],
+					"dependency": {
+						"key": "ref",
+						"exist": false
+					}
+				},
+				{
+					"propertyName": "Directives",
+					"propertyKeyword": "fieldDirectives",
+					"propertyTooltip": "Field directives",
+					"propertyType": "group",
+					"enableForReference": true,
+					"structure": [
+						{
+							"propertyName": "Directive format",
+							"propertyKeyword": "directiveFormat",
+							"propertyTooltip": "Select directive format",
+							"propertyType": "select",
+							"options": ["Raw"],
+							"defaultValue": "Raw",
+							"helpInfo": {
+								"type": "modal",
+								"title": "PROPERTIES_PANE___DIRECTIVES_INFO_MODAL_TITLE",
+								"content": "PROPERTIES_PANE___DIRECTIVES_INFO_MODAL_BODY",
+								"featureNameForHelp": "GraphQL directives",
+								"buttons": ["contactSupport", "ok"]
+							}
+						},
+						{
+							"propertyName": "Raw directive",
+							"propertyKeyword": "rawDirective",
+							"propertyTooltip": "Enter raw directive",
+							"propertyType": "details",
+							"template": "textarea",
+							"markdown": false,
+							"dependency": {
+								"key": "directiveFormat",
+								"value": "Raw"
+							}
+						}
+					],
+					"dependency": {
+						"key": "ref",
+						"exist": true
+					}
+				},
+				"minProperties",
+				"maxProperties",
+				"comments"
+			],
+			"interface": [
+				"name",
+				"description",
+				{
+					"propertyName": "Required",
+					"propertyKeyword": "required",
+					"propertyType": "checkbox",
+					"propertyTooltip": "Check if this field is required",
+					"enableForReference": true,
+					"dependency": {
+						"key": "ref",
+						"exist": true
+					}
+				},
+				{
+					"propertyName": "Directives",
+					"propertyKeyword": "typeDirectives",
+					"propertyTooltip": "Interface directives",
+					"propertyType": "group",
+					"structure": [
+						{
+							"propertyName": "Directive format",
+							"propertyKeyword": "directiveFormat",
+							"propertyTooltip": "Select directive format",
+							"propertyType": "select",
+							"options": ["Raw"],
+							"defaultValue": "Raw",
+							"helpInfo": {
+								"type": "modal",
+								"title": "PROPERTIES_PANE___DIRECTIVES_INFO_MODAL_TITLE",
+								"content": "PROPERTIES_PANE___DIRECTIVES_INFO_MODAL_BODY",
+								"featureNameForHelp": "GraphQL directives",
+								"buttons": ["contactSupport", "ok"]
+							}
+						},
+						{
+							"propertyName": "Raw directive",
+							"propertyKeyword": "rawDirective",
+							"propertyTooltip": "Enter raw directive",
+							"propertyType": "details",
+							"template": "textarea",
+							"markdown": false,
+							"dependency": {
+								"key": "directiveFormat",
+								"value": "Raw"
+							}
+						}
+					],
+					"dependency": {
+						"key": "ref",
+						"exist": false
+					}
+				},
+				{
+					"propertyName": "Directives",
+					"propertyKeyword": "fieldDirectives",
+					"propertyTooltip": "Field directives",
+					"propertyType": "group",
+					"enableForReference": true,
+					"structure": [
+						{
+							"propertyName": "Directive format",
+							"propertyKeyword": "directiveFormat",
+							"propertyTooltip": "Select directive format",
+							"propertyType": "select",
+							"options": ["Raw"],
+							"defaultValue": "Raw",
+							"helpInfo": {
+								"type": "modal",
+								"title": "PROPERTIES_PANE___DIRECTIVES_INFO_MODAL_TITLE",
+								"content": "PROPERTIES_PANE___DIRECTIVES_INFO_MODAL_BODY",
+								"featureNameForHelp": "GraphQL directives",
+								"buttons": ["contactSupport", "ok"]
+							}
+						},
+						{
+							"propertyName": "Raw directive",
+							"propertyKeyword": "rawDirective",
+							"propertyTooltip": "Enter raw directive",
+							"propertyType": "details",
+							"template": "textarea",
+							"markdown": false,
+							"dependency": {
+								"key": "directiveFormat",
+								"value": "Raw"
+							}
+						}
+					],
+					"dependency": {
+						"key": "ref",
+						"exist": true
+					}
+				},
+				"minProperties",
+				"maxProperties",
+				"comments"
+			],
+			"union": [
+				"name",
+				"description",
+				{
+					"propertyName": "Required",
+					"propertyKeyword": "required",
+					"propertyType": "checkbox",
+					"propertyTooltip": "Check if this field is required",
+					"enableForReference": true,
+					"dependency": {
+						"key": "ref",
+						"exist": true
+					}
+				},
+				{
+					"propertyName": "Directives",
+					"propertyKeyword": "typeDirectives",
+					"propertyTooltip": "Union directives",
+					"propertyType": "group",
+					"structure": [
+						{
+							"propertyName": "Directive format",
+							"propertyKeyword": "directiveFormat",
+							"propertyTooltip": "Select directive format",
+							"propertyType": "select",
+							"options": ["Raw"],
+							"defaultValue": "Raw",
+							"helpInfo": {
+								"type": "modal",
+								"title": "PROPERTIES_PANE___DIRECTIVES_INFO_MODAL_TITLE",
+								"content": "PROPERTIES_PANE___DIRECTIVES_INFO_MODAL_BODY",
+								"featureNameForHelp": "GraphQL directives",
+								"buttons": ["contactSupport", "ok"]
+							}
+						},
+						{
+							"propertyName": "Raw directive",
+							"propertyKeyword": "rawDirective",
+							"propertyTooltip": "Enter raw directive",
+							"propertyType": "details",
+							"template": "textarea",
+							"markdown": false,
+							"dependency": {
+								"key": "directiveFormat",
+								"value": "Raw"
+							}
+						}
+					],
+					"dependency": {
+						"key": "ref",
+						"exist": false
+					}
+				},
+				{
+					"propertyName": "Directives",
+					"propertyKeyword": "fieldDirectives",
+					"propertyTooltip": "Field directives",
+					"propertyType": "group",
+					"enableForReference": true,
+					"structure": [
+						{
+							"propertyName": "Directive format",
+							"propertyKeyword": "directiveFormat",
+							"propertyTooltip": "Select directive format",
+							"propertyType": "select",
+							"options": ["Raw"],
+							"defaultValue": "Raw",
+							"helpInfo": {
+								"type": "modal",
+								"title": "PROPERTIES_PANE___DIRECTIVES_INFO_MODAL_TITLE",
+								"content": "PROPERTIES_PANE___DIRECTIVES_INFO_MODAL_BODY",
+								"featureNameForHelp": "GraphQL directives",
+								"buttons": ["contactSupport", "ok"]
+							}
+						},
+						{
+							"propertyName": "Raw directive",
+							"propertyKeyword": "rawDirective",
+							"propertyTooltip": "Enter raw directive",
+							"propertyType": "details",
+							"template": "textarea",
+							"markdown": false,
+							"dependency": {
+								"key": "directiveFormat",
+								"value": "Raw"
+							}
+						}
+					],
+					"dependency": {
+						"key": "ref",
+						"exist": true
+					}
+				},
+				"comments"
+			],
+			"input": [
+				"name",
+				"description",
+				{
+					"propertyName": "Required",
+					"propertyKeyword": "required",
+					"propertyType": "checkbox",
+					"propertyTooltip": "Check if this field is required",
+					"enableForReference": true,
+					"dependency": {
+						"key": "ref",
+						"exist": true
+					}
+				},
+				{
+					"propertyName": "Directives",
+					"propertyKeyword": "typeDirectives",
+					"propertyTooltip": "Input directives",
+					"propertyType": "group",
+					"structure": [
+						{
+							"propertyName": "Directive format",
+							"propertyKeyword": "directiveFormat",
+							"propertyTooltip": "Select directive format",
+							"propertyType": "select",
+							"options": ["Raw"],
+							"defaultValue": "Raw",
+							"helpInfo": {
+								"type": "modal",
+								"title": "PROPERTIES_PANE___DIRECTIVES_INFO_MODAL_TITLE",
+								"content": "PROPERTIES_PANE___DIRECTIVES_INFO_MODAL_BODY",
+								"featureNameForHelp": "GraphQL directives",
+								"buttons": ["contactSupport", "ok"]
+							}
+						},
+						{
+							"propertyName": "Raw directive",
+							"propertyKeyword": "rawDirective",
+							"propertyTooltip": "Enter raw directive",
+							"propertyType": "details",
+							"template": "textarea",
+							"markdown": false,
+							"dependency": {
+								"key": "directiveFormat",
+								"value": "Raw"
+							}
+						}
+					],
+					"dependency": {
+						"key": "ref",
+						"exist": false
+					}
+				},
+				{
+					"propertyName": "Directives",
+					"propertyKeyword": "fieldDirectives",
+					"propertyTooltip": "Field directives",
+					"propertyType": "group",
+					"enableForReference": true,
+					"structure": [
+						{
+							"propertyName": "Directive format",
+							"propertyKeyword": "directiveFormat",
+							"propertyTooltip": "Select directive format",
+							"propertyType": "select",
+							"options": ["Raw"],
+							"defaultValue": "Raw",
+							"helpInfo": {
+								"type": "modal",
+								"title": "PROPERTIES_PANE___DIRECTIVES_INFO_MODAL_TITLE",
+								"content": "PROPERTIES_PANE___DIRECTIVES_INFO_MODAL_BODY",
+								"featureNameForHelp": "GraphQL directives",
+								"buttons": ["contactSupport", "ok"]
+							}
+						},
+						{
+							"propertyName": "Raw directive",
+							"propertyKeyword": "rawDirective",
+							"propertyTooltip": "Enter raw directive",
+							"propertyType": "details",
+							"template": "textarea",
+							"markdown": false,
+							"dependency": {
+								"key": "directiveFormat",
+								"value": "Raw"
+							}
+						}
+					],
+					"dependency": {
+						"key": "ref",
+						"exist": true
+					}
+				},
+				"comments"
+			],
+			"directive": [
+				"name",
+				"description",
+				{
+					"propertyName": "Arguments",
+					"propertyKeyword": "arguments",
+					"propertyTooltip": "Popup for multi-line text entry",
+					"propertyType": "details",
+					"template": "textarea",
+					"markdown": false
+				},
+				{
+					"propertyName": "Directive locations:",
+					"propertyType": "block",
+					"propertyKeyword": "directiveLocations",
+					"structure": [
+						{
+							"propertyName": "QUERY",
+							"propertyKeyword": "query",
+							"propertyType": "checkbox"
+						},
+						{
+							"propertyName": "MUTATION",
+							"propertyKeyword": "mutation",
+							"propertyType": "checkbox"
+						},
+						{
+							"propertyName": "SUBSCRIPTION",
+							"propertyKeyword": "subscription",
+							"propertyType": "checkbox"
+						},
+						{
+							"propertyName": "FIELD",
+							"propertyKeyword": "field",
+							"propertyType": "checkbox"
+						},
+						{
+							"propertyName": "SCHEMA",
+							"propertyKeyword": "schema",
+							"propertyType": "checkbox"
+						},
+						{
+							"propertyName": "SCALAR",
+							"propertyKeyword": "scalar",
+							"propertyType": "checkbox"
+						},
+						{
+							"propertyName": "OBJECT",
+							"propertyKeyword": "object",
+							"propertyType": "checkbox"
+						},
+						{
+							"propertyName": "FIELD_DEFINITION",
+							"propertyKeyword": "fieldDefinition",
+							"propertyType": "checkbox"
+						},
+						{
+							"propertyName": "ARGUMENT_DEFINITION",
+							"propertyKeyword": "argumentDefinition",
+							"propertyType": "checkbox"
+						},
+						{
+							"propertyName": "INTERFACE",
+							"propertyKeyword": "interface",
+							"propertyType": "checkbox"
+						},
+						{
+							"propertyName": "UNION",
+							"propertyKeyword": "union",
+							"propertyType": "checkbox"
+						},
+						{
+							"propertyName": "ENUM",
+							"propertyKeyword": "enum",
+							"propertyType": "checkbox"
+						},
+						{
+							"propertyName": "ENUM_VALUE",
+							"propertyKeyword": "enumValue",
+							"propertyType": "checkbox"
+						},
+						{
+							"propertyName": "INPUT_OBJECT",
+							"propertyKeyword": "inputObject",
+							"propertyType": "checkbox"
+						},
+						{
+							"propertyName": "INPUT_FIELD_DEFINITION",
+							"propertyKeyword": "inputFieldDefinition",
+							"propertyType": "checkbox"
+						}
+					]
+				},
+				"comments"
+			]
+		}
+	},
+	{
+		"lowerTab": "Implements",
+		"structure": {
+			"object": [
+				{
+					"propertyName": "Interfaces",
+					"propertyKeyword": "implementsInterfaces",
+					"propertyTooltip": "Select interfaces to implement",
+					"propertyType": "group",
+					"helpInfo": {
+						"type": "modal",
+						"title": "PROPERTIES_PANE___IMPLEMENTS_INFO_MODAL_TITLE",
+						"content": "PROPERTIES_PANE___IMPLEMENTS_INFO_MODAL_BODY",
+						"featureNameForHelp": "Implementing Interfaces in GraphQL",
+						"buttons": ["contactSupport", "ok"]
+					},
+					"structure": [
+						{
+							"propertyName": "Interface",
+							"propertyKeyword": "interface",
+							"propertyTooltip": "Select interface",
+							"propertyType": "selecthashed",
+							"template": "definitions",
+							"sideEffectActions": {
+								"onSelect": "copySelectedItemChildAttributes"
+							}
+						}
+					],
+					"sideEffectActions": {
+						"onRemove": {
+							"action": "showMessage",
+							"actionConfig": {
+								"type": "modal",
+								"title": "PROPERTIES_PANE___REMOVE_IMPLEMENTED_INTERFACE_WARNING_TITLE",
+								"content": "PROPERTIES_PANE___REMOVE_IMPLEMENTED_INTERFACE_WARNING_BODY",
+								"featureNameForHelp": "Removing of implemented interfaces in GraphQL",
+								"buttons": ["contactSupport", "ok"]
+							}
+						}
+					}
+				}
+			],
+			"interface": [
+				{
+					"propertyName": "Interfaces",
+					"propertyKeyword": "implementsInterfaces",
+					"propertyTooltip": "Select interfaces to implement",
+					"propertyType": "group",
+					"helpInfo": {
+						"type": "modal",
+						"title": "PROPERTIES_PANE___IMPLEMENTS_INFO_MODAL_TITLE",
+						"content": "PROPERTIES_PANE___IMPLEMENTS_INFO_MODAL_BODY",
+						"featureNameForHelp": "Implementing Interfaces in GraphQL",
+						"buttons": ["contactSupport", "ok"]
+					},
+					"structure": [
+						{
+							"propertyName": "Interface",
+							"propertyKeyword": "interface",
+							"propertyTooltip": "Select interface",
+							"propertyType": "selecthashed",
+							"template": "definitions"
+						}
+					]
+				}
+			]
+		}
 	}
-}]
+]
