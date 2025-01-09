@@ -81,7 +81,8 @@
             },
             "disablePickFromFieldList": true,
             "hideDisabledAttributeTypes": true,
-            "showReferenceDefinitionNameInsteadOfType": true
+            "showReferenceDefinitionNameInsteadOfType": true,
+            "disableReplaceByAttributes": true
         }
     },
     "description": "Hackolade plugin for GraphQL",
