@@ -487,10 +487,15 @@ making sure that you maintain a proper JSON format.
 			"___1": [],
 			"choice": [
 				{
-					"fieldName": "choice",
+					"fieldName": "Choice",
 					"fieldKeyword": "choice",
 					"fieldType": "select",
-					"options": ["oneOf"]
+					"disabled": true
+				},
+				{
+					"fieldName": "Activated",
+					"fieldKeyword": "isActivated",
+					"hidden": true
 				}
 			],
 			"definitions": [],
