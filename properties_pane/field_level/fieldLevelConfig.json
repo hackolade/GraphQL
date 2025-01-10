@@ -1283,7 +1283,9 @@ making sure that you maintain a proper JSON format.
 							"propertyType": "selecthashed",
 							"template": "definitions",
 							"sideEffectActions": {
-								"onSelect": "copySelectedItemChildAttributes"
+								"onSelect": {
+									"action": "copySelectedItemChildAttributes"
+								}
 							}
 						}
 					],
@@ -1320,9 +1322,26 @@ making sure that you maintain a proper JSON format.
 							"propertyKeyword": "interface",
 							"propertyTooltip": "Select interface",
 							"propertyType": "selecthashed",
-							"template": "definitions"
+							"template": "definitions",
+							"sideEffectActions": {
+								"onSelect": {
+									"action": "copySelectedItemChildAttributes"
+								}
+							}
 						}
-					]
+					],
+					"sideEffectActions": {
+						"onRemove": {
+							"action": "showMessage",
+							"actionConfig": {
+								"type": "modal",
+								"title": "PROPERTIES_PANE___REMOVE_IMPLEMENTED_INTERFACE_WARNING_TITLE",
+								"content": "PROPERTIES_PANE___REMOVE_IMPLEMENTED_INTERFACE_WARNING_BODY",
+								"featureNameForHelp": "Removing of implemented interfaces in GraphQL",
+								"buttons": ["contactSupport", "ok"]
+							}
+						}
+					}
 				}
 			]
 		}
