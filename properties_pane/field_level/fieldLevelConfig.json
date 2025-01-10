@@ -1260,6 +1260,988 @@ making sure that you maintain a proper JSON format.
 		}
 	},
 	{
+		"lowerTab": "Arguments",
+		"structure": {
+			"String": [
+				{
+					"propertyName": "Arguments",
+					"propertyKeyword": "arguments",
+					"propertyTooltip": "Arguments",
+					"propertyType": "group",
+					"erdDecorator": {
+						"value": "(...)",
+						"dependency": {
+							"key": "arguments",
+							"exist": true
+						}
+					},
+					"structure": [
+						{
+							"propertyName": "Name",
+							"propertyKeyword": "name",
+							"propertyTooltip": "Enter argument name",
+							"propertyType": "text"
+						},
+						{
+							"propertyName": "Type",
+							"propertyKeyword": "type",
+							"propertyTooltip": "Select argument type",
+							"propertyType": "text"
+						},
+						{
+							"propertyName": "Cardinality & nullability",
+							"propertyKeyword": "required",
+							"propertyType": "select",
+							"options": ["<Type>", "<Type>!", "[<Type>]", "[<Type>]!", "[<Type>!]", "[<Type>!]!"]
+						},
+						{
+							"propertyName": "Default",
+							"propertyKeyword": "default",
+							"propertyTooltip": "Enter default value",
+							"propertyType": "text"
+						},
+						{
+							"propertyName": "Directives",
+							"propertyKeyword": "directives",
+							"propertyTooltip": "Argument directives",
+							"propertyType": "group",
+							"enableForReference": true,
+							"structure": [
+								{
+									"propertyName": "Directive format",
+									"propertyKeyword": "directiveFormat",
+									"propertyTooltip": "Select directive format",
+									"propertyType": "select",
+									"options": ["Raw"],
+									"defaultValue": "Raw",
+									"helpInfo": {
+										"type": "modal",
+										"title": "PROPERTIES_PANE___DIRECTIVES_INFO_MODAL_TITLE",
+										"content": "PROPERTIES_PANE___DIRECTIVES_INFO_MODAL_BODY",
+										"featureNameForHelp": "GraphQL directives",
+										"buttons": ["contactSupport", "ok"]
+									}
+								},
+								{
+									"propertyName": "Raw directive",
+									"propertyKeyword": "rawDirective",
+									"propertyTooltip": "Enter raw directive",
+									"propertyType": "details",
+									"template": "textarea",
+									"markdown": false,
+									"dependency": {
+										"key": "directiveFormat",
+										"value": "Raw"
+									}
+								}
+							]
+						}
+					],
+					"dependency": {
+						"type": "not",
+						"values": [
+							{
+								"key": "childType",
+								"value": "input",
+								"level": "parent"
+							}
+						]
+					}
+				}
+			],
+			"Float": [
+				{
+					"propertyName": "Arguments",
+					"propertyKeyword": "arguments",
+					"propertyTooltip": "Arguments",
+					"propertyType": "group",
+					"structure": [
+						{
+							"propertyName": "Name",
+							"propertyKeyword": "name",
+							"propertyTooltip": "Enter argument name",
+							"propertyType": "text"
+						},
+						{
+							"propertyName": "Type",
+							"propertyKeyword": "type",
+							"propertyTooltip": "Select argument type",
+							"propertyType": "text"
+						},
+						{
+							"propertyName": "Cardinality & nullability",
+							"propertyKeyword": "required",
+							"propertyType": "select",
+							"options": ["<Type>", "<Type>!", "[<Type>]", "[<Type>]!", "[<Type>!]", "[<Type>!]!"]
+						},
+						{
+							"propertyName": "Default",
+							"propertyKeyword": "default",
+							"propertyTooltip": "Enter default value",
+							"propertyType": "text"
+						},
+						{
+							"propertyName": "Directives",
+							"propertyKeyword": "directives",
+							"propertyTooltip": "Argument directives",
+							"propertyType": "group",
+							"enableForReference": true,
+							"structure": [
+								{
+									"propertyName": "Directive format",
+									"propertyKeyword": "directiveFormat",
+									"propertyTooltip": "Select directive format",
+									"propertyType": "select",
+									"options": ["Raw"],
+									"defaultValue": "Raw",
+									"helpInfo": {
+										"type": "modal",
+										"title": "PROPERTIES_PANE___DIRECTIVES_INFO_MODAL_TITLE",
+										"content": "PROPERTIES_PANE___DIRECTIVES_INFO_MODAL_BODY",
+										"featureNameForHelp": "GraphQL directives",
+										"buttons": ["contactSupport", "ok"]
+									}
+								},
+								{
+									"propertyName": "Raw directive",
+									"propertyKeyword": "rawDirective",
+									"propertyTooltip": "Enter raw directive",
+									"propertyType": "details",
+									"template": "textarea",
+									"markdown": false,
+									"dependency": {
+										"key": "directiveFormat",
+										"value": "Raw"
+									}
+								}
+							]
+						}
+					],
+					"dependency": {
+						"type": "not",
+						"values": [
+							{
+								"key": "childType",
+								"value": "input",
+								"level": "parent"
+							}
+						]
+					}
+				}
+			],
+			"Int": [
+				{
+					"propertyName": "Arguments",
+					"propertyKeyword": "arguments",
+					"propertyTooltip": "Arguments",
+					"propertyType": "group",
+					"structure": [
+						{
+							"propertyName": "Name",
+							"propertyKeyword": "name",
+							"propertyTooltip": "Enter argument name",
+							"propertyType": "text"
+						},
+						{
+							"propertyName": "Type",
+							"propertyKeyword": "type",
+							"propertyTooltip": "Select argument type",
+							"propertyType": "text"
+						},
+						{
+							"propertyName": "Cardinality & nullability",
+							"propertyKeyword": "required",
+							"propertyType": "select",
+							"options": ["<Type>", "<Type>!", "[<Type>]", "[<Type>]!", "[<Type>!]", "[<Type>!]!"]
+						},
+						{
+							"propertyName": "Default",
+							"propertyKeyword": "default",
+							"propertyTooltip": "Enter default value",
+							"propertyType": "text"
+						},
+						{
+							"propertyName": "Directives",
+							"propertyKeyword": "directives",
+							"propertyTooltip": "Argument directives",
+							"propertyType": "group",
+							"enableForReference": true,
+							"structure": [
+								{
+									"propertyName": "Directive format",
+									"propertyKeyword": "directiveFormat",
+									"propertyTooltip": "Select directive format",
+									"propertyType": "select",
+									"options": ["Raw"],
+									"defaultValue": "Raw",
+									"helpInfo": {
+										"type": "modal",
+										"title": "PROPERTIES_PANE___DIRECTIVES_INFO_MODAL_TITLE",
+										"content": "PROPERTIES_PANE___DIRECTIVES_INFO_MODAL_BODY",
+										"featureNameForHelp": "GraphQL directives",
+										"buttons": ["contactSupport", "ok"]
+									}
+								},
+								{
+									"propertyName": "Raw directive",
+									"propertyKeyword": "rawDirective",
+									"propertyTooltip": "Enter raw directive",
+									"propertyType": "details",
+									"template": "textarea",
+									"markdown": false,
+									"dependency": {
+										"key": "directiveFormat",
+										"value": "Raw"
+									}
+								}
+							]
+						}
+					],
+					"dependency": {
+						"type": "not",
+						"values": [
+							{
+								"key": "childType",
+								"value": "input",
+								"level": "parent"
+							}
+						]
+					}
+				}
+			],
+			"ID": [
+				{
+					"propertyName": "Arguments",
+					"propertyKeyword": "arguments",
+					"propertyTooltip": "Arguments",
+					"propertyType": "group",
+					"structure": [
+						{
+							"propertyName": "Name",
+							"propertyKeyword": "name",
+							"propertyTooltip": "Enter argument name",
+							"propertyType": "text"
+						},
+						{
+							"propertyName": "Type",
+							"propertyKeyword": "type",
+							"propertyTooltip": "Select argument type",
+							"propertyType": "text"
+						},
+						{
+							"propertyName": "Cardinality & nullability",
+							"propertyKeyword": "required",
+							"propertyType": "select",
+							"options": ["<Type>", "<Type>!", "[<Type>]", "[<Type>]!", "[<Type>!]", "[<Type>!]!"]
+						},
+						{
+							"propertyName": "Default",
+							"propertyKeyword": "default",
+							"propertyTooltip": "Enter default value",
+							"propertyType": "text"
+						},
+						{
+							"propertyName": "Directives",
+							"propertyKeyword": "directives",
+							"propertyTooltip": "Argument directives",
+							"propertyType": "group",
+							"enableForReference": true,
+							"structure": [
+								{
+									"propertyName": "Directive format",
+									"propertyKeyword": "directiveFormat",
+									"propertyTooltip": "Select directive format",
+									"propertyType": "select",
+									"options": ["Raw"],
+									"defaultValue": "Raw",
+									"helpInfo": {
+										"type": "modal",
+										"title": "PROPERTIES_PANE___DIRECTIVES_INFO_MODAL_TITLE",
+										"content": "PROPERTIES_PANE___DIRECTIVES_INFO_MODAL_BODY",
+										"featureNameForHelp": "GraphQL directives",
+										"buttons": ["contactSupport", "ok"]
+									}
+								},
+								{
+									"propertyName": "Raw directive",
+									"propertyKeyword": "rawDirective",
+									"propertyTooltip": "Enter raw directive",
+									"propertyType": "details",
+									"template": "textarea",
+									"markdown": false,
+									"dependency": {
+										"key": "directiveFormat",
+										"value": "Raw"
+									}
+								}
+							]
+						}
+					],
+					"dependency": {
+						"type": "not",
+						"values": [
+							{
+								"key": "childType",
+								"value": "input",
+								"level": "parent"
+							}
+						]
+					}
+				}
+			],
+			"Boolean": [
+				{
+					"propertyName": "Arguments",
+					"propertyKeyword": "arguments",
+					"propertyTooltip": "Arguments",
+					"propertyType": "group",
+					"structure": [
+						{
+							"propertyName": "Name",
+							"propertyKeyword": "name",
+							"propertyTooltip": "Enter argument name",
+							"propertyType": "text"
+						},
+						{
+							"propertyName": "Type",
+							"propertyKeyword": "type",
+							"propertyTooltip": "Select argument type",
+							"propertyType": "text"
+						},
+						{
+							"propertyName": "Cardinality & nullability",
+							"propertyKeyword": "required",
+							"propertyType": "select",
+							"options": ["<Type>", "<Type>!", "[<Type>]", "[<Type>]!", "[<Type>!]", "[<Type>!]!"]
+						},
+						{
+							"propertyName": "Default",
+							"propertyKeyword": "default",
+							"propertyTooltip": "Enter default value",
+							"propertyType": "text"
+						},
+						{
+							"propertyName": "Directives",
+							"propertyKeyword": "directives",
+							"propertyTooltip": "Argument directives",
+							"propertyType": "group",
+							"enableForReference": true,
+							"structure": [
+								{
+									"propertyName": "Directive format",
+									"propertyKeyword": "directiveFormat",
+									"propertyTooltip": "Select directive format",
+									"propertyType": "select",
+									"options": ["Raw"],
+									"defaultValue": "Raw",
+									"helpInfo": {
+										"type": "modal",
+										"title": "PROPERTIES_PANE___DIRECTIVES_INFO_MODAL_TITLE",
+										"content": "PROPERTIES_PANE___DIRECTIVES_INFO_MODAL_BODY",
+										"featureNameForHelp": "GraphQL directives",
+										"buttons": ["contactSupport", "ok"]
+									}
+								},
+								{
+									"propertyName": "Raw directive",
+									"propertyKeyword": "rawDirective",
+									"propertyTooltip": "Enter raw directive",
+									"propertyType": "details",
+									"template": "textarea",
+									"markdown": false,
+									"dependency": {
+										"key": "directiveFormat",
+										"value": "Raw"
+									}
+								}
+							]
+						}
+					],
+					"dependency": {
+						"type": "not",
+						"values": [
+							{
+								"key": "childType",
+								"value": "input",
+								"level": "parent"
+							}
+						]
+					}
+				}
+			],
+			"List": [
+				{
+					"propertyName": "Arguments",
+					"propertyKeyword": "arguments",
+					"propertyTooltip": "Arguments",
+					"propertyType": "group",
+					"structure": [
+						{
+							"propertyName": "Name",
+							"propertyKeyword": "name",
+							"propertyTooltip": "Enter argument name",
+							"propertyType": "text"
+						},
+						{
+							"propertyName": "Type",
+							"propertyKeyword": "type",
+							"propertyTooltip": "Select argument type",
+							"propertyType": "text"
+						},
+						{
+							"propertyName": "Cardinality & nullability",
+							"propertyKeyword": "required",
+							"propertyType": "select",
+							"options": ["<Type>", "<Type>!", "[<Type>]", "[<Type>]!", "[<Type>!]", "[<Type>!]!"]
+						},
+						{
+							"propertyName": "Default",
+							"propertyKeyword": "default",
+							"propertyTooltip": "Enter default value",
+							"propertyType": "text"
+						},
+						{
+							"propertyName": "Directives",
+							"propertyKeyword": "directives",
+							"propertyTooltip": "Argument directives",
+							"propertyType": "group",
+							"enableForReference": true,
+							"structure": [
+								{
+									"propertyName": "Directive format",
+									"propertyKeyword": "directiveFormat",
+									"propertyTooltip": "Select directive format",
+									"propertyType": "select",
+									"options": ["Raw"],
+									"defaultValue": "Raw",
+									"helpInfo": {
+										"type": "modal",
+										"title": "PROPERTIES_PANE___DIRECTIVES_INFO_MODAL_TITLE",
+										"content": "PROPERTIES_PANE___DIRECTIVES_INFO_MODAL_BODY",
+										"featureNameForHelp": "GraphQL directives",
+										"buttons": ["contactSupport", "ok"]
+									}
+								},
+								{
+									"propertyName": "Raw directive",
+									"propertyKeyword": "rawDirective",
+									"propertyTooltip": "Enter raw directive",
+									"propertyType": "details",
+									"template": "textarea",
+									"markdown": false,
+									"dependency": {
+										"key": "directiveFormat",
+										"value": "Raw"
+									}
+								}
+							]
+						}
+					],
+					"dependency": {
+						"type": "not",
+						"values": [
+							{
+								"key": "childType",
+								"value": "input",
+								"level": "parent"
+							}
+						]
+					}
+				}
+			],
+			"scalar": [
+				{
+					"propertyName": "Arguments",
+					"propertyKeyword": "arguments",
+					"propertyTooltip": "Arguments",
+					"propertyType": "group",
+					"enableForReference": true,
+					"structure": [
+						{
+							"propertyName": "Name",
+							"propertyKeyword": "name",
+							"propertyTooltip": "Enter argument name",
+							"propertyType": "text"
+						},
+						{
+							"propertyName": "Type",
+							"propertyKeyword": "type",
+							"propertyTooltip": "Select argument type",
+							"propertyType": "text"
+						},
+						{
+							"propertyName": "Cardinality & nullability",
+							"propertyKeyword": "required",
+							"propertyType": "select",
+							"options": ["<Type>", "<Type>!", "[<Type>]", "[<Type>]!", "[<Type>!]", "[<Type>!]!"]
+						},
+						{
+							"propertyName": "Default",
+							"propertyKeyword": "default",
+							"propertyTooltip": "Enter default value",
+							"propertyType": "text"
+						},
+						{
+							"propertyName": "Directives",
+							"propertyKeyword": "directives",
+							"propertyTooltip": "Argument directives",
+							"propertyType": "group",
+							"enableForReference": true,
+							"structure": [
+								{
+									"propertyName": "Directive format",
+									"propertyKeyword": "directiveFormat",
+									"propertyTooltip": "Select directive format",
+									"propertyType": "select",
+									"options": ["Raw"],
+									"defaultValue": "Raw",
+									"helpInfo": {
+										"type": "modal",
+										"title": "PROPERTIES_PANE___DIRECTIVES_INFO_MODAL_TITLE",
+										"content": "PROPERTIES_PANE___DIRECTIVES_INFO_MODAL_BODY",
+										"featureNameForHelp": "GraphQL directives",
+										"buttons": ["contactSupport", "ok"]
+									}
+								},
+								{
+									"propertyName": "Raw directive",
+									"propertyKeyword": "rawDirective",
+									"propertyTooltip": "Enter raw directive",
+									"propertyType": "details",
+									"template": "textarea",
+									"markdown": false,
+									"dependency": {
+										"key": "directiveFormat",
+										"value": "Raw"
+									}
+								}
+							]
+						}
+					],
+					"dependency": {
+						"type": "and",
+						"values": [
+							{
+								"type": "not",
+								"values": [
+									{
+										"key": "childType",
+										"value": "input",
+										"level": "parent"
+									}
+								]
+							},
+							{
+								"key": "ref",
+								"exist": true
+							}
+						]
+					}
+				}
+			],
+			"enum": [
+				{
+					"propertyName": "Arguments",
+					"propertyKeyword": "arguments",
+					"propertyTooltip": "Arguments",
+					"propertyType": "group",
+					"enableForReference": true,
+					"structure": [
+						{
+							"propertyName": "Name",
+							"propertyKeyword": "name",
+							"propertyTooltip": "Enter argument name",
+							"propertyType": "text"
+						},
+						{
+							"propertyName": "Type",
+							"propertyKeyword": "type",
+							"propertyTooltip": "Select argument type",
+							"propertyType": "text"
+						},
+						{
+							"propertyName": "Cardinality & nullability",
+							"propertyKeyword": "required",
+							"propertyType": "select",
+							"options": ["<Type>", "<Type>!", "[<Type>]", "[<Type>]!", "[<Type>!]", "[<Type>!]!"]
+						},
+						{
+							"propertyName": "Default",
+							"propertyKeyword": "default",
+							"propertyTooltip": "Enter default value",
+							"propertyType": "text"
+						},
+						{
+							"propertyName": "Directives",
+							"propertyKeyword": "directives",
+							"propertyTooltip": "Argument directives",
+							"propertyType": "group",
+							"enableForReference": true,
+							"structure": [
+								{
+									"propertyName": "Directive format",
+									"propertyKeyword": "directiveFormat",
+									"propertyTooltip": "Select directive format",
+									"propertyType": "select",
+									"options": ["Raw"],
+									"defaultValue": "Raw",
+									"helpInfo": {
+										"type": "modal",
+										"title": "PROPERTIES_PANE___DIRECTIVES_INFO_MODAL_TITLE",
+										"content": "PROPERTIES_PANE___DIRECTIVES_INFO_MODAL_BODY",
+										"featureNameForHelp": "GraphQL directives",
+										"buttons": ["contactSupport", "ok"]
+									}
+								},
+								{
+									"propertyName": "Raw directive",
+									"propertyKeyword": "rawDirective",
+									"propertyTooltip": "Enter raw directive",
+									"propertyType": "details",
+									"template": "textarea",
+									"markdown": false,
+									"dependency": {
+										"key": "directiveFormat",
+										"value": "Raw"
+									}
+								}
+							]
+						}
+					],
+					"dependency": {
+						"type": "and",
+						"values": [
+							{
+								"type": "not",
+								"values": [
+									{
+										"key": "childType",
+										"value": "input",
+										"level": "parent"
+									}
+								]
+							},
+							{
+								"key": "ref",
+								"exist": true
+							}
+						]
+					}
+				}
+			],
+			"object": [
+				{
+					"propertyName": "Arguments",
+					"propertyKeyword": "arguments",
+					"propertyTooltip": "Arguments",
+					"propertyType": "group",
+					"enableForReference": true,
+					"structure": [
+						{
+							"propertyName": "Name",
+							"propertyKeyword": "name",
+							"propertyTooltip": "Enter argument name",
+							"propertyType": "text"
+						},
+						{
+							"propertyName": "Type",
+							"propertyKeyword": "type",
+							"propertyTooltip": "Select argument type",
+							"propertyType": "text"
+						},
+						{
+							"propertyName": "Cardinality & nullability",
+							"propertyKeyword": "required",
+							"propertyType": "select",
+							"options": ["<Type>", "<Type>!", "[<Type>]", "[<Type>]!", "[<Type>!]", "[<Type>!]!"]
+						},
+						{
+							"propertyName": "Default",
+							"propertyKeyword": "default",
+							"propertyTooltip": "Enter default value",
+							"propertyType": "text"
+						},
+						{
+							"propertyName": "Directives",
+							"propertyKeyword": "directives",
+							"propertyTooltip": "Argument directives",
+							"propertyType": "group",
+							"enableForReference": true,
+							"structure": [
+								{
+									"propertyName": "Directive format",
+									"propertyKeyword": "directiveFormat",
+									"propertyTooltip": "Select directive format",
+									"propertyType": "select",
+									"options": ["Raw"],
+									"defaultValue": "Raw",
+									"helpInfo": {
+										"type": "modal",
+										"title": "PROPERTIES_PANE___DIRECTIVES_INFO_MODAL_TITLE",
+										"content": "PROPERTIES_PANE___DIRECTIVES_INFO_MODAL_BODY",
+										"featureNameForHelp": "GraphQL directives",
+										"buttons": ["contactSupport", "ok"]
+									}
+								},
+								{
+									"propertyName": "Raw directive",
+									"propertyKeyword": "rawDirective",
+									"propertyTooltip": "Enter raw directive",
+									"propertyType": "details",
+									"template": "textarea",
+									"markdown": false,
+									"dependency": {
+										"key": "directiveFormat",
+										"value": "Raw"
+									}
+								}
+							]
+						}
+					],
+					"dependency": {
+						"type": "and",
+						"values": [
+							{
+								"type": "not",
+								"values": [
+									{
+										"key": "type",
+										"value": "choice",
+										"level": "parent"
+									}
+								]
+							},
+							{
+								"key": "ref",
+								"exist": true
+							}
+						]
+					}
+				}
+			],
+			"interface": [
+				{
+					"propertyName": "Arguments",
+					"propertyKeyword": "arguments",
+					"propertyTooltip": "Arguments",
+					"propertyType": "group",
+					"enableForReference": true,
+					"structure": [
+						{
+							"propertyName": "Name",
+							"propertyKeyword": "name",
+							"propertyTooltip": "Enter argument name",
+							"propertyType": "text"
+						},
+						{
+							"propertyName": "Type",
+							"propertyKeyword": "type",
+							"propertyTooltip": "Select argument type",
+							"propertyType": "text"
+						},
+						{
+							"propertyName": "Cardinality & nullability",
+							"propertyKeyword": "required",
+							"propertyType": "select",
+							"options": ["<Type>", "<Type>!", "[<Type>]", "[<Type>]!", "[<Type>!]", "[<Type>!]!"]
+						},
+						{
+							"propertyName": "Default",
+							"propertyKeyword": "default",
+							"propertyTooltip": "Enter default value",
+							"propertyType": "text"
+						},
+						{
+							"propertyName": "Directives",
+							"propertyKeyword": "directives",
+							"propertyTooltip": "Argument directives",
+							"propertyType": "group",
+							"enableForReference": true,
+							"structure": [
+								{
+									"propertyName": "Directive format",
+									"propertyKeyword": "directiveFormat",
+									"propertyTooltip": "Select directive format",
+									"propertyType": "select",
+									"options": ["Raw"],
+									"defaultValue": "Raw",
+									"helpInfo": {
+										"type": "modal",
+										"title": "PROPERTIES_PANE___DIRECTIVES_INFO_MODAL_TITLE",
+										"content": "PROPERTIES_PANE___DIRECTIVES_INFO_MODAL_BODY",
+										"featureNameForHelp": "GraphQL directives",
+										"buttons": ["contactSupport", "ok"]
+									}
+								},
+								{
+									"propertyName": "Raw directive",
+									"propertyKeyword": "rawDirective",
+									"propertyTooltip": "Enter raw directive",
+									"propertyType": "details",
+									"template": "textarea",
+									"markdown": false,
+									"dependency": {
+										"key": "directiveFormat",
+										"value": "Raw"
+									}
+								}
+							]
+						}
+					],
+					"dependency": {
+						"key": "ref",
+						"exist": true
+					}
+				}
+			],
+			"union": [
+				{
+					"propertyName": "Arguments",
+					"propertyKeyword": "arguments",
+					"propertyTooltip": "Arguments",
+					"propertyType": "group",
+					"enableForReference": true,
+					"structure": [
+						{
+							"propertyName": "Name",
+							"propertyKeyword": "name",
+							"propertyTooltip": "Enter argument name",
+							"propertyType": "text"
+						},
+						{
+							"propertyName": "Type",
+							"propertyKeyword": "type",
+							"propertyTooltip": "Select argument type",
+							"propertyType": "text"
+						},
+						{
+							"propertyName": "Cardinality & nullability",
+							"propertyKeyword": "required",
+							"propertyType": "select",
+							"options": ["<Type>", "<Type>!", "[<Type>]", "[<Type>]!", "[<Type>!]", "[<Type>!]!"]
+						},
+						{
+							"propertyName": "Default",
+							"propertyKeyword": "default",
+							"propertyTooltip": "Enter default value",
+							"propertyType": "text"
+						},
+						{
+							"propertyName": "Directives",
+							"propertyKeyword": "directives",
+							"propertyTooltip": "Argument directives",
+							"propertyType": "group",
+							"enableForReference": true,
+							"structure": [
+								{
+									"propertyName": "Directive format",
+									"propertyKeyword": "directiveFormat",
+									"propertyTooltip": "Select directive format",
+									"propertyType": "select",
+									"options": ["Raw"],
+									"defaultValue": "Raw",
+									"helpInfo": {
+										"type": "modal",
+										"title": "PROPERTIES_PANE___DIRECTIVES_INFO_MODAL_TITLE",
+										"content": "PROPERTIES_PANE___DIRECTIVES_INFO_MODAL_BODY",
+										"featureNameForHelp": "GraphQL directives",
+										"buttons": ["contactSupport", "ok"]
+									}
+								},
+								{
+									"propertyName": "Raw directive",
+									"propertyKeyword": "rawDirective",
+									"propertyTooltip": "Enter raw directive",
+									"propertyType": "details",
+									"template": "textarea",
+									"markdown": false,
+									"dependency": {
+										"key": "directiveFormat",
+										"value": "Raw"
+									}
+								}
+							]
+						}
+					],
+					"dependency": {
+						"key": "ref",
+						"exist": true
+					}
+				}
+			],
+			"directive": [
+				{
+					"propertyName": "Arguments",
+					"propertyKeyword": "arguments",
+					"propertyTooltip": "Arguments",
+					"propertyType": "group",
+					"structure": [
+						{
+							"propertyName": "Name",
+							"propertyKeyword": "name",
+							"propertyTooltip": "Enter argument name",
+							"propertyType": "text"
+						},
+						{
+							"propertyName": "Type",
+							"propertyKeyword": "type",
+							"propertyTooltip": "Select argument type",
+							"propertyType": "text"
+						},
+						{
+							"propertyName": "Cardinality & nullability",
+							"propertyKeyword": "required",
+							"propertyType": "select",
+							"options": ["<Type>", "<Type>!", "[<Type>]", "[<Type>]!", "[<Type>!]", "[<Type>!]!"]
+						},
+						{
+							"propertyName": "Default",
+							"propertyKeyword": "default",
+							"propertyTooltip": "Enter default value",
+							"propertyType": "text"
+						},
+						{
+							"propertyName": "Directives",
+							"propertyKeyword": "directives",
+							"propertyTooltip": "Argument directives",
+							"propertyType": "group",
+							"enableForReference": true,
+							"structure": [
+								{
+									"propertyName": "Directive format",
+									"propertyKeyword": "directiveFormat",
+									"propertyTooltip": "Select directive format",
+									"propertyType": "select",
+									"options": ["Raw"],
+									"defaultValue": "Raw",
+									"helpInfo": {
+										"type": "modal",
+										"title": "PROPERTIES_PANE___DIRECTIVES_INFO_MODAL_TITLE",
+										"content": "PROPERTIES_PANE___DIRECTIVES_INFO_MODAL_BODY",
+										"featureNameForHelp": "GraphQL directives",
+										"buttons": ["contactSupport", "ok"]
+									}
+								},
+								{
+									"propertyName": "Raw directive",
+									"propertyKeyword": "rawDirective",
+									"propertyTooltip": "Enter raw directive",
+									"propertyType": "details",
+									"template": "textarea",
+									"markdown": false,
+									"dependency": {
+										"key": "directiveFormat",
+										"value": "Raw"
+									}
+								}
+							]
+						}
+					]
+				}
+			]
+		}
+	},
+	{
 		"lowerTab": "Implements",
 		"structure": {
 			"object": [
