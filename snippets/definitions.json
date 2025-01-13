@@ -16,15 +16,15 @@
 		{
 			"name": "Objects",
 			"type": "type",
-			"subtype": "object"
+			"subtype": "object",
+			"hackoladeMeta": {
+				"source": true
+			}
 		},
 		{
 			"name": "Interfaces",
 			"type": "type",
-			"subtype": "interface",
-			"hackoladeMeta": {
-				"source": true // is used by "Implements interfaces" selechashed property, to indicate which definitions to show in interfaces dropdown
-			}
+			"subtype": "interface"
 		},
 		{
 			"name": "Unions",
