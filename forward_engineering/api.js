@@ -1,222 +1,99 @@
-const get = require('lodash.get');
-const validationHelper = require('./helpers/validationHelper');
-const getInfo = require('./helpers/infoHelper');
-const { getPaths } = require('./helpers/pathHelper');
-const getComponents = require('./helpers/componentsHelpers');
-const commonHelper = require('./helpers/commonHelper');
-const { getServers } = require('./helpers/serversHelper');
-const getExtensions = require('./helpers/extensionsHelper');
-const handleReferencePath = require('./helpers/handleReferencePath');
-const mapJsonSchema = require('../reverse_engineering/helpers/adaptJsonSchema/mapJsonSchema');
-const path = require('path');
+const validationHelper = require('./helpers/schemaValidationHelper');
+
+/**
+ * @typedef {Object} Container
+ * @property {Object[]} containerData - Container level data properties by tab
+ * @property {string[]} entities - Entities ids
+ * @property {string[]} jsonSchema - JSON schema by entity id
+ */
+
+/**
+ * @typedef {Object} Options
+ * @property {Object[]} additionalOptions
+ * @property {boolean} isCalledFromFETab
+ */
+
+/**
+ * @typedef {Object} Data
+ * @property {Object[]} modelLevelData - Model level data properties by tab
+ * @property {Options} options
+ * @property {Container[]} containers
+ * @property {string} externalDefinitions
+ * @property {string} modelDefinitions
+ * @property {Object} targetScriptOptions
+ */
+
+/**
+ * @typedef {Object} Logger
+ * @property {Function} log
+ */
+
+/**
+ * @callback GenerateScriptCallback
+ * @param {Error|null} error
+ * @param {string} [result]
+ */
+
+/**
+ * @callback ValidateScriptCallback
+ * @param {Error|null} error
+ * @param {Array} [result]
+ */
+
+const mockedScript = `# The schema is hardcoded for demonstration purposes only.
+interface SearchResult {
+	id: ID
+	title: String!
+}
+
+# type Query {
+# 	search(keyword: String): [SearchResult]
+# }
+
+type User implements SearchResult {
+	name: String!
+	email: String!
+}
+
+type Post implements SearchResult {
+	id: ID!
+	title: String!
+	content: String!
+	author: User
+}`;
 
 module.exports = {
+	/**
+	 * Generates the model FE script for the given data.
+	 * @param {Data} data - The data for generating the model script.
+	 * @param {Logger} logger - The logger for logging errors.
+	 * @param {GenerateScriptCallback} cb - The callback function.
+	 */
 	generateModelScript(data, logger, cb) {
 		try {
-			const {
-				dbVersion,
-				externalDocs: modelExternalDocs,
-				tags: modelTags,
-				security: modelSecurity,
-				servers: modelServers,
-			} = data.modelData[0];
-
-			const containersIdsFromCallbacks = commonHelper.getContainersIdsForCallbacks(data);
-
-			const resolveApiExternalRefs = data.options?.additionalOptions?.find(
-				option => option.id === 'resolveApiExternalRefs',
-			)?.value;
-
-			const info = getInfo(data.modelData[0]);
-			const servers = getServers(modelServers);
-			const externalDefinitions = JSON.parse(data.externalDefinitions || '{}').properties || {};
-			const containers = handleRefInContainers(data.containers, externalDefinitions, resolveApiExternalRefs);
-			const paths = getPaths(containers, containersIdsFromCallbacks);
-			const definitions = JSON.parse(data.modelDefinitions) || {};
-			const definitionsWithHandledReferences = mapJsonSchema(
-				definitions,
-				handleRef(externalDefinitions, resolveApiExternalRefs),
-			);
-			const components = getComponents(definitionsWithHandledReferences, data.containers);
-			const security = commonHelper.mapSecurity(modelSecurity);
-			const tags = commonHelper.mapTags(modelTags);
-			const externalDocs = commonHelper.mapExternalDocs(modelExternalDocs);
-
-			const openApiSchema = {
-				openapi: dbVersion,
-				info,
-				servers,
-				paths,
-				components,
-				security,
-				tags,
-				externalDocs,
-			};
-			const extensions = getExtensions(data.modelData[0].scopesExtensions);
-
-			const resultSchema = Object.assign({}, openApiSchema, extensions);
-
-			switch (data.targetScriptOptions.format) {
-				case 'yaml': {
-					cb(null, resultSchema);
-					break;
-				}
-				case 'json':
-				default: {
-					const schemaString = JSON.stringify(resultSchema, null, 2);
-					let schema = addCommentsSigns(schemaString, 'json');
-					if (!get(data, 'options.isCalledFromFETab')) {
-						schema = removeCommentLines(schema);
-					}
-					cb(null, schema);
-				}
-			}
+			cb(null, mockedScript);
 		} catch (err) {
-			logger.log('error', { error: err }, 'OpenAPI FE Error');
+			logger.log('error', { error: err }, 'GraphQL FE Error');
 			cb(err);
 		}
 	},
 
+	/**
+	 * Validates the given script data.
+	 * @param {Object} data - The data for validation.
+	 * @param {string} data.script - The script to be validated.
+	 * @param {Object} data.targetScriptOptions - Options for the target script.
+	 * @param {Logger} logger - The logger for logging errors.
+	 * @param {ValidateScriptCallback} cb - The callback function.
+	 */
 	validate(data, logger, cb) {
-		const { script, targetScriptOptions } = data;
+		const { script } = data;
 		try {
-			const filteredScript = removeCommentLines(script);
-			let parsedScript = {};
-
-			switch (targetScriptOptions.format) {
-				case 'yaml':
-				case 'json':
-				default:
-					parsedScript = JSON.parse(filteredScript);
-			}
-
-			validationHelper
-				.validate(replaceRelativePathByAbsolute(parsedScript, targetScriptOptions.modelDirectory))
-				.then(messages => {
-					cb(null, messages);
-				})
-				.catch(err => {
-					cb(err.message);
-				});
+			const validationResults = validationHelper.validate({ schema: script });
+			cb(null, validationResults);
 		} catch (e) {
-			logger.log('error', { error: e }, 'OpenAPI Validation Error');
-
+			logger.log('error', { error: e }, 'GraphQL schema validation error');
 			cb(e.message);
 		}
 	},
-};
-
-const addCommentsSigns = (string, format) => {
-	const commentsStart = /hackoladeCommentStart\d+/i;
-	const commentsEnd = /hackoladeCommentEnd\d+/i;
-	const innerCommentStart = /hackoladeInnerCommentStart/i;
-	const innerCommentEnd = /hackoladeInnerCommentEnd/i;
-	const innerCommentStartYamlArrayItem = /- hackoladeInnerCommentStart/i;
-
-	const { result } = string.split('\n').reduce(
-		({ isCommented, result }, line, index, array) => {
-			if (commentsStart.test(line) || innerCommentStart.test(line)) {
-				if (innerCommentStartYamlArrayItem.test(line)) {
-					const lineBeginsAt = array[index + 1].search(/\S/);
-					array[index + 1] =
-						array[index + 1].slice(0, lineBeginsAt) + '- ' + array[index + 1].slice(lineBeginsAt);
-				}
-				return { isCommented: true, result: result };
-			}
-			if (commentsEnd.test(line)) {
-				return { isCommented: false, result };
-			}
-			if (innerCommentEnd.test(line)) {
-				if (format === 'json') {
-					array[index + 1] = '# ' + array[index + 1];
-				}
-				return { isCommented: false, result };
-			}
-
-			const isNextLineInnerCommentStart = index + 1 < array.length && innerCommentStart.test(array[index + 1]);
-			if (
-				(isCommented || isNextLineInnerCommentStart) &&
-				!innerCommentStartYamlArrayItem.test(array[index + 1])
-			) {
-				result = result + '# ' + line + '\n';
-			} else {
-				result = result + line + '\n';
-			}
-
-			return { isCommented, result };
-		},
-		{ isCommented: false, result: '' },
-	);
-
-	return result;
-};
-
-const removeCommentLines = scriptString => {
-	const isCommentedLine = /^\s*#\s+/i;
-
-	return scriptString
-		.split('\n')
-		.filter(line => !isCommentedLine.test(line))
-		.join('\n')
-		.replace(/(.*?),\s*(\}|])/g, '$1$2');
-};
-
-const replaceRelativePathByAbsolute = (script, modelDirectory) => {
-	if (!modelDirectory || typeof modelDirectory !== 'string') {
-		return script;
-	}
-	const stringifiedScript = JSON.stringify(script);
-	const fixedScript = stringifiedScript.replace(/("\$ref":\s*)"(.*?(?<!\\))"/g, (match, refGroup, relativePath) => {
-		const isAbsolutePath = relativePath.startsWith('file:');
-		const isInternetLink = relativePath.startsWith('http:') || relativePath.startsWith('https:');
-		const isModelRef = relativePath.startsWith('#');
-		if (isAbsolutePath || isInternetLink || isModelRef) {
-			return match;
-		}
-		const absolutePath = path.join(path.dirname(modelDirectory), relativePath).replace(/\\/g, '/');
-		return `${refGroup}"file://${absolutePath}"`;
-	});
-	return JSON.parse(fixedScript);
-};
-
-const handleRefInContainers = (containers, externalDefinitions, resolveApiExternalRefs) => {
-	return containers.map(container => {
-		try {
-			const updatedSchemas = Object.keys(container.jsonSchema).reduce((schemas, id) => {
-				const json = container.jsonSchema[id];
-				try {
-					const updatedSchema = mapJsonSchema(
-						JSON.parse(json),
-						handleRef(externalDefinitions, resolveApiExternalRefs),
-					);
-
-					return {
-						...schemas,
-						[id]: JSON.stringify(updatedSchema),
-					};
-				} catch (err) {
-					return { ...schemas, [id]: json };
-				}
-			}, {});
-
-			return {
-				...container,
-				jsonSchema: updatedSchemas,
-			};
-		} catch (err) {
-			return container;
-		}
-	});
-};
-
-const handleRef = (externalDefinitions, resolveApiExternalRefs) => field => {
-	if (!field.$ref) {
-		return field;
-	}
-	const ref = handleReferencePath(externalDefinitions, field, resolveApiExternalRefs);
-	if (!ref.$ref) {
-		return ref;
-	}
-
-	return { ...field, ...ref };
 };
