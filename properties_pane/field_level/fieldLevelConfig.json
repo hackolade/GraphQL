@@ -2264,8 +2264,21 @@ making sure that you maintain a proper JSON format.
 							"propertyTooltip": "Select interface",
 							"propertyType": "selecthashed",
 							"template": "definitions",
+							"templateOptions": {
+								"filter": {
+									"condition": {
+										"key": "childType",
+										"value": "interface"
+									},
+									"options": {
+										"useAllDefinitionsAsSource": true
+									}
+								}
+							},
 							"sideEffectActions": {
-								"onSelect": "copySelectedItemChildAttributes"
+								"onSelect": {
+									"action": "copySelectedItemChildAttributes"
+								}
 							}
 						}
 					],
@@ -2302,9 +2315,38 @@ making sure that you maintain a proper JSON format.
 							"propertyKeyword": "interface",
 							"propertyTooltip": "Select interface",
 							"propertyType": "selecthashed",
-							"template": "definitions"
+							"template": "definitions",
+							"templateOptions": {
+								"filter": {
+									"condition": {
+										"key": "childType",
+										"value": "interface"
+									},
+									"options": {
+										"filterOutSelf": true,
+										"useAllDefinitionsAsSource": true
+									}
+								}
+							},
+							"sideEffectActions": {
+								"onSelect": {
+									"action": "copySelectedItemChildAttributes"
+								}
+							}
 						}
-					]
+					],
+					"sideEffectActions": {
+						"onRemove": {
+							"action": "showMessage",
+							"actionConfig": {
+								"type": "modal",
+								"title": "PROPERTIES_PANE___REMOVE_IMPLEMENTED_INTERFACE_WARNING_TITLE",
+								"content": "PROPERTIES_PANE___REMOVE_IMPLEMENTED_INTERFACE_WARNING_BODY",
+								"featureNameForHelp": "Removing of implemented interfaces in GraphQL",
+								"buttons": ["contactSupport", "ok"]
+							}
+						}
+					}
 				}
 			]
 		}
