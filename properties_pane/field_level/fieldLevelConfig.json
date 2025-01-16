@@ -1282,6 +1282,17 @@ making sure that you maintain a proper JSON format.
 							"propertyTooltip": "Select interface",
 							"propertyType": "selecthashed",
 							"template": "definitions",
+							"templateOptions": {
+								"filter": {
+									"condition": {
+										"key": "childType",
+										"value": "interface"
+									},
+									"options": {
+										"useAllDefinitionsAsSource": true
+									}
+								}
+							},
 							"sideEffectActions": {
 								"onSelect": {
 									"action": "copySelectedItemChildAttributes"
@@ -1323,6 +1334,18 @@ making sure that you maintain a proper JSON format.
 							"propertyTooltip": "Select interface",
 							"propertyType": "selecthashed",
 							"template": "definitions",
+							"templateOptions": {
+								"filter": {
+									"condition": {
+										"key": "childType",
+										"value": "interface"
+									},
+									"options": {
+										"filterOutSelf": true,
+										"useAllDefinitionsAsSource": true
+									}
+								}
+							},
 							"sideEffectActions": {
 								"onSelect": {
 									"action": "copySelectedItemChildAttributes"
