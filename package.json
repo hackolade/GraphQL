@@ -100,8 +100,9 @@
         "*.{js,json}": "prettier --write"
     },
     "simple-git-hooks": {
-        "pre-commit": "npx lint-staged",
-        "pre-push": "npx eslint . && npm run test:unit"
+        "pre-commit": "npx lint-staged && npm run test:unit",
+        "pre-push": "npx eslint .",
+		"postinstall": "npx simple-git-hooks"
     },
     "scripts": {
         "lint": "eslint . --max-warnings=0",
