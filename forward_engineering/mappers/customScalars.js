@@ -1,29 +1,43 @@
-/**
- * @typedef {Object} FERootStatement
- * @property {string} statement
- * @property {string} description
- * @property {boolean} isActivated
- */
+require('../types/typedefs');
 
 /**
  * @typedef {Object} CustomScalar
- * @property {string} name
- * @property {string} type
- * @property {string} description
+ * @property {string} description - The description of the custom scalar.
+ * @property {boolean} isActivated - Indicates if the custom scalar is activated.
+ * @property {Object} typeDirectives - The directives of the custom scalar. TODO: implement mapping
  */
 
 /**
+ * @typedef {Object.<string, CustomScalar>} CustomScalars
+ */
+
+/**
+ * Maps a custom scalar to an FEStatement.
  *
  * @param {Object} param0
- * @param {CustomScalar[]} param0.customScalars - Array of custom scalar objects
- * @returns {FERootStatement[]}
+ * @param {string} param0.name - The name of the custom scalar.
+ * @param {CustomScalar} param0.customScalar - The custom scalar object.
+ * @returns {FEStatement}
  */
-function getCustomScalars({ customScalars }) {
+function mapCustomScalar({ name, customScalar }) {
 	return {
-		// Add your custom scalars here
+		statement: `scalar ${name}`, // TODO: add directives here
+		description: customScalar.description,
+		isActivated: customScalar.isActivated,
 	};
 }
 
-function mapCustomScalar({ customScalar }) {
-	// Add your custom scalar mapping here
+/**
+ * Gets the custom scalars as an array of FEStatements.
+ *
+ * @param {Object} param0
+ * @param {CustomScalars} param0.customScalars - The custom scalars object.
+ * @returns {FEStatement[]}
+ */
+function getCustomScalars({ customScalars }) {
+	return Object.entries(customScalars).map(([name, customScalar]) => mapCustomScalar({ name, customScalar }));
 }
+
+module.exports = {
+	getCustomScalars,
+};

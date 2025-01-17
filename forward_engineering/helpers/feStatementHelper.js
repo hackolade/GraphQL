@@ -1,20 +1,22 @@
 const { commentOutDeactivatedRootFEStatement } = require('./deactivatedItemsHelper');
-const { getRootStatementDescription } = require('./descriptionsHelper');
+const { getStatementDescription } = require('./descriptionsHelper');
 
 /**
  * Combines the description and statement, and comments out the statement if it is deactivated.
  *
  * @param {Object} param0
- * @param {string} param0.statement - The GraphQL statement
- * @param {string} param0.description - The description of the statement
- * @param {boolean} param0.isActivated - Indicates if the statement is activated
- * @returns {string} - The final formatted statement
+ * @param {Object} param0.feStatement - The forward engineering statement object.
+ * @param {string} param0.feStatement.statement - The GraphQL statement.
+ * @param {string} param0.feStatement.description - The description of the statement.
+ * @param {boolean} param0.feStatement.isActivated - Indicates if the statement is activated.
+ * @returns {string} - The final formatted statement.
  */
-function getRootFEStatement({ statement, description, isActivated }) {
+function formatFEStatement({ feStatement }) {
+	const { statement, description, isActivated } = feStatement;
 	let result = '';
 
-	if (description) {
-		const formattedDescription = getRootStatementDescription({ description });
+	if (description?.trim()) {
+		const formattedDescription = getStatementDescription({ description });
 		result += `${formattedDescription}\n`;
 	}
 
@@ -26,3 +28,7 @@ function getRootFEStatement({ statement, description, isActivated }) {
 
 	return result;
 }
+
+module.exports = {
+	formatFEStatement,
+};

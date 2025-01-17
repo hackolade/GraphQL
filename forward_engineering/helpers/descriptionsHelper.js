@@ -1,21 +1,24 @@
 /**
- * Formats the description for a GraphQL statement using triple quotes.
+ * Formats the description for a GraphQL statement.
+ * Uses triple quotes for multi-line descriptions and single quotes for single-line descriptions.
  *
  * @param {Object} param0
  * @param {string} param0.description - The description to format
  * @returns {string} - The formatted description
  */
-function getRootStatementDescription({ description }) {
+function getStatementDescription({ description }) {
 	if (!description) {
 		return '';
 	}
 
-	// Format the description using triple quotes
-	const formattedDescription = `"""\n${description}\n"""`;
+	const isMultiLine = description.includes('\n');
+
+	// Format the description based on whether it is multi-line or single-line
+	const formattedDescription = isMultiLine ? `"""\n${description}\n"""` : `"${description}"`;
 
 	return formattedDescription;
 }
 
 module.exports = {
-	getRootStatementDescription,
+	getStatementDescription,
 };
