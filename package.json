@@ -101,10 +101,11 @@
     },
     "simple-git-hooks": {
         "pre-commit": "npx lint-staged",
-        "pre-push": "npx eslint ."
+        "pre-push": "npx eslint . && npm run test:unit"
     },
     "scripts": {
         "lint": "eslint . --max-warnings=0",
+		"test:unit": "node --experimental-test-module-mocks --test ./test/**/*.spec.js",
         "package": "node esbuild.package.js"
     },
     "devDependencies": {

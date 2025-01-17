@@ -16,6 +16,7 @@ const EXCLUDED_FILES = [
 	'.prettierignore',
 	'.prettierrc',
 	'.dockerignore',
+	'test',
 	'build',
 	'release',
 	'node_modules',
