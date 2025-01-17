@@ -1,4 +1,6 @@
-require('../types/typedefs');
+/**
+ * @typedef { import("../types/types").FEStatement } FEStatement
+ */
 
 /**
  * @typedef {Object} CustomScalar
