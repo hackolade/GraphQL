@@ -105,7 +105,7 @@
     },
     "scripts": {
         "lint": "eslint . --max-warnings=0",
-		"test:unit": "node --experimental-test-module-mocks --test ./test/**/*.spec.js",
+		"test:unit": "node --experimental-test-module-mocks --test-reporter dot --test ./test",
         "package": "node esbuild.package.js",
 		"postinstall": "npx simple-git-hooks"
     },
