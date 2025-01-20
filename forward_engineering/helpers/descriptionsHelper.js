@@ -11,10 +11,12 @@ function getStatementDescription({ description }) {
 		return '';
 	}
 
-	const isMultiLine = description.includes('\n');
+	const trimmedDescription = description.trim();
+	const escapedDescription = trimmedDescription.replace(/"/g, '\\"');
+	const isMultiLine = escapedDescription.includes('\n');
 
 	// Format the description based on whether it is multi-line or single-line
-	const formattedDescription = isMultiLine ? `"""\n${description}\n"""` : `"${description}"`;
+	const formattedDescription = isMultiLine ? `"""\n${escapedDescription}\n"""` : `"${escapedDescription}"`;
 
 	return formattedDescription;
 }

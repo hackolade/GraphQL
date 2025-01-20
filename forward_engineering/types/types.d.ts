@@ -1,5 +1,7 @@
 export type FEStatement = {
 	statement: string;
 	description: string;
-	isActivated: boolean;
+	isActivated?: boolean;
+	nestedStatements?: FEStatement[];
+	useCurlyBracketsForNestedStatements?: boolean;
 }
