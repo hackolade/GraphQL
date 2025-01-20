@@ -1,5 +1,5 @@
-const GRAPHQL_INDENT = '  ';
+const GRAPHQL_SCHEMA_SCRIPT_INDENT = '  ';
 
 module.exports = {
-	GRAPHQL_INDENT,
+	GRAPHQL_SCHEMA_SCRIPT_INDENT,
 };
