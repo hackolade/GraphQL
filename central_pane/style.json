@@ -1,0 +1,31 @@
+{
+	"field": {
+		"erd": [
+			{
+				"value": "(...)",
+				"width": 20,
+				"position": {
+					"index": 1
+				},
+				"dependency": {
+					"type": "and",
+					"values": [
+						{
+							"key": "arguments",
+							"exist": true
+						},
+						{
+							"type": "not",
+							"values": [
+								{
+									"key": "arguments",
+									"isEmpty": true
+								}
+							]
+						}
+					]
+				}
+			}
+		]
+	}
+}
