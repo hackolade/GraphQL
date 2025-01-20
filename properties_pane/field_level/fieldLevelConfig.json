@@ -1286,7 +1286,33 @@ making sure that you maintain a proper JSON format.
 							"propertyName": "Type",
 							"propertyKeyword": "type",
 							"propertyTooltip": "Select argument type",
-							"propertyType": "text"
+							"propertyType": "selecthashed",
+							"template": "definitions",
+							"templateOptions": {
+								"filter": {
+									"condition": {
+										"type": "or",
+										"values": [
+											{
+												"key": "childType",
+												"value": "scalar"
+											},
+											{
+												"key": "childType",
+												"value": "enum"
+											},
+											{
+												"key": "childType",
+												"value": "input"
+											}
+										]
+									},
+									"options": {
+										"useAllDefinitionsAsSource": true,
+										"includeTargetTypes": true
+									}
+								}
+							}
 						},
 						{
 							"propertyName": "Cardinality & nullability",
@@ -1366,7 +1392,33 @@ making sure that you maintain a proper JSON format.
 							"propertyName": "Type",
 							"propertyKeyword": "type",
 							"propertyTooltip": "Select argument type",
-							"propertyType": "text"
+							"propertyType": "selecthashed",
+							"template": "definitions",
+							"templateOptions": {
+								"filter": {
+									"condition": {
+										"type": "or",
+										"values": [
+											{
+												"key": "childType",
+												"value": "scalar"
+											},
+											{
+												"key": "childType",
+												"value": "enum"
+											},
+											{
+												"key": "childType",
+												"value": "input"
+											}
+										]
+									},
+									"options": {
+										"useAllDefinitionsAsSource": true,
+										"includeTargetTypes": true
+									}
+								}
+							}
 						},
 						{
 							"propertyName": "Cardinality & nullability",
@@ -1446,7 +1498,33 @@ making sure that you maintain a proper JSON format.
 							"propertyName": "Type",
 							"propertyKeyword": "type",
 							"propertyTooltip": "Select argument type",
-							"propertyType": "text"
+							"propertyType": "selecthashed",
+							"template": "definitions",
+							"templateOptions": {
+								"filter": {
+									"condition": {
+										"type": "or",
+										"values": [
+											{
+												"key": "childType",
+												"value": "scalar"
+											},
+											{
+												"key": "childType",
+												"value": "enum"
+											},
+											{
+												"key": "childType",
+												"value": "input"
+											}
+										]
+									},
+									"options": {
+										"useAllDefinitionsAsSource": true,
+										"includeTargetTypes": true
+									}
+								}
+							}
 						},
 						{
 							"propertyName": "Cardinality & nullability",
@@ -1526,7 +1604,33 @@ making sure that you maintain a proper JSON format.
 							"propertyName": "Type",
 							"propertyKeyword": "type",
 							"propertyTooltip": "Select argument type",
-							"propertyType": "text"
+							"propertyType": "selecthashed",
+							"template": "definitions",
+							"templateOptions": {
+								"filter": {
+									"condition": {
+										"type": "or",
+										"values": [
+											{
+												"key": "childType",
+												"value": "scalar"
+											},
+											{
+												"key": "childType",
+												"value": "enum"
+											},
+											{
+												"key": "childType",
+												"value": "input"
+											}
+										]
+									},
+									"options": {
+										"useAllDefinitionsAsSource": true,
+										"includeTargetTypes": true
+									}
+								}
+							}
 						},
 						{
 							"propertyName": "Cardinality & nullability",
@@ -1606,7 +1710,33 @@ making sure that you maintain a proper JSON format.
 							"propertyName": "Type",
 							"propertyKeyword": "type",
 							"propertyTooltip": "Select argument type",
-							"propertyType": "text"
+							"propertyType": "selecthashed",
+							"template": "definitions",
+							"templateOptions": {
+								"filter": {
+									"condition": {
+										"type": "or",
+										"values": [
+											{
+												"key": "childType",
+												"value": "scalar"
+											},
+											{
+												"key": "childType",
+												"value": "enum"
+											},
+											{
+												"key": "childType",
+												"value": "input"
+											}
+										]
+									},
+									"options": {
+										"useAllDefinitionsAsSource": true,
+										"includeTargetTypes": true
+									}
+								}
+							}
 						},
 						{
 							"propertyName": "Cardinality & nullability",
@@ -1686,7 +1816,33 @@ making sure that you maintain a proper JSON format.
 							"propertyName": "Type",
 							"propertyKeyword": "type",
 							"propertyTooltip": "Select argument type",
-							"propertyType": "text"
+							"propertyType": "selecthashed",
+							"template": "definitions",
+							"templateOptions": {
+								"filter": {
+									"condition": {
+										"type": "or",
+										"values": [
+											{
+												"key": "childType",
+												"value": "scalar"
+											},
+											{
+												"key": "childType",
+												"value": "enum"
+											},
+											{
+												"key": "childType",
+												"value": "input"
+											}
+										]
+									},
+									"options": {
+										"useAllDefinitionsAsSource": true,
+										"includeTargetTypes": true
+									}
+								}
+							}
 						},
 						{
 							"propertyName": "Cardinality & nullability",
@@ -1767,7 +1923,33 @@ making sure that you maintain a proper JSON format.
 							"propertyName": "Type",
 							"propertyKeyword": "type",
 							"propertyTooltip": "Select argument type",
-							"propertyType": "text"
+							"propertyType": "selecthashed",
+							"template": "definitions",
+							"templateOptions": {
+								"filter": {
+									"condition": {
+										"type": "or",
+										"values": [
+											{
+												"key": "childType",
+												"value": "scalar"
+											},
+											{
+												"key": "childType",
+												"value": "enum"
+											},
+											{
+												"key": "childType",
+												"value": "input"
+											}
+										]
+									},
+									"options": {
+										"useAllDefinitionsAsSource": true,
+										"includeTargetTypes": true
+									}
+								}
+							}
 						},
 						{
 							"propertyName": "Cardinality & nullability",
@@ -1857,7 +2039,33 @@ making sure that you maintain a proper JSON format.
 							"propertyName": "Type",
 							"propertyKeyword": "type",
 							"propertyTooltip": "Select argument type",
-							"propertyType": "text"
+							"propertyType": "selecthashed",
+							"template": "definitions",
+							"templateOptions": {
+								"filter": {
+									"condition": {
+										"type": "or",
+										"values": [
+											{
+												"key": "childType",
+												"value": "scalar"
+											},
+											{
+												"key": "childType",
+												"value": "enum"
+											},
+											{
+												"key": "childType",
+												"value": "input"
+											}
+										]
+									},
+									"options": {
+										"useAllDefinitionsAsSource": true,
+										"includeTargetTypes": true
+									}
+								}
+							}
 						},
 						{
 							"propertyName": "Cardinality & nullability",
@@ -1947,7 +2155,33 @@ making sure that you maintain a proper JSON format.
 							"propertyName": "Type",
 							"propertyKeyword": "type",
 							"propertyTooltip": "Select argument type",
-							"propertyType": "text"
+							"propertyType": "selecthashed",
+							"template": "definitions",
+							"templateOptions": {
+								"filter": {
+									"condition": {
+										"type": "or",
+										"values": [
+											{
+												"key": "childType",
+												"value": "scalar"
+											},
+											{
+												"key": "childType",
+												"value": "enum"
+											},
+											{
+												"key": "childType",
+												"value": "input"
+											}
+										]
+									},
+									"options": {
+										"useAllDefinitionsAsSource": true,
+										"includeTargetTypes": true
+									}
+								}
+							}
 						},
 						{
 							"propertyName": "Cardinality & nullability",
@@ -2037,7 +2271,33 @@ making sure that you maintain a proper JSON format.
 							"propertyName": "Type",
 							"propertyKeyword": "type",
 							"propertyTooltip": "Select argument type",
-							"propertyType": "text"
+							"propertyType": "selecthashed",
+							"template": "definitions",
+							"templateOptions": {
+								"filter": {
+									"condition": {
+										"type": "or",
+										"values": [
+											{
+												"key": "childType",
+												"value": "scalar"
+											},
+											{
+												"key": "childType",
+												"value": "enum"
+											},
+											{
+												"key": "childType",
+												"value": "input"
+											}
+										]
+									},
+									"options": {
+										"useAllDefinitionsAsSource": true,
+										"includeTargetTypes": true
+									}
+								}
+							}
 						},
 						{
 							"propertyName": "Cardinality & nullability",
@@ -2112,7 +2372,33 @@ making sure that you maintain a proper JSON format.
 							"propertyName": "Type",
 							"propertyKeyword": "type",
 							"propertyTooltip": "Select argument type",
-							"propertyType": "text"
+							"propertyType": "selecthashed",
+							"template": "definitions",
+							"templateOptions": {
+								"filter": {
+									"condition": {
+										"type": "or",
+										"values": [
+											{
+												"key": "childType",
+												"value": "scalar"
+											},
+											{
+												"key": "childType",
+												"value": "enum"
+											},
+											{
+												"key": "childType",
+												"value": "input"
+											}
+										]
+									},
+									"options": {
+										"useAllDefinitionsAsSource": true,
+										"includeTargetTypes": true
+									}
+								}
+							}
 						},
 						{
 							"propertyName": "Cardinality & nullability",
@@ -2186,7 +2472,33 @@ making sure that you maintain a proper JSON format.
 							"propertyName": "Type",
 							"propertyKeyword": "type",
 							"propertyTooltip": "Select argument type",
-							"propertyType": "text"
+							"propertyType": "selecthashed",
+							"template": "definitions",
+							"templateOptions": {
+								"filter": {
+									"condition": {
+										"type": "or",
+										"values": [
+											{
+												"key": "childType",
+												"value": "scalar"
+											},
+											{
+												"key": "childType",
+												"value": "enum"
+											},
+											{
+												"key": "childType",
+												"value": "input"
+											}
+										]
+									},
+									"options": {
+										"useAllDefinitionsAsSource": true,
+										"includeTargetTypes": true
+									}
+								}
+							}
 						},
 						{
 							"propertyName": "Cardinality & nullability",
