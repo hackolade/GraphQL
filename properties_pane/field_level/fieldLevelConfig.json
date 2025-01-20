@@ -2579,17 +2579,8 @@ making sure that you maintain a proper JSON format.
 							"templateOptions": {
 								"filter": {
 									"condition": {
-										"type": "and",
-										"values": [
-											{
-												"key": "childType",
-												"value": "interface"
-											},
-											{
-												"key": "properties",
-												"isEmpty": false
-											}
-										]
+										"key": "childType",
+										"value": "interface"
 									},
 									"options": {
 										"useAllDefinitionsAsSource": true
