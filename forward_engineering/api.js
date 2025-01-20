@@ -1,5 +1,6 @@
 const validationHelper = require('./helpers/schemaValidationHelper');
 const { getTypeDefinitionStatements } = require('./mappers/typeDefinitions');
+const { generateIdToNameMap } = require('./helpers/generateIdToNameMap');
 
 /**
  * @typedef {Object} Container
@@ -55,9 +56,10 @@ module.exports = {
 	 */
 	generateModelScript(data, logger, cb) {
 		try {
-			const typeDefinitions = getTypeDefinitionStatements({
-				modelDefinitions: JSON.parse(data.modelDefinitions),
-			});
+			debugger;
+			const modelDefinitions = JSON.parse(data.modelDefinitions);
+			const idToNameMap = generateIdToNameMap(modelDefinitions.properties);
+			const typeDefinitions = getTypeDefinitionStatements({ modelDefinitions });
 
 			const schemaScript = mockedRootQuery + '\n\n' + typeDefinitions;
 			cb(null, schemaScript);
