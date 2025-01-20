@@ -101,11 +101,13 @@
     },
     "simple-git-hooks": {
         "pre-commit": "npx lint-staged",
-        "pre-push": "npx eslint ."
+        "pre-push": "npx eslint . && npm run test:unit"
     },
     "scripts": {
         "lint": "eslint . --max-warnings=0",
-        "package": "node esbuild.package.js"
+		"test:unit": "node --experimental-test-module-mocks --test ./test/**/*.spec.js",
+        "package": "node esbuild.package.js",
+		"postinstall": "npx simple-git-hooks"
     },
     "devDependencies": {
         "@hackolade/hck-esbuild-plugins-pack": "0.0.1",

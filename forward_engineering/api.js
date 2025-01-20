@@ -1,4 +1,5 @@
 const validationHelper = require('./helpers/schemaValidationHelper');
+const { getTypeDefinitionStatements } = require('./mappers/typeDefinitions');
 
 /**
  * @typedef {Object} Container
@@ -40,26 +41,9 @@ const validationHelper = require('./helpers/schemaValidationHelper');
  * @param {Array} [result]
  */
 
-const mockedScript = `# The schema is hardcoded for demonstration purposes only.
-interface SearchResult {
-	id: ID
-	title: String!
-}
-
-# type Query {
-# 	search(keyword: String): [SearchResult]
-# }
-
-type User implements SearchResult {
-	name: String!
-	email: String!
-}
-
-type Post implements SearchResult {
-	id: ID!
-	title: String!
-	content: String!
-	author: User
+const mockedRootQuery = `# The type Query is hardcoded for now, to remove validation error.
+type Query {
+	getSomething: String
 }`;
 
 module.exports = {
@@ -71,7 +55,12 @@ module.exports = {
 	 */
 	generateModelScript(data, logger, cb) {
 		try {
-			cb(null, mockedScript);
+			const typeDefinitions = getTypeDefinitionStatements({
+				modelDefinitions: JSON.parse(data.modelDefinitions),
+			});
+
+			const schemaScript = mockedRootQuery + '\n\n' + typeDefinitions;
+			cb(null, schemaScript);
 		} catch (err) {
 			logger.log('error', { error: err }, 'GraphQL FE Error');
 			cb(err);
