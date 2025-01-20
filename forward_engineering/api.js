@@ -56,7 +56,6 @@ module.exports = {
 	 */
 	generateModelScript(data, logger, cb) {
 		try {
-			debugger;
 			const modelDefinitions = JSON.parse(data.modelDefinitions);
 			const idToNameMap = generateIdToNameMap(modelDefinitions.properties);
 			const typeDefinitions = getTypeDefinitionStatements({ modelDefinitions });
