@@ -1,12 +1,16 @@
 /**
  * @typedef { import("../types/types").FEStatement } FEStatement
+ * @typedef { import("../types/types").DirectivePropertyData } DirectivePropertyData
  */
+
+const { joinInlineStatements } = require('../helpers/feStatementJoinHelper');
+const { getDirectivesUsageStatement } = require('./directives');
 
 /**
  * @typedef {Object} CustomScalar
  * @property {string} description - The description of the custom scalar.
  * @property {boolean} isActivated - Indicates if the custom scalar is activated.
- * @property {Object} typeDirectives - The directives of the custom scalar. TODO: implement mapping
+ * @property {DirectivePropertyData[]} typeDirectives - The directives of the custom scalar.
  */
 
 /**
@@ -22,8 +26,11 @@
  * @returns {FEStatement}
  */
 function mapCustomScalar({ name, customScalar }) {
+	const customScalarNameStatement = `scalar ${name}`;
+	const directivesStatement = getDirectivesUsageStatement({ directives: customScalar.typeDirectives });
+
 	return {
-		statement: `scalar ${name}`, // TODO: add directives here
+		statement: joinInlineStatements({ statements: [customScalarNameStatement, directivesStatement] }),
 		description: customScalar.description,
 		isActivated: customScalar.isActivated,
 	};

@@ -1,21 +1,23 @@
 /**
  * @typedef { import("../types/types").FEStatement } FEStatement
+ * @typedef { import("../types/types").DirectivePropertyData } DirectivePropertyData
  */
 
 const { joinInlineStatements } = require('../helpers/feStatementJoinHelper');
+const { getDirectivesUsageStatement } = require('./directives');
 
 /**
  * @typedef {Object} EnumValue
  * @property {string} value - The name of the enum value.
  * @property {string} description - The description of the enum value.
- * @property {Object} valueDirectives - The directives of the enum value.
+ * @property {DirectivePropertyData[]} typeDirectives - The directives of the enum value.
  */
 
 /**
  * @typedef {Object} EnumDefinition
  * @property {string} description - The description of the enum.
  * @property {boolean} isActivated - Indicates if the enum is activated.
- * @property {Object} typeDirectives - The directives of the enum.
+ * @property {DirectivePropertyData[]} typeDirectives - The directives of the enum.
  * @property {EnumValue[]} enumValues - The values of the emu,.
  */
 
@@ -43,8 +45,11 @@ function getEnums({ enumsDefinitions }) {
  * @returns {FEStatement}
  */
 function mapEnum({ name, enumDefinition }) {
+	const nameStatement = `enum ${name}`;
+	const directivesStatement = getDirectivesUsageStatement({ directives: enumDefinition.typeDirectives });
+
 	return {
-		statement: joinInlineStatements({ statements: [`enum ${name}`] }), // TODO: add directives
+		statement: joinInlineStatements({ statements: [nameStatement, directivesStatement] }),
 		description: enumDefinition.description,
 		isActivated: enumDefinition.isActivated,
 		nestedStatements: mapEnumValues({ enumValues: enumDefinition.enumValues }),
@@ -59,10 +64,14 @@ function mapEnum({ name, enumDefinition }) {
  * @returns {FEStatement[]}
  */
 function mapEnumValues({ enumValues = [] }) {
-	return enumValues.map(({ value, description }) => ({
-		statement: joinInlineStatements({ statements: [value] }), // TODO: add directives
-		description: description,
-	}));
+	return enumValues.map(({ value, description, typeDirectives }) => {
+		const directivesStatement = getDirectivesUsageStatement({ directives: typeDirectives });
+
+		return {
+			statement: joinInlineStatements({ statements: [value, directivesStatement] }),
+			description: description,
+		};
+	});
 }
 
 module.exports = {

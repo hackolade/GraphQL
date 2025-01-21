@@ -5,3 +5,8 @@ export type FEStatement = {
 	nestedStatements?: FEStatement[];
 	useCurlyBracketsForNestedStatements?: boolean;
 }
+
+export type DirectivePropertyData = {
+	directiveFormat: 'Raw',
+	rawDirective: string;
+}
