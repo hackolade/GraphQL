@@ -1,6 +1,6 @@
 const { describe, it } = require('node:test');
 const assert = require('node:assert');
-const { getDirectivesUsageStatement } = require('../../forward_engineering/mappers/directives');
+const { getDirectivesUsageStatement } = require('../../../forward_engineering/mappers/directives');
 
 describe('getDirectivesUsageStatement', () => {
 	it('should return an empty string when no directives are provided', () => {
