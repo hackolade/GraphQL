@@ -1,7 +1,6 @@
 const validationHelper = require('./helpers/schemaValidationHelper');
 const { getTypeDefinitionStatements } = require('./mappers/typeDefinitions');
 const { generateIdToNameMap } = require('./helpers/generateIdToNameMap');
-const { getArguments } = require('./mappers/arguments');
 
 /**
  * @typedef {Object} Container
