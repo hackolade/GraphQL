@@ -10,3 +10,14 @@ export type DirectivePropertyData = {
 	directiveFormat: 'Raw',
 	rawDirective: string;
 }
+
+
+
+export type Argument = {
+	id: string;
+	type: string;
+	name: string;
+	default?: string;
+
+	// required:
+}
