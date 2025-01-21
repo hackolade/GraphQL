@@ -4,7 +4,8 @@
     "author": "hackolade",
     "engines": {
         "hackolade": "5.4.7",
-        "hackoladePlugin": "1.0.0"
+        "hackoladePlugin": "1.0.0",
+		"node": ">=20.18.0"
     },
     "contributes": {
         "target": {
