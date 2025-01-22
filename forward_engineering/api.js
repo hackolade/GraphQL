@@ -58,7 +58,7 @@ module.exports = {
 		try {
 			const modelDefinitions = JSON.parse(data.modelDefinitions);
 			const idToNameMap = generateIdToNameMap(modelDefinitions.properties);
-			const typeDefinitions = getTypeDefinitionStatements({ modelDefinitions });
+			const typeDefinitions = getTypeDefinitionStatements({ modelDefinitions, idToNameMap });
 
 			const schemaScript = mockedRootQuery + '\n\n' + typeDefinitions;
 			cb(null, schemaScript);

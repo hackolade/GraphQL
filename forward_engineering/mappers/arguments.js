@@ -2,7 +2,7 @@
  * @import { Argument, IdToNameMap, FEStatement } from "../types/types"
  */
 
-const { getDirectivesUsageStatement } = require('./directives');
+const { getDirectivesUsageStatement } = require('./directiveUsageStatements');
 const { getArgumentDefaultValue } = require('./argumentDefaultValue');
 const { joinInlineStatements } = require('../helpers/feStatementJoinHelper');
 const { formatFEStatement } = require('../helpers/feStatementFormatHelper');
@@ -51,7 +51,11 @@ const mapArgument = ({ argument, idToNameMap = {} }) => {
  * @param {IdToNameMap} [args.idToNameMap] - The ID to name map of all available types in model.
  * @returns {string} - returns the arguments list as a formated string
  */
-const getArguments = ({ arguments, idToNameMap = {} }) => {
+const getArguments = ({ arguments = [], idToNameMap = {} }) => {
+	if (arguments.length === 0) {
+		return '';
+	}
+
 	const hasDescription = arguments.some(argument => argument.description);
 	const argumentStatements = arguments.map(argument => mapArgument({ argument, idToNameMap }));
 

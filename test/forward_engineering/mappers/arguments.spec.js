@@ -6,7 +6,7 @@ const getArgumentDefaultValueMock = mock.fn(() => '');
 const joinInlineStatementsMock = mock.fn(() => '');
 const formatFEStatementMock = mock.fn(() => '');
 
-mock.module('../../../forward_engineering/mappers/directives', {
+mock.module('../../../forward_engineering/mappers/directiveUsageStatements', {
 	namedExports: {
 		getDirectivesUsageStatement: getDirectivesUsageStatementMock,
 	},
@@ -157,5 +157,11 @@ describe('getArguments', () => {
 
 		strictEqual(formatFEStatementMock.mock.calls.length, 1);
 		strictEqual(result, '(arg1: String, arg2: Int)');
+	});
+
+	it('should return empty string if arguments is empty list or undefined', () => {
+		const arguments = [];
+		const result = getArguments({ arguments });
+		strictEqual(result, '');
 	});
 });

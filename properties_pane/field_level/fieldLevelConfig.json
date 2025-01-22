@@ -1166,90 +1166,82 @@ making sure that you maintain a proper JSON format.
 				"name",
 				"description",
 				{
-					"propertyName": "Arguments",
-					"propertyKeyword": "arguments",
-					"propertyTooltip": "Popup for multi-line text entry",
-					"propertyType": "details",
-					"template": "textarea",
-					"markdown": false
-				},
-				{
 					"propertyName": "Directive locations:",
 					"propertyType": "block",
 					"propertyKeyword": "directiveLocations",
 					"structure": [
 						{
-							"propertyName": "QUERY",
+							"propertyName": "Query",
 							"propertyKeyword": "query",
 							"propertyType": "checkbox"
 						},
 						{
-							"propertyName": "MUTATION",
+							"propertyName": "Mutation",
 							"propertyKeyword": "mutation",
 							"propertyType": "checkbox"
 						},
 						{
-							"propertyName": "SUBSCRIPTION",
+							"propertyName": "Subscription",
 							"propertyKeyword": "subscription",
 							"propertyType": "checkbox"
 						},
 						{
-							"propertyName": "FIELD",
+							"propertyName": "Field",
 							"propertyKeyword": "field",
 							"propertyType": "checkbox"
 						},
 						{
-							"propertyName": "SCHEMA",
+							"propertyName": "Schema",
 							"propertyKeyword": "schema",
 							"propertyType": "checkbox"
 						},
 						{
-							"propertyName": "SCALAR",
+							"propertyName": "Scalar",
 							"propertyKeyword": "scalar",
 							"propertyType": "checkbox"
 						},
 						{
-							"propertyName": "OBJECT",
+							"propertyName": "Object",
 							"propertyKeyword": "object",
 							"propertyType": "checkbox"
 						},
 						{
-							"propertyName": "FIELD_DEFINITION",
+							"propertyName": "Field definition",
 							"propertyKeyword": "fieldDefinition",
 							"propertyType": "checkbox"
 						},
 						{
-							"propertyName": "ARGUMENT_DEFINITION",
+							"propertyName": "Argument definition",
 							"propertyKeyword": "argumentDefinition",
 							"propertyType": "checkbox"
 						},
 						{
-							"propertyName": "INTERFACE",
+							"propertyName": "Interface",
 							"propertyKeyword": "interface",
 							"propertyType": "checkbox"
 						},
 						{
-							"propertyName": "UNION",
+							"propertyName": "Union",
 							"propertyKeyword": "union",
 							"propertyType": "checkbox"
 						},
 						{
-							"propertyName": "ENUM",
+							"propertyName": "Enum",
 							"propertyKeyword": "enum",
 							"propertyType": "checkbox"
 						},
 						{
-							"propertyName": "ENUM_VALUE",
+							"propertyName": "Enum value",
 							"propertyKeyword": "enumValue",
 							"propertyType": "checkbox"
 						},
 						{
-							"propertyName": "INPUT_OBJECT",
+							"propertyName": "Input object",
 							"propertyKeyword": "inputObject",
 							"propertyType": "checkbox"
 						},
 						{
-							"propertyName": "INPUT_FIELD_DEFINITION",
+							"propertyName": "Input field definition",
 							"propertyKeyword": "inputFieldDefinition",
 							"propertyType": "checkbox"
 						}

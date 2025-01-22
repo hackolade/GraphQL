@@ -1,35 +1,75 @@
 /**
- * @import { DirectivePropertyData } from "../types/types"
+ * @import { DirectivesSchema, Directive, FEStatement, DirectiveLocations, IdToNameMap } from "../types/types"
  */
 
-const { joinInlineStatements } = require('../helpers/feStatementJoinHelper');
+const { DIRECTIVE_LOCATIONS } = require('../constants/feScriptConstants');
+const { getArguments } = require('./arguments');
+
+const UNKNOWN_LOCATION = 'UNKNOWN_LOCATION';
 
 /**
- * Gets the directives property as a string.
- * @param {Object} param0
- * @param {DirectivePropertyData[]} param0.directives
- * @returns {string}
+ * Map directive locations to a string.
+ *
+ * @param {Object} args - The arguments object
+ * @param {DirectiveLocations} [args.directiveLocations] - The directive locations object with all available locations
+ * @return {string}
  */
-function getDirectivesUsageStatement({ directives = [] }) {
-	const mappedDirectives = directives.map(directive => mapDirectiveUsage({ directive })).filter(Boolean);
+function mapDirectiveLocations({ directiveLocations = {} }) {
+	const directiveLocationsString = Object.keys(directiveLocations)
+		.filter(location => location !== 'id')
+		.map(locations => DIRECTIVE_LOCATIONS[locations] || UNKNOWN_LOCATION)
+		.join(' | ');
 
-	return joinInlineStatements({ statements: mappedDirectives });
+	if (!directiveLocationsString) {
+		return `${UNKNOWN_LOCATION} # Please specify the directive locations`;
+	}
+
+	return directiveLocationsString;
 }
 
 /**
- * Maps a directive property to a string.
- * New line characters are replaced with spaces to avoid breaking the statement.
- * @param {Object} param0
- * @param {DirectivePropertyData} param0.directive
+ * Convert directive name to GraphQL directive format.
+ *
+ * @param {string} name
  * @returns {string}
  */
-function mapDirectiveUsage({ directive }) {
-	if (directive.directiveFormat === 'Raw') {
-		return directive.rawDirective?.replace(/\n/g, ' ').trim() || '';
-	}
-	return '';
+const getDirectiveName = name => (name.startsWith('@') ? name : `@${name}`);
+
+/**
+ * Map a directive to an FEStatement object.
+ *
+ * @param {Object} args - The arguments object
+ * @param {string} args.name - The name of directive
+ * @param {Directive} args.directive - The directive object
+ * @param {IdToNameMap} args.idToNameMap - The ID to name map of all available types in model - needs for arguments
+ * @return {FEStatement}
+ */
+function mapDirective({ name, directive, idToNameMap }) {
+	const directiveName = getDirectiveName(name);
+	const directiveLocations = mapDirectiveLocations({ directiveLocations: directive.directiveLocations });
+	const directiveArguments = getArguments({ arguments: directive.arguments, idToNameMap });
+
+	return {
+		statement: `directive ${directiveName}${directiveArguments} on ${directiveLocations}`,
+		description: directive.description || '',
+		isActivated: directive.isActivated,
+	};
+}
+
+/**
+ * Maps directives to an FEStatement objects.
+ *
+ * @param {Object} args - The arguments object
+ * @param {DirectivesSchema} args.directives - The directives schema object
+ * @returns {FEStatement[]}
+ */
+function getDirectives({ idToNameMap, directives = {} }) {
+	return Object.entries(directives).map(([name, directive]) => mapDirective({ name, directive, idToNameMap }));
 }
 
 module.exports = {
-	getDirectivesUsageStatement,
+	mapDirectiveLocations,
+	getDirectiveName,
+	mapDirective,
+	getDirectives,
 };

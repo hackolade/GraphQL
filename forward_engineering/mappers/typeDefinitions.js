@@ -1,21 +1,31 @@
+/**
+ * @import { IdToNameMap } from "../types/types"
+ */
+
 const { formatFEStatement } = require('../helpers/feStatementFormatHelper');
 const { getCustomScalars } = require('./customScalars');
 const { getEnums } = require('./enums');
+const { getDirectives } = require('./directives');
 
 /**
  * Gets the type definition statements from model definitions.
  *
  * @param {Object} param0
  * @param {Object} param0.modelDefinitions - The model definitions object.
+ * @param {IdToNameMap} param0.idToNameMap - The ID to name map of all available types
  * @returns {string} - The formatted type definition statements.
  */
-function getTypeDefinitionStatements({ modelDefinitions }) {
+function getTypeDefinitionStatements({ modelDefinitions, idToNameMap }) {
+	const directives = getDirectives({
+		directives: getModelDefinitionsBySubtype({ modelDefinitions, subtype: 'directive' }),
+		idToNameMap,
+	});
 	const customScalars = getCustomScalars({
 		customScalars: getModelDefinitionsBySubtype({ modelDefinitions, subtype: 'scalar' }),
 	});
 	const enums = getEnums({ enumsDefinitions: getModelDefinitionsBySubtype({ modelDefinitions, subtype: 'enum' }) });
 
-	const typeDefinitions = [...customScalars, ...enums];
+	const typeDefinitions = [...directives, ...customScalars, ...enums];
 	const formattedTypeDefinitions = typeDefinitions
 		.map(typeDefinition => formatFEStatement({ feStatement: typeDefinition }))
 		.join('\n\n');
