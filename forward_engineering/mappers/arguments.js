@@ -3,7 +3,7 @@
  */
 
 const { getDirectivesUsageStatement } = require('./directives');
-const { getDefaultValue } = require('./defaultValue');
+const { getArgumentDefaultValue } = require('./argumentDefaultValue');
 const { joinInlineStatements } = require('../helpers/feStatementJoinHelper');
 const { formatFEStatement } = require('../helpers/feStatementFormatHelper');
 
@@ -28,7 +28,7 @@ const mapArgument = (argument, idToNameMap = {}) => {
 	const argumentName = `${argument.name}:`;
 	const argumentType = getArgumentType(argument, idToNameMap);
 	const directivesStatement = getDirectivesUsageStatement({ directives: argument.directives });
-	const defaultValue = argument.default ? `= ${getDefaultValue(argument.type, argument.default)}` : '';
+	const defaultValue = argument.default ? `= ${getArgumentDefaultValue(argument.type, argument.default)}` : '';
 
 	const statement = joinInlineStatements({
 		statements: [argumentName, argumentType, defaultValue, directivesStatement],

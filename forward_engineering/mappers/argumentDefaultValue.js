@@ -3,7 +3,7 @@
  * @param {string} type - GraphQL type
  * @param {string|number|boolean} defaultValue - Default value from Properties pane Default field
  */
-const getDefaultValue = (type, defaultValue = '') => {
+const getArgumentDefaultValue = (type, defaultValue = '') => {
 	switch (type) {
 		case 'ID':
 		case 'String': {
@@ -25,5 +25,5 @@ const getDefaultValue = (type, defaultValue = '') => {
 };
 
 module.exports = {
-	getDefaultValue,
+	getArgumentDefaultValue,
 };

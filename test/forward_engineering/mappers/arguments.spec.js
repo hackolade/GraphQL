@@ -11,9 +11,9 @@ mock.module('../../../forward_engineering/mappers/directives', {
 		getDirectivesUsageStatement: getDirectivesUsageStatementMock,
 	},
 });
-mock.module('../../../forward_engineering/mappers/defaultValue', {
+mock.module('../../../forward_engineering/mappers/argumentDefaultValue', {
 	namedExports: {
-		getDefaultValue: getDefaultValueMock,
+		getArgumentDefaultValue: getDefaultValueMock,
 	},
 });
 mock.module('../../../forward_engineering/helpers/feStatementJoinHelper', {
