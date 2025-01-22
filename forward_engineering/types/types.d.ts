@@ -3,7 +3,7 @@ export type FEStatement = {
 	description?: string;
 	isActivated?: boolean;
 	nestedStatements?: FEStatement[];
-	useCNestedStatementSigns?: boolean;
+	useNestedStatementSigns?: boolean;
 	nestedStatementsSeparator?: string;
 	startNestedStatementsSign?: string;
 	endNestedStatementsSign?: string;
