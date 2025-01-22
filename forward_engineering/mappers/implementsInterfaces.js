@@ -10,7 +10,7 @@
  * @param {IdToNameMap} param0.definitionsIdToNameMap - The definitions id to name map.
  * @returns {string} - The implements interfaces statement.
  */
-function getImplementsInterfacesStatement({ interfaces, definitionsIdToNameMap }) {
+function getImplementsInterfacesStatement({ interfaces = [], definitionsIdToNameMap }) {
 	const implementedInterfacesList = getImplementedInterfacesList({ interfaces, definitionsIdToNameMap });
 	if (!implementedInterfacesList.length) {
 		return '';

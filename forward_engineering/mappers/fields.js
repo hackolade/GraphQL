@@ -105,4 +105,7 @@ function addRequiredField({ field, required }) {
 
 module.exports = {
 	getFields,
+	// exported only for tests:
+	mapField,
+	getFieldType,
 };
