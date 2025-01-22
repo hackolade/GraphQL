@@ -1327,6 +1327,13 @@ making sure that you maintain a proper JSON format.
 							"propertyType": "text"
 						},
 						{
+							"propertyName": "Description",
+							"propertyKeyword": "description",
+							"fieldType": "details",
+							"template": "textarea",
+							"valueType": "string"
+						},
+						{
 							"propertyName": "Directives",
 							"propertyKeyword": "directives",
 							"propertyTooltip": "Argument directives",
@@ -1431,6 +1438,13 @@ making sure that you maintain a proper JSON format.
 							"propertyKeyword": "default",
 							"propertyTooltip": "Enter default value",
 							"propertyType": "text"
+						},
+						{
+							"propertyName": "Description",
+							"propertyKeyword": "description",
+							"fieldType": "details",
+							"template": "textarea",
+							"valueType": "string"
 						},
 						{
 							"propertyName": "Directives",
@@ -1539,6 +1553,13 @@ making sure that you maintain a proper JSON format.
 							"propertyType": "text"
 						},
 						{
+							"propertyName": "Description",
+							"propertyKeyword": "description",
+							"fieldType": "details",
+							"template": "textarea",
+							"valueType": "string"
+						},
+						{
 							"propertyName": "Directives",
 							"propertyKeyword": "directives",
 							"propertyTooltip": "Argument directives",
@@ -1643,6 +1664,13 @@ making sure that you maintain a proper JSON format.
 							"propertyKeyword": "default",
 							"propertyTooltip": "Enter default value",
 							"propertyType": "text"
+						},
+						{
+							"propertyName": "Description",
+							"propertyKeyword": "description",
+							"fieldType": "details",
+							"template": "textarea",
+							"valueType": "string"
 						},
 						{
 							"propertyName": "Directives",
@@ -1751,6 +1779,13 @@ making sure that you maintain a proper JSON format.
 							"propertyType": "text"
 						},
 						{
+							"propertyName": "Description",
+							"propertyKeyword": "description",
+							"fieldType": "details",
+							"template": "textarea",
+							"valueType": "string"
+						},
+						{
 							"propertyName": "Directives",
 							"propertyKeyword": "directives",
 							"propertyTooltip": "Argument directives",
@@ -1855,6 +1890,13 @@ making sure that you maintain a proper JSON format.
 							"propertyKeyword": "default",
 							"propertyTooltip": "Enter default value",
 							"propertyType": "text"
+						},
+						{
+							"propertyName": "Description",
+							"propertyKeyword": "description",
+							"fieldType": "details",
+							"template": "textarea",
+							"valueType": "string"
 						},
 						{
 							"propertyName": "Directives",
@@ -1962,6 +2004,13 @@ making sure that you maintain a proper JSON format.
 							"propertyKeyword": "default",
 							"propertyTooltip": "Enter default value",
 							"propertyType": "text"
+						},
+						{
+							"propertyName": "Description",
+							"propertyKeyword": "description",
+							"fieldType": "details",
+							"template": "textarea",
+							"valueType": "string"
 						},
 						{
 							"propertyName": "Directives",
@@ -2080,6 +2129,13 @@ making sure that you maintain a proper JSON format.
 							"propertyType": "text"
 						},
 						{
+							"propertyName": "Description",
+							"propertyKeyword": "description",
+							"fieldType": "details",
+							"template": "textarea",
+							"valueType": "string"
+						},
+						{
 							"propertyName": "Directives",
 							"propertyKeyword": "directives",
 							"propertyTooltip": "Argument directives",
@@ -2194,6 +2250,13 @@ making sure that you maintain a proper JSON format.
 							"propertyKeyword": "default",
 							"propertyTooltip": "Enter default value",
 							"propertyType": "text"
+						},
+						{
+							"propertyName": "Description",
+							"propertyKeyword": "description",
+							"fieldType": "details",
+							"template": "textarea",
+							"valueType": "string"
 						},
 						{
 							"propertyName": "Directives",
@@ -2312,6 +2375,13 @@ making sure that you maintain a proper JSON format.
 							"propertyType": "text"
 						},
 						{
+							"propertyName": "Description",
+							"propertyKeyword": "description",
+							"fieldType": "details",
+							"template": "textarea",
+							"valueType": "string"
+						},
+						{
 							"propertyName": "Directives",
 							"propertyKeyword": "directives",
 							"propertyTooltip": "Argument directives",
@@ -2413,6 +2483,13 @@ making sure that you maintain a proper JSON format.
 							"propertyType": "text"
 						},
 						{
+							"propertyName": "Description",
+							"propertyKeyword": "description",
+							"fieldType": "details",
+							"template": "textarea",
+							"valueType": "string"
+						},
+						{
 							"propertyName": "Directives",
 							"propertyKeyword": "directives",
 							"propertyTooltip": "Argument directives",
@@ -2511,6 +2588,13 @@ making sure that you maintain a proper JSON format.
 							"propertyKeyword": "default",
 							"propertyTooltip": "Enter default value",
 							"propertyType": "text"
+						},
+						{
+							"propertyName": "Description",
+							"propertyKeyword": "description",
+							"fieldType": "details",
+							"template": "textarea",
+							"valueType": "string"
 						},
 						{
 							"propertyName": "Directives",

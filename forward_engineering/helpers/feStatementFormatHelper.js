@@ -1,10 +1,10 @@
+/**
+ * @import { FEStatement } from "../types/types"
+ */
+
 const { commentOutDeactivatedRootFEStatement } = require('./deactivatedItemsHelper');
 const { getStatementDescription } = require('./descriptionsHelper');
 const { addIndentToStatement } = require('./feStatementIndentHelper');
-
-/**
- * @typedef { import("../types/types").FEStatement } FEStatement
- */
 
 /**
  * Combines the description and statement, and comments out the statement if it is deactivated.
@@ -20,7 +20,10 @@ function formatFEStatement({ feStatement }) {
 		description,
 		isActivated = true,
 		nestedStatements,
-		useCurlyBracketsForNestedStatements = true,
+		useNestedStatementSigns = true,
+		startNestedStatementsSign = '{',
+		endNestedStatementsSign = '}',
+		nestedStatementsSeparator = '\n',
 	} = feStatement;
 	let result = '';
 
@@ -36,10 +39,10 @@ function formatFEStatement({ feStatement }) {
 			.map(nestedStatement =>
 				addIndentToStatement({ statement: formatFEStatement({ feStatement: nestedStatement }) }),
 			)
-			.join('\n');
+			.join(nestedStatementsSeparator);
 
-		if (useCurlyBracketsForNestedStatements) {
-			result += ` {\n${formattedNestedStatements}\n}`;
+		if (useNestedStatementSigns) {
+			result += ` ${startNestedStatementsSign}\n${formattedNestedStatements}\n${endNestedStatementsSign}`;
 		} else {
 			result += `\n${formattedNestedStatements}`;
 		}
