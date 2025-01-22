@@ -632,6 +632,7 @@ making sure that you maintain a proper JSON format.
 			],
 			"enum": [
 				"name",
+				"description",
 				{
 					"propertyName": "Enum values",
 					"propertyKeyword": "enumValues",
@@ -685,7 +686,6 @@ making sure that you maintain a proper JSON format.
 						}
 					]
 				},
-				"description",
 				{
 					"propertyName": "Required",
 					"propertyKeyword": "required",
