@@ -1,9 +1,10 @@
 /**
  * Get the default value for the given type with proper formatting.
- * @param {string} type - GraphQL type
- * @param {string|number|boolean} defaultValue - Default value from Properties pane Default field
+ * @param {Object} args - getArgumentDefaultValue arguments object
+ * @param {string} args.type - GraphQL type
+ * @param {string|number|boolean} [args.defaultValue] - Default value from Properties pane Default field
  */
-const getArgumentDefaultValue = (type, defaultValue = '') => {
+const getArgumentDefaultValue = ({ type, defaultValue = '' }) => {
 	switch (type) {
 		case 'ID':
 		case 'String': {

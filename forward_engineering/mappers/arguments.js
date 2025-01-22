@@ -9,26 +9,30 @@ const { formatFEStatement } = require('../helpers/feStatementFormatHelper');
 
 /**
  * Gets the type of the argument with the required keyword.
- * @param {Argument} argument - The argument to map.
- * @param {IdToNameMap} [idToNameMap] - The ID to name map of all available types in model.
+ * @param {Object} args - arguments object.
+ * @param {Argument} args.argument - The argument to map.
+ * @param {IdToNameMap} [args.idToNameMap] - The ID to name map of all available types in model.
  * @returns {string} returns the type of the argument with the required keyword
  */
-const getArgumentType = (argument, idToNameMap = {}) => {
+const getArgumentType = ({ argument, idToNameMap = {} }) => {
 	const argumentType = idToNameMap[argument.type] || argument.type;
 	return argument.required ? argument.required.replace('<Type>', argumentType) : argumentType;
 };
 
 /**
  * Maps an argument to a string with all configured properties.
- * @param {Argument} argument - The argument to map.
- * @param {IdToNameMap} [idToNameMap] - The ID to name map of all available types in model.
+ * @param {Object} args - arguments object.
+ * @param {Argument} args.argument - The argument to map.
+ * @param {IdToNameMap} [args.idToNameMap] - The ID to name map of all available types in model.
  * @returns {FEStatement} returns the argument as a FEStatement
  */
-const mapArgument = (argument, idToNameMap = {}) => {
+const mapArgument = ({ argument, idToNameMap = {} }) => {
 	const argumentName = `${argument.name}:`;
-	const argumentType = getArgumentType(argument, idToNameMap);
+	const argumentType = getArgumentType({ argument, idToNameMap });
 	const directivesStatement = getDirectivesUsageStatement({ directives: argument.directives });
-	const defaultValue = argument.default ? `= ${getArgumentDefaultValue(argument.type, argument.default)}` : '';
+	const defaultValue = argument.default
+		? `= ${getArgumentDefaultValue({ type: argument.type, defaultValue: argument.default })}`
+		: '';
 
 	const statement = joinInlineStatements({
 		statements: [argumentName, argumentType, defaultValue, directivesStatement],
@@ -42,13 +46,14 @@ const mapArgument = (argument, idToNameMap = {}) => {
 
 /**
  * Maps an array of arguments to a formated string with all configured properties.
- * @param {Argument[]} arguments - The arguments to map.
- * @param {IdToNameMap} [idToNameMap] - The ID to name map of all available types in model.
+ * @param {Object} args - arguments object.
+ * @param {Argument[]} args.arguments - The arguments to map.
+ * @param {IdToNameMap} [args.idToNameMap] - The ID to name map of all available types in model.
  * @returns {string} - returns the arguments list as a formated string
  */
-const getArguments = (arguments, idToNameMap = {}) => {
+const getArguments = ({ arguments, idToNameMap = {} }) => {
 	const hasDescription = arguments.some(argument => argument.description);
-	const argumentStatements = arguments.map(argument => mapArgument(argument, idToNameMap));
+	const argumentStatements = arguments.map(argument => mapArgument({ argument, idToNameMap }));
 
 	if (!hasDescription) {
 		// For current state of code if arguments don't have any description we return them as a single line
