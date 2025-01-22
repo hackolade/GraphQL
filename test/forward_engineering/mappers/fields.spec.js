@@ -32,7 +32,10 @@ const { getFields, mapField, getFieldType } = require('../../../forward_engineer
 
 describe('mapField', () => {
 	afterEach(() => {
-		mock.restoreAll();
+		getDirectivesUsageStatementMock.mock.resetCalls();
+		getDefinitionNameFromReferencePathMock.mock.resetCalls();
+		joinInlineStatementsMock.mock.resetCalls();
+		getArgumentsMock.mock.resetCalls();
 	});
 
 	it('should map a field to an FEStatement', () => {
@@ -58,7 +61,10 @@ describe('mapField', () => {
 
 describe('getFields', () => {
 	afterEach(() => {
-		mock.restoreAll();
+		getDirectivesUsageStatementMock.mock.resetCalls();
+		getDefinitionNameFromReferencePathMock.mock.resetCalls();
+		joinInlineStatementsMock.mock.resetCalls();
+		getArgumentsMock.mock.resetCalls();
 	});
 
 	it('should return an array of FEStatements', () => {
@@ -78,7 +84,10 @@ describe('getFields', () => {
 
 describe('getFieldType', () => {
 	afterEach(() => {
-		mock.restoreAll();
+		getDirectivesUsageStatementMock.mock.resetCalls();
+		getDefinitionNameFromReferencePathMock.mock.resetCalls();
+		joinInlineStatementsMock.mock.resetCalls();
+		getArgumentsMock.mock.resetCalls();
 	});
 
 	it('should return the field type with required indicator for reference fields', () => {
