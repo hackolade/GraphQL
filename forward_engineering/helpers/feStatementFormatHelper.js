@@ -25,34 +25,64 @@ function formatFEStatement({ feStatement }) {
 		endNestedStatementsSign = '}',
 		nestedStatementsSeparator = '\n',
 	} = feStatement;
+
 	let result = '';
 
-	if (description?.trim()) {
-		const formattedDescription = getStatementDescription({ description });
-		result += `${formattedDescription}\n`;
-	}
-
+	result += formatDescription(description);
 	result += statement;
-
-	if (nestedStatements?.length > 0) {
-		const formattedNestedStatements = nestedStatements
-			.map(nestedStatement =>
-				addIndentToStatement({ statement: formatFEStatement({ feStatement: nestedStatement }) }),
-			)
-			.join(nestedStatementsSeparator);
-
-		if (useNestedStatementSigns) {
-			result += ` ${startNestedStatementsSign}\n${formattedNestedStatements}\n${endNestedStatementsSign}`;
-		} else {
-			result += `\n${formattedNestedStatements}`;
-		}
-	}
+	result += formatNestedStatements({
+		nestedStatements,
+		isParentActivated: isActivated,
+		useNestedStatementSigns,
+		startNestedStatementsSign,
+		endNestedStatementsSign,
+		nestedStatementsSeparator,
+	});
 
 	if (!isActivated) {
 		result = commentOutDeactivatedRootFEStatement({ statement: result, isActivated });
 	}
 
 	return result;
+}
+
+function formatDescription(description) {
+	if (description?.trim()) {
+		const formattedDescription = getStatementDescription({ description });
+		return `${formattedDescription}\n`;
+	}
+	return '';
+}
+
+function formatNestedStatements({
+	nestedStatements,
+	isParentActivated,
+	useNestedStatementSigns,
+	startNestedStatementsSign,
+	endNestedStatementsSign,
+	nestedStatementsSeparator,
+}) {
+	if (!nestedStatements?.length) {
+		return '';
+	}
+
+	const formattedNestedStatements = nestedStatements
+		.map(nestedStatement => {
+			const formattedStatement = formatFEStatement({
+				feStatement: {
+					...nestedStatement,
+					isActivated: !isParentActivated ? true : nestedStatement.isActivated,
+				},
+			});
+			return addIndentToStatement({ statement: formattedStatement });
+		})
+		.join(nestedStatementsSeparator);
+
+	if (useNestedStatementSigns) {
+		return ` ${startNestedStatementsSign}\n${formattedNestedStatements}\n${endNestedStatementsSign}`;
+	} else {
+		return `\n${formattedNestedStatements}`;
+	}
 }
 
 module.exports = {
