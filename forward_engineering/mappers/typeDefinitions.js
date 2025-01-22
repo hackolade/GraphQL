@@ -1,6 +1,7 @@
 const { formatFEStatement } = require('../helpers/feStatementFormatHelper');
 const { getCustomScalars } = require('./customScalars');
 const { getEnums } = require('./enums');
+const { getObjectTypes } = require('./objectType');
 
 /**
  * Gets the type definition statements from model definitions.
@@ -14,8 +15,11 @@ function getTypeDefinitionStatements({ modelDefinitions }) {
 		customScalars: getModelDefinitionsBySubtype({ modelDefinitions, subtype: 'scalar' }),
 	});
 	const enums = getEnums({ enumsDefinitions: getModelDefinitionsBySubtype({ modelDefinitions, subtype: 'enum' }) });
+	const objectTypes = getObjectTypes({
+		objectTypes: getModelDefinitionsBySubtype({ modelDefinitions, subtype: 'object' }),
+	});
 
-	const typeDefinitions = [...customScalars, ...enums];
+	const typeDefinitions = [...customScalars, ...enums, ...objectTypes];
 	const formattedTypeDefinitions = typeDefinitions
 		.map(typeDefinition => formatFEStatement({ feStatement: typeDefinition }))
 		.join('\n\n');
