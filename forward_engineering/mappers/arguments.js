@@ -47,16 +47,16 @@ const mapArgument = ({ argument, idToNameMap = {} }) => {
 /**
  * Maps an array of arguments to a formatted string with all configured properties.
  * @param {Object} args - arguments object.
- * @param {Argument[]} args.argumentsData - The arguments to map.
+ * @param {Argument[]} args.graphqlArguments - The arguments to map.
  * @param {IdToNameMap} [args.idToNameMap] - The ID to name map of all available types in model.
  * @returns {string} - returns the arguments list as a formatted string
  */
-const getArguments = ({ argumentsData, idToNameMap = {} }) => {
-	if (!Array.isArray(argumentsData) || argumentsData.length === 0) {
+const getArguments = ({ graphqlArguments, idToNameMap = {} }) => {
+	if (!Array.isArray(graphqlArguments) || graphqlArguments.length === 0) {
 		return '';
 	}
-	const hasDescription = argumentsData.some(argument => argument.description);
-	const argumentStatements = argumentsData.map(argument => mapArgument({ argument, idToNameMap }));
+	const hasDescription = graphqlArguments.some(argument => argument.description);
+	const argumentStatements = graphqlArguments.map(argument => mapArgument({ argument, idToNameMap }));
 
 	if (!hasDescription) {
 		// For current state of code if arguments don't have any description we return them as a single line

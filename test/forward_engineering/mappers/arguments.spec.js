@@ -145,7 +145,7 @@ describe('getArguments', () => {
 	});
 
 	it('should return arguments as a single line if no descriptions are present', () => {
-		const argumentsData = [
+		const graphqlArguments = [
 			{ name: 'arg1', type: 'String' },
 			{ name: 'arg2', type: 'Int' },
 		];
@@ -153,14 +153,14 @@ describe('getArguments', () => {
 		joinInlineStatementsMock.mock.mockImplementationOnce(() => 'arg1: String', 0);
 		joinInlineStatementsMock.mock.mockImplementationOnce(() => 'arg2: Int', 1);
 
-		const result = getArguments({ argumentsData });
+		const result = getArguments({ graphqlArguments });
 
 		strictEqual(formatFEStatementMock.mock.calls.length, 0);
 		strictEqual(result, '(arg1: String, arg2: Int)');
 	});
 
 	it.skip('should return formatted arguments if descriptions are present', () => {
-		const argumentsData = [
+		const graphqlArguments = [
 			{ name: 'arg1', type: 'String', description: 'Argument description 1' },
 			{ name: 'arg2', type: 'Int', description: 'Argument description 2' },
 		];
@@ -170,7 +170,7 @@ describe('getArguments', () => {
 
 		formatFEStatementMock.mock.mockImplementationOnce(() => '(arg1: String, arg2: Int)');
 
-		const result = getArguments({ argumentsData });
+		const result = getArguments({ graphqlArguments });
 
 		strictEqual(formatFEStatementMock.mock.calls.length, 1);
 		strictEqual(result, '(arg1: String, arg2: Int)');

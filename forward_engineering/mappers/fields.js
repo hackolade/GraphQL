@@ -37,7 +37,7 @@ function getFields({ fields, requiredFields = [], definitionsIdToNameMap }) {
  * @returns {FEStatement}
  */
 function mapField({ name, fieldData, required, definitionsIdToNameMap }) {
-	const fieldArguments = getArguments({ argumentsData: fieldData.arguments, idToNameMap: definitionsIdToNameMap });
+	const fieldArguments = getArguments({ graphqlArguments: fieldData.arguments, idToNameMap: definitionsIdToNameMap });
 	const fieldNameStatement = joinInlineStatements({ statements: [name, fieldArguments] });
 	const fieldTypeStatement = `${fieldNameStatement}: ${getFieldType({ field: fieldData, required })}`;
 	const directivesStatement = getDirectivesUsageStatement({ directives: fieldData.typeDirectives });
