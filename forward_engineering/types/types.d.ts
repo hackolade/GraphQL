@@ -32,6 +32,7 @@ type RegularFieldData = {
 	description?: string; // Description of the field
 	typeDirectives?: DirectivePropertyData[]; // Directives for the type
 	items?: ArrayItem | ArrayItem[]; // Items of the List type
+	arguments?: Argument[]; // Arguments of the field
 }
 
 type ReferenceFieldData = {
@@ -39,6 +40,7 @@ type ReferenceFieldData = {
 	isActivated?: boolean; // If the field is activated
 	refDescription?: string; // Description of the reference
 	typeDirectives?: DirectivePropertyData[]; // Directives for the type
+	arguments?: Argument[]; // Arguments of the field
 }
 
 export type ArrayItem = FieldData & {

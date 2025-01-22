@@ -1,9 +1,10 @@
 /**
- * @import { FEStatement, DirectivePropertyData, FieldData, ArrayItem } from "../types/types"
+ * @import { FEStatement, DirectivePropertyData, FieldData, ArrayItem, IdToNameMap } from "../types/types"
  */
 
 const { joinInlineStatements } = require('../helpers/feStatementJoinHelper');
 const { getDefinitionNameFromReferencePath } = require('../helpers/referencesHelper');
+const { getArguments } = require('./arguments');
 const { getDirectivesUsageStatement } = require('./directives');
 
 /**
@@ -16,11 +17,12 @@ const { getDirectivesUsageStatement } = require('./directives');
  * @param {Object} param0
  * @param {FieldsData} param0.fields - The object types to get.
  * @param {string[]} param0.requiredFields - The required fields list.
+ * @param {IdToNameMap} param0.definitionsIdToNameMap - The definitions id to name map.
  * @returns {FEStatement[]} - The object types.
  */
-function getFields({ fields, requiredFields = [] }) {
+function getFields({ fields, requiredFields = [], definitionsIdToNameMap }) {
 	return Object.entries(fields).map(([name, fieldData]) =>
-		mapField({ name, fieldData, required: requiredFields.includes(name) }),
+		mapField({ name, fieldData, required: requiredFields.includes(name), definitionsIdToNameMap }),
 	);
 }
 
@@ -31,10 +33,11 @@ function getFields({ fields, requiredFields = [] }) {
  * @param {string} param0.name - The name of the field.
  * @param {FieldData} param0.fieldData - The field data object.
  * @param {boolean} param0.required - Indicates if the field is required.
+ * @param {IdToNameMap} param0.definitionsIdToNameMap - The definitions id to name map.
  * @returns {FEStatement}
  */
-function mapField({ name, fieldData, required }) {
-	const fieldArguments = ''; // TODO: get arguments
+function mapField({ name, fieldData, required, definitionsIdToNameMap }) {
+	const fieldArguments = getArguments({ argumentsData: fieldData.arguments, idToNameMap: definitionsIdToNameMap });
 	const fieldNameStatement = joinInlineStatements({ statements: [name, fieldArguments] });
 	const fieldTypeStatement = `${fieldNameStatement}: ${getFieldType({ field: fieldData, required })}`;
 	const directivesStatement = getDirectivesUsageStatement({ directives: fieldData.typeDirectives });

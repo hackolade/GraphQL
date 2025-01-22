@@ -48,7 +48,11 @@ function mapObjectType({ name, objectType, definitionsIdToNameMap }) {
 		}),
 		description: objectType.description,
 		isActivated: objectType.isActivated,
-		nestedStatements: getFields({ fields: objectType.properties, requiredFields: objectType.required }),
+		nestedStatements: getFields({
+			fields: objectType.properties,
+			requiredFields: objectType.required,
+			definitionsIdToNameMap,
+		}),
 	};
 }
 
