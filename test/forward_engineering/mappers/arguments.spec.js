@@ -30,9 +30,12 @@ mock.module('../../../forward_engineering/helpers/feStatementFormatHelper', {
 // This require should be after the mocks to ensure that the mocks are applied before the module is required
 const { getArguments, getArgumentType, mapArgument } = require('../../../forward_engineering/mappers/arguments');
 
-describe.skip('getArgumentType', () => {
+describe('getArgumentType', () => {
 	afterEach(() => {
-		mock.restore();
+		getDirectivesUsageStatementMock.mock.resetCalls();
+		getArgumentDefaultValueMock.mock.resetCalls();
+		joinInlineStatementsMock.mock.resetCalls();
+		formatFEStatementMock.mock.resetCalls();
 	});
 
 	it('should return the argument type if type is definition ID', () => {
@@ -103,7 +106,14 @@ describe.skip('getArgumentType', () => {
 	});
 });
 
-describe.skip('mapArgument', () => {
+describe('mapArgument', () => {
+	afterEach(() => {
+		getDirectivesUsageStatementMock.mock.resetCalls();
+		getArgumentDefaultValueMock.mock.resetCalls();
+		joinInlineStatementsMock.mock.resetCalls();
+		formatFEStatementMock.mock.resetCalls();
+	});
+
 	it('should map an argument to a string with all configured properties', () => {
 		const argument = {
 			name: 'arg1',
@@ -127,6 +137,13 @@ describe.skip('mapArgument', () => {
 });
 
 describe('getArguments', () => {
+	afterEach(() => {
+		getDirectivesUsageStatementMock.mock.resetCalls();
+		getArgumentDefaultValueMock.mock.resetCalls();
+		joinInlineStatementsMock.mock.resetCalls();
+		formatFEStatementMock.mock.resetCalls();
+	});
+
 	it('should return arguments as a single line if no descriptions are present', () => {
 		const arguments = [
 			{ name: 'arg1', type: 'String' },
