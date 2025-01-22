@@ -18,6 +18,7 @@ export type DirectivePropertyData = {
 export type ObjectTypeDefinition = {
 	description?: string; // Description of the object type
 	isActivated?: boolean; // If the object type is activated
+	implementsInterfaces?: ImplementsInterface[]; // Interfaces that the object type implements
 	typeDirectives?: DirectivePropertyData[]; // Directives for the type
 	properties: Record<string, FieldData>; // Properties of the object type
 }
@@ -58,3 +59,7 @@ export type Argument = {
 };
 
 export type IdToNameMap = Record<string, string>;
+
+export type ImplementsInterface = {
+	interface: string; // ID of the interface
+};
