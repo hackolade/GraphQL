@@ -1,5 +1,5 @@
 /**
- * @typedef { import("../types/types").DirectivePropertyData } DirectivePropertyData
+ * @import { DirectivePropertyData } from "../types/types"
  */
 
 const { joinInlineStatements } = require('../helpers/feStatementJoinHelper');
@@ -8,7 +8,7 @@ const { joinInlineStatements } = require('../helpers/feStatementJoinHelper');
  * Gets the directives property as a string.
  * @param {Object} param0
  * @param {DirectivePropertyData[]} param0.directives
- * @returns {String}
+ * @returns {string}
  */
 function getDirectivesUsageStatement({ directives = [] }) {
 	const mappedDirectives = directives.map(directive => mapDirectiveUsage({ directive })).filter(Boolean);
@@ -21,7 +21,7 @@ function getDirectivesUsageStatement({ directives = [] }) {
  * New line characters are replaced with spaces to avoid breaking the statement.
  * @param {Object} param0
  * @param {DirectivePropertyData} param0.directive
- * @returns {String}
+ * @returns {string}
  */
 function mapDirectiveUsage({ directive }) {
 	if (directive.directiveFormat === 'Raw') {

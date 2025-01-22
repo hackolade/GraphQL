@@ -1,13 +1,16 @@
 export type FEStatement = {
 	statement: string;
-	description: string;
+	description?: string;
 	isActivated?: boolean;
 	nestedStatements?: FEStatement[];
-	useCurlyBracketsForNestedStatements?: boolean;
-}
+	useNestedStatementSigns?: boolean;
+	nestedStatementsSeparator?: string;
+	startNestedStatementsSign?: string;
+	endNestedStatementsSign?: string;
+};
 
 export type DirectivePropertyData = {
-	directiveFormat: 'Raw',
+	directiveFormat: 'Raw';
 	rawDirective: string;
 }
 
@@ -40,3 +43,18 @@ type ReferenceFieldData = {
 export type ArrayItem = FieldData & {
 	required?: boolean; // If the array item is required
 };
+
+// Field arguments
+type ArgumentRequirements = '<Type>' | '<Type>!' | '[<Type>]' | '[<Type>]!' | '[<Type>!]' | '[<Type>!]!';
+
+export type Argument = {
+	id: string;
+	type: string;
+	name: string;
+	default?: string;
+	description?: string;
+	directives?: DirectivePropertyData[];
+	required?: ArgumentRequirements;
+};
+
+export type IdToNameMap = Record<string, string>;

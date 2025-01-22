@@ -1,6 +1,5 @@
 /**
- * @typedef { import("../types/types").FEStatement } FEStatement
- * @typedef { import("../types/types").DirectivePropertyData } DirectivePropertyData
+ * @import { FEStatement, DirectivePropertyData } from "../types/types"
  */
 
 const { joinInlineStatements } = require('../helpers/feStatementJoinHelper');
