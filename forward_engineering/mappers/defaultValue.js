@@ -1,7 +1,7 @@
 /**
  * Get the default value for the given type with proper formatting.
  * @param {string} type - GraphQL type
- * @param {string} defaultValue - Default value from Properties pane Default field
+ * @param {string|number} defaultValue - Default value from Properties pane Default field
  */
 const getDefaultValue = (type, defaultValue = '') => {
 	switch (type) {
