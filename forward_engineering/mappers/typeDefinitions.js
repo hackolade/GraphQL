@@ -6,26 +6,33 @@ const { formatFEStatement } = require('../helpers/feStatementFormatHelper');
 const { getCustomScalars } = require('./customScalars');
 const { getEnums } = require('./enums');
 const { getDirectives } = require('./directives');
+const { getObjectTypes } = require('./objectType');
+const { getUnions } = require('./unions');
 
 /**
  * Gets the type definition statements from model definitions.
  *
  * @param {Object} param0
  * @param {Object} param0.modelDefinitions - The model definitions object.
- * @param {IdToNameMap} param0.idToNameMap - The ID to name map of all available types
+ * @param {IdToNameMap} param0.definitionsIdToNameMap - The definitions id to name map.
  * @returns {string} - The formatted type definition statements.
  */
-function getTypeDefinitionStatements({ modelDefinitions, idToNameMap }) {
+function getTypeDefinitionStatements({ modelDefinitions, definitionsIdToNameMap }) {
 	const directives = getDirectives({
 		directives: getModelDefinitionsBySubtype({ modelDefinitions, subtype: 'directive' }),
-		idToNameMap,
+		definitionsIdToNameMap,
 	});
 	const customScalars = getCustomScalars({
 		customScalars: getModelDefinitionsBySubtype({ modelDefinitions, subtype: 'scalar' }),
 	});
 	const enums = getEnums({ enumsDefinitions: getModelDefinitionsBySubtype({ modelDefinitions, subtype: 'enum' }) });
+	const objectTypes = getObjectTypes({
+		objectTypes: getModelDefinitionsBySubtype({ modelDefinitions, subtype: 'object' }),
+		definitionsIdToNameMap,
+	});
+	const unions = getUnions({ unions: getModelDefinitionsBySubtype({ modelDefinitions, subtype: 'union' }) });
 
-	const typeDefinitions = [...directives, ...customScalars, ...enums];
+	const typeDefinitions = [...directives, ...customScalars, ...enums, ...objectTypes, ...unions];
 	const formattedTypeDefinitions = typeDefinitions
 		.map(typeDefinition => formatFEStatement({ feStatement: typeDefinition }))
 		.join('\n\n');

@@ -134,14 +134,11 @@ making sure that you maintain a proper JSON format.
 				"schemaId",
 				"type",
 				"description",
-				"required",
 				{
-					"propertyName": "Arguments",
-					"propertyKeyword": "arguments",
-					"propertyTooltip": "Popup for multi-line text entry",
-					"propertyType": "details",
-					"template": "textarea",
-					"markdown": false
+					"propertyKeyword": "required",
+					"propertyName": "Required",
+					"propertyType": "checkbox",
+					"propertyTooltip": "Check if this field is required"
 				},
 				{
 					"propertyName": "Directives",
@@ -204,14 +201,11 @@ making sure that you maintain a proper JSON format.
 				"schemaId",
 				"type",
 				"description",
-				"required",
 				{
-					"propertyName": "Arguments",
-					"propertyKeyword": "arguments",
-					"propertyTooltip": "Popup for multi-line text entry",
-					"propertyType": "details",
-					"template": "textarea",
-					"markdown": false
+					"propertyKeyword": "required",
+					"propertyName": "Required",
+					"propertyType": "checkbox",
+					"propertyTooltip": "Check if this field is required"
 				},
 				{
 					"propertyName": "Directives",
@@ -276,14 +270,11 @@ making sure that you maintain a proper JSON format.
 				"type",
 				"description",
 				"primaryKey",
-				"required",
 				{
-					"propertyName": "Arguments",
-					"propertyKeyword": "arguments",
-					"propertyTooltip": "Popup for multi-line text entry",
-					"propertyType": "details",
-					"template": "textarea",
-					"markdown": false
+					"propertyKeyword": "required",
+					"propertyName": "Required",
+					"propertyType": "checkbox",
+					"propertyTooltip": "Check if this field is required"
 				},
 				{
 					"propertyName": "Directives",
@@ -346,14 +337,11 @@ making sure that you maintain a proper JSON format.
 				"schemaId",
 				"type",
 				"description",
-				"required",
 				{
-					"propertyName": "Arguments",
-					"propertyKeyword": "arguments",
-					"propertyTooltip": "Popup for multi-line text entry",
-					"propertyType": "details",
-					"template": "textarea",
-					"markdown": false
+					"propertyKeyword": "required",
+					"propertyName": "Required",
+					"propertyType": "checkbox",
+					"propertyTooltip": "Check if this field is required"
 				},
 				{
 					"propertyName": "Directives",
@@ -416,14 +404,11 @@ making sure that you maintain a proper JSON format.
 				"schemaId",
 				"type",
 				"description",
-				"required",
 				{
-					"propertyName": "Arguments",
-					"propertyKeyword": "arguments",
-					"propertyTooltip": "Popup for multi-line text entry",
-					"propertyType": "details",
-					"template": "textarea",
-					"markdown": false
+					"propertyKeyword": "required",
+					"propertyName": "Required",
+					"propertyType": "checkbox",
+					"propertyTooltip": "Check if this field is required"
 				},
 				{
 					"propertyName": "Directives",
@@ -477,7 +462,12 @@ making sure that you maintain a proper JSON format.
 				},
 				"schemaId",
 				"description",
-				"required",
+				{
+					"propertyKeyword": "required",
+					"propertyName": "Required",
+					"propertyType": "checkbox",
+					"propertyTooltip": "Check if this field is required"
+				},
 				"minItems",
 				"maxItems",
 				"uniqueItems",
@@ -632,6 +622,7 @@ making sure that you maintain a proper JSON format.
 			],
 			"enum": [
 				"name",
+				"description",
 				{
 					"propertyName": "Enum values",
 					"propertyKeyword": "enumValues",
@@ -685,7 +676,6 @@ making sure that you maintain a proper JSON format.
 						}
 					]
 				},
-				"description",
 				{
 					"propertyName": "Required",
 					"propertyKeyword": "required",
