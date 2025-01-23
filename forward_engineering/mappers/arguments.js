@@ -2,7 +2,7 @@
  * @import { Argument, IdToNameMap, FEStatement } from "../types/types"
  */
 
-const { getDirectivesUsageStatement } = require('./directives');
+const { getDirectivesUsageStatement } = require('./directiveUsageStatements');
 const { getArgumentDefaultValue } = require('./argumentDefaultValue');
 const { joinInlineStatements } = require('../helpers/feStatementJoinHelper');
 const { formatFEStatement } = require('../helpers/feStatementFormatHelper');
@@ -56,7 +56,9 @@ const getArguments = ({ graphqlArguments, idToNameMap = {} }) => {
 		return '';
 	}
 	const hasDescription = graphqlArguments.some(argument => argument.description);
-	const argumentStatements = graphqlArguments.map(argument => mapArgument({ argument, idToNameMap }));
+	const argumentStatements = graphqlArguments
+		.filter(argument => argument.name && argument.type)
+		.map(argument => mapArgument({ argument, idToNameMap }));
 
 	if (!hasDescription) {
 		// For current state of code if arguments don't have any description we return them as a single line

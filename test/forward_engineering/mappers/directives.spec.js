@@ -1,40 +1,139 @@
-const { describe, it } = require('node:test');
-const assert = require('node:assert');
-const { getDirectivesUsageStatement } = require('../../../forward_engineering/mappers/directives');
+const { describe, it, mock, afterEach } = require('node:test');
+const { strictEqual, deepStrictEqual } = require('node:assert');
 
-describe('getDirectivesUsageStatement', () => {
-	it('should return an empty string when no directives are provided', () => {
-		const result = getDirectivesUsageStatement({ directives: [] });
-		assert.strictEqual(result, '');
+const getArgumentsMock = mock.fn(() => '');
+
+mock.module('../../../forward_engineering/mappers/arguments', {
+	namedExports: {
+		getArguments: getArgumentsMock,
+	},
+});
+
+// This require should be after the mocks to ensure that the mocks are applied before the module is required
+const {
+	getDirectives,
+	mapDirective,
+	getDirectiveName,
+	mapDirectiveLocations,
+} = require('../../../forward_engineering/mappers/directives');
+
+describe('getDirectiveName', () => {
+	it('should return the directive name with "@" prefix if not present', () => {
+		const result = getDirectiveName('directiveName');
+		strictEqual(result, '@directiveName');
 	});
 
-	it('should return a single directive when one directive is provided', () => {
-		const directives = [{ directiveFormat: 'Raw', rawDirective: '@directive1' }];
-		const result = getDirectivesUsageStatement({ directives });
-		assert.strictEqual(result, '@directive1');
+	it('should return the directive name as is if "@" prefix is present', () => {
+		const result = getDirectiveName('@directiveName');
+		strictEqual(result, '@directiveName');
+	});
+});
+
+describe('mapDirectiveLocations', () => {
+	it('should skip id key in directive locations object', () => {
+		const directiveLocations = { id: '12', query: true };
+		const result = mapDirectiveLocations({ directiveLocations });
+		strictEqual(result, 'QUERY');
 	});
 
-	it('should return multiple directives joined by a space', () => {
-		const directives = [
-			{ directiveFormat: 'Raw', rawDirective: '@directive1' },
-			{ directiveFormat: 'Raw', rawDirective: '@directive2' },
-		];
-		const result = getDirectivesUsageStatement({ directives });
-		assert.strictEqual(result, '@directive1 @directive2');
+	it('should map directive locations to a string', () => {
+		const directiveLocations = { field: true, query: true };
+		const result = mapDirectiveLocations({ directiveLocations });
+		strictEqual(result, 'FIELD | QUERY');
 	});
 
-	it('should replace new lines in rawDirective with spaces', () => {
-		const directives = [{ directiveFormat: 'Raw', rawDirective: '@directive1\nline2' }];
-		const result = getDirectivesUsageStatement({ directives });
-		assert.strictEqual(result, '@directive1 line2');
+	it('should return UNKNOWN_LOCATION if no valid locations are provided', () => {
+		const directiveLocations = {};
+		const result = mapDirectiveLocations({ directiveLocations });
+		strictEqual(result, 'UNKNOWN_LOCATION # Please specify the directive locations');
+	});
+});
+
+describe('mapDirective', () => {
+	afterEach(() => {
+		getArgumentsMock.mock.resetCalls();
 	});
 
-	it('should ignore directives that are not in Raw format', () => {
-		const directives = [
-			{ directiveFormat: 'NonRaw', rawDirective: '@directive1' },
-			{ directiveFormat: 'Raw', rawDirective: '@directive2' },
-		];
-		const result = getDirectivesUsageStatement({ directives });
-		assert.strictEqual(result, '@directive2');
+	it('should map a directive to an FEStatement object', () => {
+		const directive = {
+			directiveLocations: { field: true },
+			arguments: [
+				{
+					id: '1',
+					type: 'String',
+					name: 'testArgument',
+				},
+			],
+			description: 'A test directive',
+			isActivated: true,
+		};
+		const idToNameMap = {};
+
+		getArgumentsMock.mock.mockImplementationOnce(() => '(testArgument: String)');
+
+		const result = mapDirective({ name: 'testDirective', directive, idToNameMap });
+
+		strictEqual(getArgumentsMock.mock.calls.length, 1);
+		deepStrictEqual(result, {
+			statement: 'directive @testDirective(testArgument: String) on FIELD',
+			description: 'A test directive',
+			isActivated: true,
+		});
+	});
+
+	it("should map a directive to an FEStatement object if directive doesn't have arguments", () => {
+		const directive = {
+			directiveLocations: { field: true },
+			description: 'A test directive',
+			isActivated: true,
+		};
+		const idToNameMap = {};
+
+		const result = mapDirective({ name: 'testDirective', directive, idToNameMap });
+
+		deepStrictEqual(result, {
+			statement: 'directive @testDirective on FIELD',
+			description: 'A test directive',
+			isActivated: true,
+		});
+	});
+
+	it('should map a directive to an FEStatement object if directive is deactivated', () => {
+		const directive = {
+			directiveLocations: { field: true },
+			description: 'A test directive',
+			isActivated: false,
+		};
+		const idToNameMap = {};
+
+		const result = mapDirective({ name: 'testDirective', directive, idToNameMap });
+
+		deepStrictEqual(result, {
+			statement: 'directive @testDirective on FIELD',
+			description: 'A test directive',
+			isActivated: false,
+		});
+	});
+});
+
+describe('getDirectives', () => {
+	it('should map directives to an array of FEStatement objects', () => {
+		const directives = {
+			testDirective: {
+				directiveLocations: { field: true },
+				arguments: [],
+				description: 'A test directive',
+				isActivated: true,
+			},
+		};
+		const idToNameMap = {};
+		const result = getDirectives({ idToNameMap, directives });
+		deepStrictEqual(result, [
+			{
+				statement: 'directive @testDirective on FIELD',
+				description: 'A test directive',
+				isActivated: true,
+			},
+		]);
 	});
 });

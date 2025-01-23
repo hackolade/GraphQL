@@ -5,6 +5,7 @@
 const { formatFEStatement } = require('../helpers/feStatementFormatHelper');
 const { getCustomScalars } = require('./customScalars');
 const { getEnums } = require('./enums');
+const { getDirectives } = require('./directives');
 const { getObjectTypes } = require('./objectType');
 const { getUnions } = require('./unions');
 
@@ -17,6 +18,10 @@ const { getUnions } = require('./unions');
  * @returns {string} - The formatted type definition statements.
  */
 function getTypeDefinitionStatements({ modelDefinitions, definitionsIdToNameMap }) {
+	const directives = getDirectives({
+		directives: getModelDefinitionsBySubtype({ modelDefinitions, subtype: 'directive' }),
+		definitionsIdToNameMap,
+	});
 	const customScalars = getCustomScalars({
 		customScalars: getModelDefinitionsBySubtype({ modelDefinitions, subtype: 'scalar' }),
 	});
@@ -27,7 +32,7 @@ function getTypeDefinitionStatements({ modelDefinitions, definitionsIdToNameMap 
 	});
 	const unions = getUnions({ unions: getModelDefinitionsBySubtype({ modelDefinitions, subtype: 'union' }) });
 
-	const typeDefinitions = [...customScalars, ...enums, ...objectTypes, ...unions];
+	const typeDefinitions = [...directives, ...customScalars, ...enums, ...objectTypes, ...unions];
 	const formattedTypeDefinitions = typeDefinitions
 		.map(typeDefinition => formatFEStatement({ feStatement: typeDefinition }))
 		.join('\n\n');

@@ -21,7 +21,7 @@ mock.module('../../../forward_engineering/mappers/arguments', {
 		getArguments: getArgumentsMock,
 	},
 });
-mock.module('../../../forward_engineering/mappers/directives', {
+mock.module('../../../forward_engineering/mappers/directiveUsageStatements', {
 	namedExports: {
 		getDirectivesUsageStatement: getDirectivesUsageStatementMock,
 	},
