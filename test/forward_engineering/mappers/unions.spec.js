@@ -17,7 +17,7 @@ mock.module('../../../forward_engineering/helpers/feStatementJoinHelper', {
 	},
 });
 
-mock.module('../../../forward_engineering/mappers/directives', {
+mock.module('../../../forward_engineering/mappers/directiveUsageStatements', {
 	namedExports: {
 		getDirectivesUsageStatement: getDirectivesUsageStatementMock,
 	},
