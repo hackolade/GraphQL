@@ -176,6 +176,23 @@ describe('getArguments', () => {
 		strictEqual(result, '(arg1: String, arg2: Int)');
 	});
 
+	it.skip("should skip arguments which don't have name or type or both", () => {
+		const graphqlArguments = [
+			{ type: 'String' }, // missing name
+			{ name: 'arg2' }, // missing type
+			{ description: 'Argument description 3' }, // missing name and type
+			{ name: 'arg1', type: 'String', description: 'Argument description 1' }, // valid
+		];
+
+		joinInlineStatementsMock.mock.mockImplementationOnce(() => 'arg1: String', 0);
+		formatFEStatementMock.mock.mockImplementationOnce(() => '(arg1: String)');
+
+		const result = getArguments({ graphqlArguments });
+
+		strictEqual(formatFEStatementMock.mock.calls.length, 1);
+		strictEqual(result, '(arg1: String)');
+	});
+
 	it('should return empty string if arguments is empty list', () => {
 		const graphqlArguments = [];
 		const result = getArguments({ graphqlArguments });
