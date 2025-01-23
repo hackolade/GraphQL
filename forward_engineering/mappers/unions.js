@@ -1,10 +1,10 @@
 /**
- * @import { UnionSchema, FEStatement, Union } from "../../types/types"
+ * @import { UnionDefinitions, FEStatement, Union } from "../../types/types"
  */
 
 const { getDefinitionNameFromReferencePath } = require('../helpers/referenceHelper');
 const { joinInlineStatements } = require('../helpers/feStatementJoinHelper');
-const { getDirectivesUsageStatement } = require('./directives');
+const { getDirectivesUsageStatement } = require('./directiveUsageStatements');
 
 /**
  * Map the union member types to a string.
@@ -45,7 +45,7 @@ const mapUnion = ({ name, union }) => {
  * Maps the union types to an array of FEStatement.
  *
  * @param {Object} args - The arguments
- * @param {UnionSchema} args.unions - The union types schema.
+ * @param {UnionDefinitions} args.unions - The union types schema.
  * @return {FEStatement[]}
  */
 const getUnions = ({ unions }) => {

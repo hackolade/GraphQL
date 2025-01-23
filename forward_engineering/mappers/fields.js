@@ -5,7 +5,7 @@
 const { joinInlineStatements } = require('../helpers/feStatementJoinHelper');
 const { getDefinitionNameFromReferencePath } = require('../helpers/referencesHelper');
 const { getArguments } = require('./arguments');
-const { getDirectivesUsageStatement } = require('./directives');
+const { getDirectivesUsageStatement } = require('./directiveUsageStatements');
 
 /**
  * @typedef {Object.<string, FieldData>} FieldsData

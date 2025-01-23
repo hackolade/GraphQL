@@ -1,5 +1,5 @@
 /**
- * @import { DirectivesSchema, Directive, FEStatement, DirectiveLocations, IdToNameMap } from "../types/types"
+ * @import { DirectiveDefinitions, Directive, FEStatement, DirectiveLocations, IdToNameMap } from "../types/types"
  */
 
 const { DIRECTIVE_LOCATIONS } = require('../constants/feScriptConstants');
@@ -41,13 +41,16 @@ const getDirectiveName = name => (name.startsWith('@') ? name : `@${name}`);
  * @param {Object} args - The arguments object
  * @param {string} args.name - The name of directive
  * @param {Directive} args.directive - The directive object
- * @param {IdToNameMap} args.idToNameMap - The ID to name map of all available types in model - needs for arguments
+ * @param {IdToNameMap} args.definitionsIdToNameMap - The ID to name map of all available types in model - needs for arguments
  * @return {FEStatement}
  */
-function mapDirective({ name, directive, idToNameMap }) {
+function mapDirective({ name, directive, definitionsIdToNameMap }) {
 	const directiveName = getDirectiveName(name);
 	const directiveLocations = mapDirectiveLocations({ directiveLocations: directive.directiveLocations });
-	const directiveArguments = getArguments({ arguments: directive.arguments, idToNameMap });
+	const directiveArguments = getArguments({
+		graphqlArguments: directive.arguments,
+		idToNameMap: definitionsIdToNameMap,
+	});
 
 	return {
 		statement: `directive ${directiveName}${directiveArguments} on ${directiveLocations}`,
@@ -60,11 +63,17 @@ function mapDirective({ name, directive, idToNameMap }) {
  * Maps directives to an FEStatement objects.
  *
  * @param {Object} args - The arguments object
- * @param {DirectivesSchema} args.directives - The directives schema object
+ * @param {DirectiveDefinitions} args.definitionsIdToNameMap - The directives schema object
  * @returns {FEStatement[]}
  */
-function getDirectives({ idToNameMap, directives = {} }) {
-	return Object.entries(directives).map(([name, directive]) => mapDirective({ name, directive, idToNameMap }));
+function getDirectives({ definitionsIdToNameMap, directives = {} }) {
+	return Object.entries(directives).map(([name, directive]) =>
+		mapDirective({
+			name,
+			directive,
+			definitionsIdToNameMap,
+		}),
+	);
 }
 
 module.exports = {

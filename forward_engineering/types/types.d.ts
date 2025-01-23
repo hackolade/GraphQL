@@ -9,10 +9,7 @@ export type FEStatement = {
 	endNestedStatementsSign?: string;
 };
 
-export type DirectivePropertyData = {
-	directiveFormat: 'Raw';
-	rawDirective: string;
-}
+export type IdToNameMap = Record<string, string>;
 
 // Object type definition
 export type ObjectTypeDefinitions = Record<string, ObjectTypeDefinition>;
@@ -62,8 +59,6 @@ export type Argument = {
 	required?: ArgumentRequirements;
 };
 
-export type IdToNameMap = Record<string, string>;
-
 // Directives
 export type DirectiveLocations = {
 	GUID: string;
@@ -97,7 +92,12 @@ export type Directive = {
 	arguments?: Argument[];
 }
 
-export type DirectivesSchema = Record<string, Directive>
+export type DirectiveDefinitions = Record<string, Directive>
+
+export type DirectivePropertyData = {
+	directiveFormat: 'Raw';
+	rawDirective: string;
+}
 
 export type ImplementsInterface = {
 	interface: string; // ID of the interface
@@ -132,4 +132,4 @@ export type Union = {
 	snippet: 'union';
 }
 
-export type UnionSchema = Record<string, Union>
+export type UnionDefinitions = Record<string, Union>

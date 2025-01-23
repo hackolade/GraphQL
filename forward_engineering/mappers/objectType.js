@@ -3,7 +3,7 @@
  */
 
 const { joinInlineStatements } = require('../helpers/feStatementJoinHelper');
-const { getDirectivesUsageStatement } = require('./directives');
+const { getDirectivesUsageStatement } = require('./directiveUsageStatements');
 const { getFields } = require('./fields');
 const { getImplementsInterfacesStatement } = require('./implementsInterfaces');
 
