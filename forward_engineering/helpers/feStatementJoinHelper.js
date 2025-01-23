@@ -8,7 +8,7 @@
  */
 function joinInlineStatements({ statements }) {
 	return statements
-		.map(statement => statement.trim())
+		.map(statement => statement?.trim())
 		.filter(statement => typeof statement === 'string' && statement.length > 0)
 		.join(' ');
 }
