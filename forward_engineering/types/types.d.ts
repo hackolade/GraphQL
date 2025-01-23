@@ -15,6 +15,8 @@ export type DirectivePropertyData = {
 }
 
 // Object type definition
+export type ObjectTypeDefinitions = Record<string, ObjectTypeDefinition>;
+
 export type ObjectTypeDefinition = {
 	description?: string; // Description of the object type
 	isActivated?: boolean; // If the object type is activated

@@ -1,15 +1,11 @@
 /**
- * @import { FEStatement, DirectivePropertyData, ObjectTypeDefinition, IdToNameMap, ImplementsInterface } from "../types/types"
+ * @import { FEStatement, DirectivePropertyData, ObjectTypeDefinition, ObjectTypeDefinitions, IdToNameMap, ImplementsInterface } from "../types/types"
  */
 
 const { joinInlineStatements } = require('../helpers/feStatementJoinHelper');
 const { getDirectivesUsageStatement } = require('./directives');
 const { getFields } = require('./fields');
 const { getImplementsInterfacesStatement } = require('./implementsInterfaces');
-
-/**
- * @typedef {Object.<string, EnumDefinition>} ObjectTypeDefinitions
- */
 
 /**
  * Gets the object types from the model definitions.
