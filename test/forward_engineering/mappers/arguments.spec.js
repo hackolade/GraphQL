@@ -176,9 +176,21 @@ describe('getArguments', () => {
 		strictEqual(result, '(arg1: String, arg2: Int)');
 	});
 
-	it('should return empty string if arguments is empty list or undefined', () => {
-		const arguments = [];
-		const result = getArguments({ arguments });
+	it('should return empty string if arguments is empty list', () => {
+		const graphqlArguments = [];
+		const result = getArguments({ graphqlArguments });
+		strictEqual(result, '');
+	});
+
+	it('should return empty string if arguments is undefined', () => {
+		const graphqlArguments = undefined;
+		const result = getArguments({ graphqlArguments });
+		strictEqual(result, '');
+	});
+
+	it('should return empty string if arguments is not an array', () => {
+		const graphqlArguments = {};
+		const result = getArguments({ graphqlArguments });
 		strictEqual(result, '');
 	});
 });
