@@ -12,9 +12,9 @@ export type FEStatement = {
 export type IdToNameMap = Record<string, string>;
 
 // Object type definition
-export type ObjectTypeDefinitions = Record<string, ObjectTypeDefinition>;
+export type ObjectLikeTypeDefinitions = Record<string, ObjectLikeTypeDefinition>;
 
-export type ObjectTypeDefinition = {
+export type ObjectLikeTypeDefinition = {
 	description?: string; // Description of the object type
 	isActivated?: boolean; // If the object type is activated
 	implementsInterfaces?: ImplementsInterface[]; // Interfaces that the object type implements

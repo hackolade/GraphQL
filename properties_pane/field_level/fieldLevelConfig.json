@@ -623,7 +623,7 @@ making sure that you maintain a proper JSON format.
 				},
 				{
 					"propertyName": "Default",
-					"propertyKeyword": "refDefaultValue",
+					"propertyKeyword": "default",
 					"propertyType": "text",
 					"propertyTooltip": "Enter default value",
 					"enableForReference": true,
