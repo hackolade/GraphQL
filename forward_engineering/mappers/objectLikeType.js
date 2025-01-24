@@ -35,10 +35,15 @@ function getObjectLikeTypes({ objectTypes, definitionsIdToNameMap, typeKeyword, 
  */
 function mapObjectLikeType({ name, objectType, definitionsIdToNameMap, typeKeyword, getFieldsFunction }) {
 	const nameStatement = `${typeKeyword} ${name}`;
-	const implementsInterfacesStatement = getImplementsInterfacesStatement({
-		interfaces: objectType.implementsInterfaces,
-		definitionsIdToNameMap,
-	});
+
+	let implementsInterfacesStatement = '';
+	if (typeKeyword === 'type' || typeKeyword === 'interface') {
+		implementsInterfacesStatement = getImplementsInterfacesStatement({
+			interfaces: objectType.implementsInterfaces,
+			definitionsIdToNameMap,
+		});
+	}
+
 	const directivesStatement = getDirectivesUsageStatement({ directives: objectType.typeDirectives });
 
 	return {
