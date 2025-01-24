@@ -10,7 +10,7 @@ describe('getFieldDefaultValueStatement', () => {
 	});
 
 	it('should return the default value statement for a reference field', () => {
-		const field = { $ref: '1', refDefaultValue: 'defaultRefValue' };
+		const field = { $ref: '1', default: 'defaultRefValue' };
 		const result = getFieldDefaultValueStatement({ field });
 		assert.strictEqual(result, '= "defaultRefValue"');
 	});
@@ -34,13 +34,13 @@ describe('getFieldDefaultValueStatement', () => {
 	});
 
 	it('should return the default value statement for a reference field with a number default value', () => {
-		const field = { $ref: '1', refDefaultValue: '42' };
+		const field = { $ref: '1', default: '42' };
 		const result = getFieldDefaultValueStatement({ field });
 		assert.strictEqual(result, '= 42');
 	});
 
 	it('should format a complex reference default value', () => {
-		const field = { $ref: '1', refDefaultValue: '{ name: "sample name" }' };
+		const field = { $ref: '1', default: '{ name: "sample name" }' };
 		const result = getFieldDefaultValueStatement({ field });
 		assert.strictEqual(result, '= { name: "sample name" }');
 	});

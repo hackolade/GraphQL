@@ -41,7 +41,7 @@ type ReferenceFieldData = {
 	refDescription?: string; // Description of the reference
 	fieldDirectives?: DirectivePropertyData[]; // Directives for the field
 	arguments?: Argument[]; // Arguments of the field
-	refDefaultValue?: unknown; // Default value of the reference
+	default?: unknown; // Default value of the reference
 }
 
 export type ArrayItem = FieldData & {

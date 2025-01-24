@@ -10,14 +10,15 @@
  * @returns {string} - The default value statement.
  */
 function getFieldDefaultValueStatement({ field }) {
-	if (isValuePresent(field.default)) {
-		return `= ${formatFieldDefaultValue({ defaultValue: field.default, fieldType: field.type })}`;
-	}
-	if (isValuePresent(field.refDefaultValue)) {
-		return `= ${formatRefFieldDefaultValue({ defaultValue: field.refDefaultValue })}`;
+	if (!isValuePresent(field.default)) {
+		return '';
 	}
 
-	return '';
+	if (field.$ref) {
+		return `= ${formatRefFieldDefaultValue({ defaultValue: field.default })}`;
+	}
+
+	return `= ${formatFieldDefaultValue({ defaultValue: field.default, fieldType: field.type })}`;
 }
 
 /**
