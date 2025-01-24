@@ -6,8 +6,9 @@ const { formatFEStatement } = require('../helpers/feStatementFormatHelper');
 const { getCustomScalars } = require('./customScalars');
 const { getEnums } = require('./enums');
 const { getDirectives } = require('./directives');
-const { getObjectTypes } = require('./objectType');
+const { getObjectLikeTypes } = require('./objectLikeType');
 const { getUnions } = require('./unions');
+const { getObjectTypeFields, getInterfaceTypeFields, getInputTypeFields } = require('./fields');
 
 /**
  * Gets the type definition statements from model definitions.
@@ -26,13 +27,35 @@ function getTypeDefinitionStatements({ modelDefinitions, definitionsIdToNameMap 
 		customScalars: getModelDefinitionsBySubtype({ modelDefinitions, subtype: 'scalar' }),
 	});
 	const enums = getEnums({ enumsDefinitions: getModelDefinitionsBySubtype({ modelDefinitions, subtype: 'enum' }) });
-	const objectTypes = getObjectTypes({
+	const objectTypes = getObjectLikeTypes({
 		objectTypes: getModelDefinitionsBySubtype({ modelDefinitions, subtype: 'object' }),
 		definitionsIdToNameMap,
+		typeKeyword: 'type',
+		getFieldsFunction: getObjectTypeFields,
+	});
+	const interfaceTypes = getObjectLikeTypes({
+		objectTypes: getModelDefinitionsBySubtype({ modelDefinitions, subtype: 'interface' }),
+		definitionsIdToNameMap,
+		typeKeyword: 'interface',
+		getFieldsFunction: getInterfaceTypeFields,
+	});
+	const inputTypes = getObjectLikeTypes({
+		objectTypes: getModelDefinitionsBySubtype({ modelDefinitions, subtype: 'input' }),
+		definitionsIdToNameMap,
+		typeKeyword: 'input',
+		getFieldsFunction: getInputTypeFields,
 	});
 	const unions = getUnions({ unions: getModelDefinitionsBySubtype({ modelDefinitions, subtype: 'union' }) });
 
-	const typeDefinitions = [...directives, ...customScalars, ...enums, ...objectTypes, ...unions];
+	const typeDefinitions = [
+		...directives,
+		...customScalars,
+		...enums,
+		...objectTypes,
+		...interfaceTypes,
+		...inputTypes,
+		...unions,
+	];
 	const formattedTypeDefinitions = typeDefinitions
 		.map(typeDefinition => formatFEStatement({ feStatement: typeDefinition }))
 		.join('\n\n');

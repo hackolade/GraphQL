@@ -29,17 +29,19 @@ type RegularFieldData = {
 	type: string; // Type of the field
 	isActivated?: boolean; // If the field is activated
 	description?: string; // Description of the field
-	typeDirectives?: DirectivePropertyData[]; // Directives for the type
+	fieldDirectives?: DirectivePropertyData[]; // Directives for the field
 	items?: ArrayItem | ArrayItem[]; // Items of the List type
 	arguments?: Argument[]; // Arguments of the field
+	default?: unknown; // Default value of the field
 }
 
 type ReferenceFieldData = {
 	$ref: string; // Reference path to the type definition
 	isActivated?: boolean; // If the field is activated
 	refDescription?: string; // Description of the reference
-	typeDirectives?: DirectivePropertyData[]; // Directives for the type
+	fieldDirectives?: DirectivePropertyData[]; // Directives for the field
 	arguments?: Argument[]; // Arguments of the field
+	refDefaultValue?: unknown; // Default value of the reference
 }
 
 export type ArrayItem = FieldData & {
