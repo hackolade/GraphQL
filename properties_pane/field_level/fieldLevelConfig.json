@@ -1369,7 +1369,20 @@ making sure that you maintain a proper JSON format.
 									},
 									"options": {
 										"useAllDefinitionsAsSource": true,
-										"includeTargetTypes": true
+										"groupBy": "childType",
+										"includeTargetTypes": {
+											"excludeTypes": [
+												"List",
+												"enum",
+												"input",
+												"scalar",
+												"union",
+												"object",
+												"interface",
+												"union",
+												"directive"
+											]
+										}
 									}
 								}
 							}
@@ -1482,7 +1495,20 @@ making sure that you maintain a proper JSON format.
 									},
 									"options": {
 										"useAllDefinitionsAsSource": true,
-										"includeTargetTypes": true
+										"groupBy": "childType",
+										"includeTargetTypes": {
+											"excludeTypes": [
+												"List",
+												"enum",
+												"input",
+												"scalar",
+												"union",
+												"object",
+												"interface",
+												"union",
+												"directive"
+											]
+										}
 									}
 								}
 							}
@@ -1595,7 +1621,20 @@ making sure that you maintain a proper JSON format.
 									},
 									"options": {
 										"useAllDefinitionsAsSource": true,
-										"includeTargetTypes": true
+										"groupBy": "childType",
+										"includeTargetTypes": {
+											"excludeTypes": [
+												"List",
+												"enum",
+												"input",
+												"scalar",
+												"union",
+												"object",
+												"interface",
+												"union",
+												"directive"
+											]
+										}
 									}
 								}
 							}
@@ -1708,7 +1747,20 @@ making sure that you maintain a proper JSON format.
 									},
 									"options": {
 										"useAllDefinitionsAsSource": true,
-										"includeTargetTypes": true
+										"groupBy": "childType",
+										"includeTargetTypes": {
+											"excludeTypes": [
+												"List",
+												"enum",
+												"input",
+												"scalar",
+												"union",
+												"object",
+												"interface",
+												"union",
+												"directive"
+											]
+										}
 									}
 								}
 							}
@@ -1821,7 +1873,20 @@ making sure that you maintain a proper JSON format.
 									},
 									"options": {
 										"useAllDefinitionsAsSource": true,
-										"includeTargetTypes": true
+										"groupBy": "childType",
+										"includeTargetTypes": {
+											"excludeTypes": [
+												"List",
+												"enum",
+												"input",
+												"scalar",
+												"union",
+												"object",
+												"interface",
+												"union",
+												"directive"
+											]
+										}
 									}
 								}
 							}
@@ -1934,7 +1999,20 @@ making sure that you maintain a proper JSON format.
 									},
 									"options": {
 										"useAllDefinitionsAsSource": true,
-										"includeTargetTypes": true
+										"groupBy": "childType",
+										"includeTargetTypes": {
+											"excludeTypes": [
+												"List",
+												"enum",
+												"input",
+												"scalar",
+												"union",
+												"object",
+												"interface",
+												"union",
+												"directive"
+											]
+										}
 									}
 								}
 							}
@@ -2048,7 +2126,20 @@ making sure that you maintain a proper JSON format.
 									},
 									"options": {
 										"useAllDefinitionsAsSource": true,
-										"includeTargetTypes": true
+										"groupBy": "childType",
+										"includeTargetTypes": {
+											"excludeTypes": [
+												"List",
+												"enum",
+												"input",
+												"scalar",
+												"union",
+												"object",
+												"interface",
+												"union",
+												"directive"
+											]
+										}
 									}
 								}
 							}
@@ -2171,7 +2262,20 @@ making sure that you maintain a proper JSON format.
 									},
 									"options": {
 										"useAllDefinitionsAsSource": true,
-										"includeTargetTypes": true
+										"groupBy": "childType",
+										"includeTargetTypes": {
+											"excludeTypes": [
+												"List",
+												"enum",
+												"input",
+												"scalar",
+												"union",
+												"object",
+												"interface",
+												"union",
+												"directive"
+											]
+										}
 									}
 								}
 							}
@@ -2294,7 +2398,20 @@ making sure that you maintain a proper JSON format.
 									},
 									"options": {
 										"useAllDefinitionsAsSource": true,
-										"includeTargetTypes": true
+										"groupBy": "childType",
+										"includeTargetTypes": {
+											"excludeTypes": [
+												"List",
+												"enum",
+												"input",
+												"scalar",
+												"union",
+												"object",
+												"interface",
+												"union",
+												"directive"
+											]
+										}
 									}
 								}
 							}
@@ -2417,7 +2534,20 @@ making sure that you maintain a proper JSON format.
 									},
 									"options": {
 										"useAllDefinitionsAsSource": true,
-										"includeTargetTypes": true
+										"groupBy": "childType",
+										"includeTargetTypes": {
+											"excludeTypes": [
+												"List",
+												"enum",
+												"input",
+												"scalar",
+												"union",
+												"object",
+												"interface",
+												"union",
+												"directive"
+											]
+										}
 									}
 								}
 							}
@@ -2525,7 +2655,20 @@ making sure that you maintain a proper JSON format.
 									},
 									"options": {
 										"useAllDefinitionsAsSource": true,
-										"includeTargetTypes": true
+										"groupBy": "childType",
+										"includeTargetTypes": {
+											"excludeTypes": [
+												"List",
+												"enum",
+												"input",
+												"scalar",
+												"union",
+												"object",
+												"interface",
+												"union",
+												"directive"
+											]
+										}
 									}
 								}
 							}
@@ -2632,7 +2775,20 @@ making sure that you maintain a proper JSON format.
 									},
 									"options": {
 										"useAllDefinitionsAsSource": true,
-										"includeTargetTypes": true
+										"groupBy": "childType",
+										"includeTargetTypes": {
+											"excludeTypes": [
+												"List",
+												"enum",
+												"input",
+												"scalar",
+												"union",
+												"object",
+												"interface",
+												"union",
+												"directive"
+											]
+										}
 									}
 								}
 							}
