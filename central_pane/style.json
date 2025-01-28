@@ -26,6 +26,27 @@
 					]
 				}
 			}
+		],
+		"dtd": [
+			{
+				"value": "(...)",
+				"position": {
+					"type": "afterName"
+				},
+				"dependency": {
+					"type": "and",
+					"values": [
+						{
+							"key": "arguments",
+							"exist": true
+						},
+						{
+							"key": "arguments",
+							"isEmpty": false
+						}
+					]
+				}
+			}
 		]
 	}
 }
