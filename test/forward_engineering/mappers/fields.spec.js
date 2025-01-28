@@ -5,6 +5,7 @@ const joinInlineStatementsMock = mock.fn();
 const getDefinitionNameFromReferencePathMock = mock.fn(() => '');
 const getArgumentsMock = mock.fn(() => '');
 const getDirectivesUsageStatementMock = mock.fn(() => '');
+const getFieldDefaultValueStatementMock = mock.fn(() => '');
 
 mock.module('../../../forward_engineering/helpers/feStatementJoinHelper', {
 	namedExports: {
@@ -26,9 +27,20 @@ mock.module('../../../forward_engineering/mappers/directiveUsageStatements', {
 		getDirectivesUsageStatement: getDirectivesUsageStatementMock,
 	},
 });
+mock.module('../../../forward_engineering/mappers/fieldDefaultValue', {
+	namedExports: {
+		getFieldDefaultValueStatement: getFieldDefaultValueStatementMock,
+	},
+});
 
 // This require should be after the mocks to ensure that the mocks are applied before the module is required
-const { getFields, mapField, getFieldType } = require('../../../forward_engineering/mappers/fields');
+const {
+	getObjectTypeFields,
+	getInterfaceTypeFields,
+	getInputTypeFields,
+	mapField,
+	getFieldType,
+} = require('../../../forward_engineering/mappers/fields');
 
 describe('mapField', () => {
 	afterEach(() => {
@@ -36,6 +48,7 @@ describe('mapField', () => {
 		getDefinitionNameFromReferencePathMock.mock.resetCalls();
 		joinInlineStatementsMock.mock.resetCalls();
 		getArgumentsMock.mock.resetCalls();
+		getFieldDefaultValueStatementMock.mock.resetCalls();
 	});
 
 	it('should map a field to an FEStatement', () => {
@@ -49,7 +62,14 @@ describe('mapField', () => {
 		joinInlineStatementsMock.mock.mockImplementationOnce(() => `${name}: String`, 1);
 		getDirectivesUsageStatementMock.mock.mockImplementationOnce(() => '');
 
-		const result = mapField({ name, fieldData, required, definitionsIdToNameMap });
+		const result = mapField({
+			name,
+			fieldData,
+			required,
+			definitionsIdToNameMap,
+			addArguments: true,
+			addDefaultValue: false,
+		});
 
 		deepStrictEqual(result, {
 			statement: `${name}: String`,
@@ -57,9 +77,48 @@ describe('mapField', () => {
 			isActivated: true,
 		});
 	});
+
+	it('should map a field to an FEStatement with default value', () => {
+		const name = 'field1';
+		const fieldData = {
+			type: 'String',
+			description: 'A string field',
+			isActivated: true,
+			default: 'defaultString',
+		};
+		const required = false;
+		const definitionsIdToNameMap = {};
+
+		joinInlineStatementsMock.mock.mockImplementationOnce(() => name, 0);
+		joinInlineStatementsMock.mock.mockImplementationOnce(() => `${name}: String`, 1);
+		getDirectivesUsageStatementMock.mock.mockImplementationOnce(() => '');
+		getFieldDefaultValueStatementMock.mock.mockImplementationOnce(() => '= "defaultString"');
+
+		const result = mapField({
+			name,
+			fieldData,
+			required,
+			definitionsIdToNameMap,
+			addArguments: false,
+			addDefaultValue: true,
+		});
+
+		deepStrictEqual(result, {
+			statement: `${name}: String`,
+			description: 'A string field',
+			isActivated: true,
+		});
+
+		// Verify that joinInlineStatementsMock was called with the correct default value
+		deepStrictEqual(joinInlineStatementsMock.mock.calls[1].arguments[0].statements, [
+			`${name}: String`,
+			'= "defaultString"',
+			'',
+		]);
+	});
 });
 
-describe('getFields', () => {
+describe('getObjectTypeFields', () => {
 	afterEach(() => {
 		getDirectivesUsageStatementMock.mock.resetCalls();
 		getDefinitionNameFromReferencePathMock.mock.resetCalls();
@@ -67,7 +126,7 @@ describe('getFields', () => {
 		getArgumentsMock.mock.resetCalls();
 	});
 
-	it('should return an array of FEStatements', () => {
+	it('should return an array of FEStatements for object type fields', () => {
 		const fields = {
 			field1: { type: 'String' },
 			field2: { type: 'Int' },
@@ -75,7 +134,53 @@ describe('getFields', () => {
 		const requiredFields = ['field1'];
 		const definitionsIdToNameMap = {};
 
-		const result = getFields({ fields, requiredFields, definitionsIdToNameMap });
+		const result = getObjectTypeFields({ fields, requiredFields, definitionsIdToNameMap });
+
+		strictEqual(Array.isArray(result), true);
+		strictEqual(result.length, 2);
+	});
+});
+
+describe('getInterfaceTypeFields', () => {
+	afterEach(() => {
+		getDirectivesUsageStatementMock.mock.resetCalls();
+		getDefinitionNameFromReferencePathMock.mock.resetCalls();
+		joinInlineStatementsMock.mock.resetCalls();
+		getArgumentsMock.mock.resetCalls();
+	});
+
+	it('should return an array of FEStatements for interface type fields', () => {
+		const fields = {
+			field1: { type: 'String' },
+			field2: { type: 'Int' },
+		};
+		const requiredFields = ['field1'];
+		const definitionsIdToNameMap = {};
+
+		const result = getInterfaceTypeFields({ fields, requiredFields, definitionsIdToNameMap });
+
+		strictEqual(Array.isArray(result), true);
+		strictEqual(result.length, 2);
+	});
+});
+
+describe('getInputTypeFields', () => {
+	afterEach(() => {
+		getDirectivesUsageStatementMock.mock.resetCalls();
+		getDefinitionNameFromReferencePathMock.mock.resetCalls();
+		joinInlineStatementsMock.mock.resetCalls();
+		getArgumentsMock.mock.resetCalls();
+	});
+
+	it('should return an array of FEStatements for input type fields', () => {
+		const fields = {
+			field1: { type: 'String', default: 'defaultString' },
+			field2: { type: 'Int', default: 0 },
+		};
+		const requiredFields = ['field1'];
+		const definitionsIdToNameMap = {};
+
+		const result = getInputTypeFields({ fields, requiredFields, definitionsIdToNameMap });
 
 		strictEqual(Array.isArray(result), true);
 		strictEqual(result.length, 2);

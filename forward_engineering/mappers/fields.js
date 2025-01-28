@@ -6,23 +6,33 @@ const { joinInlineStatements } = require('../helpers/feStatementJoinHelper');
 const { getDefinitionNameFromReferencePath } = require('../helpers/referencesHelper');
 const { getArguments } = require('./arguments');
 const { getDirectivesUsageStatement } = require('./directiveUsageStatements');
+const { getFieldDefaultValueStatement } = require('./fieldDefaultValue');
 
 /**
  * @typedef {Object.<string, FieldData>} FieldsData
  */
 
 /**
- * Gets the object types from the model definitions.
+ * Gets the fields from the model definitions.
  *
  * @param {Object} param0
- * @param {FieldsData} param0.fields - The object types to get.
+ * @param {FieldsData} param0.fields - The fields to get.
  * @param {string[]} param0.requiredFields - The required fields list.
  * @param {IdToNameMap} param0.definitionsIdToNameMap - The definitions id to name map.
- * @returns {FEStatement[]} - The object types.
+ * @param {boolean} param0.addArguments - Indicates if arguments should be added.
+ * @param {boolean} param0.addDefaultValue - Indicates if default value should be added.
+ * @returns {FEStatement[]} - The fields.
  */
-function getFields({ fields, requiredFields = [], definitionsIdToNameMap }) {
+function getFields({ fields, requiredFields = [], definitionsIdToNameMap, addArguments, addDefaultValue }) {
 	return Object.entries(fields).map(([name, fieldData]) =>
-		mapField({ name, fieldData, required: requiredFields.includes(name), definitionsIdToNameMap }),
+		mapField({
+			name,
+			fieldData,
+			required: requiredFields.includes(name),
+			definitionsIdToNameMap,
+			addArguments,
+			addDefaultValue,
+		}),
 	);
 }
 
@@ -34,16 +44,21 @@ function getFields({ fields, requiredFields = [], definitionsIdToNameMap }) {
  * @param {FieldData} param0.fieldData - The field data object.
  * @param {boolean} param0.required - Indicates if the field is required.
  * @param {IdToNameMap} param0.definitionsIdToNameMap - The definitions id to name map.
+ * @param {boolean} param0.addArguments - Indicates if arguments should be added.
+ * @param {boolean} param0.addDefaultValue - Indicates if default value should be added.
  * @returns {FEStatement}
  */
-function mapField({ name, fieldData, required, definitionsIdToNameMap }) {
-	const fieldArguments = getArguments({ graphqlArguments: fieldData.arguments, idToNameMap: definitionsIdToNameMap });
+function mapField({ name, fieldData, required, definitionsIdToNameMap, addArguments, addDefaultValue }) {
+	const fieldArguments = addArguments
+		? getArguments({ graphqlArguments: fieldData.arguments, idToNameMap: definitionsIdToNameMap })
+		: '';
 	const fieldNameStatement = joinInlineStatements({ statements: [name, fieldArguments] });
 	const fieldTypeStatement = `${fieldNameStatement}: ${getFieldType({ field: fieldData, required })}`;
-	const directivesStatement = getDirectivesUsageStatement({ directives: fieldData.typeDirectives });
+	const fieldDefaultValue = addDefaultValue ? getFieldDefaultValueStatement({ field: fieldData }) : '';
+	const directivesStatement = getDirectivesUsageStatement({ directives: fieldData.fieldDirectives });
 
 	return {
-		statement: joinInlineStatements({ statements: [fieldTypeStatement, directivesStatement] }),
+		statement: joinInlineStatements({ statements: [fieldTypeStatement, fieldDefaultValue, directivesStatement] }),
 		description: fieldData.refDescription || fieldData.description,
 		isActivated: fieldData.isActivated,
 	};
@@ -104,7 +119,9 @@ function addRequiredField({ field, required }) {
 }
 
 module.exports = {
-	getFields,
+	getObjectTypeFields: params => getFields({ ...params, addArguments: true, addDefaultValue: false }),
+	getInterfaceTypeFields: params => getFields({ ...params, addArguments: true, addDefaultValue: false }),
+	getInputTypeFields: params => getFields({ ...params, addArguments: false, addDefaultValue: true }),
 	// exported only for tests:
 	mapField,
 	getFieldType,
