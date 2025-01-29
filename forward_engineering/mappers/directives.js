@@ -16,7 +16,7 @@ const UNKNOWN_LOCATION = 'UNKNOWN_LOCATION';
  */
 function mapDirectiveLocations({ directiveLocations = {} }) {
 	const directiveLocationsString = Object.keys(directiveLocations)
-		.filter(location => location !== 'id')
+		.filter(location => location !== 'id' && directiveLocations[location]) // should not include id and have truthy value
 		.map(locations => DIRECTIVE_LOCATIONS[locations] || UNKNOWN_LOCATION)
 		.join(' | ');
 
