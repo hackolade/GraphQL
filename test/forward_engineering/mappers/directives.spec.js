@@ -36,6 +36,12 @@ describe('mapDirectiveLocations', () => {
 		strictEqual(result, 'QUERY');
 	});
 
+	it('should skip locations that have falsy values in directive locations object', () => {
+		const directiveLocations = { field: true, query: false };
+		const result = mapDirectiveLocations({ directiveLocations });
+		strictEqual(result, 'FIELD');
+	});
+
 	it('should map directive locations to a string', () => {
 		const directiveLocations = { field: true, query: true };
 		const result = mapDirectiveLocations({ directiveLocations });
