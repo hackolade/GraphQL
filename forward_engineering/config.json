@@ -1,6 +1,6 @@
 {
 	"extension": "graphql",
-	"filterName": "application/graphql",
+	"filterName": "GraphQL Schema File",
 	"namePrefix": "GraphQL Schema",
 	"hasUpdateScript": false,
 	"validation": true,
