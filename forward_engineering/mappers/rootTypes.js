@@ -159,6 +159,15 @@ function getRootType({ containers, rootTypeName, definitionsIdToNameMap, rootTyp
 				fields: entityData.properties,
 				requiredFields: entityData.required,
 				definitionsIdToNameMap,
+			}).map(field => {
+				if ([container.containerData?.[0]?.isActivated, entityData.isActivated].includes(false)) {
+					// If the container or entity is not activated, set the field as not activated
+					return {
+						...field,
+						isActivated: false,
+					};
+				}
+				return field;
 			});
 
 			rootTypeNestedStatements.push(...entityFields);

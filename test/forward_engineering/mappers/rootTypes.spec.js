@@ -206,6 +206,37 @@ describe('getRootType', () => {
 			nestedStatements: [{ statement: 'field1: String!' }],
 		});
 	});
+
+	it('should deactivate fields if container or entity is deactivated', () => {
+		const containers = [
+			{
+				containerData: [{ isActivated: false }],
+				jsonSchema: {
+					entity1: JSON.stringify({
+						properties: {
+							field1: { type: 'String', isActivated: true },
+						},
+						required: ['field1'],
+					}),
+				},
+				entityData: {
+					entity1: [{ operationType: 'Query' }],
+				},
+			},
+		];
+		getRootTypeFieldsMock.mock.mockImplementation(() => [{ statement: 'field1: String!', isActivated: true }]);
+
+		const result = getRootType({
+			containers,
+			rootTypeName: 'CustomQuery',
+			definitionsIdToNameMap: {},
+			rootType: 'Query',
+		});
+		deepStrictEqual(result, {
+			statement: 'type CustomQuery',
+			nestedStatements: [{ statement: 'field1: String!', isActivated: false }],
+		});
+	});
 });
 
 describe('getSchemaRootTypeStatements', () => {
