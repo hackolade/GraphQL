@@ -43,11 +43,6 @@ const { getSchemaRootTypeStatements } = require('./mappers/rootTypes');
  * @param {Array} [result]
  */
 
-const mockedRootQuery = `# The type Query is hardcoded for now, to remove validation error.
-type Query {
-	getSomething: String
-}`;
-
 module.exports = {
 	/**
 	 * Generates the model FE script for the given data.
