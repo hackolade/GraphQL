@@ -148,3 +148,31 @@ export type ContainerData = {
 	jsonSchema: Record<string, string>; // JSON schemas of entities by entity ID
 	entityData: Record<string, object[]>; // entity properties by entity ID
 }
+
+// API parameters
+export type ModelScriptFEData = {
+	modelLevelData: object[]; // model level data
+	containers: ContainerData[]; // containers data
+	externalDefinitions: string; // external definitions JSON Schema
+	modelDefinitions: string; // model definitions JSON Schema
+	targetScriptOptions: object; // target script options
+	options: {
+		additionalOptions: object[]; // additional options
+		isCalledFromFETab: boolean; // if the script is called from the forward engineering tab
+	}
+};
+
+export type Logger = {
+	log: (logType: string, logData: object, logMessage: string) => void;
+};
+
+export type GenerateModelScriptCallback = (error: Error | null, script?: string) => void;
+
+export type ValidationResponseItem = {
+	type: string; // The type of the entity (e.g., 'error', 'success').
+	label: string; // The label for the entity, typically indicating the location.
+	title: string; // The title of the entity, typically the error message.
+	context?: string; // The context of the entity, typically additional information.
+}
+
+export type ValidateScriptCallback = (error: Error | null, validationErrors?: ValidationResponseItem[]) => void;
