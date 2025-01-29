@@ -159,7 +159,7 @@ describe('getArguments', () => {
 		strictEqual(result, '(arg1: String, arg2: Int)');
 	});
 
-	it.skip('should return formatted arguments if descriptions are present', () => {
+	it('should return formatted arguments if descriptions are present', () => {
 		const graphqlArguments = [
 			{ name: 'arg1', type: 'String', description: 'Argument description 1' },
 			{ name: 'arg2', type: 'Int', description: 'Argument description 2' },
@@ -176,7 +176,7 @@ describe('getArguments', () => {
 		strictEqual(result, '(arg1: String, arg2: Int)');
 	});
 
-	it.skip("should skip arguments which don't have name or type or both", () => {
+	it("should skip arguments which don't have name or type or both", () => {
 		const graphqlArguments = [
 			{ type: 'String' }, // missing name
 			{ name: 'arg2' }, // missing type
