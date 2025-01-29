@@ -23,7 +23,7 @@ const { getFieldDefaultValueStatement } = require('./fieldDefaultValue');
  * @param {boolean} param0.addDefaultValue - Indicates if default value should be added.
  * @returns {FEStatement[]} - The fields.
  */
-function getFields({ fields, requiredFields = [], definitionsIdToNameMap, addArguments, addDefaultValue }) {
+function getFields({ fields = [], requiredFields = [], definitionsIdToNameMap, addArguments, addDefaultValue }) {
 	return Object.entries(fields).map(([name, fieldData]) =>
 		mapField({
 			name,
