@@ -1,6 +1,7 @@
 const validationHelper = require('./helpers/schemaValidationHelper');
 const { getTypeDefinitionStatements } = require('./mappers/typeDefinitions');
 const { generateIdToNameMap } = require('./helpers/generateIdToNameMap');
+const { getSchemaRootTypeStatements } = require('./mappers/rootTypes');
 
 /**
  * @typedef {Object} Container
@@ -58,9 +59,15 @@ module.exports = {
 		try {
 			const modelDefinitions = JSON.parse(data.modelDefinitions);
 			const definitionsIdToNameMap = generateIdToNameMap(modelDefinitions.properties);
-			const typeDefinitions = getTypeDefinitionStatements({ modelDefinitions, definitionsIdToNameMap });
 
-			const schemaScript = mockedRootQuery + '\n\n' + typeDefinitions;
+			const rootTypeStatements = getSchemaRootTypeStatements({
+				containers: data.containers,
+				definitionsIdToNameMap,
+			});
+			const typeDefinitionStatements = getTypeDefinitionStatements({ modelDefinitions, definitionsIdToNameMap });
+
+			const schemaScript = [rootTypeStatements, typeDefinitionStatements].filter(Boolean).join('\n\n');
+
 			cb(null, schemaScript);
 		} catch (err) {
 			logger.log('error', { error: err }, 'GraphQL FE Error');
