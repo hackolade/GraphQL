@@ -135,3 +135,16 @@ export type Union = {
 }
 
 export type UnionDefinitions = Record<string, Union>
+
+// Root types
+export type RootTypeNamesParameter = {
+	query: string;
+	mutation: string;
+	subscription: string;
+}
+
+export type ContainerData = {
+	containerData: object[]; // container properties by tab
+	jsonSchema: Record<string, string>; // JSON schemas of entities by entity ID
+	entityData: Record<string, object[]>; // entity properties by entity ID
+}

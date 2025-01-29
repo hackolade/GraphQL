@@ -1,5 +1,5 @@
 /**
- * @import { FEStatement, DirectivePropertyData, FieldData, ArrayItem, IdToNameMap } from "../types/types"
+ * @import { FEStatement, IdToNameMap, RootTypeNamesParameter, ContainerData } from "../types/types"
  */
 
 const { QUERY_ROOT_TYPE, MUTATION_ROOT_TYPE, SUBSCRIPTION_ROOT_TYPE } = require('../constants/feScriptConstants');
@@ -11,7 +11,7 @@ const { getRootTypeFields } = require('./fields');
  * If all root types have default values, root schema statement is not returned.
  *
  * @param {Object} param0
- * @param {Array} param0.containers - The containers.
+ * @param {ContainerData[]} param0.containers - The containers.
  * @param {IdToNameMap} param0.definitionsIdToNameMap - The definitions id to name map.
  * @returns {FEStatement[]} - The root type statements.
  */
@@ -31,7 +31,7 @@ function getSchemaRootTypeStatements({ containers = [], definitionsIdToNameMap }
  * If all root types have default values, return null.
  *
  * @param {Object} param0
- * @param {Object} param0.rootTypeNames - The root type names.
+ * @param {RootTypeNamesParameter} param0.rootTypeNames - The root type names.
  * @returns {FEStatement | null} - The root schema statement or null if all root types have default values.
  */
 function getRootSchemaStatement({ rootTypeNames }) {
@@ -66,8 +66,8 @@ function getRootSchemaStatement({ rootTypeNames }) {
  * Iterate over the containers and get the root type names.
  *
  * @param {Object} param0
- * @param {Array} param0.containers - The containers.
- * @returns {Object} - The root type names.
+ * @param {ContainerData[]} param0.containers - The containers.
+ * @returns {RootTypeNamesParameter} - The root type names.
  */
 function getRootTypeNames({ containers = [] }) {
 	const rootContainersNames = {
@@ -110,8 +110,8 @@ function getRootTypeNames({ containers = [] }) {
  * If there are no entities with the operation type equal to the root type, return null.
  *
  * @param {Object} param0
- * @param {Array} param0.containers - The containers.
- * @param {Object} param0.rootTypeNames - The root type names.
+ * @param {ContainerData[]} param0.containers - The containers.
+ * @param {RootTypeNamesParameter} param0.rootTypeNames - The root type names.
  * @param {IdToNameMap} param0.definitionsIdToNameMap - The definitions id to name map.
  * @returns {FEStatement[]} - The root types.
  */
@@ -139,7 +139,7 @@ function getRootTypes({ containers, rootTypeNames, definitionsIdToNameMap }) {
  * If there are no entities with the operation type equal to the root type, return null.
  *
  * @param {Object} param0
- * @param {Array} param0.containers - The containers.
+ * @param {ContainerData[]} param0.containers - The containers.
  * @param {string} param0.rootTypeName - The root type name.
  * @param {IdToNameMap} param0.definitionsIdToNameMap - The definitions id to name map.
  * @param {string} param0.rootType - The root type.
