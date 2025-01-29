@@ -77,7 +77,7 @@ function getRootTypeNames({ containers = [] }) {
 	};
 
 	containers.forEach(container => {
-		const containerRootTypesPropertyValue = container.containerData[0].schemaRootTypes;
+		const containerRootTypesPropertyValue = container.containerData?.[0]?.schemaRootTypes;
 
 		if (containerRootTypesPropertyValue) {
 			const { rootQuery, rootMutation, rootSubscription } = containerRootTypesPropertyValue;
@@ -176,4 +176,9 @@ function getRootType({ containers, rootTypeName, definitionsIdToNameMap, rootTyp
 
 module.exports = {
 	getSchemaRootTypeStatements,
+	// For testing purposes
+	getRootSchemaStatement,
+	getRootTypeNames,
+	getRootTypes,
+	getRootType,
 };
