@@ -1,66 +1,32 @@
+/**
+ * @import { ModelScriptFEData, Logger, GenerateModelScriptCallback } from "./types/types"
+ */
+
 const validationHelper = require('./helpers/schemaValidationHelper');
 const { getTypeDefinitionStatements } = require('./mappers/typeDefinitions');
 const { generateIdToNameMap } = require('./helpers/generateIdToNameMap');
-
-/**
- * @typedef {Object} Container
- * @property {Object[]} containerData - Container level data properties by tab
- * @property {string[]} entities - Entities ids
- * @property {string[]} jsonSchema - JSON schema by entity id
- */
-
-/**
- * @typedef {Object} Options
- * @property {Object[]} additionalOptions
- * @property {boolean} isCalledFromFETab
- */
-
-/**
- * @typedef {Object} Data
- * @property {Object[]} modelLevelData - Model level data properties by tab
- * @property {Options} options
- * @property {Container[]} containers
- * @property {string} externalDefinitions
- * @property {string} modelDefinitions
- * @property {Object} targetScriptOptions
- */
-
-/**
- * @typedef {Object} Logger
- * @property {Function} log
- */
-
-/**
- * @callback GenerateScriptCallback
- * @param {Error|null} error
- * @param {string} [result]
- */
-
-/**
- * @callback ValidateScriptCallback
- * @param {Error|null} error
- * @param {Array} [result]
- */
-
-const mockedRootQuery = `# The type Query is hardcoded for now, to remove validation error.
-type Query {
-	getSomething: String
-}`;
+const { getSchemaRootTypeStatements } = require('./mappers/rootTypes');
 
 module.exports = {
 	/**
 	 * Generates the model FE script for the given data.
-	 * @param {Data} data - The data for generating the model script.
+	 * @param {ModelScriptFEData} data - The data for generating the model script.
 	 * @param {Logger} logger - The logger for logging errors.
-	 * @param {GenerateScriptCallback} cb - The callback function.
+	 * @param {GenerateModelScriptCallback} cb - The callback function.
 	 */
 	generateModelScript(data, logger, cb) {
 		try {
 			const modelDefinitions = JSON.parse(data.modelDefinitions);
 			const definitionsIdToNameMap = generateIdToNameMap(modelDefinitions.properties);
-			const typeDefinitions = getTypeDefinitionStatements({ modelDefinitions, definitionsIdToNameMap });
 
-			const schemaScript = mockedRootQuery + '\n\n' + typeDefinitions;
+			const rootTypeStatements = getSchemaRootTypeStatements({
+				containers: data.containers,
+				definitionsIdToNameMap,
+			});
+			const typeDefinitionStatements = getTypeDefinitionStatements({ modelDefinitions, definitionsIdToNameMap });
+
+			const schemaScript = [rootTypeStatements, typeDefinitionStatements].filter(Boolean).join('\n\n');
+
 			cb(null, schemaScript);
 		} catch (err) {
 			logger.log('error', { error: err }, 'GraphQL FE Error');

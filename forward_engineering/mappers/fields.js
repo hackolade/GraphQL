@@ -122,6 +122,7 @@ module.exports = {
 	getObjectTypeFields: params => getFields({ ...params, addArguments: true, addDefaultValue: false }),
 	getInterfaceTypeFields: params => getFields({ ...params, addArguments: true, addDefaultValue: false }),
 	getInputTypeFields: params => getFields({ ...params, addArguments: false, addDefaultValue: true }),
+	getRootTypeFields: params => getFields({ ...params, addArguments: true, addDefaultValue: false }),
 	// exported only for tests:
 	mapField,
 	getFieldType,
