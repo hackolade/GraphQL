@@ -65,44 +65,68 @@ describe('getArgumentType', () => {
 		strictEqual(result, 'String');
 	});
 
-	it('should return the argument type without required keyword if not required: "<Type>"', () => {
-		const argument = { type: 'String', required: '<Type>' };
+	it('should return the argument type without required keyword if not required', () => {
+		const argument = { type: 'String', required: false };
 
 		const result = getArgumentType({ argument });
 
 		strictEqual(result, 'String');
 	});
 
-	it('should return the argument type with required keyword if required value: "<Type>!"', () => {
-		const argument = { type: 'String', required: '<Type>!' };
+	it('should return the argument type with required keyword if required value', () => {
+		const argument = { type: 'String', required: true };
 
 		const result = getArgumentType({ argument });
 
 		strictEqual(result, 'String!');
 	});
 
-	it('should return the argument type with required keyword if required value: "[<Type>]"', () => {
-		const argument = { type: 'String', required: '[<Type>]' };
+	it('should return the argument type without required option for List and List item', () => {
+		const argument = { type: 'List', required: false, listItems: [{ type: 'String', required: false }] };
 
 		const result = getArgumentType({ argument });
 
 		strictEqual(result, '[String]');
 	});
 
-	it('should return the argument type with required keyword if required value: "[<Type>!]"', () => {
-		const argument = { type: 'String', required: '[<Type>!]' };
+	it('should return the argument type with required option only for List item', () => {
+		const argument = { type: 'List', required: false, listItems: [{ type: 'String', required: true }] };
 
 		const result = getArgumentType({ argument });
 
 		strictEqual(result, '[String!]');
 	});
 
-	it('should return the argument type with required keyword if required value: "[<Type>!]!"', () => {
-		const argument = { type: 'String', required: '[<Type>!]!' };
+	it('should return the argument type with required option if List and List item are required"', () => {
+		const argument = { type: 'List', required: true, listItems: [{ type: 'String', required: true }] };
 
 		const result = getArgumentType({ argument });
 
 		strictEqual(result, '[String!]!');
+	});
+
+	it('should return the argument type without required option if List and List item have omit required property"', () => {
+		const argument = { type: 'List', listItems: [{ type: 'String' }] };
+
+		const result = getArgumentType({ argument });
+
+		strictEqual(result, '[String]');
+	});
+
+	it('should return the argument type with empty array symbol when listItems are missed"', () => {
+		const argument = { type: 'List' };
+
+		const result = getArgumentType({ argument });
+
+		strictEqual(result, '[]');
+	});
+
+	it('should return the argument type with empty array symbol when listItems has missed type name"', () => {
+		const argument = { type: 'List', listItems: [{ required: true }] };
+
+		const result = getArgumentType({ argument });
+
+		strictEqual(result, '[]');
 	});
 });
 
@@ -118,7 +142,7 @@ describe('mapArgument', () => {
 		const argument = {
 			name: 'arg1',
 			type: 'String',
-			required: '<Type>',
+			required: false,
 			default: 'default',
 			description: 'desc',
 		};
@@ -132,6 +156,24 @@ describe('mapArgument', () => {
 		deepStrictEqual(result, {
 			statement: 'arg1: String = "default" @deprecated',
 			description: 'desc',
+		});
+	});
+
+	it("should map an argument to an empty string when an argument doesn't have name", () => {
+		const argument = {
+			type: 'String',
+			required: false,
+		};
+
+		getDirectivesUsageStatementMock.mock.mockImplementationOnce(() => '');
+		getArgumentDefaultValueMock.mock.mockImplementationOnce(() => '');
+		joinInlineStatementsMock.mock.mockImplementationOnce(() => '');
+
+		const result = mapArgument({ argument });
+
+		deepStrictEqual(result, {
+			statement: '',
+			description: '',
 		});
 	});
 });
@@ -207,6 +249,15 @@ describe('getArguments', () => {
 
 	it('should return empty string if arguments is not an array', () => {
 		const graphqlArguments = {};
+		const result = getArguments({ graphqlArguments });
+		strictEqual(result, '');
+	});
+
+	it("should return empty string if all arguments don't have required properties", () => {
+		const graphqlArguments = [
+			{ name: 'arg1' }, // missing type
+			{ type: 'String' }, // missing name
+		];
 		const result = getArguments({ graphqlArguments });
 		strictEqual(result, '');
 	});

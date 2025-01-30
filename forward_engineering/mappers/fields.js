@@ -7,6 +7,7 @@ const { getDefinitionNameFromReferencePath } = require('../helpers/referencesHel
 const { getArguments } = require('./arguments');
 const { getDirectivesUsageStatement } = require('./directiveUsageStatements');
 const { getFieldDefaultValueStatement } = require('./fieldDefaultValue');
+const { addRequired } = require('../helpers/addRequiredHelper');
 
 /**
  * @typedef {Object.<string, FieldData>} FieldsData
@@ -75,18 +76,18 @@ function mapField({ name, fieldData, required, definitionsIdToNameMap, addArgume
 function getFieldType({ field, required }) {
 	if (field.$ref) {
 		const definitionName = getDefinitionNameFromReferencePath({ referencePath: field.$ref });
-		return addRequiredField({ field: definitionName, required });
+		return addRequired({ type: definitionName, required });
 	}
 
 	if (field.type === 'List') {
 		const arrayItem = getFieldFromArrayItems({ items: field.items });
-		return addRequiredField({
-			field: `[${getFieldType({ field: arrayItem, required: arrayItem.required })}]`,
+		return addRequired({
+			type: `[${getFieldType({ field: arrayItem, required: arrayItem.required })}]`,
 			required,
 		});
 	}
 
-	return addRequiredField({ field: field.type, required });
+	return addRequired({ type: field.type, required });
 }
 
 /**
@@ -101,21 +102,6 @@ function getFieldFromArrayItems({ items }) {
 		return items[0];
 	}
 	return items;
-}
-
-/**
- * Adds required field indicator.
- *
- * @param {Object} param0
- * @param {string} param0.field - The field type statement.
- * @param {boolean} param0.required - Indicates if the field is required.
- * @returns {string} - The field with required indicator.
- */
-function addRequiredField({ field, required }) {
-	if (required) {
-		return `${field}!`;
-	}
-	return field;
 }
 
 module.exports = {

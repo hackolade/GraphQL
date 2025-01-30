@@ -1340,7 +1340,15 @@ making sure that you maintain a proper JSON format.
 							"propertyName": "Name",
 							"propertyKeyword": "name",
 							"propertyTooltip": "Enter argument name",
-							"propertyType": "text"
+							"propertyType": "text",
+							"validation": {
+								"required": true
+							}
+						},
+						{
+							"propertyName": "Required",
+							"propertyKeyword": "required",
+							"propertyType": "checkbox"
 						},
 						{
 							"propertyName": "Type",
@@ -1348,6 +1356,9 @@ making sure that you maintain a proper JSON format.
 							"propertyTooltip": "Select argument type",
 							"propertyType": "selecthashed",
 							"template": "definitions",
+							"validation": {
+								"required": true
+							},
 							"templateOptions": {
 								"filter": {
 									"condition": {
@@ -1372,7 +1383,6 @@ making sure that you maintain a proper JSON format.
 										"groupBy": "childType",
 										"includeTargetTypes": {
 											"excludeTypes": [
-												"List",
 												"enum",
 												"input",
 												"scalar",
@@ -1388,10 +1398,70 @@ making sure that you maintain a proper JSON format.
 							}
 						},
 						{
-							"propertyName": "Cardinality & nullability",
-							"propertyKeyword": "required",
-							"propertyType": "select",
-							"options": ["<Type>", "<Type>!", "[<Type>]", "[<Type>]!", "[<Type>!]", "[<Type>!]!"]
+							"propertyName": "List item",
+							"propertyKeyword": "listItems",
+							"propertyTooltip": "Add List item",
+							"groupItemLimit": 1,
+							"propertyType": "group",
+							"structure": [
+								{
+									"propertyName": "Required",
+									"propertyKeyword": "required",
+									"propertyType": "checkbox"
+								},
+								{
+									"propertyName": "Type",
+									"propertyKeyword": "type",
+									"propertyTooltip": "Select List item type",
+									"propertyType": "selecthashed",
+									"template": "definitions",
+									"validation": {
+										"required": true
+									},
+									"templateOptions": {
+										"filter": {
+											"condition": {
+												"type": "or",
+												"values": [
+													{
+														"key": "childType",
+														"value": "scalar"
+													},
+													{
+														"key": "childType",
+														"value": "enum"
+													},
+													{
+														"key": "childType",
+														"value": "input"
+													}
+												]
+											},
+											"options": {
+												"useAllDefinitionsAsSource": true,
+												"groupBy": "childType",
+												"includeTargetTypes": {
+													"excludeTypes": [
+														"List",
+														"enum",
+														"input",
+														"scalar",
+														"union",
+														"object",
+														"interface",
+														"union",
+														"directive"
+													]
+												}
+											}
+										}
+									}
+								}
+							],
+							"dependency": {
+								"key": "type",
+								"value": "List"
+							}
 						},
 						{
 							"propertyName": "Default",
@@ -1466,7 +1536,15 @@ making sure that you maintain a proper JSON format.
 							"propertyName": "Name",
 							"propertyKeyword": "name",
 							"propertyTooltip": "Enter argument name",
-							"propertyType": "text"
+							"propertyType": "text",
+							"validation": {
+								"required": true
+							}
+						},
+						{
+							"propertyName": "Required",
+							"propertyKeyword": "required",
+							"propertyType": "checkbox"
 						},
 						{
 							"propertyName": "Type",
@@ -1474,6 +1552,9 @@ making sure that you maintain a proper JSON format.
 							"propertyTooltip": "Select argument type",
 							"propertyType": "selecthashed",
 							"template": "definitions",
+							"validation": {
+								"required": true
+							},
 							"templateOptions": {
 								"filter": {
 									"condition": {
@@ -1498,7 +1579,6 @@ making sure that you maintain a proper JSON format.
 										"groupBy": "childType",
 										"includeTargetTypes": {
 											"excludeTypes": [
-												"List",
 												"enum",
 												"input",
 												"scalar",
@@ -1514,10 +1594,70 @@ making sure that you maintain a proper JSON format.
 							}
 						},
 						{
-							"propertyName": "Cardinality & nullability",
-							"propertyKeyword": "required",
-							"propertyType": "select",
-							"options": ["<Type>", "<Type>!", "[<Type>]", "[<Type>]!", "[<Type>!]", "[<Type>!]!"]
+							"propertyName": "List item",
+							"propertyKeyword": "listItems",
+							"propertyTooltip": "Add List item",
+							"groupItemLimit": 1,
+							"propertyType": "group",
+							"structure": [
+								{
+									"propertyName": "Required",
+									"propertyKeyword": "required",
+									"propertyType": "checkbox"
+								},
+								{
+									"propertyName": "Type",
+									"propertyKeyword": "type",
+									"propertyTooltip": "Select List item type",
+									"propertyType": "selecthashed",
+									"template": "definitions",
+									"validation": {
+										"required": true
+									},
+									"templateOptions": {
+										"filter": {
+											"condition": {
+												"type": "or",
+												"values": [
+													{
+														"key": "childType",
+														"value": "scalar"
+													},
+													{
+														"key": "childType",
+														"value": "enum"
+													},
+													{
+														"key": "childType",
+														"value": "input"
+													}
+												]
+											},
+											"options": {
+												"useAllDefinitionsAsSource": true,
+												"groupBy": "childType",
+												"includeTargetTypes": {
+													"excludeTypes": [
+														"List",
+														"enum",
+														"input",
+														"scalar",
+														"union",
+														"object",
+														"interface",
+														"union",
+														"directive"
+													]
+												}
+											}
+										}
+									}
+								}
+							],
+							"dependency": {
+								"key": "type",
+								"value": "List"
+							}
 						},
 						{
 							"propertyName": "Default",
@@ -1592,7 +1732,15 @@ making sure that you maintain a proper JSON format.
 							"propertyName": "Name",
 							"propertyKeyword": "name",
 							"propertyTooltip": "Enter argument name",
-							"propertyType": "text"
+							"propertyType": "text",
+							"validation": {
+								"required": true
+							}
+						},
+						{
+							"propertyName": "Required",
+							"propertyKeyword": "required",
+							"propertyType": "checkbox"
 						},
 						{
 							"propertyName": "Type",
@@ -1600,6 +1748,9 @@ making sure that you maintain a proper JSON format.
 							"propertyTooltip": "Select argument type",
 							"propertyType": "selecthashed",
 							"template": "definitions",
+							"validation": {
+								"required": true
+							},
 							"templateOptions": {
 								"filter": {
 									"condition": {
@@ -1624,7 +1775,6 @@ making sure that you maintain a proper JSON format.
 										"groupBy": "childType",
 										"includeTargetTypes": {
 											"excludeTypes": [
-												"List",
 												"enum",
 												"input",
 												"scalar",
@@ -1640,10 +1790,70 @@ making sure that you maintain a proper JSON format.
 							}
 						},
 						{
-							"propertyName": "Cardinality & nullability",
-							"propertyKeyword": "required",
-							"propertyType": "select",
-							"options": ["<Type>", "<Type>!", "[<Type>]", "[<Type>]!", "[<Type>!]", "[<Type>!]!"]
+							"propertyName": "List item",
+							"propertyKeyword": "listItems",
+							"propertyTooltip": "Add List item",
+							"groupItemLimit": 1,
+							"propertyType": "group",
+							"structure": [
+								{
+									"propertyName": "Required",
+									"propertyKeyword": "required",
+									"propertyType": "checkbox"
+								},
+								{
+									"propertyName": "Type",
+									"propertyKeyword": "type",
+									"propertyTooltip": "Select List item type",
+									"propertyType": "selecthashed",
+									"template": "definitions",
+									"validation": {
+										"required": true
+									},
+									"templateOptions": {
+										"filter": {
+											"condition": {
+												"type": "or",
+												"values": [
+													{
+														"key": "childType",
+														"value": "scalar"
+													},
+													{
+														"key": "childType",
+														"value": "enum"
+													},
+													{
+														"key": "childType",
+														"value": "input"
+													}
+												]
+											},
+											"options": {
+												"useAllDefinitionsAsSource": true,
+												"groupBy": "childType",
+												"includeTargetTypes": {
+													"excludeTypes": [
+														"List",
+														"enum",
+														"input",
+														"scalar",
+														"union",
+														"object",
+														"interface",
+														"union",
+														"directive"
+													]
+												}
+											}
+										}
+									}
+								}
+							],
+							"dependency": {
+								"key": "type",
+								"value": "List"
+							}
 						},
 						{
 							"propertyName": "Default",
@@ -1718,7 +1928,15 @@ making sure that you maintain a proper JSON format.
 							"propertyName": "Name",
 							"propertyKeyword": "name",
 							"propertyTooltip": "Enter argument name",
-							"propertyType": "text"
+							"propertyType": "text",
+							"validation": {
+								"required": true
+							}
+						},
+						{
+							"propertyName": "Required",
+							"propertyKeyword": "required",
+							"propertyType": "checkbox"
 						},
 						{
 							"propertyName": "Type",
@@ -1726,6 +1944,9 @@ making sure that you maintain a proper JSON format.
 							"propertyTooltip": "Select argument type",
 							"propertyType": "selecthashed",
 							"template": "definitions",
+							"validation": {
+								"required": true
+							},
 							"templateOptions": {
 								"filter": {
 									"condition": {
@@ -1750,7 +1971,6 @@ making sure that you maintain a proper JSON format.
 										"groupBy": "childType",
 										"includeTargetTypes": {
 											"excludeTypes": [
-												"List",
 												"enum",
 												"input",
 												"scalar",
@@ -1766,10 +1986,70 @@ making sure that you maintain a proper JSON format.
 							}
 						},
 						{
-							"propertyName": "Cardinality & nullability",
-							"propertyKeyword": "required",
-							"propertyType": "select",
-							"options": ["<Type>", "<Type>!", "[<Type>]", "[<Type>]!", "[<Type>!]", "[<Type>!]!"]
+							"propertyName": "List item",
+							"propertyKeyword": "listItems",
+							"propertyTooltip": "Add List item",
+							"groupItemLimit": 1,
+							"propertyType": "group",
+							"structure": [
+								{
+									"propertyName": "Required",
+									"propertyKeyword": "required",
+									"propertyType": "checkbox"
+								},
+								{
+									"propertyName": "Type",
+									"propertyKeyword": "type",
+									"propertyTooltip": "Select List item type",
+									"propertyType": "selecthashed",
+									"template": "definitions",
+									"validation": {
+										"required": true
+									},
+									"templateOptions": {
+										"filter": {
+											"condition": {
+												"type": "or",
+												"values": [
+													{
+														"key": "childType",
+														"value": "scalar"
+													},
+													{
+														"key": "childType",
+														"value": "enum"
+													},
+													{
+														"key": "childType",
+														"value": "input"
+													}
+												]
+											},
+											"options": {
+												"useAllDefinitionsAsSource": true,
+												"groupBy": "childType",
+												"includeTargetTypes": {
+													"excludeTypes": [
+														"List",
+														"enum",
+														"input",
+														"scalar",
+														"union",
+														"object",
+														"interface",
+														"union",
+														"directive"
+													]
+												}
+											}
+										}
+									}
+								}
+							],
+							"dependency": {
+								"key": "type",
+								"value": "List"
+							}
 						},
 						{
 							"propertyName": "Default",
@@ -1844,7 +2124,15 @@ making sure that you maintain a proper JSON format.
 							"propertyName": "Name",
 							"propertyKeyword": "name",
 							"propertyTooltip": "Enter argument name",
-							"propertyType": "text"
+							"propertyType": "text",
+							"validation": {
+								"required": true
+							}
+						},
+						{
+							"propertyName": "Required",
+							"propertyKeyword": "required",
+							"propertyType": "checkbox"
 						},
 						{
 							"propertyName": "Type",
@@ -1852,6 +2140,9 @@ making sure that you maintain a proper JSON format.
 							"propertyTooltip": "Select argument type",
 							"propertyType": "selecthashed",
 							"template": "definitions",
+							"validation": {
+								"required": true
+							},
 							"templateOptions": {
 								"filter": {
 									"condition": {
@@ -1876,7 +2167,6 @@ making sure that you maintain a proper JSON format.
 										"groupBy": "childType",
 										"includeTargetTypes": {
 											"excludeTypes": [
-												"List",
 												"enum",
 												"input",
 												"scalar",
@@ -1892,10 +2182,70 @@ making sure that you maintain a proper JSON format.
 							}
 						},
 						{
-							"propertyName": "Cardinality & nullability",
-							"propertyKeyword": "required",
-							"propertyType": "select",
-							"options": ["<Type>", "<Type>!", "[<Type>]", "[<Type>]!", "[<Type>!]", "[<Type>!]!"]
+							"propertyName": "List item",
+							"propertyKeyword": "listItems",
+							"propertyTooltip": "Add List item",
+							"groupItemLimit": 1,
+							"propertyType": "group",
+							"structure": [
+								{
+									"propertyName": "Required",
+									"propertyKeyword": "required",
+									"propertyType": "checkbox"
+								},
+								{
+									"propertyName": "Type",
+									"propertyKeyword": "type",
+									"propertyTooltip": "Select List item type",
+									"propertyType": "selecthashed",
+									"template": "definitions",
+									"validation": {
+										"required": true
+									},
+									"templateOptions": {
+										"filter": {
+											"condition": {
+												"type": "or",
+												"values": [
+													{
+														"key": "childType",
+														"value": "scalar"
+													},
+													{
+														"key": "childType",
+														"value": "enum"
+													},
+													{
+														"key": "childType",
+														"value": "input"
+													}
+												]
+											},
+											"options": {
+												"useAllDefinitionsAsSource": true,
+												"groupBy": "childType",
+												"includeTargetTypes": {
+													"excludeTypes": [
+														"List",
+														"enum",
+														"input",
+														"scalar",
+														"union",
+														"object",
+														"interface",
+														"union",
+														"directive"
+													]
+												}
+											}
+										}
+									}
+								}
+							],
+							"dependency": {
+								"key": "type",
+								"value": "List"
+							}
 						},
 						{
 							"propertyName": "Default",
@@ -1970,7 +2320,15 @@ making sure that you maintain a proper JSON format.
 							"propertyName": "Name",
 							"propertyKeyword": "name",
 							"propertyTooltip": "Enter argument name",
-							"propertyType": "text"
+							"propertyType": "text",
+							"validation": {
+								"required": true
+							}
+						},
+						{
+							"propertyName": "Required",
+							"propertyKeyword": "required",
+							"propertyType": "checkbox"
 						},
 						{
 							"propertyName": "Type",
@@ -1978,6 +2336,9 @@ making sure that you maintain a proper JSON format.
 							"propertyTooltip": "Select argument type",
 							"propertyType": "selecthashed",
 							"template": "definitions",
+							"validation": {
+								"required": true
+							},
 							"templateOptions": {
 								"filter": {
 									"condition": {
@@ -2002,7 +2363,6 @@ making sure that you maintain a proper JSON format.
 										"groupBy": "childType",
 										"includeTargetTypes": {
 											"excludeTypes": [
-												"List",
 												"enum",
 												"input",
 												"scalar",
@@ -2018,10 +2378,70 @@ making sure that you maintain a proper JSON format.
 							}
 						},
 						{
-							"propertyName": "Cardinality & nullability",
-							"propertyKeyword": "required",
-							"propertyType": "select",
-							"options": ["<Type>", "<Type>!", "[<Type>]", "[<Type>]!", "[<Type>!]", "[<Type>!]!"]
+							"propertyName": "List item",
+							"propertyKeyword": "listItems",
+							"propertyTooltip": "Add List item",
+							"groupItemLimit": 1,
+							"propertyType": "group",
+							"structure": [
+								{
+									"propertyName": "Required",
+									"propertyKeyword": "required",
+									"propertyType": "checkbox"
+								},
+								{
+									"propertyName": "Type",
+									"propertyKeyword": "type",
+									"propertyTooltip": "Select List item type",
+									"propertyType": "selecthashed",
+									"template": "definitions",
+									"validation": {
+										"required": true
+									},
+									"templateOptions": {
+										"filter": {
+											"condition": {
+												"type": "or",
+												"values": [
+													{
+														"key": "childType",
+														"value": "scalar"
+													},
+													{
+														"key": "childType",
+														"value": "enum"
+													},
+													{
+														"key": "childType",
+														"value": "input"
+													}
+												]
+											},
+											"options": {
+												"useAllDefinitionsAsSource": true,
+												"groupBy": "childType",
+												"includeTargetTypes": {
+													"excludeTypes": [
+														"List",
+														"enum",
+														"input",
+														"scalar",
+														"union",
+														"object",
+														"interface",
+														"union",
+														"directive"
+													]
+												}
+											}
+										}
+									}
+								}
+							],
+							"dependency": {
+								"key": "type",
+								"value": "List"
+							}
 						},
 						{
 							"propertyName": "Default",
@@ -2097,7 +2517,15 @@ making sure that you maintain a proper JSON format.
 							"propertyName": "Name",
 							"propertyKeyword": "name",
 							"propertyTooltip": "Enter argument name",
-							"propertyType": "text"
+							"propertyType": "text",
+							"validation": {
+								"required": true
+							}
+						},
+						{
+							"propertyName": "Required",
+							"propertyKeyword": "required",
+							"propertyType": "checkbox"
 						},
 						{
 							"propertyName": "Type",
@@ -2105,6 +2533,9 @@ making sure that you maintain a proper JSON format.
 							"propertyTooltip": "Select argument type",
 							"propertyType": "selecthashed",
 							"template": "definitions",
+							"validation": {
+								"required": true
+							},
 							"templateOptions": {
 								"filter": {
 									"condition": {
@@ -2129,7 +2560,6 @@ making sure that you maintain a proper JSON format.
 										"groupBy": "childType",
 										"includeTargetTypes": {
 											"excludeTypes": [
-												"List",
 												"enum",
 												"input",
 												"scalar",
@@ -2145,10 +2575,70 @@ making sure that you maintain a proper JSON format.
 							}
 						},
 						{
-							"propertyName": "Cardinality & nullability",
-							"propertyKeyword": "required",
-							"propertyType": "select",
-							"options": ["<Type>", "<Type>!", "[<Type>]", "[<Type>]!", "[<Type>!]", "[<Type>!]!"]
+							"propertyName": "List item",
+							"propertyKeyword": "listItems",
+							"propertyTooltip": "Add List item",
+							"groupItemLimit": 1,
+							"propertyType": "group",
+							"structure": [
+								{
+									"propertyName": "Required",
+									"propertyKeyword": "required",
+									"propertyType": "checkbox"
+								},
+								{
+									"propertyName": "Type",
+									"propertyKeyword": "type",
+									"propertyTooltip": "Select List item type",
+									"propertyType": "selecthashed",
+									"template": "definitions",
+									"validation": {
+										"required": true
+									},
+									"templateOptions": {
+										"filter": {
+											"condition": {
+												"type": "or",
+												"values": [
+													{
+														"key": "childType",
+														"value": "scalar"
+													},
+													{
+														"key": "childType",
+														"value": "enum"
+													},
+													{
+														"key": "childType",
+														"value": "input"
+													}
+												]
+											},
+											"options": {
+												"useAllDefinitionsAsSource": true,
+												"groupBy": "childType",
+												"includeTargetTypes": {
+													"excludeTypes": [
+														"List",
+														"enum",
+														"input",
+														"scalar",
+														"union",
+														"object",
+														"interface",
+														"union",
+														"directive"
+													]
+												}
+											}
+										}
+									}
+								}
+							],
+							"dependency": {
+								"key": "type",
+								"value": "List"
+							}
 						},
 						{
 							"propertyName": "Default",
@@ -2233,7 +2723,15 @@ making sure that you maintain a proper JSON format.
 							"propertyName": "Name",
 							"propertyKeyword": "name",
 							"propertyTooltip": "Enter argument name",
-							"propertyType": "text"
+							"propertyType": "text",
+							"validation": {
+								"required": true
+							}
+						},
+						{
+							"propertyName": "Required",
+							"propertyKeyword": "required",
+							"propertyType": "checkbox"
 						},
 						{
 							"propertyName": "Type",
@@ -2241,6 +2739,9 @@ making sure that you maintain a proper JSON format.
 							"propertyTooltip": "Select argument type",
 							"propertyType": "selecthashed",
 							"template": "definitions",
+							"validation": {
+								"required": true
+							},
 							"templateOptions": {
 								"filter": {
 									"condition": {
@@ -2265,7 +2766,6 @@ making sure that you maintain a proper JSON format.
 										"groupBy": "childType",
 										"includeTargetTypes": {
 											"excludeTypes": [
-												"List",
 												"enum",
 												"input",
 												"scalar",
@@ -2281,10 +2781,70 @@ making sure that you maintain a proper JSON format.
 							}
 						},
 						{
-							"propertyName": "Cardinality & nullability",
-							"propertyKeyword": "required",
-							"propertyType": "select",
-							"options": ["<Type>", "<Type>!", "[<Type>]", "[<Type>]!", "[<Type>!]", "[<Type>!]!"]
+							"propertyName": "List item",
+							"propertyKeyword": "listItems",
+							"propertyTooltip": "Add List item",
+							"groupItemLimit": 1,
+							"propertyType": "group",
+							"structure": [
+								{
+									"propertyName": "Required",
+									"propertyKeyword": "required",
+									"propertyType": "checkbox"
+								},
+								{
+									"propertyName": "Type",
+									"propertyKeyword": "type",
+									"propertyTooltip": "Select List item type",
+									"propertyType": "selecthashed",
+									"template": "definitions",
+									"validation": {
+										"required": true
+									},
+									"templateOptions": {
+										"filter": {
+											"condition": {
+												"type": "or",
+												"values": [
+													{
+														"key": "childType",
+														"value": "scalar"
+													},
+													{
+														"key": "childType",
+														"value": "enum"
+													},
+													{
+														"key": "childType",
+														"value": "input"
+													}
+												]
+											},
+											"options": {
+												"useAllDefinitionsAsSource": true,
+												"groupBy": "childType",
+												"includeTargetTypes": {
+													"excludeTypes": [
+														"List",
+														"enum",
+														"input",
+														"scalar",
+														"union",
+														"object",
+														"interface",
+														"union",
+														"directive"
+													]
+												}
+											}
+										}
+									}
+								}
+							],
+							"dependency": {
+								"key": "type",
+								"value": "List"
+							}
 						},
 						{
 							"propertyName": "Default",
@@ -2369,7 +2929,15 @@ making sure that you maintain a proper JSON format.
 							"propertyName": "Name",
 							"propertyKeyword": "name",
 							"propertyTooltip": "Enter argument name",
-							"propertyType": "text"
+							"propertyType": "text",
+							"validation": {
+								"required": true
+							}
+						},
+						{
+							"propertyName": "Required",
+							"propertyKeyword": "required",
+							"propertyType": "checkbox"
 						},
 						{
 							"propertyName": "Type",
@@ -2377,6 +2945,9 @@ making sure that you maintain a proper JSON format.
 							"propertyTooltip": "Select argument type",
 							"propertyType": "selecthashed",
 							"template": "definitions",
+							"validation": {
+								"required": true
+							},
 							"templateOptions": {
 								"filter": {
 									"condition": {
@@ -2401,7 +2972,6 @@ making sure that you maintain a proper JSON format.
 										"groupBy": "childType",
 										"includeTargetTypes": {
 											"excludeTypes": [
-												"List",
 												"enum",
 												"input",
 												"scalar",
@@ -2417,10 +2987,70 @@ making sure that you maintain a proper JSON format.
 							}
 						},
 						{
-							"propertyName": "Cardinality & nullability",
-							"propertyKeyword": "required",
-							"propertyType": "select",
-							"options": ["<Type>", "<Type>!", "[<Type>]", "[<Type>]!", "[<Type>!]", "[<Type>!]!"]
+							"propertyName": "List item",
+							"propertyKeyword": "listItems",
+							"propertyTooltip": "Add List item",
+							"groupItemLimit": 1,
+							"propertyType": "group",
+							"structure": [
+								{
+									"propertyName": "Required",
+									"propertyKeyword": "required",
+									"propertyType": "checkbox"
+								},
+								{
+									"propertyName": "Type",
+									"propertyKeyword": "type",
+									"propertyTooltip": "Select List item type",
+									"propertyType": "selecthashed",
+									"template": "definitions",
+									"validation": {
+										"required": true
+									},
+									"templateOptions": {
+										"filter": {
+											"condition": {
+												"type": "or",
+												"values": [
+													{
+														"key": "childType",
+														"value": "scalar"
+													},
+													{
+														"key": "childType",
+														"value": "enum"
+													},
+													{
+														"key": "childType",
+														"value": "input"
+													}
+												]
+											},
+											"options": {
+												"useAllDefinitionsAsSource": true,
+												"groupBy": "childType",
+												"includeTargetTypes": {
+													"excludeTypes": [
+														"List",
+														"enum",
+														"input",
+														"scalar",
+														"union",
+														"object",
+														"interface",
+														"union",
+														"directive"
+													]
+												}
+											}
+										}
+									}
+								}
+							],
+							"dependency": {
+								"key": "type",
+								"value": "List"
+							}
 						},
 						{
 							"propertyName": "Default",
@@ -2505,7 +3135,15 @@ making sure that you maintain a proper JSON format.
 							"propertyName": "Name",
 							"propertyKeyword": "name",
 							"propertyTooltip": "Enter argument name",
-							"propertyType": "text"
+							"propertyType": "text",
+							"validation": {
+								"required": true
+							}
+						},
+						{
+							"propertyName": "Required",
+							"propertyKeyword": "required",
+							"propertyType": "checkbox"
 						},
 						{
 							"propertyName": "Type",
@@ -2513,6 +3151,9 @@ making sure that you maintain a proper JSON format.
 							"propertyTooltip": "Select argument type",
 							"propertyType": "selecthashed",
 							"template": "definitions",
+							"validation": {
+								"required": true
+							},
 							"templateOptions": {
 								"filter": {
 									"condition": {
@@ -2537,7 +3178,6 @@ making sure that you maintain a proper JSON format.
 										"groupBy": "childType",
 										"includeTargetTypes": {
 											"excludeTypes": [
-												"List",
 												"enum",
 												"input",
 												"scalar",
@@ -2553,10 +3193,70 @@ making sure that you maintain a proper JSON format.
 							}
 						},
 						{
-							"propertyName": "Cardinality & nullability",
-							"propertyKeyword": "required",
-							"propertyType": "select",
-							"options": ["<Type>", "<Type>!", "[<Type>]", "[<Type>]!", "[<Type>!]", "[<Type>!]!"]
+							"propertyName": "List item",
+							"propertyKeyword": "listItems",
+							"propertyTooltip": "Add List item",
+							"groupItemLimit": 1,
+							"propertyType": "group",
+							"structure": [
+								{
+									"propertyName": "Required",
+									"propertyKeyword": "required",
+									"propertyType": "checkbox"
+								},
+								{
+									"propertyName": "Type",
+									"propertyKeyword": "type",
+									"propertyTooltip": "Select List item type",
+									"propertyType": "selecthashed",
+									"template": "definitions",
+									"validation": {
+										"required": true
+									},
+									"templateOptions": {
+										"filter": {
+											"condition": {
+												"type": "or",
+												"values": [
+													{
+														"key": "childType",
+														"value": "scalar"
+													},
+													{
+														"key": "childType",
+														"value": "enum"
+													},
+													{
+														"key": "childType",
+														"value": "input"
+													}
+												]
+											},
+											"options": {
+												"useAllDefinitionsAsSource": true,
+												"groupBy": "childType",
+												"includeTargetTypes": {
+													"excludeTypes": [
+														"List",
+														"enum",
+														"input",
+														"scalar",
+														"union",
+														"object",
+														"interface",
+														"union",
+														"directive"
+													]
+												}
+											}
+										}
+									}
+								}
+							],
+							"dependency": {
+								"key": "type",
+								"value": "List"
+							}
 						},
 						{
 							"propertyName": "Default",
@@ -2626,7 +3326,15 @@ making sure that you maintain a proper JSON format.
 							"propertyName": "Name",
 							"propertyKeyword": "name",
 							"propertyTooltip": "Enter argument name",
-							"propertyType": "text"
+							"propertyType": "text",
+							"validation": {
+								"required": true
+							}
+						},
+						{
+							"propertyName": "Required",
+							"propertyKeyword": "required",
+							"propertyType": "checkbox"
 						},
 						{
 							"propertyName": "Type",
@@ -2634,6 +3342,9 @@ making sure that you maintain a proper JSON format.
 							"propertyTooltip": "Select argument type",
 							"propertyType": "selecthashed",
 							"template": "definitions",
+							"validation": {
+								"required": true
+							},
 							"templateOptions": {
 								"filter": {
 									"condition": {
@@ -2658,7 +3369,6 @@ making sure that you maintain a proper JSON format.
 										"groupBy": "childType",
 										"includeTargetTypes": {
 											"excludeTypes": [
-												"List",
 												"enum",
 												"input",
 												"scalar",
@@ -2674,10 +3384,70 @@ making sure that you maintain a proper JSON format.
 							}
 						},
 						{
-							"propertyName": "Cardinality & nullability",
-							"propertyKeyword": "required",
-							"propertyType": "select",
-							"options": ["<Type>", "<Type>!", "[<Type>]", "[<Type>]!", "[<Type>!]", "[<Type>!]!"]
+							"propertyName": "List item",
+							"propertyKeyword": "listItems",
+							"propertyTooltip": "Add List item",
+							"groupItemLimit": 1,
+							"propertyType": "group",
+							"structure": [
+								{
+									"propertyName": "Required",
+									"propertyKeyword": "required",
+									"propertyType": "checkbox"
+								},
+								{
+									"propertyName": "Type",
+									"propertyKeyword": "type",
+									"propertyTooltip": "Select List item type",
+									"propertyType": "selecthashed",
+									"template": "definitions",
+									"validation": {
+										"required": true
+									},
+									"templateOptions": {
+										"filter": {
+											"condition": {
+												"type": "or",
+												"values": [
+													{
+														"key": "childType",
+														"value": "scalar"
+													},
+													{
+														"key": "childType",
+														"value": "enum"
+													},
+													{
+														"key": "childType",
+														"value": "input"
+													}
+												]
+											},
+											"options": {
+												"useAllDefinitionsAsSource": true,
+												"groupBy": "childType",
+												"includeTargetTypes": {
+													"excludeTypes": [
+														"List",
+														"enum",
+														"input",
+														"scalar",
+														"union",
+														"object",
+														"interface",
+														"union",
+														"directive"
+													]
+												}
+											}
+										}
+									}
+								}
+							],
+							"dependency": {
+								"key": "type",
+								"value": "List"
+							}
 						},
 						{
 							"propertyName": "Default",
@@ -2746,7 +3516,15 @@ making sure that you maintain a proper JSON format.
 							"propertyName": "Name",
 							"propertyKeyword": "name",
 							"propertyTooltip": "Enter argument name",
-							"propertyType": "text"
+							"propertyType": "text",
+							"validation": {
+								"required": true
+							}
+						},
+						{
+							"propertyName": "Required",
+							"propertyKeyword": "required",
+							"propertyType": "checkbox"
 						},
 						{
 							"propertyName": "Type",
@@ -2754,6 +3532,9 @@ making sure that you maintain a proper JSON format.
 							"propertyTooltip": "Select argument type",
 							"propertyType": "selecthashed",
 							"template": "definitions",
+							"validation": {
+								"required": true
+							},
 							"templateOptions": {
 								"filter": {
 									"condition": {
@@ -2778,7 +3559,6 @@ making sure that you maintain a proper JSON format.
 										"groupBy": "childType",
 										"includeTargetTypes": {
 											"excludeTypes": [
-												"List",
 												"enum",
 												"input",
 												"scalar",
@@ -2794,10 +3574,70 @@ making sure that you maintain a proper JSON format.
 							}
 						},
 						{
-							"propertyName": "Cardinality & nullability",
-							"propertyKeyword": "required",
-							"propertyType": "select",
-							"options": ["<Type>", "<Type>!", "[<Type>]", "[<Type>]!", "[<Type>!]", "[<Type>!]!"]
+							"propertyName": "List item",
+							"propertyKeyword": "listItems",
+							"propertyTooltip": "Add List item",
+							"groupItemLimit": 1,
+							"propertyType": "group",
+							"structure": [
+								{
+									"propertyName": "Required",
+									"propertyKeyword": "required",
+									"propertyType": "checkbox"
+								},
+								{
+									"propertyName": "Type",
+									"propertyKeyword": "type",
+									"propertyTooltip": "Select List item type",
+									"propertyType": "selecthashed",
+									"template": "definitions",
+									"validation": {
+										"required": true
+									},
+									"templateOptions": {
+										"filter": {
+											"condition": {
+												"type": "or",
+												"values": [
+													{
+														"key": "childType",
+														"value": "scalar"
+													},
+													{
+														"key": "childType",
+														"value": "enum"
+													},
+													{
+														"key": "childType",
+														"value": "input"
+													}
+												]
+											},
+											"options": {
+												"useAllDefinitionsAsSource": true,
+												"groupBy": "childType",
+												"includeTargetTypes": {
+													"excludeTypes": [
+														"List",
+														"enum",
+														"input",
+														"scalar",
+														"union",
+														"object",
+														"interface",
+														"union",
+														"directive"
+													]
+												}
+											}
+										}
+									}
+								}
+							],
+							"dependency": {
+								"key": "type",
+								"value": "List"
+							}
 						},
 						{
 							"propertyName": "Default",
