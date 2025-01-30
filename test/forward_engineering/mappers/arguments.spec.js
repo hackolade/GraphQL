@@ -39,92 +39,92 @@ describe('getArgumentType', () => {
 	});
 
 	it('should return the argument type if type is definition ID', () => {
-		const argument = { type: '1' };
+		const graphqlArgument = { type: '1' };
 		const idToNameMap = {
 			'1': 'Date',
 		};
 
-		const result = getArgumentType({ argument, idToNameMap });
+		const result = getArgumentType({ graphqlArgument, idToNameMap });
 
 		strictEqual(result, 'Date');
 	});
 
 	it('should return the argument type as it is if argument type value not exist in IdToNameMap', () => {
-		const argument = { type: 'String' };
+		const graphqlArgument = { type: 'String' };
 
-		const result = getArgumentType({ argument });
+		const result = getArgumentType({ graphqlArgument });
 
 		strictEqual(result, 'String');
 	});
 
 	it('should return the argument type without required keyword if not required property omitted', () => {
-		const argument = { type: 'String' };
+		const graphqlArgument = { type: 'String' };
 
-		const result = getArgumentType({ argument });
+		const result = getArgumentType({ graphqlArgument });
 
 		strictEqual(result, 'String');
 	});
 
 	it('should return the argument type without required keyword if not required', () => {
-		const argument = { type: 'String', required: false };
+		const graphqlArgument = { type: 'String', required: false };
 
-		const result = getArgumentType({ argument });
+		const result = getArgumentType({ graphqlArgument });
 
 		strictEqual(result, 'String');
 	});
 
 	it('should return the argument type with required keyword if required value', () => {
-		const argument = { type: 'String', required: true };
+		const graphqlArgument = { type: 'String', required: true };
 
-		const result = getArgumentType({ argument });
+		const result = getArgumentType({ graphqlArgument });
 
 		strictEqual(result, 'String!');
 	});
 
 	it('should return the argument type without required option for List and List item', () => {
-		const argument = { type: 'List', required: false, listItems: [{ type: 'String', required: false }] };
+		const graphqlArgument = { type: 'List', required: false, listItems: [{ type: 'String', required: false }] };
 
-		const result = getArgumentType({ argument });
+		const result = getArgumentType({ graphqlArgument });
 
 		strictEqual(result, '[String]');
 	});
 
 	it('should return the argument type with required option only for List item', () => {
-		const argument = { type: 'List', required: false, listItems: [{ type: 'String', required: true }] };
+		const graphqlArgument = { type: 'List', required: false, listItems: [{ type: 'String', required: true }] };
 
-		const result = getArgumentType({ argument });
+		const result = getArgumentType({ graphqlArgument });
 
 		strictEqual(result, '[String!]');
 	});
 
 	it('should return the argument type with required option if List and List item are required"', () => {
-		const argument = { type: 'List', required: true, listItems: [{ type: 'String', required: true }] };
+		const graphqlArgument = { type: 'List', required: true, listItems: [{ type: 'String', required: true }] };
 
-		const result = getArgumentType({ argument });
+		const result = getArgumentType({ graphqlArgument });
 
 		strictEqual(result, '[String!]!');
 	});
 
 	it('should return the argument type without required option if List and List item have omit required property"', () => {
-		const argument = { type: 'List', listItems: [{ type: 'String' }] };
+		const graphqlArgument = { type: 'List', listItems: [{ type: 'String' }] };
 
-		const result = getArgumentType({ argument });
+		const result = getArgumentType({ graphqlArgument });
 
 		strictEqual(result, '[String]');
 	});
 
 	it('should return the argument type with empty array symbol when listItems are missed"', () => {
-		const argument = { type: 'List' };
+		const graphqlArgument = { type: 'List' };
 
-		const result = getArgumentType({ argument });
+		const result = getArgumentType({ graphqlArgument });
 
 		strictEqual(result, '[]');
 	});
 
 	it('should return the argument type with empty array symbol when listItems has missed type name"', () => {
-		const argument = { type: 'List', listItems: [{ required: true }] };
+		const graphqlArgument = { type: 'List', listItems: [{ required: true }] };
 
-		const result = getArgumentType({ argument });
+		const result = getArgumentType({ graphqlArgument });
 
 		strictEqual(result, '[]');
 	});
@@ -139,7 +139,7 @@ describe('mapArgument', () => {
 	});
 
 	it('should map an argument to a string with all configured properties', () => {
-		const argument = {
+		const graphqlArgument = {
 			name: 'arg1',
 			type: 'String',
 			required: false,
@@ -151,7 +151,7 @@ describe('mapArgument', () => {
 		getArgumentDefaultValueMock.mock.mockImplementationOnce(() => '"default"');
 		joinInlineStatementsMock.mock.mockImplementationOnce(() => 'arg1: String = "default" @deprecated');
 
-		const result = mapArgument({ argument });
+		const result = mapArgument({ graphqlArgument });
 
 		deepStrictEqual(result, {
 			statement: 'arg1: String = "default" @deprecated',
@@ -160,7 +160,7 @@ describe('mapArgument', () => {
 	});
 
 	it("should map an argument to an empty string when an argument doesn't have name", () => {
-		const argument = {
+		const graphqlArgument = {
 			type: 'String',
 			required: false,
 		};
@@ -169,7 +169,7 @@ describe('mapArgument', () => {
 		getArgumentDefaultValueMock.mock.mockImplementationOnce(() => '');
 		joinInlineStatementsMock.mock.mockImplementationOnce(() => '');
 
-		const result = mapArgument({ argument });
+		const result = mapArgument({ graphqlArgument });
 
 		deepStrictEqual(result, {
 			statement: '',
