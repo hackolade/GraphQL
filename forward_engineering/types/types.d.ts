@@ -49,7 +49,10 @@ export type ArrayItem = FieldData & {
 };
 
 // Field arguments
-type ArgumentRequirements = '<Type>' | '<Type>!' | '[<Type>]' | '[<Type>]!' | '[<Type>!]' | '[<Type>!]!';
+type ArgumentListItem = {
+	type?: string;
+	required?: boolean;
+}
 
 export type Argument = {
 	id: string;
@@ -58,7 +61,8 @@ export type Argument = {
 	default?: string;
 	description?: string;
 	directives?: DirectivePropertyData[];
-	required?: ArgumentRequirements;
+	required?: boolean;
+	listItems?: ArgumentListItem[];
 };
 
 // Directives

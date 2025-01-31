@@ -6,32 +6,45 @@ const { getDirectivesUsageStatement } = require('./directiveUsageStatements');
 const { getArgumentDefaultValue } = require('./argumentDefaultValue');
 const { joinInlineStatements } = require('../helpers/feStatementJoinHelper');
 const { formatFEStatement } = require('../helpers/feStatementFormatHelper');
+const { addRequired } = require('../helpers/addRequiredHelper');
 
 /**
  * Gets the type of the argument with the required keyword.
  * @param {Object} args - arguments object.
- * @param {Argument} args.argument - The argument to map.
+ * @param {Argument} args.graphqlArgument - The argument to map.
  * @param {IdToNameMap} [args.idToNameMap] - The ID to name map of all available types in model.
  * @returns {string} returns the type of the argument with the required keyword
  */
-const getArgumentType = ({ argument, idToNameMap = {} }) => {
-	const argumentType = idToNameMap[argument.type] || argument.type;
-	return argument.required ? argument.required.replace('<Type>', argumentType) : argumentType;
+const getArgumentType = ({ graphqlArgument, idToNameMap = {} }) => {
+	let argumentType = idToNameMap[graphqlArgument.type] || graphqlArgument.type;
+
+	if (argumentType === 'List') {
+		const firstListItem = graphqlArgument.listItems?.[0] || {};
+		const listItemType = idToNameMap[firstListItem.type] || firstListItem.type || '';
+
+		if (!listItemType) {
+			argumentType = '[]';
+		} else {
+			argumentType = `[${addRequired({ type: listItemType, required: firstListItem.required })}]`;
+		}
+	}
+
+	return addRequired({ type: argumentType, required: graphqlArgument.required });
 };
 
 /**
  * Maps an argument to a string with all configured properties.
  * @param {Object} args - arguments object.
- * @param {Argument} args.argument - The argument to map.
+ * @param {Argument} args.graphqlArgument - The argument to map.
  * @param {IdToNameMap} [args.idToNameMap] - The ID to name map of all available types in model.
  * @returns {FEStatement} returns the argument as a FEStatement
  */
-const mapArgument = ({ argument, idToNameMap = {} }) => {
-	const argumentName = `${argument.name}:`;
-	const argumentType = getArgumentType({ argument, idToNameMap });
-	const directivesStatement = getDirectivesUsageStatement({ directives: argument.directives });
-	const defaultValue = argument.default
-		? `= ${getArgumentDefaultValue({ type: argument.type, defaultValue: argument.default })}`
+const mapArgument = ({ graphqlArgument, idToNameMap = {} }) => {
+	const argumentName = `${graphqlArgument.name}:`;
+	const argumentType = getArgumentType({ graphqlArgument, idToNameMap });
+	const directivesStatement = getDirectivesUsageStatement({ directives: graphqlArgument.directives });
+	const defaultValue = graphqlArgument.default
+		? `= ${getArgumentDefaultValue({ type: graphqlArgument.type, defaultValue: graphqlArgument.default })}`
 		: '';
 
 	const statement = joinInlineStatements({
@@ -40,7 +53,7 @@ const mapArgument = ({ argument, idToNameMap = {} }) => {
 
 	return {
 		statement,
-		description: argument.description,
+		description: graphqlArgument.description || '',
 	};
 };
 
@@ -58,7 +71,11 @@ const getArguments = ({ graphqlArguments, idToNameMap = {} }) => {
 	const hasDescription = graphqlArguments.some(argument => argument.description);
 	const argumentStatements = graphqlArguments
 		.filter(argument => argument.name && argument.type)
-		.map(argument => mapArgument({ argument, idToNameMap }));
+		.map(graphqlArgument => mapArgument({ graphqlArgument, idToNameMap }));
+
+	if (argumentStatements.length === 0) {
+		return '';
+	}
 
 	if (!hasDescription) {
 		// For current state of code if arguments don't have any description we return them as a single line
