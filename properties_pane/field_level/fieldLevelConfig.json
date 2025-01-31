@@ -713,7 +713,10 @@ making sure that you maintain a proper JSON format.
 						{
 							"propertyName": "Description",
 							"propertyKeyword": "description",
-							"propertyType": "text"
+							"propertyType": "details",
+							"template": "textarea",
+							"propertyTooltip": "Enter description",
+							"markdown": true
 						},
 						{
 							"propertyName": "Directives",
