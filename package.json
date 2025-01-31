@@ -18,21 +18,21 @@
             "enableReverseEngineering": {
                 "jsonDocument": {
                     "entities": false,
-                    "model_definitions": true
+                    "model_definitions": false
                 },
                 "jsonSchema": {
                     "entities": false,
-                    "model_definitions": true
+                    "model_definitions": false
                 },
                 "ddl": {
                     "entities": false,
-                    "model_definitions": true
+                    "model_definitions": false
                 },
                 "xsd": {
                     "entities": false,
-                    "model_definitions": true
+                    "model_definitions": false
                 },
-                "plugin": true
+                "plugin": false
             },
             "disableDenormalization": true,
             "enableForwardEngineering": {
