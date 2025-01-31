@@ -3745,6 +3745,10 @@ making sure that you maintain a proper JSON format.
 								"buttons": ["contactSupport", "ok"]
 							}
 						}
+					},
+					"dependency": {
+						"key": "ref",
+						"exist": false
 					}
 				}
 			],
@@ -3798,6 +3802,10 @@ making sure that you maintain a proper JSON format.
 								"buttons": ["contactSupport", "ok"]
 							}
 						}
+					},
+					"dependency": {
+						"key": "ref",
+						"exist": false
 					}
 				}
 			]
