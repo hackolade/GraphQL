@@ -141,7 +141,8 @@ making sure that you maintain a proper JSON format.
 				"propertyTooltip": "DB version",
 				"propertyType": "select",
 				"options": [],
-				"disabledOption": true
+				"disabledOption": true,
+				"hidden": true
 			},
 			{
 				"propertyName": "Comments",
