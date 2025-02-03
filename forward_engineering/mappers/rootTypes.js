@@ -17,8 +17,8 @@ const { getRootTypeFields } = require('./fields');
  */
 function getSchemaRootTypeStatements({ containers = [], definitionsIdToNameMap }) {
 	const rootTypeNames = getRootTypeNames({ containers });
-	const rootSchemaStatement = getRootSchemaStatement({ rootTypeNames });
-	const rootTypes = getRootTypes({ containers, rootTypeNames, definitionsIdToNameMap });
+	const rootTypes = getRootTypes({ containers, rootTypeNames, definitionsIdToNameMap }).filter(Boolean);
+	const rootSchemaStatement = getRootSchemaStatement({ rootTypeNames, rootTypes });
 
 	return [rootSchemaStatement, ...rootTypes]
 		.filter(Boolean)
@@ -29,27 +29,30 @@ function getSchemaRootTypeStatements({ containers = [], definitionsIdToNameMap }
 /**
  * Gets the root schema statement.
  * If all root types have default values, return null.
+ * If at least one root type does not have a default value, return the root schema statement.
+ * If the root type is not present in the root types, do not include it in the root schema statement.
  *
  * @param {Object} param0
  * @param {RootTypeNamesParameter} param0.rootTypeNames - The root type names.
+ * @param {FEStatement[]} param0.rootTypes - The root types.
  * @returns {FEStatement | null} - The root schema statement or null if all root types have default values.
  */
-function getRootSchemaStatement({ rootTypeNames }) {
-	const { query, mutation, subscription } = rootTypeNames;
+function getRootSchemaStatement({ rootTypeNames, rootTypes }) {
+	const rootTypeMap = {
+		query: QUERY_ROOT_TYPE,
+		mutation: MUTATION_ROOT_TYPE,
+		subscription: SUBSCRIPTION_ROOT_TYPE,
+	};
 
-	const nestedStatements = [];
+	const nestedStatements = Object.entries(rootTypeMap).reduce((acc, [key, defaultValue]) => {
+		const isDefaultRootTypeNameHasDefaultValue = rootTypeNames[key] === defaultValue;
+		const isRootTypePresent = rootTypes.some(rootType => rootType.statement.includes(rootTypeNames[key]));
 
-	if (query !== QUERY_ROOT_TYPE) {
-		nestedStatements.push({ statement: `query: ${query}` });
-	}
-
-	if (mutation !== MUTATION_ROOT_TYPE) {
-		nestedStatements.push({ statement: `mutation: ${mutation}` });
-	}
-
-	if (subscription !== SUBSCRIPTION_ROOT_TYPE) {
-		nestedStatements.push({ statement: `subscription: ${subscription}` });
-	}
+		if (!isDefaultRootTypeNameHasDefaultValue && isRootTypePresent) {
+			acc.push({ statement: `${key}: ${rootTypeNames[key]}` });
+		}
+		return acc;
+	}, []);
 
 	if (nestedStatements.length === 0) {
 		return null;

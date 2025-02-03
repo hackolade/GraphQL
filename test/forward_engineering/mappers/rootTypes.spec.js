@@ -86,7 +86,12 @@ describe('getRootSchemaStatement', () => {
 			mutation: 'Mutation',
 			subscription: 'Subscription',
 		};
-		const result = getRootSchemaStatement({ rootTypeNames });
+		const rootTypes = [
+			{ statement: 'type Query' },
+			{ statement: 'type Mutation' },
+			{ statement: 'type Subscription' },
+		];
+		const result = getRootSchemaStatement({ rootTypeNames, rootTypes });
 		strictEqual(result, null);
 	});
 
@@ -96,11 +101,41 @@ describe('getRootSchemaStatement', () => {
 			mutation: 'Mutation',
 			subscription: 'CustomSubscription',
 		};
-		const result = getRootSchemaStatement({ rootTypeNames });
+		const rootTypes = [
+			{ statement: 'type CustomQuery' },
+			{ statement: 'type Mutation' },
+			{ statement: 'type CustomSubscription' },
+		];
+		const result = getRootSchemaStatement({ rootTypeNames, rootTypes });
 		deepStrictEqual(result, {
 			statement: 'schema',
 			nestedStatements: [{ statement: 'query: CustomQuery' }, { statement: 'subscription: CustomSubscription' }],
 		});
+	});
+
+	it('should return schema statement with only present custom root types', () => {
+		const rootTypeNames = {
+			query: 'CustomQuery',
+			mutation: 'Mutation',
+			subscription: 'CustomSubscription',
+		};
+		const rootTypes = [{ statement: 'type CustomQuery' }, { statement: 'type Mutation' }];
+		const result = getRootSchemaStatement({ rootTypeNames, rootTypes });
+		deepStrictEqual(result, {
+			statement: 'schema',
+			nestedStatements: [{ statement: 'query: CustomQuery' }],
+		});
+	});
+
+	it('should return null if no custom root types are present', () => {
+		const rootTypeNames = {
+			query: 'CustomQuery',
+			mutation: 'Mutation',
+			subscription: 'CustomSubscription',
+		};
+		const rootTypes = [{ statement: 'type Mutation' }];
+		const result = getRootSchemaStatement({ rootTypeNames, rootTypes });
+		strictEqual(result, null);
 	});
 });
 
