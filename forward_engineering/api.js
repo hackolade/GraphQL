@@ -6,6 +6,7 @@ const validationHelper = require('./helpers/schemaValidationHelper');
 const { getTypeDefinitionStatements } = require('./mappers/typeDefinitions');
 const { generateIdToNameMap } = require('./helpers/generateIdToNameMap');
 const { getSchemaRootTypeStatements } = require('./mappers/rootTypes');
+const { getSchemaVersionHeader } = require('./mappers/schemaVersionHeader');
 
 module.exports = {
 	/**
@@ -19,13 +20,16 @@ module.exports = {
 			const modelDefinitions = JSON.parse(data.modelDefinitions);
 			const definitionsIdToNameMap = generateIdToNameMap(modelDefinitions.properties);
 
+			const schemaVersionHeader = getSchemaVersionHeader({ schemaVersion: data.modelData[0]?.version });
 			const rootTypeStatements = getSchemaRootTypeStatements({
 				containers: data.containers,
 				definitionsIdToNameMap,
 			});
 			const typeDefinitionStatements = getTypeDefinitionStatements({ modelDefinitions, definitionsIdToNameMap });
 
-			const schemaScript = [rootTypeStatements, typeDefinitionStatements].filter(Boolean).join('\n\n');
+			const schemaScript = [schemaVersionHeader, rootTypeStatements, typeDefinitionStatements]
+				.filter(Boolean)
+				.join('\n\n');
 
 			cb(null, schemaScript);
 		} catch (err) {

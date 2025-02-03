@@ -2,7 +2,7 @@
  * @import { FEStatement } from "../types/types"
  */
 
-const { commentOutDeactivatedRootFEStatement } = require('./deactivatedItemsHelper');
+const { commentLines } = require('./commentLinesHelper');
 const { getStatementDescription } = require('./descriptionsHelper');
 const { addIndentToStatement } = require('./feStatementIndentHelper');
 
@@ -40,7 +40,7 @@ function formatFEStatement({ feStatement }) {
 	});
 
 	if (!isActivated) {
-		result = commentOutDeactivatedRootFEStatement({ statement: result, isActivated });
+		result = commentLines({ statement: result });
 	}
 
 	return result;
