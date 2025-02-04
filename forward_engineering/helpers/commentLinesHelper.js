@@ -1,11 +1,13 @@
 /**
- * Comments out a GraphQL statement if it is deactivated.
+ * Adds comment markers to each line of a GraphQL statement.
+ * This function takes a GraphQL statement and prepends a '#' character
+ * to each line, commenting out the entire statement.
  *
  * @param {Object} param0
  * @param {string} param0.statement - The GraphQL statement to comment out
  * @returns {string} - Commented out statement
  */
-function commentOutDeactivatedRootFEStatement({ statement }) {
+function commentLines({ statement }) {
 	const commentedStatement = statement
 		.split('\n')
 		.map(line => `# ${line}`)
@@ -15,5 +17,5 @@ function commentOutDeactivatedRootFEStatement({ statement }) {
 }
 
 module.exports = {
-	commentOutDeactivatedRootFEStatement,
+	commentLines,
 };

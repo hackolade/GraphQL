@@ -2,7 +2,8 @@
 	"model": {
 		"modelName": "New GraphQL model",
 		"dbVersion": "",
-		"dbVendor": "GraphQL"
+		"dbVendor": "GraphQL",
+		"version": "1.0.0"
 	},
 	"container": {
 		"name": "NewGraph",
