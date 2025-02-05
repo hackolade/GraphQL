@@ -950,6 +950,7 @@ making sure that you maintain a proper JSON format.
 							"propertyTooltip": "Select interface",
 							"propertyType": "selecthashed",
 							"template": "definitions",
+							"withEmptyOption": true,
 							"templateOptions": {
 								"filter": {
 									"condition": {
@@ -1101,6 +1102,7 @@ making sure that you maintain a proper JSON format.
 							"propertyTooltip": "Select interface",
 							"propertyType": "selecthashed",
 							"template": "definitions",
+							"withEmptyOption": true,
 							"templateOptions": {
 								"filter": {
 									"condition": {
