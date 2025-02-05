@@ -931,6 +931,60 @@ making sure that you maintain a proper JSON format.
 				},
 				"minProperties",
 				"maxProperties",
+				{
+					"propertyName": "Interfaces",
+					"propertyKeyword": "implementsInterfaces",
+					"propertyTooltip": "Select interfaces to implement",
+					"propertyType": "group",
+					"helpInfo": {
+						"type": "modal",
+						"title": "PROPERTIES_PANE___IMPLEMENTS_INFO_MODAL_TITLE",
+						"content": "PROPERTIES_PANE___IMPLEMENTS_INFO_MODAL_BODY",
+						"featureNameForHelp": "Implementing Interfaces in GraphQL",
+						"buttons": ["contactSupport", "ok"]
+					},
+					"structure": [
+						{
+							"propertyName": "Interface",
+							"propertyKeyword": "interface",
+							"propertyTooltip": "Select interface",
+							"propertyType": "selecthashed",
+							"template": "definitions",
+							"templateOptions": {
+								"filter": {
+									"condition": {
+										"key": "childType",
+										"value": "interface"
+									},
+									"options": {
+										"useAllDefinitionsAsSource": true
+									}
+								}
+							},
+							"sideEffectActions": {
+								"onSelect": {
+									"action": "copySelectedItemChildAttributes"
+								}
+							}
+						}
+					],
+					"sideEffectActions": {
+						"onRemove": {
+							"action": "showMessage",
+							"actionConfig": {
+								"type": "modal",
+								"title": "PROPERTIES_PANE___REMOVE_IMPLEMENTED_INTERFACE_WARNING_TITLE",
+								"content": "PROPERTIES_PANE___REMOVE_IMPLEMENTED_INTERFACE_WARNING_BODY",
+								"featureNameForHelp": "Removing of implemented interfaces in GraphQL",
+								"buttons": ["contactSupport", "ok"]
+							}
+						}
+					},
+					"dependency": {
+						"key": "ref",
+						"exist": false
+					}
+				},
 				"comments"
 			],
 			"interface": [
@@ -1028,6 +1082,60 @@ making sure that you maintain a proper JSON format.
 				},
 				"minProperties",
 				"maxProperties",
+				{
+					"propertyName": "Interfaces",
+					"propertyKeyword": "implementsInterfaces",
+					"propertyTooltip": "Select interfaces to implement",
+					"propertyType": "group",
+					"helpInfo": {
+						"type": "modal",
+						"title": "PROPERTIES_PANE___IMPLEMENTS_INFO_MODAL_TITLE",
+						"content": "PROPERTIES_PANE___IMPLEMENTS_INFO_MODAL_BODY",
+						"featureNameForHelp": "Implementing Interfaces in GraphQL",
+						"buttons": ["contactSupport", "ok"]
+					},
+					"structure": [
+						{
+							"propertyName": "Interface",
+							"propertyKeyword": "interface",
+							"propertyTooltip": "Select interface",
+							"propertyType": "selecthashed",
+							"template": "definitions",
+							"templateOptions": {
+								"filter": {
+									"condition": {
+										"key": "childType",
+										"value": "interface"
+									},
+									"options": {
+										"useAllDefinitionsAsSource": true
+									}
+								}
+							},
+							"sideEffectActions": {
+								"onSelect": {
+									"action": "copySelectedItemChildAttributes"
+								}
+							}
+						}
+					],
+					"sideEffectActions": {
+						"onRemove": {
+							"action": "showMessage",
+							"actionConfig": {
+								"type": "modal",
+								"title": "PROPERTIES_PANE___REMOVE_IMPLEMENTED_INTERFACE_WARNING_TITLE",
+								"content": "PROPERTIES_PANE___REMOVE_IMPLEMENTED_INTERFACE_WARNING_BODY",
+								"featureNameForHelp": "Removing of implemented interfaces in GraphQL",
+								"buttons": ["contactSupport", "ok"]
+							}
+						}
+					},
+					"dependency": {
+						"key": "ref",
+						"exist": false
+					}
+				},
 				"comments"
 			],
 			"union": [
@@ -3692,124 +3800,6 @@ making sure that you maintain a proper JSON format.
 							]
 						}
 					]
-				}
-			]
-		}
-	},
-	{
-		"lowerTab": "Implements",
-		"structure": {
-			"object": [
-				{
-					"propertyName": "Interfaces",
-					"propertyKeyword": "implementsInterfaces",
-					"propertyTooltip": "Select interfaces to implement",
-					"propertyType": "group",
-					"helpInfo": {
-						"type": "modal",
-						"title": "PROPERTIES_PANE___IMPLEMENTS_INFO_MODAL_TITLE",
-						"content": "PROPERTIES_PANE___IMPLEMENTS_INFO_MODAL_BODY",
-						"featureNameForHelp": "Implementing Interfaces in GraphQL",
-						"buttons": ["contactSupport", "ok"]
-					},
-					"structure": [
-						{
-							"propertyName": "Interface",
-							"propertyKeyword": "interface",
-							"propertyTooltip": "Select interface",
-							"propertyType": "selecthashed",
-							"template": "definitions",
-							"templateOptions": {
-								"filter": {
-									"condition": {
-										"key": "childType",
-										"value": "interface"
-									},
-									"options": {
-										"useAllDefinitionsAsSource": true
-									}
-								}
-							},
-							"sideEffectActions": {
-								"onSelect": {
-									"action": "copySelectedItemChildAttributes"
-								}
-							}
-						}
-					],
-					"sideEffectActions": {
-						"onRemove": {
-							"action": "showMessage",
-							"actionConfig": {
-								"type": "modal",
-								"title": "PROPERTIES_PANE___REMOVE_IMPLEMENTED_INTERFACE_WARNING_TITLE",
-								"content": "PROPERTIES_PANE___REMOVE_IMPLEMENTED_INTERFACE_WARNING_BODY",
-								"featureNameForHelp": "Removing of implemented interfaces in GraphQL",
-								"buttons": ["contactSupport", "ok"]
-							}
-						}
-					},
-					"dependency": {
-						"key": "ref",
-						"exist": false
-					}
-				}
-			],
-			"interface": [
-				{
-					"propertyName": "Interfaces",
-					"propertyKeyword": "implementsInterfaces",
-					"propertyTooltip": "Select interfaces to implement",
-					"propertyType": "group",
-					"helpInfo": {
-						"type": "modal",
-						"title": "PROPERTIES_PANE___IMPLEMENTS_INFO_MODAL_TITLE",
-						"content": "PROPERTIES_PANE___IMPLEMENTS_INFO_MODAL_BODY",
-						"featureNameForHelp": "Implementing Interfaces in GraphQL",
-						"buttons": ["contactSupport", "ok"]
-					},
-					"structure": [
-						{
-							"propertyName": "Interface",
-							"propertyKeyword": "interface",
-							"propertyTooltip": "Select interface",
-							"propertyType": "selecthashed",
-							"template": "definitions",
-							"templateOptions": {
-								"filter": {
-									"condition": {
-										"key": "childType",
-										"value": "interface"
-									},
-									"options": {
-										"filterOutSelf": true,
-										"useAllDefinitionsAsSource": true
-									}
-								}
-							},
-							"sideEffectActions": {
-								"onSelect": {
-									"action": "copySelectedItemChildAttributes"
-								}
-							}
-						}
-					],
-					"sideEffectActions": {
-						"onRemove": {
-							"action": "showMessage",
-							"actionConfig": {
-								"type": "modal",
-								"title": "PROPERTIES_PANE___REMOVE_IMPLEMENTED_INTERFACE_WARNING_TITLE",
-								"content": "PROPERTIES_PANE___REMOVE_IMPLEMENTED_INTERFACE_WARNING_BODY",
-								"featureNameForHelp": "Removing of implemented interfaces in GraphQL",
-								"buttons": ["contactSupport", "ok"]
-							}
-						}
-					},
-					"dependency": {
-						"key": "ref",
-						"exist": false
-					}
 				}
 			]
 		}
