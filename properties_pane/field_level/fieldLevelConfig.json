@@ -1467,6 +1467,7 @@ making sure that you maintain a proper JSON format.
 							"propertyTooltip": "Select argument type",
 							"propertyType": "selecthashed",
 							"template": "definitions",
+							"withEmptyOption": true,
 							"validation": {
 								"required": true
 							},
@@ -1526,6 +1527,7 @@ making sure that you maintain a proper JSON format.
 									"propertyTooltip": "Select List item type",
 									"propertyType": "selecthashed",
 									"template": "definitions",
+									"withEmptyOption": true,
 									"validation": {
 										"required": true
 									},
@@ -1663,6 +1665,7 @@ making sure that you maintain a proper JSON format.
 							"propertyTooltip": "Select argument type",
 							"propertyType": "selecthashed",
 							"template": "definitions",
+							"withEmptyOption": true,
 							"validation": {
 								"required": true
 							},
@@ -1722,6 +1725,7 @@ making sure that you maintain a proper JSON format.
 									"propertyTooltip": "Select List item type",
 									"propertyType": "selecthashed",
 									"template": "definitions",
+									"withEmptyOption": true,
 									"validation": {
 										"required": true
 									},
@@ -1859,6 +1863,7 @@ making sure that you maintain a proper JSON format.
 							"propertyTooltip": "Select argument type",
 							"propertyType": "selecthashed",
 							"template": "definitions",
+							"withEmptyOption": true,
 							"validation": {
 								"required": true
 							},
@@ -1918,6 +1923,7 @@ making sure that you maintain a proper JSON format.
 									"propertyTooltip": "Select List item type",
 									"propertyType": "selecthashed",
 									"template": "definitions",
+									"withEmptyOption": true,
 									"validation": {
 										"required": true
 									},
@@ -2055,6 +2061,7 @@ making sure that you maintain a proper JSON format.
 							"propertyTooltip": "Select argument type",
 							"propertyType": "selecthashed",
 							"template": "definitions",
+							"withEmptyOption": true,
 							"validation": {
 								"required": true
 							},
@@ -2114,6 +2121,7 @@ making sure that you maintain a proper JSON format.
 									"propertyTooltip": "Select List item type",
 									"propertyType": "selecthashed",
 									"template": "definitions",
+									"withEmptyOption": true,
 									"validation": {
 										"required": true
 									},
@@ -2251,6 +2259,7 @@ making sure that you maintain a proper JSON format.
 							"propertyTooltip": "Select argument type",
 							"propertyType": "selecthashed",
 							"template": "definitions",
+							"withEmptyOption": true,
 							"validation": {
 								"required": true
 							},
@@ -2310,6 +2319,7 @@ making sure that you maintain a proper JSON format.
 									"propertyTooltip": "Select List item type",
 									"propertyType": "selecthashed",
 									"template": "definitions",
+									"withEmptyOption": true,
 									"validation": {
 										"required": true
 									},
@@ -2447,6 +2457,7 @@ making sure that you maintain a proper JSON format.
 							"propertyTooltip": "Select argument type",
 							"propertyType": "selecthashed",
 							"template": "definitions",
+							"withEmptyOption": true,
 							"validation": {
 								"required": true
 							},
@@ -2506,6 +2517,7 @@ making sure that you maintain a proper JSON format.
 									"propertyTooltip": "Select List item type",
 									"propertyType": "selecthashed",
 									"template": "definitions",
+									"withEmptyOption": true,
 									"validation": {
 										"required": true
 									},
@@ -2644,6 +2656,7 @@ making sure that you maintain a proper JSON format.
 							"propertyTooltip": "Select argument type",
 							"propertyType": "selecthashed",
 							"template": "definitions",
+							"withEmptyOption": true,
 							"validation": {
 								"required": true
 							},
@@ -2703,6 +2716,7 @@ making sure that you maintain a proper JSON format.
 									"propertyTooltip": "Select List item type",
 									"propertyType": "selecthashed",
 									"template": "definitions",
+									"withEmptyOption": true,
 									"validation": {
 										"required": true
 									},
@@ -2850,6 +2864,7 @@ making sure that you maintain a proper JSON format.
 							"propertyTooltip": "Select argument type",
 							"propertyType": "selecthashed",
 							"template": "definitions",
+							"withEmptyOption": true,
 							"validation": {
 								"required": true
 							},
@@ -2909,6 +2924,7 @@ making sure that you maintain a proper JSON format.
 									"propertyTooltip": "Select List item type",
 									"propertyType": "selecthashed",
 									"template": "definitions",
+									"withEmptyOption": true,
 									"validation": {
 										"required": true
 									},
@@ -3056,6 +3072,7 @@ making sure that you maintain a proper JSON format.
 							"propertyTooltip": "Select argument type",
 							"propertyType": "selecthashed",
 							"template": "definitions",
+							"withEmptyOption": true,
 							"validation": {
 								"required": true
 							},
@@ -3115,6 +3132,7 @@ making sure that you maintain a proper JSON format.
 									"propertyTooltip": "Select List item type",
 									"propertyType": "selecthashed",
 									"template": "definitions",
+									"withEmptyOption": true,
 									"validation": {
 										"required": true
 									},
@@ -3262,6 +3280,7 @@ making sure that you maintain a proper JSON format.
 							"propertyTooltip": "Select argument type",
 							"propertyType": "selecthashed",
 							"template": "definitions",
+							"withEmptyOption": true,
 							"validation": {
 								"required": true
 							},
@@ -3321,6 +3340,7 @@ making sure that you maintain a proper JSON format.
 									"propertyTooltip": "Select List item type",
 									"propertyType": "selecthashed",
 									"template": "definitions",
+									"withEmptyOption": true,
 									"validation": {
 										"required": true
 									},
@@ -3453,6 +3473,7 @@ making sure that you maintain a proper JSON format.
 							"propertyTooltip": "Select argument type",
 							"propertyType": "selecthashed",
 							"template": "definitions",
+							"withEmptyOption": true,
 							"validation": {
 								"required": true
 							},
@@ -3512,6 +3533,7 @@ making sure that you maintain a proper JSON format.
 									"propertyTooltip": "Select List item type",
 									"propertyType": "selecthashed",
 									"template": "definitions",
+									"withEmptyOption": true,
 									"validation": {
 										"required": true
 									},
@@ -3642,6 +3664,7 @@ making sure that you maintain a proper JSON format.
 							"propertyKeyword": "type",
 							"propertyTooltip": "Select argument type",
 							"propertyType": "selecthashed",
+							"withEmptyOption": true,
 							"template": "definitions",
 							"validation": {
 								"required": true
@@ -3702,6 +3725,7 @@ making sure that you maintain a proper JSON format.
 									"propertyTooltip": "Select List item type",
 									"propertyType": "selecthashed",
 									"template": "definitions",
+									"withEmptyOption": true,
 									"validation": {
 										"required": true
 									},
