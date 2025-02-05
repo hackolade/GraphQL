@@ -24,20 +24,32 @@ function formatFEStatement({ feStatement }) {
 		startNestedStatementsSign = '{',
 		endNestedStatementsSign = '}',
 		nestedStatementsSeparator = '\n',
+		comment = '',
 	} = feStatement;
 
 	let result = '';
+	const commentText = formatSingleLineComment(comment);
 
 	result += formatDescription(description);
 	result += statement;
-	result += formatNestedStatements({
+	const nestedStatementsText = formatNestedStatements({
 		nestedStatements,
 		isParentActivated: isActivated,
 		useNestedStatementSigns,
 		startNestedStatementsSign,
 		endNestedStatementsSign,
 		nestedStatementsSeparator,
+		parentComment: commentText,
 	});
+
+	if (nestedStatementsText) {
+		// If there are nested statements, we add them to the result
+		// and add the comment to the parent statement, it is added after startNestedStatementsSign and before the nested statements
+		result += nestedStatementsText;
+	} else {
+		// If there are no nested statements, we add the comment to the parent statement
+		result += commentText;
+	}
 
 	if (!isActivated) {
 		result = commentLines({ statement: result });
@@ -61,6 +73,7 @@ function formatNestedStatements({
 	startNestedStatementsSign,
 	endNestedStatementsSign,
 	nestedStatementsSeparator,
+	parentComment = '',
 }) {
 	if (!nestedStatements?.length) {
 		return '';
@@ -79,10 +92,14 @@ function formatNestedStatements({
 		.join(nestedStatementsSeparator);
 
 	if (useNestedStatementSigns) {
-		return ` ${startNestedStatementsSign}\n${formattedNestedStatements}\n${endNestedStatementsSign}`;
+		return ` ${startNestedStatementsSign}${parentComment}\n${formattedNestedStatements}\n${endNestedStatementsSign}`;
 	} else {
-		return `\n${formattedNestedStatements}`;
+		return `${parentComment}\n${formattedNestedStatements}`;
 	}
+}
+
+function formatSingleLineComment(comment) {
+	return comment ? ` # ${comment}` : '';
 }
 
 module.exports = {

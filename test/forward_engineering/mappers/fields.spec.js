@@ -3,7 +3,7 @@ const { strictEqual, deepStrictEqual } = require('assert');
 
 const joinInlineStatementsMock = mock.fn();
 const getDefinitionNameFromReferencePathMock = mock.fn(() => '');
-const getArgumentsMock = mock.fn(() => '');
+const getArgumentsMock = mock.fn(() => ({ argumentsStatement: '', argumentsWarningComment: '' }));
 const getDirectivesUsageStatementMock = mock.fn(() => '');
 const getFieldDefaultValueStatementMock = mock.fn(() => '');
 
@@ -57,7 +57,7 @@ describe('mapField', () => {
 		const required = true;
 		const definitionsIdToNameMap = {};
 
-		getArgumentsMock.mock.mockImplementationOnce(() => '');
+		getArgumentsMock.mock.mockImplementationOnce(() => ({ argumentsStatement: '', argumentsWarningComment: '' }));
 		joinInlineStatementsMock.mock.mockImplementationOnce(() => name, 0);
 		joinInlineStatementsMock.mock.mockImplementationOnce(() => `${name}: String`, 1);
 		getDirectivesUsageStatementMock.mock.mockImplementationOnce(() => '');
@@ -75,6 +75,7 @@ describe('mapField', () => {
 			statement: `${name}: String`,
 			description: 'A string field',
 			isActivated: true,
+			comment: '',
 		});
 	});
 
@@ -107,6 +108,7 @@ describe('mapField', () => {
 			statement: `${name}: String`,
 			description: 'A string field',
 			isActivated: true,
+			comment: '',
 		});
 
 		// Verify that joinInlineStatementsMock was called with the correct default value
