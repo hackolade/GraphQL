@@ -1,5 +1,5 @@
 /**
- * @import { FEStatement, IdToNameMap, RootTypeNamesParameter, ContainerData } from "../types/types"
+ * @import { FEStatement, IdToNameMap, RootTypeNamesParameter, EntityIdToJsonSchemaMap, EntityIdToPropertiesMap } from "../types/types"
  */
 
 const { QUERY_ROOT_TYPE, MUTATION_ROOT_TYPE, SUBSCRIPTION_ROOT_TYPE } = require('../constants/feScriptConstants');
@@ -9,13 +9,14 @@ const { getDirectivesUsageStatement } = require('./directiveUsageStatements');
 const { getRootTypeFields } = require('./fields');
 
 /**
- * Gets root schema statement the root type statements.
- * If all root types have default values, root schema statement is not returned.
+ * Gets root schema statement and the root type statements.
  *
  * @param {Object} param0
- * @param {ContainerData} param0.container - The container properties.
+ * @param {Object[]} param0.containerProperties - The container properties by tab.
+ * @param {EntityIdToJsonSchemaMap} param0.entitiesJsonSchema - The entities JSON schema, where the key is the entity id and the value is the entity JSON schema.
+ * @param {EntityIdToPropertiesMap} param0.entityProperties - The entity properties by entity id.
  * @param {IdToNameMap} param0.definitionsIdToNameMap - The definitions id to name map.
- * @returns {FEStatement[]} - The root type statements.
+ * @returns {string} - The formatted root type statements.
  */
 function getSchemaRootTypeStatements({
 	containerProperties,
@@ -40,13 +41,13 @@ function getSchemaRootTypeStatements({
 
 /**
  * Gets the root schema statement.
- * If all root types have default values, return null.
- * If at least one root type does not have a default value, return the root schema statement.
+ * If all root types are empty, return null, to trigger validation error that we are referencing non-existing root types.
  * If the root type is not present in the root types, do not include it in the root schema statement.
  *
  * @param {Object} param0
  * @param {RootTypeNamesParameter} param0.rootTypeNames - The root type names.
  * @param {FEStatement[]} param0.rootTypes - The root types.
+ * @param {Object[]} param0.containerProperties - The container properties.
  * @returns {FEStatement | null} - The root schema statement or null if all root types have default values.
  */
 function getRootSchemaStatement({ rootTypeNames, rootTypes, containerProperties }) {
@@ -80,10 +81,10 @@ function getRootSchemaStatement({ rootTypeNames, rootTypes, containerProperties 
 
 /**
  * Gets the root type names.
- * Iterate over the containers and get the root type names.
+ * Return the default root type names or the custom root type names if they are present in the container properties.
  *
  * @param {Object} param0
- * @param {ContainerData} param0.container - The containers.
+ * @param {Object[]} param0.containerProperties - The container properties.
  * @returns {RootTypeNamesParameter} - The root type names.
  */
 function getRootTypeNames({ containerProperties }) {
@@ -93,7 +94,7 @@ function getRootTypeNames({ containerProperties }) {
 		subscription: SUBSCRIPTION_ROOT_TYPE,
 	};
 
-	const containerRootTypesPropertyValue = containerProperties?.containerData?.[0]?.schemaRootTypes;
+	const containerRootTypesPropertyValue = containerProperties?.[0]?.schemaRootTypes;
 
 	if (containerRootTypesPropertyValue) {
 		const { rootQuery, rootMutation, rootSubscription } = containerRootTypesPropertyValue;
@@ -120,12 +121,12 @@ function getRootTypeNames({ containerProperties }) {
 
 /**
  * Gets the root types.
- * Iterate over the containers and get the root types.
+ * Iterate over the entities and get the root types.
  * For each root type, get the nested statements composed of the fields of the entities with the operation type equal to the root type.
- * If there are no entities with the operation type equal to the root type, return null.
  *
  * @param {Object} param0
- * @param {ContainerData[]} param0.containers - The containers.
+ * @param {EntityIdToJsonSchemaMap} param0.entitiesJsonSchema - The entities JSON schema.
+ * @param {EntityIdToPropertiesMap} param0.entityProperties - The entity properties.
  * @param {RootTypeNamesParameter} param0.rootTypeNames - The root type names.
  * @param {IdToNameMap} param0.definitionsIdToNameMap - The definitions id to name map.
  * @returns {FEStatement[]} - The root types.
@@ -162,12 +163,13 @@ function getRootTypes({ entitiesJsonSchema, entityProperties, rootTypeNames, def
 
 /**
  * Gets the root type.
- * Iterate over the containers and get the root type.
+ * Iterate over the entities and get the root type.
  * For each root type, get the nested statements composed of the fields of the entities with the operation type equal to the root type.
  * If there are no entities with the operation type equal to the root type, return null.
  *
  * @param {Object} param0
- * @param {ContainerData[]} param0.containers - The containers.
+ * @param {EntityIdToJsonSchemaMap} param0.entitiesJsonSchema - The entities JSON schema.
+ * @param {EntityIdToPropertiesMap} param0.entityProperties - The entity properties.
  * @param {string} param0.rootTypeName - The root type name.
  * @param {IdToNameMap} param0.definitionsIdToNameMap - The definitions id to name map.
  * @param {string} param0.rootType - The root type.

@@ -1,5 +1,5 @@
 /**
- * @import { ModelScriptFEData, Logger, GenerateModelScriptCallback } from "./types/types"
+ * @import { ContainerLevelScriptFEData, Logger, GenerateContainerLevelScriptCallback } from "./types/types"
  */
 
 const validationHelper = require('./helpers/schemaValidationHelper');
@@ -12,9 +12,9 @@ module.exports = {
 	/**
 	 * Generates the container FE script for the given data.
 	 *
-	 * @param {ModelScriptFEData} data - The data for generating the container script.
+	 * @param {ContainerLevelScriptFEData} data - The data for generating the container script.
 	 * @param {Logger} logger - The logger for logging errors.
-	 * @param {GenerateModelScriptCallback} cb - The callback function.
+	 * @param {GenerateContainerLevelScriptCallback} cb - The callback function.
 	 */
 	generateContainerScript(data, logger, cb) {
 		try {
