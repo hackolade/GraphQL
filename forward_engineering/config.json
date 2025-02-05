@@ -7,9 +7,9 @@
 	"keepRequiredOnArrayItem": true,
 	"level": {
 		"entity": false,
-		"container": false,
-		"model": true
+		"container": true,
+		"model": false
 	},
 	"mode": "graphqlschema",
-	"isApiSchema": true
+	"isApiSchema": false
 }
