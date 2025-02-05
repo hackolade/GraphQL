@@ -74,7 +74,7 @@ function getRootSchemaStatement({ rootTypeNames, rootTypes, containerProperties 
 
 	return {
 		statement: joinInlineStatements({ statements: ['schema', schemaDirectives] }),
-		description: containerProperties?.[0]?.description,
+		description: containerProperties?.[0]?.description || '',
 		nestedStatements,
 	};
 }
