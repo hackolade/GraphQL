@@ -10,19 +10,22 @@ const { getSchemaVersionHeader } = require('./mappers/schemaVersionHeader');
 
 module.exports = {
 	/**
-	 * Generates the model FE script for the given data.
-	 * @param {ModelScriptFEData} data - The data for generating the model script.
+	 * Generates the container FE script for the given data.
+	 *
+	 * @param {ModelScriptFEData} data - The data for generating the container script.
 	 * @param {Logger} logger - The logger for logging errors.
 	 * @param {GenerateModelScriptCallback} cb - The callback function.
 	 */
-	generateModelScript(data, logger, cb) {
+	generateContainerScript(data, logger, cb) {
 		try {
 			const modelDefinitions = JSON.parse(data.modelDefinitions);
 			const definitionsIdToNameMap = generateIdToNameMap(modelDefinitions.properties);
 
 			const schemaVersionHeader = getSchemaVersionHeader({ schemaVersion: data.modelData[0]?.version });
 			const rootTypeStatements = getSchemaRootTypeStatements({
-				containers: data.containers,
+				containerProperties: data.containerData,
+				entitiesJsonSchema: data.jsonSchema,
+				entityProperties: data.entityData,
 				definitionsIdToNameMap,
 			});
 			const typeDefinitionStatements = getTypeDefinitionStatements({ modelDefinitions, definitionsIdToNameMap });
@@ -40,6 +43,7 @@ module.exports = {
 
 	/**
 	 * Validates the given script data.
+	 *
 	 * @param {Object} data - The data for validation.
 	 * @param {string} data.script - The script to be validated.
 	 * @param {Object} data.targetScriptOptions - Options for the target script.
