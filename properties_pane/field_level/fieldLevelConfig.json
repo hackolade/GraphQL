@@ -1110,6 +1110,7 @@ making sure that you maintain a proper JSON format.
 										"value": "interface"
 									},
 									"options": {
+										"filterOutSelf": true,
 										"useAllDefinitionsAsSource": true
 									}
 								}
