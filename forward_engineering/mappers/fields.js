@@ -50,10 +50,10 @@ function getFields({ fields = [], requiredFields = [], definitionsIdToNameMap, a
  * @returns {FEStatement}
  */
 function mapField({ name, fieldData, required, definitionsIdToNameMap, addArguments, addDefaultValue }) {
-	const fieldArguments = addArguments
+	const { argumentsStatement, argumentsWarningComment } = addArguments
 		? getArguments({ graphqlArguments: fieldData.arguments, idToNameMap: definitionsIdToNameMap })
-		: '';
-	const fieldNameStatement = joinInlineStatements({ statements: [name, fieldArguments] });
+		: { argumentsStatement: '', argumentsWarningComment: '' };
+	const fieldNameStatement = joinInlineStatements({ statements: [name, argumentsStatement] });
 	const fieldTypeStatement = `${fieldNameStatement}: ${getFieldType({ field: fieldData, required })}`;
 	const fieldDefaultValue = addDefaultValue ? getFieldDefaultValueStatement({ field: fieldData }) : '';
 	const directivesStatement = getDirectivesUsageStatement({ directives: fieldData.fieldDirectives });
@@ -62,6 +62,7 @@ function mapField({ name, fieldData, required, definitionsIdToNameMap, addArgume
 		statement: joinInlineStatements({ statements: [fieldTypeStatement, fieldDefaultValue, directivesStatement] }),
 		description: fieldData.refDescription || fieldData.description,
 		isActivated: fieldData.isActivated,
+		comment: argumentsWarningComment,
 	};
 }
 

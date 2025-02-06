@@ -47,15 +47,16 @@ const getDirectiveName = name => (name.startsWith('@') ? name : `@${name}`);
 function mapDirective({ name, directive, definitionsIdToNameMap }) {
 	const directiveName = getDirectiveName(name);
 	const directiveLocations = mapDirectiveLocations({ directiveLocations: directive.directiveLocations });
-	const directiveArguments = getArguments({
+	const { argumentsStatement, argumentsWarningComment } = getArguments({
 		graphqlArguments: directive.arguments,
 		idToNameMap: definitionsIdToNameMap,
 	});
 
 	return {
-		statement: `directive ${directiveName}${directiveArguments} on ${directiveLocations}`,
+		statement: `directive ${directiveName}${argumentsStatement} on ${directiveLocations}`,
 		description: directive.description || '',
 		isActivated: directive.isActivated,
+		comment: argumentsWarningComment,
 	};
 }
 

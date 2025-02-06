@@ -7,6 +7,7 @@ export type FEStatement = {
 	nestedStatementsSeparator?: string;
 	startNestedStatementsSign?: string;
 	endNestedStatementsSign?: string;
+	comment?: string;
 };
 
 export type IdToNameMap = Record<string, string>;
