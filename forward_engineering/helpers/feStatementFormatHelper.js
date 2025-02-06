@@ -24,20 +24,25 @@ function formatFEStatement({ feStatement }) {
 		startNestedStatementsSign = '{',
 		endNestedStatementsSign = '}',
 		nestedStatementsSeparator = '\n',
+		comment = '',
 	} = feStatement;
 
 	let result = '';
 
 	result += formatDescription(description);
 	result += statement;
-	result += formatNestedStatements({
+
+	const nestedStatementsText = formatNestedStatements({
 		nestedStatements,
 		isParentActivated: isActivated,
 		useNestedStatementSigns,
 		startNestedStatementsSign,
 		endNestedStatementsSign,
 		nestedStatementsSeparator,
+		comment, // Pass original comment to handle in nested statements
 	});
+
+	result += nestedStatementsText;
 
 	if (!isActivated) {
 		result = commentLines({ statement: result });
@@ -61,28 +66,55 @@ function formatNestedStatements({
 	startNestedStatementsSign,
 	endNestedStatementsSign,
 	nestedStatementsSeparator,
+	comment = '',
 }) {
 	if (!nestedStatements?.length) {
-		return '';
+		return formatSingleLineComment(comment);
 	}
 
+	// Split into prefix and line break (e.g. ',\n' -> [',' '\n'])
+	const [prefix = '', ...lineBreakParts] = nestedStatementsSeparator.split('\n');
+	const lineBreak = lineBreakParts.length ? '\n' + lineBreakParts.join('\n') : '';
+	const hasPrefix = prefix.trim() !== '';
+
 	const formattedNestedStatements = nestedStatements
-		.map(nestedStatement => {
+		.map((nestedStatement, index) => {
+			// 1. Format base statement
 			const formattedStatement = formatFEStatement({
 				feStatement: {
 					...nestedStatement,
 					isActivated: !isParentActivated ? true : nestedStatement.isActivated,
+					comment: '',
 				},
 			});
-			return addIndentToStatement({ statement: formattedStatement });
+
+			// 2. Add indentation
+			let result = addIndentToStatement({ statement: formattedStatement });
+
+			// 3. Add prefix (comma) if needed
+			if (hasPrefix && index < nestedStatements.length - 1) {
+				result += prefix;
+			}
+
+			// 4. Add comment
+			if (nestedStatement.comment) {
+				result += formatSingleLineComment(nestedStatement.comment);
+			}
+
+			return result;
 		})
-		.join(nestedStatementsSeparator);
+		.join(lineBreak); // Join only with line break part
 
 	if (useNestedStatementSigns) {
-		return ` ${startNestedStatementsSign}\n${formattedNestedStatements}\n${endNestedStatementsSign}`;
-	} else {
-		return `\n${formattedNestedStatements}`;
+		const commentText = formatSingleLineComment(comment);
+		return ` ${startNestedStatementsSign}${commentText}\n${formattedNestedStatements}\n${endNestedStatementsSign}`;
 	}
+
+	return `${formatSingleLineComment(comment)}\n${formattedNestedStatements}`;
+}
+
+function formatSingleLineComment(comment) {
+	return comment ? ` # ${comment}` : '';
 }
 
 module.exports = {

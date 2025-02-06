@@ -29,6 +29,7 @@ mock.module('../../../forward_engineering/helpers/feStatementFormatHelper', {
 
 // This require should be after the mocks to ensure that the mocks are applied before the module is required
 const { getArguments, getArgumentType, mapArgument } = require('../../../forward_engineering/mappers/arguments');
+const { MISSED_ARG_TYPE_COMMENT } = require('../../../forward_engineering/constants/feScriptConstants');
 
 describe('getArgumentType', () => {
 	afterEach(() => {
@@ -156,6 +157,7 @@ describe('mapArgument', () => {
 		deepStrictEqual(result, {
 			statement: 'arg1: String = "default" @deprecated',
 			description: 'desc',
+			comment: '',
 		});
 	});
 
@@ -174,6 +176,7 @@ describe('mapArgument', () => {
 		deepStrictEqual(result, {
 			statement: '',
 			description: '',
+			comment: '',
 		});
 	});
 });
@@ -198,7 +201,7 @@ describe('getArguments', () => {
 		const result = getArguments({ graphqlArguments });
 
 		strictEqual(formatFEStatementMock.mock.calls.length, 0);
-		strictEqual(result, '(arg1: String, arg2: Int)');
+		strictEqual(result.argumentsStatement, '(arg1: String, arg2: Int)');
 	});
 
 	it('should return formatted arguments if descriptions are present', () => {
@@ -215,7 +218,7 @@ describe('getArguments', () => {
 		const result = getArguments({ graphqlArguments });
 
 		strictEqual(formatFEStatementMock.mock.calls.length, 1);
-		strictEqual(result, '(arg1: String, arg2: Int)');
+		strictEqual(result.argumentsStatement, '(arg1: String, arg2: Int)');
 	});
 
 	it("should skip arguments which don't have name or type or both", () => {
@@ -232,33 +235,57 @@ describe('getArguments', () => {
 		const result = getArguments({ graphqlArguments });
 
 		strictEqual(formatFEStatementMock.mock.calls.length, 1);
-		strictEqual(result, '(arg1: String)');
+		strictEqual(result.argumentsStatement, '(arg1: String)');
 	});
 
 	it('should return empty string if arguments is empty list', () => {
 		const graphqlArguments = [];
 		const result = getArguments({ graphqlArguments });
-		strictEqual(result, '');
+		strictEqual(result.argumentsStatement, '');
 	});
 
 	it('should return empty string if arguments is undefined', () => {
 		const graphqlArguments = undefined;
 		const result = getArguments({ graphqlArguments });
-		strictEqual(result, '');
+		strictEqual(result.argumentsStatement, '');
 	});
 
 	it('should return empty string if arguments is not an array', () => {
 		const graphqlArguments = {};
 		const result = getArguments({ graphqlArguments });
-		strictEqual(result, '');
+		strictEqual(result.argumentsStatement, '');
 	});
 
-	it("should return empty string if all arguments don't have required properties", () => {
+	it("should return empty string if all arguments don't have required name property", () => {
 		const graphqlArguments = [
-			{ name: 'arg1' }, // missing type
 			{ type: 'String' }, // missing name
+			{ type: 'Int' }, // missing name
 		];
 		const result = getArguments({ graphqlArguments });
-		strictEqual(result, '');
+		strictEqual(result.argumentsStatement, '');
+	});
+
+	it('should return warning comment if argument type is missed', () => {
+		const graphqlArguments = [
+			{ name: 'arg1' }, // missing type
+		];
+		joinInlineStatementsMock.mock.mockImplementation(({ statements }) => statements.filter(Boolean).join(', '));
+
+		const result = getArguments({ graphqlArguments });
+		deepStrictEqual(result, {
+			argumentsStatement: '(arg1:)',
+			argumentsWarningComment: MISSED_ARG_TYPE_COMMENT,
+		});
+	});
+
+	it('should return warning comment if argument type is not resolvable UUID', () => {
+		const graphqlArguments = [{ name: 'arg1', type: 'd3b07384-d9a7-4f5b-8d1b-6c6b8b8b8b8b' }];
+		joinInlineStatementsMock.mock.mockImplementation(({ statements }) => statements.filter(Boolean).join(', '));
+
+		const result = getArguments({ graphqlArguments });
+		deepStrictEqual(result, {
+			argumentsStatement: '(arg1:)',
+			argumentsWarningComment: MISSED_ARG_TYPE_COMMENT,
+		});
 	});
 });

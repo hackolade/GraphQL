@@ -1,7 +1,7 @@
 const { describe, it, mock, afterEach } = require('node:test');
 const { strictEqual, deepStrictEqual } = require('node:assert');
 
-const getArgumentsMock = mock.fn(() => '');
+const getArgumentsMock = mock.fn(() => ({ argumentsStatement: '', argumentsWarningComment: '' }));
 
 mock.module('../../../forward_engineering/mappers/arguments', {
 	namedExports: {
@@ -75,7 +75,10 @@ describe('mapDirective', () => {
 		};
 		const idToNameMap = {};
 
-		getArgumentsMock.mock.mockImplementationOnce(() => '(testArgument: String)');
+		getArgumentsMock.mock.mockImplementationOnce(() => ({
+			argumentsStatement: '(testArgument: String)',
+			argumentsWarningComment: '',
+		}));
 
 		const result = mapDirective({ name: 'testDirective', directive, idToNameMap });
 
@@ -84,6 +87,7 @@ describe('mapDirective', () => {
 			statement: 'directive @testDirective(testArgument: String) on FIELD',
 			description: 'A test directive',
 			isActivated: true,
+			comment: '',
 		});
 	});
 
@@ -101,6 +105,7 @@ describe('mapDirective', () => {
 			statement: 'directive @testDirective on FIELD',
 			description: 'A test directive',
 			isActivated: true,
+			comment: '',
 		});
 	});
 
@@ -118,6 +123,7 @@ describe('mapDirective', () => {
 			statement: 'directive @testDirective on FIELD',
 			description: 'A test directive',
 			isActivated: false,
+			comment: '',
 		});
 	});
 });
@@ -139,6 +145,7 @@ describe('getDirectives', () => {
 				statement: 'directive @testDirective on FIELD',
 				description: 'A test directive',
 				isActivated: true,
+				comment: '',
 			},
 		]);
 	});
