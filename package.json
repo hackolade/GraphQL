@@ -32,15 +32,17 @@
                     "entities": false,
                     "model_definitions": false
                 },
-                "plugin": false
-            },
+                "plugin": false,
+				"uploadPowerDesignerFile": false
+			},
             "disableDenormalization": true,
             "enableForwardEngineering": {
-                "jsonDocument": true,
-                "jsonSchema": true,
+                "jsonDocument": false,
+                "jsonSchema": false,
                 "plugin": true,
                 "apiSchema": false
             },
+			"disableCollibraDataDictionary": true,
             "disablePatternField": true,
             "disableChoices": true,
             "enableJsonType": false,
