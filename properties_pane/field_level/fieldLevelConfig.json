@@ -932,7 +932,7 @@ making sure that you maintain a proper JSON format.
 				"minProperties",
 				"maxProperties",
 				{
-					"propertyName": "Interfaces",
+					"propertyName": "Implements",
 					"propertyKeyword": "implementsInterfaces",
 					"propertyTooltip": "Select interfaces to implement",
 					"propertyType": "group",
@@ -1084,7 +1084,7 @@ making sure that you maintain a proper JSON format.
 				"minProperties",
 				"maxProperties",
 				{
-					"propertyName": "Interfaces",
+					"propertyName": "Implements",
 					"propertyKeyword": "implementsInterfaces",
 					"propertyTooltip": "Select interfaces to implement",
 					"propertyType": "group",
