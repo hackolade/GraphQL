@@ -10,6 +10,7 @@
 	"MAIN_MENU___APPEND_FIELD": "Append Field",
 	"MAIN_MENU___REVERSE_DB_COLLECTIONS": "GraphQL File...",
 	"MAIN_MENU___FORWARD_MODEL_COLLECTIONS": "GraphQL Schema...",
+	"MAIN_MENU___FORWARD_DB_BUCKETS": "GraphQL Schema...",
 	"TOOLBAR___ADD_BUCKET": "Add graph",
 	"TOOLBAR___ADD_COLLECTION": "Add operation",
 	"TOOLBAR___ADD_CHILD_COLLECTION": "Add Response",

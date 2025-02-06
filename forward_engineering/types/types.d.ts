@@ -148,22 +148,21 @@ export type RootTypeNamesParameter = {
 	subscription: string;
 }
 
-export type ContainerData = {
-	containerData: object[]; // container properties by tab
-	jsonSchema: Record<string, string>; // JSON schemas of entities by entity ID
-	entityData: Record<string, object[]>; // entity properties by entity ID
-}
+export type EntityIdToJsonSchemaMap = Record<string, string>;
+export type EntityIdToPropertiesMap = Record<string, object[]>;
 
 // API parameters
-export type ModelScriptFEData = {
-	modelLevelData: object[]; // model level data
-	containers: ContainerData[]; // containers data
+export type ContainerLevelScriptFEData = {
+	modelData: object[]; // model level data
+	containerData: object[]; // container properties by tab
+	entityData: EntityIdToPropertiesMap; // entity properties by entity ID
+	jsonSchema: EntityIdToJsonSchemaMap; // JSON Schema by entity ID
 	externalDefinitions: string; // external definitions JSON Schema
 	modelDefinitions: string; // model definitions JSON Schema
 	targetScriptOptions: object; // target script options
 	options: {
 		additionalOptions: object[]; // additional options
-		isCalledFromFETab: boolean; // if the script is called from the forward engineering tab
+		origin: string; // "ui" if the script is called from the forward engineering tab
 	}
 };
 
@@ -171,7 +170,7 @@ export type Logger = {
 	log: (logType: string, logData: object, logMessage: string) => void;
 };
 
-export type GenerateModelScriptCallback = (error: Error | null, script?: string) => void;
+export type GenerateContainerLevelScriptCallback = (error: Error | null, script?: string) => void;
 
 export type ValidationResponseItem = {
 	type: string; // The type of the entity (e.g., 'error', 'success').
