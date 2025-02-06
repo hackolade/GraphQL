@@ -25,6 +25,20 @@
 						}
 					]
 				}
+			},
+			{
+				"value": "!",
+				"dependency": {
+					"key": "required",
+					"value": true
+				},
+				"position": {
+					"index": 3
+				},
+				"width": 10,
+				"override": {
+					"value": "*"
+				}
 			}
 		],
 		"dtd": [
