@@ -119,8 +119,7 @@
 					}
 				}
 			]
-		},
-		"schemeType": "apiKey"
+		}
 	},
 	"patternField": {
 		"name": "^New Pattern Field$"
