@@ -24,8 +24,8 @@ module.exports = {
 			const schemaVersionHeader = getSchemaVersionHeader({ schemaVersion: data.modelData[0]?.version });
 			const rootTypeStatements = getSchemaRootTypeStatements({
 				containerProperties: data.containerData,
-				entitiesJsonSchema: data.jsonSchema,
-				entityProperties: data.entityData,
+				entityIdToJsonSchemaMap: data.jsonSchema,
+				entityIdToPropertiesMap: data.entityData,
 				definitionsIdToNameMap,
 			});
 			const typeDefinitionStatements = getTypeDefinitionStatements({ modelDefinitions, definitionsIdToNameMap });
