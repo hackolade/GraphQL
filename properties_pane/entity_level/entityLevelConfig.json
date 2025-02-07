@@ -136,11 +136,7 @@ making sure that you maintain a proper JSON format.
 				"propertyKeyword": "operationType",
 				"propertyTooltip": "Select operation type",
 				"propertyType": "select",
-				"options": [
-					"Query",
-					"Mutation",
-					"Subscription"
-				]
+				"options": ["Query", "Mutation", "Subscription"]
 			},
 			{
 				"propertyKeyword": "additionalProperties",
@@ -173,16 +169,78 @@ making sure that you maintain a proper JSON format.
 						"propertyKeyword": "directiveFormat",
 						"propertyTooltip": "Select directive format",
 						"propertyType": "select",
-						"options": [
-							"Raw"
-						],
-						"defaultValue": "Raw",
+						"options": ["Structured", "Raw"],
+						"defaultValue": "Structured",
 						"helpInfo": {
 							"type": "modal",
 							"title": "PROPERTIES_PANE___DIRECTIVES_INFO_MODAL_TITLE",
 							"content": "PROPERTIES_PANE___DIRECTIVES_INFO_MODAL_BODY",
 							"featureNameForHelp": "GraphQL directives",
 							"buttons": ["contactSupport", "ok"]
+						}
+					},
+					{
+						"propertyName": "Directive",
+						"propertyKeyword": "directive",
+						"propertyTooltip": "Select directive",
+						"propertyType": "selecthashed",
+						"template": "definitions",
+						"withEmptyOption": true,
+						"templateOptions": {
+							"filter": {
+								"condition": {
+									"key": "childType",
+									"value": "directive"
+								},
+								"options": {
+									"useAllDefinitionsAsSource": true,
+									"defaultOptions": ["@deprecated", "@include", "@skip", "@specifiedBy"]
+								}
+							}
+						},
+						"dependency": {
+							"key": "directiveFormat",
+							"value": "Structured"
+						}
+					},
+					{
+						"propertyName": "Argument value format",
+						"propertyKeyword": "argumentValueFormat",
+						"propertyTooltip": "Select argument value format",
+						"propertyType": "select",
+						"options": ["Raw"],
+						"defaultValue": "Raw",
+						"helpInfo": {
+							"type": "modal",
+							"title": "PROPERTIES_PANE___DIRECTIVES_INFO_MODAL_TITLE",
+							"content": "PROPERTIES_PANE___DIRECTIVES_INFO_MODAL_BODY",
+							"featureNameForHelp": "GraphQL directive arguments",
+							"buttons": ["contactSupport", "ok"]
+						},
+						"dependency": {
+							"key": "directiveFormat",
+							"value": "Structured"
+						}
+					},
+					{
+						"propertyName": "Raw argument values",
+						"propertyKeyword": "rawArgumentValues",
+						"propertyTooltip": "Enter raw argument values",
+						"propertyType": "details",
+						"template": "textarea",
+						"markdown": false,
+						"dependency": {
+							"type": "and",
+							"values": [
+								{
+									"key": "directiveFormat",
+									"value": "Structured"
+								},
+								{
+									"key": "argumentValueFormat",
+									"value": "Raw"
+								}
+							]
 						}
 					},
 					{
