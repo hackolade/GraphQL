@@ -32,6 +32,7 @@
                     "entities": false,
                     "model_definitions": false
                 },
+				"excel": false,
                 "plugin": false,
 				"uploadPowerDesignerFile": false
 			},
@@ -40,6 +41,7 @@
                 "jsonDocument": false,
                 "jsonSchema": false,
                 "plugin": true,
+				"excel": false,
                 "apiSchema": false
             },
 			"disableCollibraDataDictionary": true,
