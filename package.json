@@ -1,9 +1,9 @@
 {
     "name": "GraphQL",
-    "version": "0.0.2",
+    "version": "0.2.0",
     "author": "hackolade",
     "engines": {
-        "hackolade": "5.4.7",
+        "hackolade": "8.0.0",
         "hackoladePlugin": "1.0.0",
         "node": ">=20.18.0"
     },
