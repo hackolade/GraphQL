@@ -46,7 +46,10 @@ const getArgumentType = ({ graphqlArgument, idToNameMap = {} }) => {
 const mapArgument = ({ graphqlArgument, idToNameMap = {} }) => {
 	const argumentName = `${graphqlArgument.name}:`;
 	const argumentType = getArgumentType({ graphqlArgument, idToNameMap });
-	const directivesStatement = getDirectivesUsageStatement({ directives: graphqlArgument.directives });
+	const directivesStatement = getDirectivesUsageStatement({
+		directives: graphqlArgument.directives,
+		definitionsIdToNameMap: idToNameMap,
+	});
 	const defaultValue = graphqlArgument.default
 		? `= ${getArgumentDefaultValue({ type: graphqlArgument.type, defaultValue: graphqlArgument.default })}`
 		: '';

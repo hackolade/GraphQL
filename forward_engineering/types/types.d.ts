@@ -102,8 +102,9 @@ export type Directive = {
 export type DirectiveDefinitions = Record<string, Directive>
 
 export type DirectivePropertyData = {
-	directiveFormat: 'Raw';
-	rawDirective: string;
+	directiveName: string; // Name of a built-in directive or GUID of a custom directive
+	argumentValueFormat: 'Raw'; // Format of the argument values
+	rawArgumentValues: string; // Raw argument values
 }
 
 export type ImplementsInterface = {

@@ -1,5 +1,5 @@
 /**
- * @import { FEStatement, DirectivePropertyData } from "../types/types"
+ * @import { FEStatement, DirectivePropertyData, IdToNameMap } from "../types/types"
  */
 
 const { joinInlineStatements } = require('../helpers/feStatementJoinHelper');
@@ -29,10 +29,13 @@ const { getDirectivesUsageStatement } = require('./directiveUsageStatements');
  *
  * @param {Object} param0
  * @param {EnumDefinitions} param0.enumsDefinitions - The enums object.
+ * @param {IdToNameMap} param0.definitionsIdToNameMap - The definitions id to name map.
  * @returns {FEStatement[]}
  */
-function getEnums({ enumsDefinitions }) {
-	return Object.entries(enumsDefinitions).map(([name, enumDefinition]) => mapEnum({ name, enumDefinition }));
+function getEnums({ enumsDefinitions, definitionsIdToNameMap }) {
+	return Object.entries(enumsDefinitions).map(([name, enumDefinition]) =>
+		mapEnum({ name, enumDefinition, definitionsIdToNameMap }),
+	);
 }
 
 /**
@@ -41,17 +44,21 @@ function getEnums({ enumsDefinitions }) {
  * @param {Object} param0
  * @param {string} param0.name - The name of the enum.
  * @param {EnumDefinition} param0.enumDefinition - The enum definition object.
+ * @param {IdToNameMap} param0.definitionsIdToNameMap - The definitions id to name map.
  * @returns {FEStatement}
  */
-function mapEnum({ name, enumDefinition }) {
+function mapEnum({ name, enumDefinition, definitionsIdToNameMap }) {
 	const nameStatement = `enum ${name}`;
-	const directivesStatement = getDirectivesUsageStatement({ directives: enumDefinition.typeDirectives });
+	const directivesStatement = getDirectivesUsageStatement({
+		directives: enumDefinition.typeDirectives,
+		definitionsIdToNameMap,
+	});
 
 	return {
 		statement: joinInlineStatements({ statements: [nameStatement, directivesStatement] }),
 		description: enumDefinition.description,
 		isActivated: enumDefinition.isActivated,
-		nestedStatements: mapEnumValues({ enumValues: enumDefinition.enumValues }),
+		nestedStatements: mapEnumValues({ enumValues: enumDefinition.enumValues, definitionsIdToNameMap }),
 	};
 }
 
@@ -60,11 +67,12 @@ function mapEnum({ name, enumDefinition }) {
  *
  * @param {Object} param0
  * @param {EnumValue[]} param0.enumValues - The enum values.
+ * @param {IdToNameMap} param0.definitionsIdToNameMap - The definitions id to name map.
  * @returns {FEStatement[]}
  */
-function mapEnumValues({ enumValues = [] }) {
+function mapEnumValues({ enumValues = [], definitionsIdToNameMap }) {
 	return enumValues.map(({ value, description, typeDirectives }) => {
-		const directivesStatement = getDirectivesUsageStatement({ directives: typeDirectives });
+		const directivesStatement = getDirectivesUsageStatement({ directives: typeDirectives, definitionsIdToNameMap });
 
 		return {
 			statement: joinInlineStatements({ statements: [value, directivesStatement] }),

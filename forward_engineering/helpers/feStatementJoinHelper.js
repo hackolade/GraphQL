@@ -6,11 +6,11 @@
  * @param {string[]} param0.statements - The array of statements to join.
  * @returns {string} - The joined statements as a single line.
  */
-function joinInlineStatements({ statements }) {
+function joinInlineStatements({ statements, separator = ' ' }) {
 	return statements
 		.map(statement => statement?.trim())
 		.filter(statement => typeof statement === 'string' && statement.length > 0)
-		.join(' ');
+		.join(separator);
 }
 
 module.exports = {

@@ -44,7 +44,10 @@ function mapObjectLikeType({ name, objectType, definitionsIdToNameMap, typeKeywo
 		});
 	}
 
-	const directivesStatement = getDirectivesUsageStatement({ directives: objectType.typeDirectives });
+	const directivesStatement = getDirectivesUsageStatement({
+		directives: objectType.typeDirectives,
+		definitionsIdToNameMap,
+	});
 
 	return {
 		statement: joinInlineStatements({

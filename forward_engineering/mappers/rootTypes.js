@@ -31,7 +31,12 @@ function getSchemaRootTypeStatements({
 		rootTypeNames,
 		definitionsIdToNameMap,
 	}).filter(Boolean);
-	const rootSchemaStatement = getRootSchemaStatement({ rootTypeNames, rootTypes, containerProperties });
+	const rootSchemaStatement = getRootSchemaStatement({
+		rootTypeNames,
+		rootTypes,
+		containerProperties,
+		definitionsIdToNameMap,
+	});
 
 	return [rootSchemaStatement, ...rootTypes]
 		.filter(Boolean)
@@ -48,9 +53,10 @@ function getSchemaRootTypeStatements({
  * @param {RootTypeNamesParameter} param0.rootTypeNames - The root type names.
  * @param {FEStatement[]} param0.rootTypes - The root types.
  * @param {Object[]} param0.containerProperties - The container properties.
+ * @param {IdToNameMap} param0.definitionsIdToNameMap - The definitions id to name map.
  * @returns {FEStatement | null} - The root schema statement or null if all root types have default values.
  */
-function getRootSchemaStatement({ rootTypeNames, rootTypes, containerProperties }) {
+function getRootSchemaStatement({ rootTypeNames, rootTypes, containerProperties, definitionsIdToNameMap }) {
 	const rootTypeMap = {
 		query: QUERY_ROOT_TYPE,
 		mutation: MUTATION_ROOT_TYPE,
@@ -70,7 +76,10 @@ function getRootSchemaStatement({ rootTypeNames, rootTypes, containerProperties 
 		return null;
 	}
 
-	const schemaDirectives = getDirectivesUsageStatement({ directives: containerProperties?.[0]?.graphDirectives });
+	const schemaDirectives = getDirectivesUsageStatement({
+		directives: containerProperties?.[0]?.graphDirectives,
+		definitionsIdToNameMap,
+	});
 
 	return {
 		statement: joinInlineStatements({ statements: ['schema', schemaDirectives] }),
@@ -183,6 +192,7 @@ function getRootType({
 	rootType,
 }) {
 	const rootTypeNestedStatements = [];
+	const rootTypeDirectives = [];
 
 	Object.entries(entityIdToJsonSchemaMap).forEach(([entityId, entityJson]) => {
 		const entityProperties = entityIdToPropertiesMap[entityId]?.[0];
@@ -191,6 +201,13 @@ function getRootType({
 			return;
 		}
 		const entityData = JSON.parse(entityJson);
+
+		const entityDirectives = getDirectivesUsageStatement({
+			directives: entityProperties?.typeDirectives,
+			definitionsIdToNameMap,
+		});
+		rootTypeDirectives.push(entityDirectives);
+
 		const entityFields = getRootTypeFields({
 			fields: entityData.properties,
 			requiredFields: entityData.required,
@@ -212,8 +229,10 @@ function getRootType({
 	if (rootTypeNestedStatements.length === 0) {
 		return null;
 	}
+
+	const rootTypeDirectivesStatement = joinInlineStatements({ statements: rootTypeDirectives });
 	return {
-		statement: `type ${rootTypeName}`,
+		statement: joinInlineStatements({ statements: [`type ${rootTypeName}`, rootTypeDirectivesStatement] }),
 		nestedStatements: rootTypeNestedStatements,
 	};
 }
