@@ -1353,6 +1353,11 @@ making sure that you maintain a proper JSON format.
 					"propertyKeyword": "directiveLocations",
 					"structure": [
 						{
+							"propertyName": "Schema",
+							"propertyKeyword": "schema",
+							"propertyType": "checkbox"
+						},
+						{
 							"propertyName": "Query",
 							"propertyKeyword": "query",
 							"propertyType": "checkbox"
@@ -1368,43 +1373,8 @@ making sure that you maintain a proper JSON format.
 							"propertyType": "checkbox"
 						},
 						{
-							"propertyName": "Field",
-							"propertyKeyword": "field",
-							"propertyType": "checkbox"
-						},
-						{
-							"propertyName": "Schema",
-							"propertyKeyword": "schema",
-							"propertyType": "checkbox"
-						},
-						{
 							"propertyName": "Scalar",
 							"propertyKeyword": "scalar",
-							"propertyType": "checkbox"
-						},
-						{
-							"propertyName": "Object",
-							"propertyKeyword": "object",
-							"propertyType": "checkbox"
-						},
-						{
-							"propertyName": "Field definition",
-							"propertyKeyword": "fieldDefinition",
-							"propertyType": "checkbox"
-						},
-						{
-							"propertyName": "Argument definition",
-							"propertyKeyword": "argumentDefinition",
-							"propertyType": "checkbox"
-						},
-						{
-							"propertyName": "Interface",
-							"propertyKeyword": "interface",
-							"propertyType": "checkbox"
-						},
-						{
-							"propertyName": "Union",
-							"propertyKeyword": "union",
 							"propertyType": "checkbox"
 						},
 						{
@@ -1418,13 +1388,43 @@ making sure that you maintain a proper JSON format.
 							"propertyType": "checkbox"
 						},
 						{
+							"propertyName": "Object",
+							"propertyKeyword": "object",
+							"propertyType": "checkbox"
+						},
+						{
+							"propertyName": "Interface",
+							"propertyKeyword": "interface",
+							"propertyType": "checkbox"
+						},
+						{
+							"propertyName": "Union",
+							"propertyKeyword": "union",
+							"propertyType": "checkbox"
+						},
+						{
 							"propertyName": "Input object",
 							"propertyKeyword": "inputObject",
 							"propertyType": "checkbox"
 						},
 						{
+							"propertyName": "Field",
+							"propertyKeyword": "field",
+							"propertyType": "checkbox"
+						},
+						{
+							"propertyName": "Field definition",
+							"propertyKeyword": "fieldDefinition",
+							"propertyType": "checkbox"
+						},
+						{
 							"propertyName": "Input field definition",
 							"propertyKeyword": "inputFieldDefinition",
+							"propertyType": "checkbox"
+						},
+						{
+							"propertyName": "Argument definition",
+							"propertyKeyword": "argumentDefinition",
 							"propertyType": "checkbox"
 						}
 					]
