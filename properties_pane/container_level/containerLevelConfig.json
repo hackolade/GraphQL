@@ -176,7 +176,7 @@ making sure that you maintain a proper JSON format.
 				"structure": [
 					{
 						"propertyName": "Directive",
-						"propertyKeyword": "directive",
+						"propertyKeyword": "directiveName",
 						"propertyTooltip": "Select directive",
 						"propertyType": "selecthashed",
 						"template": "definitions",
@@ -188,8 +188,7 @@ making sure that you maintain a proper JSON format.
 									"value": "directive"
 								},
 								"options": {
-									"useAllDefinitionsAsSource": true,
-									"defaultOptions": ["@deprecated", "@include", "@skip", "@specifiedBy"]
+									"useAllDefinitionsAsSource": true
 								}
 							}
 						}

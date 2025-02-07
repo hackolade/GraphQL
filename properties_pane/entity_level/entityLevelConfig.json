@@ -165,23 +165,8 @@ making sure that you maintain a proper JSON format.
 				"propertyType": "group",
 				"structure": [
 					{
-						"propertyName": "Directive format",
-						"propertyKeyword": "directiveFormat",
-						"propertyTooltip": "Select directive format",
-						"propertyType": "select",
-						"options": ["Structured", "Raw"],
-						"defaultValue": "Structured",
-						"helpInfo": {
-							"type": "modal",
-							"title": "PROPERTIES_PANE___DIRECTIVES_INFO_MODAL_TITLE",
-							"content": "PROPERTIES_PANE___DIRECTIVES_INFO_MODAL_BODY",
-							"featureNameForHelp": "GraphQL directives",
-							"buttons": ["contactSupport", "ok"]
-						}
-					},
-					{
 						"propertyName": "Directive",
-						"propertyKeyword": "directive",
+						"propertyKeyword": "directiveName",
 						"propertyTooltip": "Select directive",
 						"propertyType": "selecthashed",
 						"template": "definitions",
@@ -193,14 +178,9 @@ making sure that you maintain a proper JSON format.
 									"value": "directive"
 								},
 								"options": {
-									"useAllDefinitionsAsSource": true,
-									"defaultOptions": ["@deprecated", "@include", "@skip", "@specifiedBy"]
+									"useAllDefinitionsAsSource": true
 								}
 							}
-						},
-						"dependency": {
-							"key": "directiveFormat",
-							"value": "Structured"
 						}
 					},
 					{
@@ -216,10 +196,6 @@ making sure that you maintain a proper JSON format.
 							"content": "PROPERTIES_PANE___DIRECTIVES_INFO_MODAL_BODY",
 							"featureNameForHelp": "GraphQL directive arguments",
 							"buttons": ["contactSupport", "ok"]
-						},
-						"dependency": {
-							"key": "directiveFormat",
-							"value": "Structured"
 						}
 					},
 					{
@@ -230,28 +206,7 @@ making sure that you maintain a proper JSON format.
 						"template": "textarea",
 						"markdown": false,
 						"dependency": {
-							"type": "and",
-							"values": [
-								{
-									"key": "directiveFormat",
-									"value": "Structured"
-								},
-								{
-									"key": "argumentValueFormat",
-									"value": "Raw"
-								}
-							]
-						}
-					},
-					{
-						"propertyName": "Raw directive",
-						"propertyKeyword": "rawDirective",
-						"propertyTooltip": "Enter raw directive",
-						"propertyType": "details",
-						"template": "textarea",
-						"markdown": false,
-						"dependency": {
-							"key": "directiveFormat",
+							"key": "argumentValueFormat",
 							"value": "Raw"
 						}
 					}
