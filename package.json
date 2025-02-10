@@ -87,7 +87,11 @@
             "disablePickFromFieldList": true,
             "hideDisabledAttributeTypes": true,
             "showReferenceDefinitionNameInsteadOfType": true,
-            "disableReplaceByAttributes": true
+            "disableReplaceByAttributes": true,
+            "polyglot": {
+                "disableDeriveFromPolyglotModel": true,
+                "disableConvertToPolyglotModel": true
+            }
         }
     },
     "description": "Hackolade plugin for GraphQL",
