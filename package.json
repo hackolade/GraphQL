@@ -1,6 +1,6 @@
 {
     "name": "GraphQL",
-    "version": "0.2.0",
+    "version": "0.2.1",
     "author": "hackolade",
     "engines": {
         "hackolade": "8.0.0",
@@ -32,19 +32,19 @@
                     "entities": false,
                     "model_definitions": false
                 },
-				"excel": false,
+                "excel": false,
                 "plugin": false,
-				"uploadPowerDesignerFile": false
-			},
+                "uploadPowerDesignerFile": false
+            },
             "disableDenormalization": true,
             "enableForwardEngineering": {
                 "jsonDocument": false,
                 "jsonSchema": false,
                 "plugin": true,
-				"excel": false,
+                "excel": false,
                 "apiSchema": false
             },
-			"disableCollibraDataDictionary": true,
+            "disableCollibraDataDictionary": true,
             "disablePatternField": true,
             "disableChoices": true,
             "enableJsonType": false,
@@ -87,7 +87,11 @@
             "disablePickFromFieldList": true,
             "hideDisabledAttributeTypes": true,
             "showReferenceDefinitionNameInsteadOfType": true,
-            "disableReplaceByAttributes": true
+            "disableReplaceByAttributes": true,
+            "polyglot": {
+                "disableDeriveFromPolyglotModel": true,
+                "disableConvertToPolyglotModel": true
+            }
         }
     },
     "description": "Hackolade plugin for GraphQL",

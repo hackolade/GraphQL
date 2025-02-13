@@ -1,48 +1,11 @@
 /**
- * @import { FEStatement, IdToNameMap, RootTypeNamesParameter, EntityIdToJsonSchemaMap, EntityIdToPropertiesMap } from "../types/types"
+ * @import { FEStatement, IdToNameMap, RootTypeNamesParameter, EntityIdToJsonSchemaMap, EntityIdToPropertiesMap, ContainerDetails } from "../types/types"
  */
 
 const { QUERY_ROOT_TYPE, MUTATION_ROOT_TYPE, SUBSCRIPTION_ROOT_TYPE } = require('../constants/feScriptConstants');
-const { formatFEStatement } = require('../helpers/feStatementFormatHelper');
 const { joinInlineStatements } = require('../helpers/feStatementJoinHelper');
 const { getDirectivesUsageStatement } = require('./directiveUsageStatements');
 const { getRootTypeFields } = require('./fields');
-
-/**
- * Gets root schema statement and the root type statements.
- *
- * @param {Object} param0
- * @param {Object[]} param0.containerProperties - The container properties by tab.
- * @param {EntityIdToJsonSchemaMap} param0.entityIdToJsonSchemaMap - The entities JSON schema, where the key is the entity id and the value is the entity JSON schema.
- * @param {EntityIdToPropertiesMap} param0.entityIdToPropertiesMap - The entity properties by entity id.
- * @param {IdToNameMap} param0.definitionsIdToNameMap - The definitions id to name map.
- * @returns {string} - The formatted root type statements.
- */
-function getSchemaRootTypeStatements({
-	containerProperties,
-	entityIdToJsonSchemaMap,
-	entityIdToPropertiesMap,
-	definitionsIdToNameMap,
-}) {
-	const rootTypeNames = getRootTypeNames({ containerProperties });
-	const rootTypes = getRootTypes({
-		entityIdToJsonSchemaMap,
-		entityIdToPropertiesMap,
-		rootTypeNames,
-		definitionsIdToNameMap,
-	}).filter(Boolean);
-	const rootSchemaStatement = getRootSchemaStatement({
-		rootTypeNames,
-		rootTypes,
-		containerProperties,
-		definitionsIdToNameMap,
-	});
-
-	return [rootSchemaStatement, ...rootTypes]
-		.filter(Boolean)
-		.map(rootType => formatFEStatement({ feStatement: rootType }))
-		.join('\n\n');
-}
 
 /**
  * Gets the root schema statement.
@@ -51,12 +14,12 @@ function getSchemaRootTypeStatements({
  *
  * @param {Object} param0
  * @param {RootTypeNamesParameter} param0.rootTypeNames - The root type names.
- * @param {FEStatement[]} param0.rootTypes - The root types.
- * @param {Object[]} param0.containerProperties - The container properties.
+ * @param {FEStatement[]} param0.rootTypeStatements - The root types.
+ * @param {ContainerDetails|undefined} param0.containerProperties - The container properties.
  * @param {IdToNameMap} param0.definitionsIdToNameMap - The definitions id to name map.
  * @returns {FEStatement | null} - The root schema statement or null if all root types have default values.
  */
-function getRootSchemaStatement({ rootTypeNames, rootTypes, containerProperties, definitionsIdToNameMap }) {
+function getRootSchemaStatement({ rootTypeNames, rootTypeStatements, containerProperties, definitionsIdToNameMap }) {
 	const rootTypeMap = {
 		query: QUERY_ROOT_TYPE,
 		mutation: MUTATION_ROOT_TYPE,
@@ -64,7 +27,7 @@ function getRootSchemaStatement({ rootTypeNames, rootTypes, containerProperties,
 	};
 
 	const nestedStatements = Object.entries(rootTypeMap).reduce((acc, [key, defaultValue]) => {
-		const isRootTypePresent = rootTypes.some(rootType => rootType.statement.includes(rootTypeNames[key]));
+		const isRootTypePresent = rootTypeStatements.some(rootType => rootType.statement.includes(rootTypeNames[key]));
 
 		if (isRootTypePresent) {
 			acc.push({ statement: `${key}: ${rootTypeNames[key]}` });
@@ -77,13 +40,13 @@ function getRootSchemaStatement({ rootTypeNames, rootTypes, containerProperties,
 	}
 
 	const schemaDirectives = getDirectivesUsageStatement({
-		directives: containerProperties?.[0]?.graphDirectives,
+		directives: containerProperties?.graphDirectives,
 		definitionsIdToNameMap,
 	});
 
 	return {
 		statement: joinInlineStatements({ statements: ['schema', schemaDirectives] }),
-		description: containerProperties?.[0]?.description || '',
+		description: containerProperties?.description || '',
 		nestedStatements,
 	};
 }
@@ -93,7 +56,7 @@ function getRootSchemaStatement({ rootTypeNames, rootTypes, containerProperties,
  * Return the default root type names or the custom root type names if they are present in the container properties.
  *
  * @param {Object} param0
- * @param {Object[]} param0.containerProperties - The container properties.
+ * @param {ContainerDetails|undefined} param0.containerProperties - The container properties.
  * @returns {RootTypeNamesParameter} - The root type names.
  */
 function getRootTypeNames({ containerProperties }) {
@@ -103,7 +66,7 @@ function getRootTypeNames({ containerProperties }) {
 		subscription: SUBSCRIPTION_ROOT_TYPE,
 	};
 
-	const containerRootTypesPropertyValue = containerProperties?.[0]?.schemaRootTypes;
+	const containerRootTypesPropertyValue = containerProperties?.schemaRootTypes;
 
 	if (containerRootTypesPropertyValue) {
 		const { rootQuery, rootMutation, rootSubscription } = containerRootTypesPropertyValue;
@@ -238,10 +201,9 @@ function getRootType({
 }
 
 module.exports = {
-	getSchemaRootTypeStatements,
-	// For testing purposes
 	getRootSchemaStatement,
 	getRootTypeNames,
 	getRootTypes,
+	// For testing purposes
 	getRootType,
 };

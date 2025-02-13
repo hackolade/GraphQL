@@ -1,0 +1,29 @@
+{
+	"entities": {
+		"categories": [
+			{
+				"name": "Query",
+				"condition": {
+					"key": "operationType",
+					"value": "Query"
+				}
+			},
+			{
+				"name": "Mutation",
+				"condition": {
+					"key": "operationType",
+					"value": "Mutation"
+				}
+			},
+			{
+				"name": "Subscription",
+				"condition": {
+					"key": "operationType",
+					"value": "Subscription"
+				}
+			}
+		],
+		"hideUncategorized": false,
+		"hideEmptyCategories": false
+	}
+}
