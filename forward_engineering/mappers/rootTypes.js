@@ -25,7 +25,7 @@ function getRootSchemaStatement({ rootTypeNames, rootTypeStatements, containerPr
 		subscription: SUBSCRIPTION_ROOT_TYPE,
 	};
 
-	const nestedStatements = Object.entries(rootTypeMap).reduce((acc, [key, defaultValue]) => {
+	const nestedStatements = Object.entries(rootTypeMap).reduce((acc, [key]) => {
 		const isRootTypePresent = rootTypeStatements.some(rootType => rootType.statement.includes(rootTypeNames[key]));
 
 		if (isRootTypePresent) {
