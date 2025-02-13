@@ -152,9 +152,41 @@ export type EntityIdToJsonSchemaMap = Record<string, string>;
 export type EntityIdToPropertiesMap = Record<string, object[]>;
 
 // API parameters
+
+type ModelDetails = {
+	modelName: string;
+	version: string;
+	dbVendor: string;
+	isLineageEnabled: boolean;
+}
+
+type LineageSource = {
+	id: string;
+	sourceName: string;
+	lineageTimestamp: string;
+	lineageSourceType: string;
+	lineageSourceFormat: string;
+	lineageFilePathName: string;
+}
+
+type Lineage = {
+	sources: LineageSource[];
+}
+
+export type ContainerDetails = {
+	name: string;
+	code?: string;
+	description?: string;
+	isActivated: boolean;
+	comments?: string;
+	businessName?: string;
+	schemaRootTypes: RootTypeNamesParameter;
+	graphDirectives: DirectivePropertyData[];
+}
+
 export type ContainerLevelScriptFEData = {
-	modelData: object[]; // model level data
-	containerData: object[]; // container properties by tab
+	modelData: [ModelDetails, Lineage?]; // model level data
+	containerData: [ContainerDetails?]; // container properties by tab
 	entityData: EntityIdToPropertiesMap; // entity properties by entity ID
 	jsonSchema: EntityIdToJsonSchemaMap; // JSON Schema by entity ID
 	externalDefinitions: string; // external definitions JSON Schema

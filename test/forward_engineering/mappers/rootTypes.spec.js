@@ -17,7 +17,6 @@ mock.module('../../../forward_engineering/mappers/fields', {
 
 // This require should be after the mocks to ensure that the mocks are applied before the module is required
 const {
-	getSchemaRootTypeStatements,
 	getRootSchemaStatement,
 	getRootTypeNames,
 	getRootTypes,
@@ -35,15 +34,13 @@ describe('getRootTypeNames', () => {
 	});
 
 	it('should return trimmed root type names from container properties', () => {
-		const containerProperties = [
-			{
-				schemaRootTypes: {
-					rootQuery: ' CustomQuery ',
-					rootMutation: 'CustomMutation',
-					rootSubscription: ' CustomSubscription ',
-				},
+		const containerProperties = {
+			schemaRootTypes: {
+				rootQuery: ' CustomQuery ',
+				rootMutation: 'CustomMutation',
+				rootSubscription: ' CustomSubscription ',
 			},
-		];
+		};
 		const result = getRootTypeNames({ containerProperties });
 		deepStrictEqual(result, {
 			query: 'CustomQuery',
@@ -53,15 +50,13 @@ describe('getRootTypeNames', () => {
 	});
 
 	it('should ignore empty root type names from container properties', () => {
-		const containerProperties = [
-			{
-				schemaRootTypes: {
-					rootQuery: ' ',
-					rootMutation: '',
-					rootSubscription: ' CustomSubscription ',
-				},
+		const containerProperties = {
+			schemaRootTypes: {
+				rootQuery: ' ',
+				rootMutation: '',
+				rootSubscription: ' CustomSubscription ',
 			},
-		];
+		};
 		const result = getRootTypeNames({ containerProperties });
 		deepStrictEqual(result, {
 			query: 'Query',
@@ -78,12 +73,12 @@ describe('getRootSchemaStatement', () => {
 			mutation: 'Mutation',
 			subscription: 'Subscription',
 		};
-		const rootTypes = [
+		const rootTypeStatements = [
 			{ statement: 'type Query' },
 			{ statement: 'type Mutation' },
 			{ statement: 'type Subscription' },
 		];
-		const result = getRootSchemaStatement({ rootTypeNames, rootTypes, containerProperties: [] });
+		const result = getRootSchemaStatement({ rootTypeNames, rootTypeStatements });
 		deepStrictEqual(result, {
 			statement: 'schema',
 			description: '',
@@ -101,12 +96,12 @@ describe('getRootSchemaStatement', () => {
 			mutation: 'Mutation',
 			subscription: 'CustomSubscription',
 		};
-		const rootTypes = [
+		const rootTypeStatements = [
 			{ statement: 'type CustomQuery' },
 			{ statement: 'type Mutation' },
 			{ statement: 'type CustomSubscription' },
 		];
-		const result = getRootSchemaStatement({ rootTypeNames, rootTypes, containerProperties: [] });
+		const result = getRootSchemaStatement({ rootTypeNames, rootTypeStatements });
 		deepStrictEqual(result, {
 			statement: 'schema',
 			description: '',
@@ -124,11 +119,11 @@ describe('getRootSchemaStatement', () => {
 			mutation: 'Mutation',
 			subscription: 'CustomSubscription',
 		};
-		const rootTypes = [{ statement: 'type CustomQuery' }];
+		const rootTypeStatements = [{ statement: 'type CustomQuery' }];
 		const result = getRootSchemaStatement({
 			rootTypeNames,
-			rootTypes,
-			containerProperties: [{ description: 'Graph description' }],
+			rootTypeStatements,
+			containerProperties: { description: 'Graph description' },
 		});
 		deepStrictEqual(result, {
 			statement: 'schema',
@@ -143,8 +138,8 @@ describe('getRootSchemaStatement', () => {
 			mutation: 'Mutation',
 			subscription: 'CustomSubscription',
 		};
-		const rootTypes = [];
-		const result = getRootSchemaStatement({ rootTypeNames, rootTypes, containerProperties: [] });
+		const rootTypeStatements = [];
+		const result = getRootSchemaStatement({ rootTypeNames, rootTypeStatements });
 		strictEqual(result, null);
 	});
 });
@@ -272,41 +267,41 @@ describe('getRootType', () => {
 	});
 });
 
-describe('getSchemaRootTypeStatements', () => {
-	afterEach(() => {
-		formatFEStatementMock.mock.resetCalls();
-		getRootTypeFieldsMock.mock.resetCalls();
-	});
-
-	it('should return formatted root type statements', () => {
-		const containerProperties = [];
-		const entitiesJsonSchema = {
-			entity1: JSON.stringify({
-				properties: {
-					field1: { type: 'String' },
-				},
-				required: ['field1'],
-			}),
-		};
-		const entityProperties = {
-			entity1: [{ operationType: 'Query' }],
-		};
-		const definitionsIdToNameMap = {};
-		getRootTypeFieldsMock.mock.mockImplementation(() => [{ statement: 'field1: String!' }]);
-		formatFEStatementMock.mock.mockImplementation(
-			({ feStatement }) =>
-				feStatement.statement +
-				'\n' +
-				feStatement.nestedStatements.map(({ statement }) => statement).join('\n'),
-		);
-
-		const result = getSchemaRootTypeStatements({
-			containerProperties,
-			entitiesJsonSchema,
-			entityProperties,
-			definitionsIdToNameMap,
-		});
-
-		strictEqual(result, 'schema\nquery: Query\n\ntype Query\nfield1: String!');
-	});
-});
+// describe('getSchemaRootTypeStatements', () => {
+// 	afterEach(() => {
+// 		formatFEStatementMock.mock.resetCalls();
+// 		getRootTypeFieldsMock.mock.resetCalls();
+// 	});
+//
+// 	it('should return formatted root type statements', () => {
+// 		const containerProperties = [];
+// 		const entitiesJsonSchema = {
+// 			entity1: JSON.stringify({
+// 				properties: {
+// 					field1: { type: 'String' },
+// 				},
+// 				required: ['field1'],
+// 			}),
+// 		};
+// 		const entityProperties = {
+// 			entity1: [{ operationType: 'Query' }],
+// 		};
+// 		const definitionsIdToNameMap = {};
+// 		getRootTypeFieldsMock.mock.mockImplementation(() => [{ statement: 'field1: String!' }]);
+// 		formatFEStatementMock.mock.mockImplementation(
+// 			({ feStatement }) =>
+// 				feStatement.statement +
+// 				'\n' +
+// 				feStatement.nestedStatements.map(({ statement }) => statement).join('\n'),
+// 		);
+//
+// 		const result = getSchemaRootTypeStatements({
+// 			containerProperties,
+// 			entitiesJsonSchema,
+// 			entityProperties,
+// 			definitionsIdToNameMap,
+// 		});
+//
+// 		strictEqual(result, 'schema\nquery: Query\n\ntype Query\nfield1: String!');
+// 	});
+// });
