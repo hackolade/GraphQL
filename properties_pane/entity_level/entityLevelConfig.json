@@ -165,6 +165,33 @@ making sure that you maintain a proper JSON format.
 				"propertyType": "group",
 				"structure": [
 					{
+						"propertyName": "Directive format",
+						"propertyKeyword": "directiveFormat",
+						"propertyTooltip": "Select directive format",
+						"propertyType": "select",
+						"options": ["Structured", "Raw"],
+						"defaultValue": "Structured",
+						"helpInfo": {
+							"type": "modal",
+							"title": "PROPERTIES_PANE___DIRECTIVES_INFO_MODAL_TITLE",
+							"content": "PROPERTIES_PANE___DIRECTIVES_INFO_MODAL_BODY",
+							"featureNameForHelp": "GraphQL directives",
+							"buttons": ["contactSupport", "ok"]
+						}
+					},
+					{
+						"propertyName": "Raw directive",
+						"propertyKeyword": "rawDirective",
+						"propertyTooltip": "Enter raw directive",
+						"propertyType": "details",
+						"template": "textarea",
+						"markdown": false,
+						"dependency": {
+							"key": "directiveFormat",
+							"value": "Raw"
+						}
+					},
+					{
 						"propertyName": "Directive",
 						"propertyKeyword": "directiveName",
 						"propertyTooltip": "Select directive",
@@ -181,6 +208,10 @@ making sure that you maintain a proper JSON format.
 									"useAllDefinitionsAsSource": true
 								}
 							}
+						},
+						"dependency": {
+							"key": "directiveFormat",
+							"value": "Structured"
 						}
 					},
 					{
@@ -190,12 +221,9 @@ making sure that you maintain a proper JSON format.
 						"propertyType": "select",
 						"options": ["Raw"],
 						"defaultValue": "Raw",
-						"helpInfo": {
-							"type": "modal",
-							"title": "PROPERTIES_PANE___DIRECTIVES_INFO_MODAL_TITLE",
-							"content": "PROPERTIES_PANE___DIRECTIVES_INFO_MODAL_BODY",
-							"featureNameForHelp": "GraphQL directive arguments",
-							"buttons": ["contactSupport", "ok"]
+						"dependency": {
+							"key": "directiveFormat",
+							"value": "Structured"
 						}
 					},
 					{
@@ -206,8 +234,17 @@ making sure that you maintain a proper JSON format.
 						"template": "textarea",
 						"markdown": false,
 						"dependency": {
-							"key": "argumentValueFormat",
-							"value": "Raw"
+							"type": "and",
+							"values": [
+								{
+									"key": "directiveFormat",
+									"value": "Structured"
+								},
+								{
+									"key": "argumentValueFormat",
+									"value": "Raw"
+								}
+							]
 						}
 					}
 				]
