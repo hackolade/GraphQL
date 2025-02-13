@@ -208,6 +208,13 @@ making sure that you maintain a proper JSON format.
 							"dependency": {
 								"key": "directiveFormat",
 								"value": "Structured"
+							},
+							"helpInfo": {
+								"type": "modal",
+								"title": "PROPERTIES_PANE___DIRECTIVES_ARGUMENTS_INFO_MODAL_TITLE",
+								"content": "PROPERTIES_PANE___DIRECTIVES_ARGUMENTS_INFO_MODAL_BODY",
+								"featureNameForHelp": "GraphQL directives",
+								"buttons": ["contactSupport", "ok"]
 							}
 						},
 						{
@@ -332,6 +339,13 @@ making sure that you maintain a proper JSON format.
 							"dependency": {
 								"key": "directiveFormat",
 								"value": "Structured"
+							},
+							"helpInfo": {
+								"type": "modal",
+								"title": "PROPERTIES_PANE___DIRECTIVES_ARGUMENTS_INFO_MODAL_TITLE",
+								"content": "PROPERTIES_PANE___DIRECTIVES_ARGUMENTS_INFO_MODAL_BODY",
+								"featureNameForHelp": "GraphQL directives",
+								"buttons": ["contactSupport", "ok"]
 							}
 						},
 						{
@@ -458,6 +472,13 @@ making sure that you maintain a proper JSON format.
 							"dependency": {
 								"key": "directiveFormat",
 								"value": "Structured"
+							},
+							"helpInfo": {
+								"type": "modal",
+								"title": "PROPERTIES_PANE___DIRECTIVES_ARGUMENTS_INFO_MODAL_TITLE",
+								"content": "PROPERTIES_PANE___DIRECTIVES_ARGUMENTS_INFO_MODAL_BODY",
+								"featureNameForHelp": "GraphQL directives",
+								"buttons": ["contactSupport", "ok"]
 							}
 						},
 						{
@@ -582,6 +603,13 @@ making sure that you maintain a proper JSON format.
 							"dependency": {
 								"key": "directiveFormat",
 								"value": "Structured"
+							},
+							"helpInfo": {
+								"type": "modal",
+								"title": "PROPERTIES_PANE___DIRECTIVES_ARGUMENTS_INFO_MODAL_TITLE",
+								"content": "PROPERTIES_PANE___DIRECTIVES_ARGUMENTS_INFO_MODAL_BODY",
+								"featureNameForHelp": "GraphQL directives",
+								"buttons": ["contactSupport", "ok"]
 							}
 						},
 						{
@@ -706,6 +734,13 @@ making sure that you maintain a proper JSON format.
 							"dependency": {
 								"key": "directiveFormat",
 								"value": "Structured"
+							},
+							"helpInfo": {
+								"type": "modal",
+								"title": "PROPERTIES_PANE___DIRECTIVES_ARGUMENTS_INFO_MODAL_TITLE",
+								"content": "PROPERTIES_PANE___DIRECTIVES_ARGUMENTS_INFO_MODAL_BODY",
+								"featureNameForHelp": "GraphQL directives",
+								"buttons": ["contactSupport", "ok"]
 							}
 						},
 						{
@@ -828,6 +863,13 @@ making sure that you maintain a proper JSON format.
 							"dependency": {
 								"key": "directiveFormat",
 								"value": "Structured"
+							},
+							"helpInfo": {
+								"type": "modal",
+								"title": "PROPERTIES_PANE___DIRECTIVES_ARGUMENTS_INFO_MODAL_TITLE",
+								"content": "PROPERTIES_PANE___DIRECTIVES_ARGUMENTS_INFO_MODAL_BODY",
+								"featureNameForHelp": "GraphQL directives",
+								"buttons": ["contactSupport", "ok"]
 							}
 						},
 						{
@@ -991,6 +1033,13 @@ making sure that you maintain a proper JSON format.
 							"dependency": {
 								"key": "directiveFormat",
 								"value": "Structured"
+							},
+							"helpInfo": {
+								"type": "modal",
+								"title": "PROPERTIES_PANE___DIRECTIVES_ARGUMENTS_INFO_MODAL_TITLE",
+								"content": "PROPERTIES_PANE___DIRECTIVES_ARGUMENTS_INFO_MODAL_BODY",
+								"featureNameForHelp": "GraphQL directives",
+								"buttons": ["contactSupport", "ok"]
 							}
 						},
 						{
@@ -1099,6 +1148,13 @@ making sure that you maintain a proper JSON format.
 							"dependency": {
 								"key": "directiveFormat",
 								"value": "Structured"
+							},
+							"helpInfo": {
+								"type": "modal",
+								"title": "PROPERTIES_PANE___DIRECTIVES_ARGUMENTS_INFO_MODAL_TITLE",
+								"content": "PROPERTIES_PANE___DIRECTIVES_ARGUMENTS_INFO_MODAL_BODY",
+								"featureNameForHelp": "GraphQL directives",
+								"buttons": ["contactSupport", "ok"]
 							}
 						},
 						{
@@ -1241,6 +1297,13 @@ making sure that you maintain a proper JSON format.
 									"dependency": {
 										"key": "directiveFormat",
 										"value": "Structured"
+									},
+									"helpInfo": {
+										"type": "modal",
+										"title": "PROPERTIES_PANE___DIRECTIVES_ARGUMENTS_INFO_MODAL_TITLE",
+										"content": "PROPERTIES_PANE___DIRECTIVES_ARGUMENTS_INFO_MODAL_BODY",
+										"featureNameForHelp": "GraphQL directives",
+										"buttons": ["contactSupport", "ok"]
 									}
 								},
 								{
@@ -1334,6 +1397,13 @@ making sure that you maintain a proper JSON format.
 							"dependency": {
 								"key": "directiveFormat",
 								"value": "Structured"
+							},
+							"helpInfo": {
+								"type": "modal",
+								"title": "PROPERTIES_PANE___DIRECTIVES_ARGUMENTS_INFO_MODAL_TITLE",
+								"content": "PROPERTIES_PANE___DIRECTIVES_ARGUMENTS_INFO_MODAL_BODY",
+								"featureNameForHelp": "GraphQL directives",
+								"buttons": ["contactSupport", "ok"]
 							}
 						},
 						{
@@ -1431,6 +1501,13 @@ making sure that you maintain a proper JSON format.
 							"dependency": {
 								"key": "directiveFormat",
 								"value": "Structured"
+							},
+							"helpInfo": {
+								"type": "modal",
+								"title": "PROPERTIES_PANE___DIRECTIVES_ARGUMENTS_INFO_MODAL_TITLE",
+								"content": "PROPERTIES_PANE___DIRECTIVES_ARGUMENTS_INFO_MODAL_BODY",
+								"featureNameForHelp": "GraphQL directives",
+								"buttons": ["contactSupport", "ok"]
 							}
 						},
 						{
@@ -1542,6 +1619,13 @@ making sure that you maintain a proper JSON format.
 							"dependency": {
 								"key": "directiveFormat",
 								"value": "Structured"
+							},
+							"helpInfo": {
+								"type": "modal",
+								"title": "PROPERTIES_PANE___DIRECTIVES_ARGUMENTS_INFO_MODAL_TITLE",
+								"content": "PROPERTIES_PANE___DIRECTIVES_ARGUMENTS_INFO_MODAL_BODY",
+								"featureNameForHelp": "GraphQL directives",
+								"buttons": ["contactSupport", "ok"]
 							}
 						},
 						{
@@ -1639,6 +1723,13 @@ making sure that you maintain a proper JSON format.
 							"dependency": {
 								"key": "directiveFormat",
 								"value": "Structured"
+							},
+							"helpInfo": {
+								"type": "modal",
+								"title": "PROPERTIES_PANE___DIRECTIVES_ARGUMENTS_INFO_MODAL_TITLE",
+								"content": "PROPERTIES_PANE___DIRECTIVES_ARGUMENTS_INFO_MODAL_BODY",
+								"featureNameForHelp": "GraphQL directives",
+								"buttons": ["contactSupport", "ok"]
 							}
 						},
 						{
@@ -1807,6 +1898,13 @@ making sure that you maintain a proper JSON format.
 							"dependency": {
 								"key": "directiveFormat",
 								"value": "Structured"
+							},
+							"helpInfo": {
+								"type": "modal",
+								"title": "PROPERTIES_PANE___DIRECTIVES_ARGUMENTS_INFO_MODAL_TITLE",
+								"content": "PROPERTIES_PANE___DIRECTIVES_ARGUMENTS_INFO_MODAL_BODY",
+								"featureNameForHelp": "GraphQL directives",
+								"buttons": ["contactSupport", "ok"]
 							}
 						},
 						{
@@ -1904,6 +2002,13 @@ making sure that you maintain a proper JSON format.
 							"dependency": {
 								"key": "directiveFormat",
 								"value": "Structured"
+							},
+							"helpInfo": {
+								"type": "modal",
+								"title": "PROPERTIES_PANE___DIRECTIVES_ARGUMENTS_INFO_MODAL_TITLE",
+								"content": "PROPERTIES_PANE___DIRECTIVES_ARGUMENTS_INFO_MODAL_BODY",
+								"featureNameForHelp": "GraphQL directives",
+								"buttons": ["contactSupport", "ok"]
 							}
 						},
 						{
@@ -2073,6 +2178,13 @@ making sure that you maintain a proper JSON format.
 							"dependency": {
 								"key": "directiveFormat",
 								"value": "Structured"
+							},
+							"helpInfo": {
+								"type": "modal",
+								"title": "PROPERTIES_PANE___DIRECTIVES_ARGUMENTS_INFO_MODAL_TITLE",
+								"content": "PROPERTIES_PANE___DIRECTIVES_ARGUMENTS_INFO_MODAL_BODY",
+								"featureNameForHelp": "GraphQL directives",
+								"buttons": ["contactSupport", "ok"]
 							}
 						},
 						{
@@ -2170,6 +2282,13 @@ making sure that you maintain a proper JSON format.
 							"dependency": {
 								"key": "directiveFormat",
 								"value": "Structured"
+							},
+							"helpInfo": {
+								"type": "modal",
+								"title": "PROPERTIES_PANE___DIRECTIVES_ARGUMENTS_INFO_MODAL_TITLE",
+								"content": "PROPERTIES_PANE___DIRECTIVES_ARGUMENTS_INFO_MODAL_BODY",
+								"featureNameForHelp": "GraphQL directives",
+								"buttons": ["contactSupport", "ok"]
 							}
 						},
 						{
@@ -2294,6 +2413,13 @@ making sure that you maintain a proper JSON format.
 							"dependency": {
 								"key": "directiveFormat",
 								"value": "Structured"
+							},
+							"helpInfo": {
+								"type": "modal",
+								"title": "PROPERTIES_PANE___DIRECTIVES_ARGUMENTS_INFO_MODAL_TITLE",
+								"content": "PROPERTIES_PANE___DIRECTIVES_ARGUMENTS_INFO_MODAL_BODY",
+								"featureNameForHelp": "GraphQL directives",
+								"buttons": ["contactSupport", "ok"]
 							}
 						},
 						{
@@ -2391,6 +2517,13 @@ making sure that you maintain a proper JSON format.
 							"dependency": {
 								"key": "directiveFormat",
 								"value": "Structured"
+							},
+							"helpInfo": {
+								"type": "modal",
+								"title": "PROPERTIES_PANE___DIRECTIVES_ARGUMENTS_INFO_MODAL_TITLE",
+								"content": "PROPERTIES_PANE___DIRECTIVES_ARGUMENTS_INFO_MODAL_BODY",
+								"featureNameForHelp": "GraphQL directives",
+								"buttons": ["contactSupport", "ok"]
 							}
 						},
 						{
@@ -2738,6 +2871,13 @@ making sure that you maintain a proper JSON format.
 									"dependency": {
 										"key": "directiveFormat",
 										"value": "Structured"
+									},
+									"helpInfo": {
+										"type": "modal",
+										"title": "PROPERTIES_PANE___DIRECTIVES_ARGUMENTS_INFO_MODAL_TITLE",
+										"content": "PROPERTIES_PANE___DIRECTIVES_ARGUMENTS_INFO_MODAL_BODY",
+										"featureNameForHelp": "GraphQL directives",
+										"buttons": ["contactSupport", "ok"]
 									}
 								},
 								{
@@ -2993,6 +3133,13 @@ making sure that you maintain a proper JSON format.
 									"dependency": {
 										"key": "directiveFormat",
 										"value": "Structured"
+									},
+									"helpInfo": {
+										"type": "modal",
+										"title": "PROPERTIES_PANE___DIRECTIVES_ARGUMENTS_INFO_MODAL_TITLE",
+										"content": "PROPERTIES_PANE___DIRECTIVES_ARGUMENTS_INFO_MODAL_BODY",
+										"featureNameForHelp": "GraphQL directives",
+										"buttons": ["contactSupport", "ok"]
 									}
 								},
 								{
@@ -3248,6 +3395,13 @@ making sure that you maintain a proper JSON format.
 									"dependency": {
 										"key": "directiveFormat",
 										"value": "Structured"
+									},
+									"helpInfo": {
+										"type": "modal",
+										"title": "PROPERTIES_PANE___DIRECTIVES_ARGUMENTS_INFO_MODAL_TITLE",
+										"content": "PROPERTIES_PANE___DIRECTIVES_ARGUMENTS_INFO_MODAL_BODY",
+										"featureNameForHelp": "GraphQL directives",
+										"buttons": ["contactSupport", "ok"]
 									}
 								},
 								{
@@ -3503,6 +3657,13 @@ making sure that you maintain a proper JSON format.
 									"dependency": {
 										"key": "directiveFormat",
 										"value": "Structured"
+									},
+									"helpInfo": {
+										"type": "modal",
+										"title": "PROPERTIES_PANE___DIRECTIVES_ARGUMENTS_INFO_MODAL_TITLE",
+										"content": "PROPERTIES_PANE___DIRECTIVES_ARGUMENTS_INFO_MODAL_BODY",
+										"featureNameForHelp": "GraphQL directives",
+										"buttons": ["contactSupport", "ok"]
 									}
 								},
 								{
@@ -3758,6 +3919,13 @@ making sure that you maintain a proper JSON format.
 									"dependency": {
 										"key": "directiveFormat",
 										"value": "Structured"
+									},
+									"helpInfo": {
+										"type": "modal",
+										"title": "PROPERTIES_PANE___DIRECTIVES_ARGUMENTS_INFO_MODAL_TITLE",
+										"content": "PROPERTIES_PANE___DIRECTIVES_ARGUMENTS_INFO_MODAL_BODY",
+										"featureNameForHelp": "GraphQL directives",
+										"buttons": ["contactSupport", "ok"]
 									}
 								},
 								{
@@ -4013,6 +4181,13 @@ making sure that you maintain a proper JSON format.
 									"dependency": {
 										"key": "directiveFormat",
 										"value": "Structured"
+									},
+									"helpInfo": {
+										"type": "modal",
+										"title": "PROPERTIES_PANE___DIRECTIVES_ARGUMENTS_INFO_MODAL_TITLE",
+										"content": "PROPERTIES_PANE___DIRECTIVES_ARGUMENTS_INFO_MODAL_BODY",
+										"featureNameForHelp": "GraphQL directives",
+										"buttons": ["contactSupport", "ok"]
 									}
 								},
 								{
@@ -4269,6 +4444,13 @@ making sure that you maintain a proper JSON format.
 									"dependency": {
 										"key": "directiveFormat",
 										"value": "Structured"
+									},
+									"helpInfo": {
+										"type": "modal",
+										"title": "PROPERTIES_PANE___DIRECTIVES_ARGUMENTS_INFO_MODAL_TITLE",
+										"content": "PROPERTIES_PANE___DIRECTIVES_ARGUMENTS_INFO_MODAL_BODY",
+										"featureNameForHelp": "GraphQL directives",
+										"buttons": ["contactSupport", "ok"]
 									}
 								},
 								{
@@ -4534,6 +4716,13 @@ making sure that you maintain a proper JSON format.
 									"dependency": {
 										"key": "directiveFormat",
 										"value": "Structured"
+									},
+									"helpInfo": {
+										"type": "modal",
+										"title": "PROPERTIES_PANE___DIRECTIVES_ARGUMENTS_INFO_MODAL_TITLE",
+										"content": "PROPERTIES_PANE___DIRECTIVES_ARGUMENTS_INFO_MODAL_BODY",
+										"featureNameForHelp": "GraphQL directives",
+										"buttons": ["contactSupport", "ok"]
 									}
 								},
 								{
@@ -4799,6 +4988,13 @@ making sure that you maintain a proper JSON format.
 									"dependency": {
 										"key": "directiveFormat",
 										"value": "Structured"
+									},
+									"helpInfo": {
+										"type": "modal",
+										"title": "PROPERTIES_PANE___DIRECTIVES_ARGUMENTS_INFO_MODAL_TITLE",
+										"content": "PROPERTIES_PANE___DIRECTIVES_ARGUMENTS_INFO_MODAL_BODY",
+										"featureNameForHelp": "GraphQL directives",
+										"buttons": ["contactSupport", "ok"]
 									}
 								},
 								{
@@ -5064,6 +5260,13 @@ making sure that you maintain a proper JSON format.
 									"dependency": {
 										"key": "directiveFormat",
 										"value": "Structured"
+									},
+									"helpInfo": {
+										"type": "modal",
+										"title": "PROPERTIES_PANE___DIRECTIVES_ARGUMENTS_INFO_MODAL_TITLE",
+										"content": "PROPERTIES_PANE___DIRECTIVES_ARGUMENTS_INFO_MODAL_BODY",
+										"featureNameForHelp": "GraphQL directives",
+										"buttons": ["contactSupport", "ok"]
 									}
 								},
 								{
@@ -5314,6 +5517,13 @@ making sure that you maintain a proper JSON format.
 									"dependency": {
 										"key": "directiveFormat",
 										"value": "Structured"
+									},
+									"helpInfo": {
+										"type": "modal",
+										"title": "PROPERTIES_PANE___DIRECTIVES_ARGUMENTS_INFO_MODAL_TITLE",
+										"content": "PROPERTIES_PANE___DIRECTIVES_ARGUMENTS_INFO_MODAL_BODY",
+										"featureNameForHelp": "GraphQL directives",
+										"buttons": ["contactSupport", "ok"]
 									}
 								},
 								{
@@ -5563,6 +5773,13 @@ making sure that you maintain a proper JSON format.
 									"dependency": {
 										"key": "directiveFormat",
 										"value": "Structured"
+									},
+									"helpInfo": {
+										"type": "modal",
+										"title": "PROPERTIES_PANE___DIRECTIVES_ARGUMENTS_INFO_MODAL_TITLE",
+										"content": "PROPERTIES_PANE___DIRECTIVES_ARGUMENTS_INFO_MODAL_BODY",
+										"featureNameForHelp": "GraphQL directives",
+										"buttons": ["contactSupport", "ok"]
 									}
 								},
 								{
