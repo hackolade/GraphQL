@@ -28,12 +28,20 @@ function getDirectivesUsageStatement({ directives = [], definitionsIdToNameMap =
  * @returns {string} - The directive statement or empty string if invalid
  */
 function mapDirective({ directive, definitionsIdToNameMap }) {
-	const directiveName = getDirectiveName({ directiveName: directive.directiveName, definitionsIdToNameMap });
-	if (!directiveName) {
-		return '';
+	if (directive.directiveFormat === 'Raw') {
+		return formatRawDirective({ rawDirective: directive.rawDirective });
 	}
-	const directiveArguments = mapDirectiveRawArguments({ directive });
-	return joinInlineStatements({ statements: [directiveName, directiveArguments], separator: '' });
+
+	if (directive.directiveFormat === 'Structured') {
+		const directiveName = getDirectiveName({ directiveName: directive.directiveName, definitionsIdToNameMap });
+		if (!directiveName) {
+			return '';
+		}
+		const directiveArguments = mapDirectiveRawArguments({ directive });
+		return joinInlineStatements({ statements: [directiveName, directiveArguments], separator: '' });
+	}
+
+	return '';
 }
 
 /**
@@ -73,6 +81,22 @@ function getDirectiveName({ directiveName, definitionsIdToNameMap }) {
 		return resolvedDirectiveName;
 	}
 	return `@${resolvedDirectiveName}`;
+}
+
+/**
+ * Formats a raw directive string by trimming whitespace and normalizing newlines.
+ * @param {Object} params
+ * @param {string} params.rawDirective - The raw directive string to format
+ * @returns {string} - The formatted directive string or empty string if invalid
+ */
+function formatRawDirective({ rawDirective }) {
+	if (typeof rawDirective !== 'string') {
+		return '';
+	}
+
+	const trimmedDirective = rawDirective.trim().replace(/\n/g, ' ');
+
+	return trimmedDirective;
 }
 
 module.exports = {
