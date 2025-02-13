@@ -3,10 +3,12 @@
  */
 
 const validationHelper = require('./helpers/schemaValidationHelper');
-const { getTypeDefinitionStatements } = require('./mappers/typeDefinitions');
+const { getTypeDefinitionStatements, getModelDefinitionsBySubtype } = require('./mappers/typeDefinitions');
 const { generateIdToNameMap } = require('./helpers/generateIdToNameMap');
-const { getSchemaRootTypeStatements } = require('./mappers/rootTypes');
 const { getSchemaVersionHeader } = require('./mappers/schemaVersionHeader');
+const { formatFEStatement } = require('./helpers/feStatementFormatHelper');
+const { getRootTypeNames, getRootSchemaStatement, getRootTypes } = require('./mappers/rootTypes');
+const { getDirectives } = require('./mappers/directives');
 
 module.exports = {
 	/**
@@ -21,17 +23,39 @@ module.exports = {
 			const modelDefinitions = JSON.parse(data.modelDefinitions);
 			const definitionsIdToNameMap = generateIdToNameMap(modelDefinitions.properties);
 
+			const containerProperties = data.containerData?.[0];
 			const schemaVersionHeader = getSchemaVersionHeader({ schemaVersion: data.modelData[0]?.version });
-			const rootTypeStatements = getSchemaRootTypeStatements({
-				containerProperties: data.containerData,
+			const rootTypeNames = getRootTypeNames({ containerProperties });
+			const rootTypeStatements = getRootTypes({
 				entitiesJsonSchema: data.jsonSchema,
 				entityProperties: data.entityData,
+				rootTypeNames,
 				definitionsIdToNameMap,
 			});
+
+			const rootSchemaStatement = getRootSchemaStatement({
+				rootTypeNames,
+				rootTypeStatements,
+				containerProperties,
+			});
+
+			const directiveStatements = getDirectives({
+				directives: getModelDefinitionsBySubtype({ modelDefinitions, subtype: 'directive' }),
+				definitionsIdToNameMap,
+			});
+
 			const typeDefinitionStatements = getTypeDefinitionStatements({ modelDefinitions, definitionsIdToNameMap });
 
-			const schemaScript = [schemaVersionHeader, rootTypeStatements, typeDefinitionStatements]
+			// Combine all the statements into a single script with strict ordering
+			const schemaScript = [
+				schemaVersionHeader,
+				rootSchemaStatement,
+				...directiveStatements,
+				...rootTypeStatements,
+				...typeDefinitionStatements,
+			]
 				.filter(Boolean)
+				.map(feStatement => formatFEStatement({ feStatement }))
 				.join('\n\n');
 
 			cb(null, schemaScript);
