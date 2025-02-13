@@ -3,13 +3,12 @@
  */
 
 const validationHelper = require('./helpers/schemaValidationHelper');
-const { getTypeDefinitionStatements } = require('./mappers/typeDefinitions');
+const { getTypeDefinitionStatements, getModelDefinitionsBySubtype } = require('./mappers/typeDefinitions');
 const { generateIdToNameMap } = require('./helpers/generateIdToNameMap');
 const { getSchemaVersionHeader } = require('./mappers/schemaVersionHeader');
-const { formatFEStatement } = require('./helpers/feStatementFormatHelper.js');
-const { getRootTypeNames, getRootSchemaStatement, getRootTypes } = require('./mappers/rootTypes.js');
-const { getDirectives } = require('./mappers/directives.js');
-const { getModelDefinitionsBySubtype } = require('./mappers/typeDefinitions.js');
+const { formatFEStatement } = require('./helpers/feStatementFormatHelper');
+const { getRootTypeNames, getRootSchemaStatement, getRootTypes } = require('./mappers/rootTypes');
+const { getDirectives } = require('./mappers/directives');
 
 module.exports = {
 	/**
