@@ -15,7 +15,7 @@ const generateIdToNameMap = (modelDefinitionsSchema = {}) => {
 			idToNameMap[schema.GUID] = name;
 		}
 
-		if (Object.keys(schema.properties || {}) !== 0) {
+		if (Object.keys(schema.properties || {}).length !== 0) {
 			const childIdToNameMap = generateIdToNameMap(schema.properties);
 			idToNameMap = { ...idToNameMap, ...childIdToNameMap };
 		}
