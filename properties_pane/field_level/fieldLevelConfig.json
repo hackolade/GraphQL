@@ -158,8 +158,7 @@ making sure that you maintain a proper JSON format.
 								"type": "modal",
 								"title": "PROPERTIES_PANE___DIRECTIVES_INFO_MODAL_TITLE",
 								"content": "PROPERTIES_PANE___DIRECTIVES_INFO_MODAL_BODY",
-								"featureNameForHelp": "GraphQL directives",
-								"buttons": ["contactSupport", "ok"]
+								"buttons": ["ok"]
 							}
 						},
 						{
@@ -289,8 +288,7 @@ making sure that you maintain a proper JSON format.
 								"type": "modal",
 								"title": "PROPERTIES_PANE___DIRECTIVES_INFO_MODAL_TITLE",
 								"content": "PROPERTIES_PANE___DIRECTIVES_INFO_MODAL_BODY",
-								"featureNameForHelp": "GraphQL directives",
-								"buttons": ["contactSupport", "ok"]
+								"buttons": ["ok"]
 							}
 						},
 						{
@@ -422,8 +420,7 @@ making sure that you maintain a proper JSON format.
 								"type": "modal",
 								"title": "PROPERTIES_PANE___DIRECTIVES_INFO_MODAL_TITLE",
 								"content": "PROPERTIES_PANE___DIRECTIVES_INFO_MODAL_BODY",
-								"featureNameForHelp": "GraphQL directives",
-								"buttons": ["contactSupport", "ok"]
+								"buttons": ["ok"]
 							}
 						},
 						{
@@ -553,8 +550,7 @@ making sure that you maintain a proper JSON format.
 								"type": "modal",
 								"title": "PROPERTIES_PANE___DIRECTIVES_INFO_MODAL_TITLE",
 								"content": "PROPERTIES_PANE___DIRECTIVES_INFO_MODAL_BODY",
-								"featureNameForHelp": "GraphQL directives",
-								"buttons": ["contactSupport", "ok"]
+								"buttons": ["ok"]
 							}
 						},
 						{
@@ -684,8 +680,7 @@ making sure that you maintain a proper JSON format.
 								"type": "modal",
 								"title": "PROPERTIES_PANE___DIRECTIVES_INFO_MODAL_TITLE",
 								"content": "PROPERTIES_PANE___DIRECTIVES_INFO_MODAL_BODY",
-								"featureNameForHelp": "GraphQL directives",
-								"buttons": ["contactSupport", "ok"]
+								"buttons": ["ok"]
 							}
 						},
 						{
@@ -813,8 +808,7 @@ making sure that you maintain a proper JSON format.
 								"type": "modal",
 								"title": "PROPERTIES_PANE___DIRECTIVES_INFO_MODAL_TITLE",
 								"content": "PROPERTIES_PANE___DIRECTIVES_INFO_MODAL_BODY",
-								"featureNameForHelp": "GraphQL directives",
-								"buttons": ["contactSupport", "ok"]
+								"buttons": ["ok"]
 							}
 						},
 						{
@@ -983,8 +977,7 @@ making sure that you maintain a proper JSON format.
 								"type": "modal",
 								"title": "PROPERTIES_PANE___DIRECTIVES_INFO_MODAL_TITLE",
 								"content": "PROPERTIES_PANE___DIRECTIVES_INFO_MODAL_BODY",
-								"featureNameForHelp": "GraphQL directives",
-								"buttons": ["contactSupport", "ok"]
+								"buttons": ["ok"]
 							}
 						},
 						{
@@ -1098,8 +1091,7 @@ making sure that you maintain a proper JSON format.
 								"type": "modal",
 								"title": "PROPERTIES_PANE___DIRECTIVES_INFO_MODAL_TITLE",
 								"content": "PROPERTIES_PANE___DIRECTIVES_INFO_MODAL_BODY",
-								"featureNameForHelp": "GraphQL directives",
-								"buttons": ["contactSupport", "ok"]
+								"buttons": ["ok"]
 							}
 						},
 						{
@@ -1247,8 +1239,7 @@ making sure that you maintain a proper JSON format.
 										"type": "modal",
 										"title": "PROPERTIES_PANE___DIRECTIVES_INFO_MODAL_TITLE",
 										"content": "PROPERTIES_PANE___DIRECTIVES_INFO_MODAL_BODY",
-										"featureNameForHelp": "GraphQL directives",
-										"buttons": ["contactSupport", "ok"]
+										"buttons": ["ok"]
 									}
 								},
 								{
@@ -1348,8 +1339,7 @@ making sure that you maintain a proper JSON format.
 								"type": "modal",
 								"title": "PROPERTIES_PANE___DIRECTIVES_INFO_MODAL_TITLE",
 								"content": "PROPERTIES_PANE___DIRECTIVES_INFO_MODAL_BODY",
-								"featureNameForHelp": "GraphQL directives",
-								"buttons": ["contactSupport", "ok"]
+								"buttons": ["ok"]
 							}
 						},
 						{
@@ -1451,8 +1441,7 @@ making sure that you maintain a proper JSON format.
 								"type": "modal",
 								"title": "PROPERTIES_PANE___DIRECTIVES_INFO_MODAL_TITLE",
 								"content": "PROPERTIES_PANE___DIRECTIVES_INFO_MODAL_BODY",
-								"featureNameForHelp": "GraphQL directives",
-								"buttons": ["contactSupport", "ok"]
+								"buttons": ["ok"]
 							}
 						},
 						{
@@ -1570,8 +1559,7 @@ making sure that you maintain a proper JSON format.
 								"type": "modal",
 								"title": "PROPERTIES_PANE___DIRECTIVES_INFO_MODAL_TITLE",
 								"content": "PROPERTIES_PANE___DIRECTIVES_INFO_MODAL_BODY",
-								"featureNameForHelp": "GraphQL directives",
-								"buttons": ["contactSupport", "ok"]
+								"buttons": ["ok"]
 							}
 						},
 						{
@@ -1673,8 +1661,7 @@ making sure that you maintain a proper JSON format.
 								"type": "modal",
 								"title": "PROPERTIES_PANE___DIRECTIVES_INFO_MODAL_TITLE",
 								"content": "PROPERTIES_PANE___DIRECTIVES_INFO_MODAL_BODY",
-								"featureNameForHelp": "GraphQL directives",
-								"buttons": ["contactSupport", "ok"]
+								"buttons": ["ok"]
 							}
 						},
 						{
@@ -1849,8 +1836,7 @@ making sure that you maintain a proper JSON format.
 								"type": "modal",
 								"title": "PROPERTIES_PANE___DIRECTIVES_INFO_MODAL_TITLE",
 								"content": "PROPERTIES_PANE___DIRECTIVES_INFO_MODAL_BODY",
-								"featureNameForHelp": "GraphQL directives",
-								"buttons": ["contactSupport", "ok"]
+								"buttons": ["ok"]
 							}
 						},
 						{
@@ -1952,8 +1938,7 @@ making sure that you maintain a proper JSON format.
 								"type": "modal",
 								"title": "PROPERTIES_PANE___DIRECTIVES_INFO_MODAL_TITLE",
 								"content": "PROPERTIES_PANE___DIRECTIVES_INFO_MODAL_BODY",
-								"featureNameForHelp": "GraphQL directives",
-								"buttons": ["contactSupport", "ok"]
+								"buttons": ["ok"]
 							}
 						},
 						{
@@ -2129,8 +2114,7 @@ making sure that you maintain a proper JSON format.
 								"type": "modal",
 								"title": "PROPERTIES_PANE___DIRECTIVES_INFO_MODAL_TITLE",
 								"content": "PROPERTIES_PANE___DIRECTIVES_INFO_MODAL_BODY",
-								"featureNameForHelp": "GraphQL directives",
-								"buttons": ["contactSupport", "ok"]
+								"buttons": ["ok"]
 							}
 						},
 						{
@@ -2232,8 +2216,7 @@ making sure that you maintain a proper JSON format.
 								"type": "modal",
 								"title": "PROPERTIES_PANE___DIRECTIVES_INFO_MODAL_TITLE",
 								"content": "PROPERTIES_PANE___DIRECTIVES_INFO_MODAL_BODY",
-								"featureNameForHelp": "GraphQL directives",
-								"buttons": ["contactSupport", "ok"]
+								"buttons": ["ok"]
 							}
 						},
 						{
@@ -2364,8 +2347,7 @@ making sure that you maintain a proper JSON format.
 								"type": "modal",
 								"title": "PROPERTIES_PANE___DIRECTIVES_INFO_MODAL_TITLE",
 								"content": "PROPERTIES_PANE___DIRECTIVES_INFO_MODAL_BODY",
-								"featureNameForHelp": "GraphQL directives",
-								"buttons": ["contactSupport", "ok"]
+								"buttons": ["ok"]
 							}
 						},
 						{
@@ -2467,8 +2449,7 @@ making sure that you maintain a proper JSON format.
 								"type": "modal",
 								"title": "PROPERTIES_PANE___DIRECTIVES_INFO_MODAL_TITLE",
 								"content": "PROPERTIES_PANE___DIRECTIVES_INFO_MODAL_BODY",
-								"featureNameForHelp": "GraphQL directives",
-								"buttons": ["contactSupport", "ok"]
+								"buttons": ["ok"]
 							}
 						},
 						{
@@ -2821,8 +2802,7 @@ making sure that you maintain a proper JSON format.
 										"type": "modal",
 										"title": "PROPERTIES_PANE___DIRECTIVES_INFO_MODAL_TITLE",
 										"content": "PROPERTIES_PANE___DIRECTIVES_INFO_MODAL_BODY",
-										"featureNameForHelp": "GraphQL directives",
-										"buttons": ["contactSupport", "ok"]
+										"buttons": ["ok"]
 									}
 								},
 								{
@@ -3083,8 +3063,7 @@ making sure that you maintain a proper JSON format.
 										"type": "modal",
 										"title": "PROPERTIES_PANE___DIRECTIVES_INFO_MODAL_TITLE",
 										"content": "PROPERTIES_PANE___DIRECTIVES_INFO_MODAL_BODY",
-										"featureNameForHelp": "GraphQL directives",
-										"buttons": ["contactSupport", "ok"]
+										"buttons": ["ok"]
 									}
 								},
 								{
@@ -3345,8 +3324,7 @@ making sure that you maintain a proper JSON format.
 										"type": "modal",
 										"title": "PROPERTIES_PANE___DIRECTIVES_INFO_MODAL_TITLE",
 										"content": "PROPERTIES_PANE___DIRECTIVES_INFO_MODAL_BODY",
-										"featureNameForHelp": "GraphQL directives",
-										"buttons": ["contactSupport", "ok"]
+										"buttons": ["ok"]
 									}
 								},
 								{
@@ -3607,8 +3585,7 @@ making sure that you maintain a proper JSON format.
 										"type": "modal",
 										"title": "PROPERTIES_PANE___DIRECTIVES_INFO_MODAL_TITLE",
 										"content": "PROPERTIES_PANE___DIRECTIVES_INFO_MODAL_BODY",
-										"featureNameForHelp": "GraphQL directives",
-										"buttons": ["contactSupport", "ok"]
+										"buttons": ["ok"]
 									}
 								},
 								{
@@ -3869,8 +3846,7 @@ making sure that you maintain a proper JSON format.
 										"type": "modal",
 										"title": "PROPERTIES_PANE___DIRECTIVES_INFO_MODAL_TITLE",
 										"content": "PROPERTIES_PANE___DIRECTIVES_INFO_MODAL_BODY",
-										"featureNameForHelp": "GraphQL directives",
-										"buttons": ["contactSupport", "ok"]
+										"buttons": ["ok"]
 									}
 								},
 								{
@@ -4131,8 +4107,7 @@ making sure that you maintain a proper JSON format.
 										"type": "modal",
 										"title": "PROPERTIES_PANE___DIRECTIVES_INFO_MODAL_TITLE",
 										"content": "PROPERTIES_PANE___DIRECTIVES_INFO_MODAL_BODY",
-										"featureNameForHelp": "GraphQL directives",
-										"buttons": ["contactSupport", "ok"]
+										"buttons": ["ok"]
 									}
 								},
 								{
@@ -4394,8 +4369,7 @@ making sure that you maintain a proper JSON format.
 										"type": "modal",
 										"title": "PROPERTIES_PANE___DIRECTIVES_INFO_MODAL_TITLE",
 										"content": "PROPERTIES_PANE___DIRECTIVES_INFO_MODAL_BODY",
-										"featureNameForHelp": "GraphQL directives",
-										"buttons": ["contactSupport", "ok"]
+										"buttons": ["ok"]
 									}
 								},
 								{
@@ -4666,8 +4640,7 @@ making sure that you maintain a proper JSON format.
 										"type": "modal",
 										"title": "PROPERTIES_PANE___DIRECTIVES_INFO_MODAL_TITLE",
 										"content": "PROPERTIES_PANE___DIRECTIVES_INFO_MODAL_BODY",
-										"featureNameForHelp": "GraphQL directives",
-										"buttons": ["contactSupport", "ok"]
+										"buttons": ["ok"]
 									}
 								},
 								{
@@ -4938,8 +4911,7 @@ making sure that you maintain a proper JSON format.
 										"type": "modal",
 										"title": "PROPERTIES_PANE___DIRECTIVES_INFO_MODAL_TITLE",
 										"content": "PROPERTIES_PANE___DIRECTIVES_INFO_MODAL_BODY",
-										"featureNameForHelp": "GraphQL directives",
-										"buttons": ["contactSupport", "ok"]
+										"buttons": ["ok"]
 									}
 								},
 								{
@@ -5210,8 +5182,7 @@ making sure that you maintain a proper JSON format.
 										"type": "modal",
 										"title": "PROPERTIES_PANE___DIRECTIVES_INFO_MODAL_TITLE",
 										"content": "PROPERTIES_PANE___DIRECTIVES_INFO_MODAL_BODY",
-										"featureNameForHelp": "GraphQL directives",
-										"buttons": ["contactSupport", "ok"]
+										"buttons": ["ok"]
 									}
 								},
 								{
@@ -5467,8 +5438,7 @@ making sure that you maintain a proper JSON format.
 										"type": "modal",
 										"title": "PROPERTIES_PANE___DIRECTIVES_INFO_MODAL_TITLE",
 										"content": "PROPERTIES_PANE___DIRECTIVES_INFO_MODAL_BODY",
-										"featureNameForHelp": "GraphQL directives",
-										"buttons": ["contactSupport", "ok"]
+										"buttons": ["ok"]
 									}
 								},
 								{
@@ -5723,8 +5693,7 @@ making sure that you maintain a proper JSON format.
 										"type": "modal",
 										"title": "PROPERTIES_PANE___DIRECTIVES_INFO_MODAL_TITLE",
 										"content": "PROPERTIES_PANE___DIRECTIVES_INFO_MODAL_BODY",
-										"featureNameForHelp": "GraphQL directives",
-										"buttons": ["contactSupport", "ok"]
+										"buttons": ["ok"]
 									}
 								},
 								{
