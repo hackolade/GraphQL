@@ -19,8 +19,12 @@ const { getObjectTypeFields, getInterfaceTypeFields, getInputTypeFields } = requ
 function getTypeDefinitionStatements({ modelDefinitions, definitionsIdToNameMap }) {
 	const customScalars = getCustomScalars({
 		customScalars: getModelDefinitionsBySubtype({ modelDefinitions, subtype: 'scalar' }),
+		definitionsIdToNameMap,
 	});
-	const enums = getEnums({ enumsDefinitions: getModelDefinitionsBySubtype({ modelDefinitions, subtype: 'enum' }) });
+	const enums = getEnums({
+		enumsDefinitions: getModelDefinitionsBySubtype({ modelDefinitions, subtype: 'enum' }),
+		definitionsIdToNameMap,
+	});
 	const objectTypes = getObjectLikeTypes({
 		objectTypes: getModelDefinitionsBySubtype({ modelDefinitions, subtype: 'object' }),
 		definitionsIdToNameMap,

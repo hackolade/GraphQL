@@ -152,8 +152,8 @@ making sure that you maintain a proper JSON format.
 							"propertyKeyword": "directiveFormat",
 							"propertyTooltip": "Select directive format",
 							"propertyType": "select",
-							"options": ["Raw"],
-							"defaultValue": "Raw",
+							"options": ["Structured", "Raw"],
+							"defaultValue": "Structured",
 							"helpInfo": {
 								"type": "modal",
 								"title": "PROPERTIES_PANE___DIRECTIVES_INFO_MODAL_TITLE",
@@ -172,6 +172,70 @@ making sure that you maintain a proper JSON format.
 							"dependency": {
 								"key": "directiveFormat",
 								"value": "Raw"
+							}
+						},
+						{
+							"propertyName": "Directive",
+							"propertyKeyword": "directiveName",
+							"propertyTooltip": "Select directive",
+							"propertyType": "selecthashed",
+							"template": "definitions",
+							"withEmptyOption": true,
+							"templateOptions": {
+								"filter": {
+									"condition": {
+										"key": "childType",
+										"value": "directive"
+									},
+									"options": {
+										"useAllDefinitionsAsSource": true,
+										"presetOptions": ["@deprecated"]
+									}
+								}
+							},
+							"dependency": {
+								"key": "directiveFormat",
+								"value": "Structured"
+							}
+						},
+						{
+							"propertyName": "Argument value format",
+							"propertyKeyword": "argumentValueFormat",
+							"propertyTooltip": "Select argument value format",
+							"propertyType": "select",
+							"options": ["Raw"],
+							"defaultValue": "Raw",
+							"dependency": {
+								"key": "directiveFormat",
+								"value": "Structured"
+							},
+							"helpInfo": {
+								"type": "modal",
+								"title": "PROPERTIES_PANE___DIRECTIVES_ARGUMENTS_INFO_MODAL_TITLE",
+								"content": "PROPERTIES_PANE___DIRECTIVES_ARGUMENTS_INFO_MODAL_BODY",
+								"featureNameForHelp": "GraphQL directives",
+								"buttons": ["contactSupport", "ok"]
+							}
+						},
+						{
+							"propertyName": "Raw argument values",
+							"propertyKeyword": "rawArgumentValues",
+							"propertyTooltip": "Enter raw argument values",
+							"propertyType": "details",
+							"template": "textarea",
+							"markdown": false,
+							"dependency": {
+								"type": "and",
+								"values": [
+									{
+										"key": "directiveFormat",
+										"value": "Structured"
+									},
+									{
+										"key": "argumentValueFormat",
+										"value": "Raw"
+									}
+								]
 							}
 						}
 					]
@@ -219,8 +283,8 @@ making sure that you maintain a proper JSON format.
 							"propertyKeyword": "directiveFormat",
 							"propertyTooltip": "Select directive format",
 							"propertyType": "select",
-							"options": ["Raw"],
-							"defaultValue": "Raw",
+							"options": ["Structured", "Raw"],
+							"defaultValue": "Structured",
 							"helpInfo": {
 								"type": "modal",
 								"title": "PROPERTIES_PANE___DIRECTIVES_INFO_MODAL_TITLE",
@@ -239,6 +303,70 @@ making sure that you maintain a proper JSON format.
 							"dependency": {
 								"key": "directiveFormat",
 								"value": "Raw"
+							}
+						},
+						{
+							"propertyName": "Directive",
+							"propertyKeyword": "directiveName",
+							"propertyTooltip": "Select directive",
+							"propertyType": "selecthashed",
+							"template": "definitions",
+							"withEmptyOption": true,
+							"templateOptions": {
+								"filter": {
+									"condition": {
+										"key": "childType",
+										"value": "directive"
+									},
+									"options": {
+										"useAllDefinitionsAsSource": true,
+										"presetOptions": ["@deprecated"]
+									}
+								}
+							},
+							"dependency": {
+								"key": "directiveFormat",
+								"value": "Structured"
+							}
+						},
+						{
+							"propertyName": "Argument value format",
+							"propertyKeyword": "argumentValueFormat",
+							"propertyTooltip": "Select argument value format",
+							"propertyType": "select",
+							"options": ["Raw"],
+							"defaultValue": "Raw",
+							"dependency": {
+								"key": "directiveFormat",
+								"value": "Structured"
+							},
+							"helpInfo": {
+								"type": "modal",
+								"title": "PROPERTIES_PANE___DIRECTIVES_ARGUMENTS_INFO_MODAL_TITLE",
+								"content": "PROPERTIES_PANE___DIRECTIVES_ARGUMENTS_INFO_MODAL_BODY",
+								"featureNameForHelp": "GraphQL directives",
+								"buttons": ["contactSupport", "ok"]
+							}
+						},
+						{
+							"propertyName": "Raw argument values",
+							"propertyKeyword": "rawArgumentValues",
+							"propertyTooltip": "Enter raw argument values",
+							"propertyType": "details",
+							"template": "textarea",
+							"markdown": false,
+							"dependency": {
+								"type": "and",
+								"values": [
+									{
+										"key": "directiveFormat",
+										"value": "Structured"
+									},
+									{
+										"key": "argumentValueFormat",
+										"value": "Raw"
+									}
+								]
 							}
 						}
 					]
@@ -288,8 +416,8 @@ making sure that you maintain a proper JSON format.
 							"propertyKeyword": "directiveFormat",
 							"propertyTooltip": "Select directive format",
 							"propertyType": "select",
-							"options": ["Raw"],
-							"defaultValue": "Raw",
+							"options": ["Structured", "Raw"],
+							"defaultValue": "Structured",
 							"helpInfo": {
 								"type": "modal",
 								"title": "PROPERTIES_PANE___DIRECTIVES_INFO_MODAL_TITLE",
@@ -308,6 +436,70 @@ making sure that you maintain a proper JSON format.
 							"dependency": {
 								"key": "directiveFormat",
 								"value": "Raw"
+							}
+						},
+						{
+							"propertyName": "Directive",
+							"propertyKeyword": "directiveName",
+							"propertyTooltip": "Select directive",
+							"propertyType": "selecthashed",
+							"template": "definitions",
+							"withEmptyOption": true,
+							"templateOptions": {
+								"filter": {
+									"condition": {
+										"key": "childType",
+										"value": "directive"
+									},
+									"options": {
+										"useAllDefinitionsAsSource": true,
+										"presetOptions": ["@deprecated"]
+									}
+								}
+							},
+							"dependency": {
+								"key": "directiveFormat",
+								"value": "Structured"
+							}
+						},
+						{
+							"propertyName": "Argument value format",
+							"propertyKeyword": "argumentValueFormat",
+							"propertyTooltip": "Select argument value format",
+							"propertyType": "select",
+							"options": ["Raw"],
+							"defaultValue": "Raw",
+							"dependency": {
+								"key": "directiveFormat",
+								"value": "Structured"
+							},
+							"helpInfo": {
+								"type": "modal",
+								"title": "PROPERTIES_PANE___DIRECTIVES_ARGUMENTS_INFO_MODAL_TITLE",
+								"content": "PROPERTIES_PANE___DIRECTIVES_ARGUMENTS_INFO_MODAL_BODY",
+								"featureNameForHelp": "GraphQL directives",
+								"buttons": ["contactSupport", "ok"]
+							}
+						},
+						{
+							"propertyName": "Raw argument values",
+							"propertyKeyword": "rawArgumentValues",
+							"propertyTooltip": "Enter raw argument values",
+							"propertyType": "details",
+							"template": "textarea",
+							"markdown": false,
+							"dependency": {
+								"type": "and",
+								"values": [
+									{
+										"key": "directiveFormat",
+										"value": "Structured"
+									},
+									{
+										"key": "argumentValueFormat",
+										"value": "Raw"
+									}
+								]
 							}
 						}
 					]
@@ -355,8 +547,8 @@ making sure that you maintain a proper JSON format.
 							"propertyKeyword": "directiveFormat",
 							"propertyTooltip": "Select directive format",
 							"propertyType": "select",
-							"options": ["Raw"],
-							"defaultValue": "Raw",
+							"options": ["Structured", "Raw"],
+							"defaultValue": "Structured",
 							"helpInfo": {
 								"type": "modal",
 								"title": "PROPERTIES_PANE___DIRECTIVES_INFO_MODAL_TITLE",
@@ -375,6 +567,70 @@ making sure that you maintain a proper JSON format.
 							"dependency": {
 								"key": "directiveFormat",
 								"value": "Raw"
+							}
+						},
+						{
+							"propertyName": "Directive",
+							"propertyKeyword": "directiveName",
+							"propertyTooltip": "Select directive",
+							"propertyType": "selecthashed",
+							"template": "definitions",
+							"withEmptyOption": true,
+							"templateOptions": {
+								"filter": {
+									"condition": {
+										"key": "childType",
+										"value": "directive"
+									},
+									"options": {
+										"useAllDefinitionsAsSource": true,
+										"presetOptions": ["@deprecated"]
+									}
+								}
+							},
+							"dependency": {
+								"key": "directiveFormat",
+								"value": "Structured"
+							}
+						},
+						{
+							"propertyName": "Argument value format",
+							"propertyKeyword": "argumentValueFormat",
+							"propertyTooltip": "Select argument value format",
+							"propertyType": "select",
+							"options": ["Raw"],
+							"defaultValue": "Raw",
+							"dependency": {
+								"key": "directiveFormat",
+								"value": "Structured"
+							},
+							"helpInfo": {
+								"type": "modal",
+								"title": "PROPERTIES_PANE___DIRECTIVES_ARGUMENTS_INFO_MODAL_TITLE",
+								"content": "PROPERTIES_PANE___DIRECTIVES_ARGUMENTS_INFO_MODAL_BODY",
+								"featureNameForHelp": "GraphQL directives",
+								"buttons": ["contactSupport", "ok"]
+							}
+						},
+						{
+							"propertyName": "Raw argument values",
+							"propertyKeyword": "rawArgumentValues",
+							"propertyTooltip": "Enter raw argument values",
+							"propertyType": "details",
+							"template": "textarea",
+							"markdown": false,
+							"dependency": {
+								"type": "and",
+								"values": [
+									{
+										"key": "directiveFormat",
+										"value": "Structured"
+									},
+									{
+										"key": "argumentValueFormat",
+										"value": "Raw"
+									}
+								]
 							}
 						}
 					]
@@ -422,8 +678,8 @@ making sure that you maintain a proper JSON format.
 							"propertyKeyword": "directiveFormat",
 							"propertyTooltip": "Select directive format",
 							"propertyType": "select",
-							"options": ["Raw"],
-							"defaultValue": "Raw",
+							"options": ["Structured", "Raw"],
+							"defaultValue": "Structured",
 							"helpInfo": {
 								"type": "modal",
 								"title": "PROPERTIES_PANE___DIRECTIVES_INFO_MODAL_TITLE",
@@ -442,6 +698,70 @@ making sure that you maintain a proper JSON format.
 							"dependency": {
 								"key": "directiveFormat",
 								"value": "Raw"
+							}
+						},
+						{
+							"propertyName": "Directive",
+							"propertyKeyword": "directiveName",
+							"propertyTooltip": "Select directive",
+							"propertyType": "selecthashed",
+							"template": "definitions",
+							"withEmptyOption": true,
+							"templateOptions": {
+								"filter": {
+									"condition": {
+										"key": "childType",
+										"value": "directive"
+									},
+									"options": {
+										"useAllDefinitionsAsSource": true,
+										"presetOptions": ["@deprecated"]
+									}
+								}
+							},
+							"dependency": {
+								"key": "directiveFormat",
+								"value": "Structured"
+							}
+						},
+						{
+							"propertyName": "Argument value format",
+							"propertyKeyword": "argumentValueFormat",
+							"propertyTooltip": "Select argument value format",
+							"propertyType": "select",
+							"options": ["Raw"],
+							"defaultValue": "Raw",
+							"dependency": {
+								"key": "directiveFormat",
+								"value": "Structured"
+							},
+							"helpInfo": {
+								"type": "modal",
+								"title": "PROPERTIES_PANE___DIRECTIVES_ARGUMENTS_INFO_MODAL_TITLE",
+								"content": "PROPERTIES_PANE___DIRECTIVES_ARGUMENTS_INFO_MODAL_BODY",
+								"featureNameForHelp": "GraphQL directives",
+								"buttons": ["contactSupport", "ok"]
+							}
+						},
+						{
+							"propertyName": "Raw argument values",
+							"propertyKeyword": "rawArgumentValues",
+							"propertyTooltip": "Enter raw argument values",
+							"propertyType": "details",
+							"template": "textarea",
+							"markdown": false,
+							"dependency": {
+								"type": "and",
+								"values": [
+									{
+										"key": "directiveFormat",
+										"value": "Structured"
+									},
+									{
+										"key": "argumentValueFormat",
+										"value": "Raw"
+									}
+								]
 							}
 						}
 					]
@@ -487,8 +807,8 @@ making sure that you maintain a proper JSON format.
 							"propertyKeyword": "directiveFormat",
 							"propertyTooltip": "Select directive format",
 							"propertyType": "select",
-							"options": ["Raw"],
-							"defaultValue": "Raw",
+							"options": ["Structured", "Raw"],
+							"defaultValue": "Structured",
 							"helpInfo": {
 								"type": "modal",
 								"title": "PROPERTIES_PANE___DIRECTIVES_INFO_MODAL_TITLE",
@@ -507,6 +827,70 @@ making sure that you maintain a proper JSON format.
 							"dependency": {
 								"key": "directiveFormat",
 								"value": "Raw"
+							}
+						},
+						{
+							"propertyName": "Directive",
+							"propertyKeyword": "directiveName",
+							"propertyTooltip": "Select directive",
+							"propertyType": "selecthashed",
+							"template": "definitions",
+							"withEmptyOption": true,
+							"templateOptions": {
+								"filter": {
+									"condition": {
+										"key": "childType",
+										"value": "directive"
+									},
+									"options": {
+										"useAllDefinitionsAsSource": true,
+										"presetOptions": ["@deprecated"]
+									}
+								}
+							},
+							"dependency": {
+								"key": "directiveFormat",
+								"value": "Structured"
+							}
+						},
+						{
+							"propertyName": "Argument value format",
+							"propertyKeyword": "argumentValueFormat",
+							"propertyTooltip": "Select argument value format",
+							"propertyType": "select",
+							"options": ["Raw"],
+							"defaultValue": "Raw",
+							"dependency": {
+								"key": "directiveFormat",
+								"value": "Structured"
+							},
+							"helpInfo": {
+								"type": "modal",
+								"title": "PROPERTIES_PANE___DIRECTIVES_ARGUMENTS_INFO_MODAL_TITLE",
+								"content": "PROPERTIES_PANE___DIRECTIVES_ARGUMENTS_INFO_MODAL_BODY",
+								"featureNameForHelp": "GraphQL directives",
+								"buttons": ["contactSupport", "ok"]
+							}
+						},
+						{
+							"propertyName": "Raw argument values",
+							"propertyKeyword": "rawArgumentValues",
+							"propertyTooltip": "Enter raw argument values",
+							"propertyType": "details",
+							"template": "textarea",
+							"markdown": false,
+							"dependency": {
+								"type": "and",
+								"values": [
+									{
+										"key": "directiveFormat",
+										"value": "Structured"
+									},
+									{
+										"key": "argumentValueFormat",
+										"value": "Raw"
+									}
+								]
 							}
 						}
 					]
@@ -593,8 +977,8 @@ making sure that you maintain a proper JSON format.
 							"propertyKeyword": "directiveFormat",
 							"propertyTooltip": "Select directive format",
 							"propertyType": "select",
-							"options": ["Raw"],
-							"defaultValue": "Raw",
+							"options": ["Structured", "Raw"],
+							"defaultValue": "Structured",
 							"helpInfo": {
 								"type": "modal",
 								"title": "PROPERTIES_PANE___DIRECTIVES_INFO_MODAL_TITLE",
@@ -613,6 +997,70 @@ making sure that you maintain a proper JSON format.
 							"dependency": {
 								"key": "directiveFormat",
 								"value": "Raw"
+							}
+						},
+						{
+							"propertyName": "Directive",
+							"propertyKeyword": "directiveName",
+							"propertyTooltip": "Select directive",
+							"propertyType": "selecthashed",
+							"template": "definitions",
+							"withEmptyOption": true,
+							"templateOptions": {
+								"filter": {
+									"condition": {
+										"key": "childType",
+										"value": "directive"
+									},
+									"options": {
+										"useAllDefinitionsAsSource": true,
+										"presetOptions": ["@specifiedBy"]
+									}
+								}
+							},
+							"dependency": {
+								"key": "directiveFormat",
+								"value": "Structured"
+							}
+						},
+						{
+							"propertyName": "Argument value format",
+							"propertyKeyword": "argumentValueFormat",
+							"propertyTooltip": "Select argument value format",
+							"propertyType": "select",
+							"options": ["Raw"],
+							"defaultValue": "Raw",
+							"dependency": {
+								"key": "directiveFormat",
+								"value": "Structured"
+							},
+							"helpInfo": {
+								"type": "modal",
+								"title": "PROPERTIES_PANE___DIRECTIVES_ARGUMENTS_INFO_MODAL_TITLE",
+								"content": "PROPERTIES_PANE___DIRECTIVES_ARGUMENTS_INFO_MODAL_BODY",
+								"featureNameForHelp": "GraphQL directives",
+								"buttons": ["contactSupport", "ok"]
+							}
+						},
+						{
+							"propertyName": "Raw argument values",
+							"propertyKeyword": "rawArgumentValues",
+							"propertyTooltip": "Enter raw argument values",
+							"propertyType": "details",
+							"template": "textarea",
+							"markdown": false,
+							"dependency": {
+								"type": "and",
+								"values": [
+									{
+										"key": "directiveFormat",
+										"value": "Structured"
+									},
+									{
+										"key": "argumentValueFormat",
+										"value": "Raw"
+									}
+								]
 							}
 						}
 					],
@@ -644,8 +1092,8 @@ making sure that you maintain a proper JSON format.
 							"propertyKeyword": "directiveFormat",
 							"propertyTooltip": "Select directive format",
 							"propertyType": "select",
-							"options": ["Raw"],
-							"defaultValue": "Raw",
+							"options": ["Structured", "Raw"],
+							"defaultValue": "Structured",
 							"helpInfo": {
 								"type": "modal",
 								"title": "PROPERTIES_PANE___DIRECTIVES_INFO_MODAL_TITLE",
@@ -664,6 +1112,70 @@ making sure that you maintain a proper JSON format.
 							"dependency": {
 								"key": "directiveFormat",
 								"value": "Raw"
+							}
+						},
+						{
+							"propertyName": "Directive",
+							"propertyKeyword": "directiveName",
+							"propertyTooltip": "Select directive",
+							"propertyType": "selecthashed",
+							"template": "definitions",
+							"withEmptyOption": true,
+							"templateOptions": {
+								"filter": {
+									"condition": {
+										"key": "childType",
+										"value": "directive"
+									},
+									"options": {
+										"useAllDefinitionsAsSource": true,
+										"presetOptions": ["@deprecated"]
+									}
+								}
+							},
+							"dependency": {
+								"key": "directiveFormat",
+								"value": "Structured"
+							}
+						},
+						{
+							"propertyName": "Argument value format",
+							"propertyKeyword": "argumentValueFormat",
+							"propertyTooltip": "Select argument value format",
+							"propertyType": "select",
+							"options": ["Raw"],
+							"defaultValue": "Raw",
+							"dependency": {
+								"key": "directiveFormat",
+								"value": "Structured"
+							},
+							"helpInfo": {
+								"type": "modal",
+								"title": "PROPERTIES_PANE___DIRECTIVES_ARGUMENTS_INFO_MODAL_TITLE",
+								"content": "PROPERTIES_PANE___DIRECTIVES_ARGUMENTS_INFO_MODAL_BODY",
+								"featureNameForHelp": "GraphQL directives",
+								"buttons": ["contactSupport", "ok"]
+							}
+						},
+						{
+							"propertyName": "Raw argument values",
+							"propertyKeyword": "rawArgumentValues",
+							"propertyTooltip": "Enter raw argument values",
+							"propertyType": "details",
+							"template": "textarea",
+							"markdown": false,
+							"dependency": {
+								"type": "and",
+								"values": [
+									{
+										"key": "directiveFormat",
+										"value": "Structured"
+									},
+									{
+										"key": "argumentValueFormat",
+										"value": "Raw"
+									}
+								]
 							}
 						}
 					],
@@ -729,8 +1241,8 @@ making sure that you maintain a proper JSON format.
 									"propertyKeyword": "directiveFormat",
 									"propertyTooltip": "Select directive format",
 									"propertyType": "select",
-									"options": ["Raw"],
-									"defaultValue": "Raw",
+									"options": ["Structured", "Raw"],
+									"defaultValue": "Structured",
 									"helpInfo": {
 										"type": "modal",
 										"title": "PROPERTIES_PANE___DIRECTIVES_INFO_MODAL_TITLE",
@@ -750,6 +1262,70 @@ making sure that you maintain a proper JSON format.
 										"key": "directiveFormat",
 										"value": "Raw"
 									}
+								},
+								{
+									"propertyName": "Directive",
+									"propertyKeyword": "directiveName",
+									"propertyTooltip": "Select directive",
+									"propertyType": "selecthashed",
+									"template": "definitions",
+									"withEmptyOption": true,
+									"templateOptions": {
+										"filter": {
+											"condition": {
+												"key": "childType",
+												"value": "directive"
+											},
+											"options": {
+												"useAllDefinitionsAsSource": true,
+												"presetOptions": ["@deprecated"]
+											}
+										}
+									},
+									"dependency": {
+										"key": "directiveFormat",
+										"value": "Structured"
+									}
+								},
+								{
+									"propertyName": "Argument value format",
+									"propertyKeyword": "argumentValueFormat",
+									"propertyTooltip": "Select argument value format",
+									"propertyType": "select",
+									"options": ["Raw"],
+									"defaultValue": "Raw",
+									"dependency": {
+										"key": "directiveFormat",
+										"value": "Structured"
+									},
+									"helpInfo": {
+										"type": "modal",
+										"title": "PROPERTIES_PANE___DIRECTIVES_ARGUMENTS_INFO_MODAL_TITLE",
+										"content": "PROPERTIES_PANE___DIRECTIVES_ARGUMENTS_INFO_MODAL_BODY",
+										"featureNameForHelp": "GraphQL directives",
+										"buttons": ["contactSupport", "ok"]
+									}
+								},
+								{
+									"propertyName": "Raw argument values",
+									"propertyKeyword": "rawArgumentValues",
+									"propertyTooltip": "Enter raw argument values",
+									"propertyType": "details",
+									"template": "textarea",
+									"markdown": false,
+									"dependency": {
+										"type": "and",
+										"values": [
+											{
+												"key": "directiveFormat",
+												"value": "Structured"
+											},
+											{
+												"key": "argumentValueFormat",
+												"value": "Raw"
+											}
+										]
+									}
 								}
 							]
 						}
@@ -766,8 +1342,8 @@ making sure that you maintain a proper JSON format.
 							"propertyKeyword": "directiveFormat",
 							"propertyTooltip": "Select directive format",
 							"propertyType": "select",
-							"options": ["Raw"],
-							"defaultValue": "Raw",
+							"options": ["Structured", "Raw"],
+							"defaultValue": "Structured",
 							"helpInfo": {
 								"type": "modal",
 								"title": "PROPERTIES_PANE___DIRECTIVES_INFO_MODAL_TITLE",
@@ -786,6 +1362,69 @@ making sure that you maintain a proper JSON format.
 							"dependency": {
 								"key": "directiveFormat",
 								"value": "Raw"
+							}
+						},
+						{
+							"propertyName": "Directive",
+							"propertyKeyword": "directiveName",
+							"propertyTooltip": "Select directive",
+							"propertyType": "selecthashed",
+							"template": "definitions",
+							"withEmptyOption": true,
+							"templateOptions": {
+								"filter": {
+									"condition": {
+										"key": "childType",
+										"value": "directive"
+									},
+									"options": {
+										"useAllDefinitionsAsSource": true
+									}
+								}
+							},
+							"dependency": {
+								"key": "directiveFormat",
+								"value": "Structured"
+							}
+						},
+						{
+							"propertyName": "Argument value format",
+							"propertyKeyword": "argumentValueFormat",
+							"propertyTooltip": "Select argument value format",
+							"propertyType": "select",
+							"options": ["Raw"],
+							"defaultValue": "Raw",
+							"dependency": {
+								"key": "directiveFormat",
+								"value": "Structured"
+							},
+							"helpInfo": {
+								"type": "modal",
+								"title": "PROPERTIES_PANE___DIRECTIVES_ARGUMENTS_INFO_MODAL_TITLE",
+								"content": "PROPERTIES_PANE___DIRECTIVES_ARGUMENTS_INFO_MODAL_BODY",
+								"featureNameForHelp": "GraphQL directives",
+								"buttons": ["contactSupport", "ok"]
+							}
+						},
+						{
+							"propertyName": "Raw argument values",
+							"propertyKeyword": "rawArgumentValues",
+							"propertyTooltip": "Enter raw argument values",
+							"propertyType": "details",
+							"template": "textarea",
+							"markdown": false,
+							"dependency": {
+								"type": "and",
+								"values": [
+									{
+										"key": "directiveFormat",
+										"value": "Structured"
+									},
+									{
+										"key": "argumentValueFormat",
+										"value": "Raw"
+									}
+								]
 							}
 						}
 					],
@@ -806,8 +1445,8 @@ making sure that you maintain a proper JSON format.
 							"propertyKeyword": "directiveFormat",
 							"propertyTooltip": "Select directive format",
 							"propertyType": "select",
-							"options": ["Raw"],
-							"defaultValue": "Raw",
+							"options": ["Structured", "Raw"],
+							"defaultValue": "Structured",
 							"helpInfo": {
 								"type": "modal",
 								"title": "PROPERTIES_PANE___DIRECTIVES_INFO_MODAL_TITLE",
@@ -826,6 +1465,70 @@ making sure that you maintain a proper JSON format.
 							"dependency": {
 								"key": "directiveFormat",
 								"value": "Raw"
+							}
+						},
+						{
+							"propertyName": "Directive",
+							"propertyKeyword": "directiveName",
+							"propertyTooltip": "Select directive",
+							"propertyType": "selecthashed",
+							"template": "definitions",
+							"withEmptyOption": true,
+							"templateOptions": {
+								"filter": {
+									"condition": {
+										"key": "childType",
+										"value": "directive"
+									},
+									"options": {
+										"useAllDefinitionsAsSource": true,
+										"presetOptions": ["@deprecated"]
+									}
+								}
+							},
+							"dependency": {
+								"key": "directiveFormat",
+								"value": "Structured"
+							}
+						},
+						{
+							"propertyName": "Argument value format",
+							"propertyKeyword": "argumentValueFormat",
+							"propertyTooltip": "Select argument value format",
+							"propertyType": "select",
+							"options": ["Raw"],
+							"defaultValue": "Raw",
+							"dependency": {
+								"key": "directiveFormat",
+								"value": "Structured"
+							},
+							"helpInfo": {
+								"type": "modal",
+								"title": "PROPERTIES_PANE___DIRECTIVES_ARGUMENTS_INFO_MODAL_TITLE",
+								"content": "PROPERTIES_PANE___DIRECTIVES_ARGUMENTS_INFO_MODAL_BODY",
+								"featureNameForHelp": "GraphQL directives",
+								"buttons": ["contactSupport", "ok"]
+							}
+						},
+						{
+							"propertyName": "Raw argument values",
+							"propertyKeyword": "rawArgumentValues",
+							"propertyTooltip": "Enter raw argument values",
+							"propertyType": "details",
+							"template": "textarea",
+							"markdown": false,
+							"dependency": {
+								"type": "and",
+								"values": [
+									{
+										"key": "directiveFormat",
+										"value": "Structured"
+									},
+									{
+										"key": "argumentValueFormat",
+										"value": "Raw"
+									}
+								]
 							}
 						}
 					],
@@ -861,8 +1564,8 @@ making sure that you maintain a proper JSON format.
 							"propertyKeyword": "directiveFormat",
 							"propertyTooltip": "Select directive format",
 							"propertyType": "select",
-							"options": ["Raw"],
-							"defaultValue": "Raw",
+							"options": ["Structured", "Raw"],
+							"defaultValue": "Structured",
 							"helpInfo": {
 								"type": "modal",
 								"title": "PROPERTIES_PANE___DIRECTIVES_INFO_MODAL_TITLE",
@@ -881,6 +1584,69 @@ making sure that you maintain a proper JSON format.
 							"dependency": {
 								"key": "directiveFormat",
 								"value": "Raw"
+							}
+						},
+						{
+							"propertyName": "Directive",
+							"propertyKeyword": "directiveName",
+							"propertyTooltip": "Select directive",
+							"propertyType": "selecthashed",
+							"template": "definitions",
+							"withEmptyOption": true,
+							"templateOptions": {
+								"filter": {
+									"condition": {
+										"key": "childType",
+										"value": "directive"
+									},
+									"options": {
+										"useAllDefinitionsAsSource": true
+									}
+								}
+							},
+							"dependency": {
+								"key": "directiveFormat",
+								"value": "Structured"
+							}
+						},
+						{
+							"propertyName": "Argument value format",
+							"propertyKeyword": "argumentValueFormat",
+							"propertyTooltip": "Select argument value format",
+							"propertyType": "select",
+							"options": ["Raw"],
+							"defaultValue": "Raw",
+							"dependency": {
+								"key": "directiveFormat",
+								"value": "Structured"
+							},
+							"helpInfo": {
+								"type": "modal",
+								"title": "PROPERTIES_PANE___DIRECTIVES_ARGUMENTS_INFO_MODAL_TITLE",
+								"content": "PROPERTIES_PANE___DIRECTIVES_ARGUMENTS_INFO_MODAL_BODY",
+								"featureNameForHelp": "GraphQL directives",
+								"buttons": ["contactSupport", "ok"]
+							}
+						},
+						{
+							"propertyName": "Raw argument values",
+							"propertyKeyword": "rawArgumentValues",
+							"propertyTooltip": "Enter raw argument values",
+							"propertyType": "details",
+							"template": "textarea",
+							"markdown": false,
+							"dependency": {
+								"type": "and",
+								"values": [
+									{
+										"key": "directiveFormat",
+										"value": "Structured"
+									},
+									{
+										"key": "argumentValueFormat",
+										"value": "Raw"
+									}
+								]
 							}
 						}
 					],
@@ -901,8 +1667,8 @@ making sure that you maintain a proper JSON format.
 							"propertyKeyword": "directiveFormat",
 							"propertyTooltip": "Select directive format",
 							"propertyType": "select",
-							"options": ["Raw"],
-							"defaultValue": "Raw",
+							"options": ["Structured", "Raw"],
+							"defaultValue": "Structured",
 							"helpInfo": {
 								"type": "modal",
 								"title": "PROPERTIES_PANE___DIRECTIVES_INFO_MODAL_TITLE",
@@ -921,6 +1687,70 @@ making sure that you maintain a proper JSON format.
 							"dependency": {
 								"key": "directiveFormat",
 								"value": "Raw"
+							}
+						},
+						{
+							"propertyName": "Directive",
+							"propertyKeyword": "directiveName",
+							"propertyTooltip": "Select directive",
+							"propertyType": "selecthashed",
+							"template": "definitions",
+							"withEmptyOption": true,
+							"templateOptions": {
+								"filter": {
+									"condition": {
+										"key": "childType",
+										"value": "directive"
+									},
+									"options": {
+										"useAllDefinitionsAsSource": true,
+										"presetOptions": ["@deprecated"]
+									}
+								}
+							},
+							"dependency": {
+								"key": "directiveFormat",
+								"value": "Structured"
+							}
+						},
+						{
+							"propertyName": "Argument value format",
+							"propertyKeyword": "argumentValueFormat",
+							"propertyTooltip": "Select argument value format",
+							"propertyType": "select",
+							"options": ["Raw"],
+							"defaultValue": "Raw",
+							"dependency": {
+								"key": "directiveFormat",
+								"value": "Structured"
+							},
+							"helpInfo": {
+								"type": "modal",
+								"title": "PROPERTIES_PANE___DIRECTIVES_ARGUMENTS_INFO_MODAL_TITLE",
+								"content": "PROPERTIES_PANE___DIRECTIVES_ARGUMENTS_INFO_MODAL_BODY",
+								"featureNameForHelp": "GraphQL directives",
+								"buttons": ["contactSupport", "ok"]
+							}
+						},
+						{
+							"propertyName": "Raw argument values",
+							"propertyKeyword": "rawArgumentValues",
+							"propertyTooltip": "Enter raw argument values",
+							"propertyType": "details",
+							"template": "textarea",
+							"markdown": false,
+							"dependency": {
+								"type": "and",
+								"values": [
+									{
+										"key": "directiveFormat",
+										"value": "Structured"
+									},
+									{
+										"key": "argumentValueFormat",
+										"value": "Raw"
+									}
+								]
 							}
 						}
 					],
@@ -1013,8 +1843,8 @@ making sure that you maintain a proper JSON format.
 							"propertyKeyword": "directiveFormat",
 							"propertyTooltip": "Select directive format",
 							"propertyType": "select",
-							"options": ["Raw"],
-							"defaultValue": "Raw",
+							"options": ["Structured", "Raw"],
+							"defaultValue": "Structured",
 							"helpInfo": {
 								"type": "modal",
 								"title": "PROPERTIES_PANE___DIRECTIVES_INFO_MODAL_TITLE",
@@ -1033,6 +1863,69 @@ making sure that you maintain a proper JSON format.
 							"dependency": {
 								"key": "directiveFormat",
 								"value": "Raw"
+							}
+						},
+						{
+							"propertyName": "Directive",
+							"propertyKeyword": "directiveName",
+							"propertyTooltip": "Select directive",
+							"propertyType": "selecthashed",
+							"template": "definitions",
+							"withEmptyOption": true,
+							"templateOptions": {
+								"filter": {
+									"condition": {
+										"key": "childType",
+										"value": "directive"
+									},
+									"options": {
+										"useAllDefinitionsAsSource": true
+									}
+								}
+							},
+							"dependency": {
+								"key": "directiveFormat",
+								"value": "Structured"
+							}
+						},
+						{
+							"propertyName": "Argument value format",
+							"propertyKeyword": "argumentValueFormat",
+							"propertyTooltip": "Select argument value format",
+							"propertyType": "select",
+							"options": ["Raw"],
+							"defaultValue": "Raw",
+							"dependency": {
+								"key": "directiveFormat",
+								"value": "Structured"
+							},
+							"helpInfo": {
+								"type": "modal",
+								"title": "PROPERTIES_PANE___DIRECTIVES_ARGUMENTS_INFO_MODAL_TITLE",
+								"content": "PROPERTIES_PANE___DIRECTIVES_ARGUMENTS_INFO_MODAL_BODY",
+								"featureNameForHelp": "GraphQL directives",
+								"buttons": ["contactSupport", "ok"]
+							}
+						},
+						{
+							"propertyName": "Raw argument values",
+							"propertyKeyword": "rawArgumentValues",
+							"propertyTooltip": "Enter raw argument values",
+							"propertyType": "details",
+							"template": "textarea",
+							"markdown": false,
+							"dependency": {
+								"type": "and",
+								"values": [
+									{
+										"key": "directiveFormat",
+										"value": "Structured"
+									},
+									{
+										"key": "argumentValueFormat",
+										"value": "Raw"
+									}
+								]
 							}
 						}
 					],
@@ -1053,8 +1946,8 @@ making sure that you maintain a proper JSON format.
 							"propertyKeyword": "directiveFormat",
 							"propertyTooltip": "Select directive format",
 							"propertyType": "select",
-							"options": ["Raw"],
-							"defaultValue": "Raw",
+							"options": ["Structured", "Raw"],
+							"defaultValue": "Structured",
 							"helpInfo": {
 								"type": "modal",
 								"title": "PROPERTIES_PANE___DIRECTIVES_INFO_MODAL_TITLE",
@@ -1073,6 +1966,70 @@ making sure that you maintain a proper JSON format.
 							"dependency": {
 								"key": "directiveFormat",
 								"value": "Raw"
+							}
+						},
+						{
+							"propertyName": "Directive",
+							"propertyKeyword": "directiveName",
+							"propertyTooltip": "Select directive",
+							"propertyType": "selecthashed",
+							"template": "definitions",
+							"withEmptyOption": true,
+							"templateOptions": {
+								"filter": {
+									"condition": {
+										"key": "childType",
+										"value": "directive"
+									},
+									"options": {
+										"useAllDefinitionsAsSource": true,
+										"presetOptions": ["@deprecated"]
+									}
+								}
+							},
+							"dependency": {
+								"key": "directiveFormat",
+								"value": "Structured"
+							}
+						},
+						{
+							"propertyName": "Argument value format",
+							"propertyKeyword": "argumentValueFormat",
+							"propertyTooltip": "Select argument value format",
+							"propertyType": "select",
+							"options": ["Raw"],
+							"defaultValue": "Raw",
+							"dependency": {
+								"key": "directiveFormat",
+								"value": "Structured"
+							},
+							"helpInfo": {
+								"type": "modal",
+								"title": "PROPERTIES_PANE___DIRECTIVES_ARGUMENTS_INFO_MODAL_TITLE",
+								"content": "PROPERTIES_PANE___DIRECTIVES_ARGUMENTS_INFO_MODAL_BODY",
+								"featureNameForHelp": "GraphQL directives",
+								"buttons": ["contactSupport", "ok"]
+							}
+						},
+						{
+							"propertyName": "Raw argument values",
+							"propertyKeyword": "rawArgumentValues",
+							"propertyTooltip": "Enter raw argument values",
+							"propertyType": "details",
+							"template": "textarea",
+							"markdown": false,
+							"dependency": {
+								"type": "and",
+								"values": [
+									{
+										"key": "directiveFormat",
+										"value": "Structured"
+									},
+									{
+										"key": "argumentValueFormat",
+										"value": "Raw"
+									}
+								]
 							}
 						}
 					],
@@ -1166,8 +2123,8 @@ making sure that you maintain a proper JSON format.
 							"propertyKeyword": "directiveFormat",
 							"propertyTooltip": "Select directive format",
 							"propertyType": "select",
-							"options": ["Raw"],
-							"defaultValue": "Raw",
+							"options": ["Structured", "Raw"],
+							"defaultValue": "Structured",
 							"helpInfo": {
 								"type": "modal",
 								"title": "PROPERTIES_PANE___DIRECTIVES_INFO_MODAL_TITLE",
@@ -1186,6 +2143,69 @@ making sure that you maintain a proper JSON format.
 							"dependency": {
 								"key": "directiveFormat",
 								"value": "Raw"
+							}
+						},
+						{
+							"propertyName": "Directive",
+							"propertyKeyword": "directiveName",
+							"propertyTooltip": "Select directive",
+							"propertyType": "selecthashed",
+							"template": "definitions",
+							"withEmptyOption": true,
+							"templateOptions": {
+								"filter": {
+									"condition": {
+										"key": "childType",
+										"value": "directive"
+									},
+									"options": {
+										"useAllDefinitionsAsSource": true
+									}
+								}
+							},
+							"dependency": {
+								"key": "directiveFormat",
+								"value": "Structured"
+							}
+						},
+						{
+							"propertyName": "Argument value format",
+							"propertyKeyword": "argumentValueFormat",
+							"propertyTooltip": "Select argument value format",
+							"propertyType": "select",
+							"options": ["Raw"],
+							"defaultValue": "Raw",
+							"dependency": {
+								"key": "directiveFormat",
+								"value": "Structured"
+							},
+							"helpInfo": {
+								"type": "modal",
+								"title": "PROPERTIES_PANE___DIRECTIVES_ARGUMENTS_INFO_MODAL_TITLE",
+								"content": "PROPERTIES_PANE___DIRECTIVES_ARGUMENTS_INFO_MODAL_BODY",
+								"featureNameForHelp": "GraphQL directives",
+								"buttons": ["contactSupport", "ok"]
+							}
+						},
+						{
+							"propertyName": "Raw argument values",
+							"propertyKeyword": "rawArgumentValues",
+							"propertyTooltip": "Enter raw argument values",
+							"propertyType": "details",
+							"template": "textarea",
+							"markdown": false,
+							"dependency": {
+								"type": "and",
+								"values": [
+									{
+										"key": "directiveFormat",
+										"value": "Structured"
+									},
+									{
+										"key": "argumentValueFormat",
+										"value": "Raw"
+									}
+								]
 							}
 						}
 					],
@@ -1206,8 +2226,8 @@ making sure that you maintain a proper JSON format.
 							"propertyKeyword": "directiveFormat",
 							"propertyTooltip": "Select directive format",
 							"propertyType": "select",
-							"options": ["Raw"],
-							"defaultValue": "Raw",
+							"options": ["Structured", "Raw"],
+							"defaultValue": "Structured",
 							"helpInfo": {
 								"type": "modal",
 								"title": "PROPERTIES_PANE___DIRECTIVES_INFO_MODAL_TITLE",
@@ -1226,6 +2246,70 @@ making sure that you maintain a proper JSON format.
 							"dependency": {
 								"key": "directiveFormat",
 								"value": "Raw"
+							}
+						},
+						{
+							"propertyName": "Directive",
+							"propertyKeyword": "directiveName",
+							"propertyTooltip": "Select directive",
+							"propertyType": "selecthashed",
+							"template": "definitions",
+							"withEmptyOption": true,
+							"templateOptions": {
+								"filter": {
+									"condition": {
+										"key": "childType",
+										"value": "directive"
+									},
+									"options": {
+										"useAllDefinitionsAsSource": true,
+										"presetOptions": ["@deprecated"]
+									}
+								}
+							},
+							"dependency": {
+								"key": "directiveFormat",
+								"value": "Structured"
+							}
+						},
+						{
+							"propertyName": "Argument value format",
+							"propertyKeyword": "argumentValueFormat",
+							"propertyTooltip": "Select argument value format",
+							"propertyType": "select",
+							"options": ["Raw"],
+							"defaultValue": "Raw",
+							"dependency": {
+								"key": "directiveFormat",
+								"value": "Structured"
+							},
+							"helpInfo": {
+								"type": "modal",
+								"title": "PROPERTIES_PANE___DIRECTIVES_ARGUMENTS_INFO_MODAL_TITLE",
+								"content": "PROPERTIES_PANE___DIRECTIVES_ARGUMENTS_INFO_MODAL_BODY",
+								"featureNameForHelp": "GraphQL directives",
+								"buttons": ["contactSupport", "ok"]
+							}
+						},
+						{
+							"propertyName": "Raw argument values",
+							"propertyKeyword": "rawArgumentValues",
+							"propertyTooltip": "Enter raw argument values",
+							"propertyType": "details",
+							"template": "textarea",
+							"markdown": false,
+							"dependency": {
+								"type": "and",
+								"values": [
+									{
+										"key": "directiveFormat",
+										"value": "Structured"
+									},
+									{
+										"key": "argumentValueFormat",
+										"value": "Raw"
+									}
+								]
 							}
 						}
 					],
@@ -1274,8 +2358,8 @@ making sure that you maintain a proper JSON format.
 							"propertyKeyword": "directiveFormat",
 							"propertyTooltip": "Select directive format",
 							"propertyType": "select",
-							"options": ["Raw"],
-							"defaultValue": "Raw",
+							"options": ["Structured", "Raw"],
+							"defaultValue": "Structured",
 							"helpInfo": {
 								"type": "modal",
 								"title": "PROPERTIES_PANE___DIRECTIVES_INFO_MODAL_TITLE",
@@ -1294,6 +2378,69 @@ making sure that you maintain a proper JSON format.
 							"dependency": {
 								"key": "directiveFormat",
 								"value": "Raw"
+							}
+						},
+						{
+							"propertyName": "Directive",
+							"propertyKeyword": "directiveName",
+							"propertyTooltip": "Select directive",
+							"propertyType": "selecthashed",
+							"template": "definitions",
+							"withEmptyOption": true,
+							"templateOptions": {
+								"filter": {
+									"condition": {
+										"key": "childType",
+										"value": "directive"
+									},
+									"options": {
+										"useAllDefinitionsAsSource": true
+									}
+								}
+							},
+							"dependency": {
+								"key": "directiveFormat",
+								"value": "Structured"
+							}
+						},
+						{
+							"propertyName": "Argument value format",
+							"propertyKeyword": "argumentValueFormat",
+							"propertyTooltip": "Select argument value format",
+							"propertyType": "select",
+							"options": ["Raw"],
+							"defaultValue": "Raw",
+							"dependency": {
+								"key": "directiveFormat",
+								"value": "Structured"
+							},
+							"helpInfo": {
+								"type": "modal",
+								"title": "PROPERTIES_PANE___DIRECTIVES_ARGUMENTS_INFO_MODAL_TITLE",
+								"content": "PROPERTIES_PANE___DIRECTIVES_ARGUMENTS_INFO_MODAL_BODY",
+								"featureNameForHelp": "GraphQL directives",
+								"buttons": ["contactSupport", "ok"]
+							}
+						},
+						{
+							"propertyName": "Raw argument values",
+							"propertyKeyword": "rawArgumentValues",
+							"propertyTooltip": "Enter raw argument values",
+							"propertyType": "details",
+							"template": "textarea",
+							"markdown": false,
+							"dependency": {
+								"type": "and",
+								"values": [
+									{
+										"key": "directiveFormat",
+										"value": "Structured"
+									},
+									{
+										"key": "argumentValueFormat",
+										"value": "Raw"
+									}
+								]
 							}
 						}
 					],
@@ -1314,8 +2461,8 @@ making sure that you maintain a proper JSON format.
 							"propertyKeyword": "directiveFormat",
 							"propertyTooltip": "Select directive format",
 							"propertyType": "select",
-							"options": ["Raw"],
-							"defaultValue": "Raw",
+							"options": ["Structured", "Raw"],
+							"defaultValue": "Structured",
 							"helpInfo": {
 								"type": "modal",
 								"title": "PROPERTIES_PANE___DIRECTIVES_INFO_MODAL_TITLE",
@@ -1334,6 +2481,70 @@ making sure that you maintain a proper JSON format.
 							"dependency": {
 								"key": "directiveFormat",
 								"value": "Raw"
+							}
+						},
+						{
+							"propertyName": "Directive",
+							"propertyKeyword": "directiveName",
+							"propertyTooltip": "Select directive",
+							"propertyType": "selecthashed",
+							"template": "definitions",
+							"withEmptyOption": true,
+							"templateOptions": {
+								"filter": {
+									"condition": {
+										"key": "childType",
+										"value": "directive"
+									},
+									"options": {
+										"useAllDefinitionsAsSource": true,
+										"presetOptions": ["@deprecated"]
+									}
+								}
+							},
+							"dependency": {
+								"key": "directiveFormat",
+								"value": "Structured"
+							}
+						},
+						{
+							"propertyName": "Argument value format",
+							"propertyKeyword": "argumentValueFormat",
+							"propertyTooltip": "Select argument value format",
+							"propertyType": "select",
+							"options": ["Raw"],
+							"defaultValue": "Raw",
+							"dependency": {
+								"key": "directiveFormat",
+								"value": "Structured"
+							},
+							"helpInfo": {
+								"type": "modal",
+								"title": "PROPERTIES_PANE___DIRECTIVES_ARGUMENTS_INFO_MODAL_TITLE",
+								"content": "PROPERTIES_PANE___DIRECTIVES_ARGUMENTS_INFO_MODAL_BODY",
+								"featureNameForHelp": "GraphQL directives",
+								"buttons": ["contactSupport", "ok"]
+							}
+						},
+						{
+							"propertyName": "Raw argument values",
+							"propertyKeyword": "rawArgumentValues",
+							"propertyTooltip": "Enter raw argument values",
+							"propertyType": "details",
+							"template": "textarea",
+							"markdown": false,
+							"dependency": {
+								"type": "and",
+								"values": [
+									{
+										"key": "directiveFormat",
+										"value": "Structured"
+									},
+									{
+										"key": "argumentValueFormat",
+										"value": "Raw"
+									}
+								]
 							}
 						}
 					],
@@ -1604,8 +2815,8 @@ making sure that you maintain a proper JSON format.
 									"propertyKeyword": "directiveFormat",
 									"propertyTooltip": "Select directive format",
 									"propertyType": "select",
-									"options": ["Raw"],
-									"defaultValue": "Raw",
+									"options": ["Structured", "Raw"],
+									"defaultValue": "Structured",
 									"helpInfo": {
 										"type": "modal",
 										"title": "PROPERTIES_PANE___DIRECTIVES_INFO_MODAL_TITLE",
@@ -1624,6 +2835,70 @@ making sure that you maintain a proper JSON format.
 									"dependency": {
 										"key": "directiveFormat",
 										"value": "Raw"
+									}
+								},
+								{
+									"propertyName": "Directive",
+									"propertyKeyword": "directiveName",
+									"propertyTooltip": "Select directive",
+									"propertyType": "selecthashed",
+									"template": "definitions",
+									"withEmptyOption": true,
+									"templateOptions": {
+										"filter": {
+											"condition": {
+												"key": "childType",
+												"value": "directive"
+											},
+											"options": {
+												"useAllDefinitionsAsSource": true,
+												"presetOptions": ["@deprecated"]
+											}
+										}
+									},
+									"dependency": {
+										"key": "directiveFormat",
+										"value": "Structured"
+									}
+								},
+								{
+									"propertyName": "Argument value format",
+									"propertyKeyword": "argumentValueFormat",
+									"propertyTooltip": "Select argument value format",
+									"propertyType": "select",
+									"options": ["Raw"],
+									"defaultValue": "Raw",
+									"dependency": {
+										"key": "directiveFormat",
+										"value": "Structured"
+									},
+									"helpInfo": {
+										"type": "modal",
+										"title": "PROPERTIES_PANE___DIRECTIVES_ARGUMENTS_INFO_MODAL_TITLE",
+										"content": "PROPERTIES_PANE___DIRECTIVES_ARGUMENTS_INFO_MODAL_BODY",
+										"featureNameForHelp": "GraphQL directives",
+										"buttons": ["contactSupport", "ok"]
+									}
+								},
+								{
+									"propertyName": "Raw argument values",
+									"propertyKeyword": "rawArgumentValues",
+									"propertyTooltip": "Enter raw argument values",
+									"propertyType": "details",
+									"template": "textarea",
+									"markdown": false,
+									"dependency": {
+										"type": "and",
+										"values": [
+											{
+												"key": "directiveFormat",
+												"value": "Structured"
+											},
+											{
+												"key": "argumentValueFormat",
+												"value": "Raw"
+											}
+										]
 									}
 								}
 							]
@@ -1802,8 +3077,8 @@ making sure that you maintain a proper JSON format.
 									"propertyKeyword": "directiveFormat",
 									"propertyTooltip": "Select directive format",
 									"propertyType": "select",
-									"options": ["Raw"],
-									"defaultValue": "Raw",
+									"options": ["Structured", "Raw"],
+									"defaultValue": "Structured",
 									"helpInfo": {
 										"type": "modal",
 										"title": "PROPERTIES_PANE___DIRECTIVES_INFO_MODAL_TITLE",
@@ -1822,6 +3097,70 @@ making sure that you maintain a proper JSON format.
 									"dependency": {
 										"key": "directiveFormat",
 										"value": "Raw"
+									}
+								},
+								{
+									"propertyName": "Directive",
+									"propertyKeyword": "directiveName",
+									"propertyTooltip": "Select directive",
+									"propertyType": "selecthashed",
+									"template": "definitions",
+									"withEmptyOption": true,
+									"templateOptions": {
+										"filter": {
+											"condition": {
+												"key": "childType",
+												"value": "directive"
+											},
+											"options": {
+												"useAllDefinitionsAsSource": true,
+												"presetOptions": ["@deprecated"]
+											}
+										}
+									},
+									"dependency": {
+										"key": "directiveFormat",
+										"value": "Structured"
+									}
+								},
+								{
+									"propertyName": "Argument value format",
+									"propertyKeyword": "argumentValueFormat",
+									"propertyTooltip": "Select argument value format",
+									"propertyType": "select",
+									"options": ["Raw"],
+									"defaultValue": "Raw",
+									"dependency": {
+										"key": "directiveFormat",
+										"value": "Structured"
+									},
+									"helpInfo": {
+										"type": "modal",
+										"title": "PROPERTIES_PANE___DIRECTIVES_ARGUMENTS_INFO_MODAL_TITLE",
+										"content": "PROPERTIES_PANE___DIRECTIVES_ARGUMENTS_INFO_MODAL_BODY",
+										"featureNameForHelp": "GraphQL directives",
+										"buttons": ["contactSupport", "ok"]
+									}
+								},
+								{
+									"propertyName": "Raw argument values",
+									"propertyKeyword": "rawArgumentValues",
+									"propertyTooltip": "Enter raw argument values",
+									"propertyType": "details",
+									"template": "textarea",
+									"markdown": false,
+									"dependency": {
+										"type": "and",
+										"values": [
+											{
+												"key": "directiveFormat",
+												"value": "Structured"
+											},
+											{
+												"key": "argumentValueFormat",
+												"value": "Raw"
+											}
+										]
 									}
 								}
 							]
@@ -2000,8 +3339,8 @@ making sure that you maintain a proper JSON format.
 									"propertyKeyword": "directiveFormat",
 									"propertyTooltip": "Select directive format",
 									"propertyType": "select",
-									"options": ["Raw"],
-									"defaultValue": "Raw",
+									"options": ["Structured", "Raw"],
+									"defaultValue": "Structured",
 									"helpInfo": {
 										"type": "modal",
 										"title": "PROPERTIES_PANE___DIRECTIVES_INFO_MODAL_TITLE",
@@ -2020,6 +3359,70 @@ making sure that you maintain a proper JSON format.
 									"dependency": {
 										"key": "directiveFormat",
 										"value": "Raw"
+									}
+								},
+								{
+									"propertyName": "Directive",
+									"propertyKeyword": "directiveName",
+									"propertyTooltip": "Select directive",
+									"propertyType": "selecthashed",
+									"template": "definitions",
+									"withEmptyOption": true,
+									"templateOptions": {
+										"filter": {
+											"condition": {
+												"key": "childType",
+												"value": "directive"
+											},
+											"options": {
+												"useAllDefinitionsAsSource": true,
+												"presetOptions": ["@deprecated"]
+											}
+										}
+									},
+									"dependency": {
+										"key": "directiveFormat",
+										"value": "Structured"
+									}
+								},
+								{
+									"propertyName": "Argument value format",
+									"propertyKeyword": "argumentValueFormat",
+									"propertyTooltip": "Select argument value format",
+									"propertyType": "select",
+									"options": ["Raw"],
+									"defaultValue": "Raw",
+									"dependency": {
+										"key": "directiveFormat",
+										"value": "Structured"
+									},
+									"helpInfo": {
+										"type": "modal",
+										"title": "PROPERTIES_PANE___DIRECTIVES_ARGUMENTS_INFO_MODAL_TITLE",
+										"content": "PROPERTIES_PANE___DIRECTIVES_ARGUMENTS_INFO_MODAL_BODY",
+										"featureNameForHelp": "GraphQL directives",
+										"buttons": ["contactSupport", "ok"]
+									}
+								},
+								{
+									"propertyName": "Raw argument values",
+									"propertyKeyword": "rawArgumentValues",
+									"propertyTooltip": "Enter raw argument values",
+									"propertyType": "details",
+									"template": "textarea",
+									"markdown": false,
+									"dependency": {
+										"type": "and",
+										"values": [
+											{
+												"key": "directiveFormat",
+												"value": "Structured"
+											},
+											{
+												"key": "argumentValueFormat",
+												"value": "Raw"
+											}
+										]
 									}
 								}
 							]
@@ -2198,8 +3601,8 @@ making sure that you maintain a proper JSON format.
 									"propertyKeyword": "directiveFormat",
 									"propertyTooltip": "Select directive format",
 									"propertyType": "select",
-									"options": ["Raw"],
-									"defaultValue": "Raw",
+									"options": ["Structured", "Raw"],
+									"defaultValue": "Structured",
 									"helpInfo": {
 										"type": "modal",
 										"title": "PROPERTIES_PANE___DIRECTIVES_INFO_MODAL_TITLE",
@@ -2218,6 +3621,70 @@ making sure that you maintain a proper JSON format.
 									"dependency": {
 										"key": "directiveFormat",
 										"value": "Raw"
+									}
+								},
+								{
+									"propertyName": "Directive",
+									"propertyKeyword": "directiveName",
+									"propertyTooltip": "Select directive",
+									"propertyType": "selecthashed",
+									"template": "definitions",
+									"withEmptyOption": true,
+									"templateOptions": {
+										"filter": {
+											"condition": {
+												"key": "childType",
+												"value": "directive"
+											},
+											"options": {
+												"useAllDefinitionsAsSource": true,
+												"presetOptions": ["@deprecated"]
+											}
+										}
+									},
+									"dependency": {
+										"key": "directiveFormat",
+										"value": "Structured"
+									}
+								},
+								{
+									"propertyName": "Argument value format",
+									"propertyKeyword": "argumentValueFormat",
+									"propertyTooltip": "Select argument value format",
+									"propertyType": "select",
+									"options": ["Raw"],
+									"defaultValue": "Raw",
+									"dependency": {
+										"key": "directiveFormat",
+										"value": "Structured"
+									},
+									"helpInfo": {
+										"type": "modal",
+										"title": "PROPERTIES_PANE___DIRECTIVES_ARGUMENTS_INFO_MODAL_TITLE",
+										"content": "PROPERTIES_PANE___DIRECTIVES_ARGUMENTS_INFO_MODAL_BODY",
+										"featureNameForHelp": "GraphQL directives",
+										"buttons": ["contactSupport", "ok"]
+									}
+								},
+								{
+									"propertyName": "Raw argument values",
+									"propertyKeyword": "rawArgumentValues",
+									"propertyTooltip": "Enter raw argument values",
+									"propertyType": "details",
+									"template": "textarea",
+									"markdown": false,
+									"dependency": {
+										"type": "and",
+										"values": [
+											{
+												"key": "directiveFormat",
+												"value": "Structured"
+											},
+											{
+												"key": "argumentValueFormat",
+												"value": "Raw"
+											}
+										]
 									}
 								}
 							]
@@ -2396,8 +3863,8 @@ making sure that you maintain a proper JSON format.
 									"propertyKeyword": "directiveFormat",
 									"propertyTooltip": "Select directive format",
 									"propertyType": "select",
-									"options": ["Raw"],
-									"defaultValue": "Raw",
+									"options": ["Structured", "Raw"],
+									"defaultValue": "Structured",
 									"helpInfo": {
 										"type": "modal",
 										"title": "PROPERTIES_PANE___DIRECTIVES_INFO_MODAL_TITLE",
@@ -2416,6 +3883,70 @@ making sure that you maintain a proper JSON format.
 									"dependency": {
 										"key": "directiveFormat",
 										"value": "Raw"
+									}
+								},
+								{
+									"propertyName": "Directive",
+									"propertyKeyword": "directiveName",
+									"propertyTooltip": "Select directive",
+									"propertyType": "selecthashed",
+									"template": "definitions",
+									"withEmptyOption": true,
+									"templateOptions": {
+										"filter": {
+											"condition": {
+												"key": "childType",
+												"value": "directive"
+											},
+											"options": {
+												"useAllDefinitionsAsSource": true,
+												"presetOptions": ["@deprecated"]
+											}
+										}
+									},
+									"dependency": {
+										"key": "directiveFormat",
+										"value": "Structured"
+									}
+								},
+								{
+									"propertyName": "Argument value format",
+									"propertyKeyword": "argumentValueFormat",
+									"propertyTooltip": "Select argument value format",
+									"propertyType": "select",
+									"options": ["Raw"],
+									"defaultValue": "Raw",
+									"dependency": {
+										"key": "directiveFormat",
+										"value": "Structured"
+									},
+									"helpInfo": {
+										"type": "modal",
+										"title": "PROPERTIES_PANE___DIRECTIVES_ARGUMENTS_INFO_MODAL_TITLE",
+										"content": "PROPERTIES_PANE___DIRECTIVES_ARGUMENTS_INFO_MODAL_BODY",
+										"featureNameForHelp": "GraphQL directives",
+										"buttons": ["contactSupport", "ok"]
+									}
+								},
+								{
+									"propertyName": "Raw argument values",
+									"propertyKeyword": "rawArgumentValues",
+									"propertyTooltip": "Enter raw argument values",
+									"propertyType": "details",
+									"template": "textarea",
+									"markdown": false,
+									"dependency": {
+										"type": "and",
+										"values": [
+											{
+												"key": "directiveFormat",
+												"value": "Structured"
+											},
+											{
+												"key": "argumentValueFormat",
+												"value": "Raw"
+											}
+										]
 									}
 								}
 							]
@@ -2594,8 +4125,8 @@ making sure that you maintain a proper JSON format.
 									"propertyKeyword": "directiveFormat",
 									"propertyTooltip": "Select directive format",
 									"propertyType": "select",
-									"options": ["Raw"],
-									"defaultValue": "Raw",
+									"options": ["Structured", "Raw"],
+									"defaultValue": "Structured",
 									"helpInfo": {
 										"type": "modal",
 										"title": "PROPERTIES_PANE___DIRECTIVES_INFO_MODAL_TITLE",
@@ -2614,6 +4145,70 @@ making sure that you maintain a proper JSON format.
 									"dependency": {
 										"key": "directiveFormat",
 										"value": "Raw"
+									}
+								},
+								{
+									"propertyName": "Directive",
+									"propertyKeyword": "directiveName",
+									"propertyTooltip": "Select directive",
+									"propertyType": "selecthashed",
+									"template": "definitions",
+									"withEmptyOption": true,
+									"templateOptions": {
+										"filter": {
+											"condition": {
+												"key": "childType",
+												"value": "directive"
+											},
+											"options": {
+												"useAllDefinitionsAsSource": true,
+												"presetOptions": ["@deprecated"]
+											}
+										}
+									},
+									"dependency": {
+										"key": "directiveFormat",
+										"value": "Structured"
+									}
+								},
+								{
+									"propertyName": "Argument value format",
+									"propertyKeyword": "argumentValueFormat",
+									"propertyTooltip": "Select argument value format",
+									"propertyType": "select",
+									"options": ["Raw"],
+									"defaultValue": "Raw",
+									"dependency": {
+										"key": "directiveFormat",
+										"value": "Structured"
+									},
+									"helpInfo": {
+										"type": "modal",
+										"title": "PROPERTIES_PANE___DIRECTIVES_ARGUMENTS_INFO_MODAL_TITLE",
+										"content": "PROPERTIES_PANE___DIRECTIVES_ARGUMENTS_INFO_MODAL_BODY",
+										"featureNameForHelp": "GraphQL directives",
+										"buttons": ["contactSupport", "ok"]
+									}
+								},
+								{
+									"propertyName": "Raw argument values",
+									"propertyKeyword": "rawArgumentValues",
+									"propertyTooltip": "Enter raw argument values",
+									"propertyType": "details",
+									"template": "textarea",
+									"markdown": false,
+									"dependency": {
+										"type": "and",
+										"values": [
+											{
+												"key": "directiveFormat",
+												"value": "Structured"
+											},
+											{
+												"key": "argumentValueFormat",
+												"value": "Raw"
+											}
+										]
 									}
 								}
 							]
@@ -2793,8 +4388,8 @@ making sure that you maintain a proper JSON format.
 									"propertyKeyword": "directiveFormat",
 									"propertyTooltip": "Select directive format",
 									"propertyType": "select",
-									"options": ["Raw"],
-									"defaultValue": "Raw",
+									"options": ["Structured", "Raw"],
+									"defaultValue": "Structured",
 									"helpInfo": {
 										"type": "modal",
 										"title": "PROPERTIES_PANE___DIRECTIVES_INFO_MODAL_TITLE",
@@ -2813,6 +4408,70 @@ making sure that you maintain a proper JSON format.
 									"dependency": {
 										"key": "directiveFormat",
 										"value": "Raw"
+									}
+								},
+								{
+									"propertyName": "Directive",
+									"propertyKeyword": "directiveName",
+									"propertyTooltip": "Select directive",
+									"propertyType": "selecthashed",
+									"template": "definitions",
+									"withEmptyOption": true,
+									"templateOptions": {
+										"filter": {
+											"condition": {
+												"key": "childType",
+												"value": "directive"
+											},
+											"options": {
+												"useAllDefinitionsAsSource": true,
+												"presetOptions": ["@deprecated"]
+											}
+										}
+									},
+									"dependency": {
+										"key": "directiveFormat",
+										"value": "Structured"
+									}
+								},
+								{
+									"propertyName": "Argument value format",
+									"propertyKeyword": "argumentValueFormat",
+									"propertyTooltip": "Select argument value format",
+									"propertyType": "select",
+									"options": ["Raw"],
+									"defaultValue": "Raw",
+									"dependency": {
+										"key": "directiveFormat",
+										"value": "Structured"
+									},
+									"helpInfo": {
+										"type": "modal",
+										"title": "PROPERTIES_PANE___DIRECTIVES_ARGUMENTS_INFO_MODAL_TITLE",
+										"content": "PROPERTIES_PANE___DIRECTIVES_ARGUMENTS_INFO_MODAL_BODY",
+										"featureNameForHelp": "GraphQL directives",
+										"buttons": ["contactSupport", "ok"]
+									}
+								},
+								{
+									"propertyName": "Raw argument values",
+									"propertyKeyword": "rawArgumentValues",
+									"propertyTooltip": "Enter raw argument values",
+									"propertyType": "details",
+									"template": "textarea",
+									"markdown": false,
+									"dependency": {
+										"type": "and",
+										"values": [
+											{
+												"key": "directiveFormat",
+												"value": "Structured"
+											},
+											{
+												"key": "argumentValueFormat",
+												"value": "Raw"
+											}
+										]
 									}
 								}
 							]
@@ -3001,8 +4660,8 @@ making sure that you maintain a proper JSON format.
 									"propertyKeyword": "directiveFormat",
 									"propertyTooltip": "Select directive format",
 									"propertyType": "select",
-									"options": ["Raw"],
-									"defaultValue": "Raw",
+									"options": ["Structured", "Raw"],
+									"defaultValue": "Structured",
 									"helpInfo": {
 										"type": "modal",
 										"title": "PROPERTIES_PANE___DIRECTIVES_INFO_MODAL_TITLE",
@@ -3021,6 +4680,70 @@ making sure that you maintain a proper JSON format.
 									"dependency": {
 										"key": "directiveFormat",
 										"value": "Raw"
+									}
+								},
+								{
+									"propertyName": "Directive",
+									"propertyKeyword": "directiveName",
+									"propertyTooltip": "Select directive",
+									"propertyType": "selecthashed",
+									"template": "definitions",
+									"withEmptyOption": true,
+									"templateOptions": {
+										"filter": {
+											"condition": {
+												"key": "childType",
+												"value": "directive"
+											},
+											"options": {
+												"useAllDefinitionsAsSource": true,
+												"presetOptions": ["@deprecated"]
+											}
+										}
+									},
+									"dependency": {
+										"key": "directiveFormat",
+										"value": "Structured"
+									}
+								},
+								{
+									"propertyName": "Argument value format",
+									"propertyKeyword": "argumentValueFormat",
+									"propertyTooltip": "Select argument value format",
+									"propertyType": "select",
+									"options": ["Raw"],
+									"defaultValue": "Raw",
+									"dependency": {
+										"key": "directiveFormat",
+										"value": "Structured"
+									},
+									"helpInfo": {
+										"type": "modal",
+										"title": "PROPERTIES_PANE___DIRECTIVES_ARGUMENTS_INFO_MODAL_TITLE",
+										"content": "PROPERTIES_PANE___DIRECTIVES_ARGUMENTS_INFO_MODAL_BODY",
+										"featureNameForHelp": "GraphQL directives",
+										"buttons": ["contactSupport", "ok"]
+									}
+								},
+								{
+									"propertyName": "Raw argument values",
+									"propertyKeyword": "rawArgumentValues",
+									"propertyTooltip": "Enter raw argument values",
+									"propertyType": "details",
+									"template": "textarea",
+									"markdown": false,
+									"dependency": {
+										"type": "and",
+										"values": [
+											{
+												"key": "directiveFormat",
+												"value": "Structured"
+											},
+											{
+												"key": "argumentValueFormat",
+												"value": "Raw"
+											}
+										]
 									}
 								}
 							]
@@ -3209,8 +4932,8 @@ making sure that you maintain a proper JSON format.
 									"propertyKeyword": "directiveFormat",
 									"propertyTooltip": "Select directive format",
 									"propertyType": "select",
-									"options": ["Raw"],
-									"defaultValue": "Raw",
+									"options": ["Structured", "Raw"],
+									"defaultValue": "Structured",
 									"helpInfo": {
 										"type": "modal",
 										"title": "PROPERTIES_PANE___DIRECTIVES_INFO_MODAL_TITLE",
@@ -3229,6 +4952,70 @@ making sure that you maintain a proper JSON format.
 									"dependency": {
 										"key": "directiveFormat",
 										"value": "Raw"
+									}
+								},
+								{
+									"propertyName": "Directive",
+									"propertyKeyword": "directiveName",
+									"propertyTooltip": "Select directive",
+									"propertyType": "selecthashed",
+									"template": "definitions",
+									"withEmptyOption": true,
+									"templateOptions": {
+										"filter": {
+											"condition": {
+												"key": "childType",
+												"value": "directive"
+											},
+											"options": {
+												"useAllDefinitionsAsSource": true,
+												"presetOptions": ["@deprecated"]
+											}
+										}
+									},
+									"dependency": {
+										"key": "directiveFormat",
+										"value": "Structured"
+									}
+								},
+								{
+									"propertyName": "Argument value format",
+									"propertyKeyword": "argumentValueFormat",
+									"propertyTooltip": "Select argument value format",
+									"propertyType": "select",
+									"options": ["Raw"],
+									"defaultValue": "Raw",
+									"dependency": {
+										"key": "directiveFormat",
+										"value": "Structured"
+									},
+									"helpInfo": {
+										"type": "modal",
+										"title": "PROPERTIES_PANE___DIRECTIVES_ARGUMENTS_INFO_MODAL_TITLE",
+										"content": "PROPERTIES_PANE___DIRECTIVES_ARGUMENTS_INFO_MODAL_BODY",
+										"featureNameForHelp": "GraphQL directives",
+										"buttons": ["contactSupport", "ok"]
+									}
+								},
+								{
+									"propertyName": "Raw argument values",
+									"propertyKeyword": "rawArgumentValues",
+									"propertyTooltip": "Enter raw argument values",
+									"propertyType": "details",
+									"template": "textarea",
+									"markdown": false,
+									"dependency": {
+										"type": "and",
+										"values": [
+											{
+												"key": "directiveFormat",
+												"value": "Structured"
+											},
+											{
+												"key": "argumentValueFormat",
+												"value": "Raw"
+											}
+										]
 									}
 								}
 							]
@@ -3417,8 +5204,8 @@ making sure that you maintain a proper JSON format.
 									"propertyKeyword": "directiveFormat",
 									"propertyTooltip": "Select directive format",
 									"propertyType": "select",
-									"options": ["Raw"],
-									"defaultValue": "Raw",
+									"options": ["Structured", "Raw"],
+									"defaultValue": "Structured",
 									"helpInfo": {
 										"type": "modal",
 										"title": "PROPERTIES_PANE___DIRECTIVES_INFO_MODAL_TITLE",
@@ -3437,6 +5224,70 @@ making sure that you maintain a proper JSON format.
 									"dependency": {
 										"key": "directiveFormat",
 										"value": "Raw"
+									}
+								},
+								{
+									"propertyName": "Directive",
+									"propertyKeyword": "directiveName",
+									"propertyTooltip": "Select directive",
+									"propertyType": "selecthashed",
+									"template": "definitions",
+									"withEmptyOption": true,
+									"templateOptions": {
+										"filter": {
+											"condition": {
+												"key": "childType",
+												"value": "directive"
+											},
+											"options": {
+												"useAllDefinitionsAsSource": true,
+												"presetOptions": ["@deprecated"]
+											}
+										}
+									},
+									"dependency": {
+										"key": "directiveFormat",
+										"value": "Structured"
+									}
+								},
+								{
+									"propertyName": "Argument value format",
+									"propertyKeyword": "argumentValueFormat",
+									"propertyTooltip": "Select argument value format",
+									"propertyType": "select",
+									"options": ["Raw"],
+									"defaultValue": "Raw",
+									"dependency": {
+										"key": "directiveFormat",
+										"value": "Structured"
+									},
+									"helpInfo": {
+										"type": "modal",
+										"title": "PROPERTIES_PANE___DIRECTIVES_ARGUMENTS_INFO_MODAL_TITLE",
+										"content": "PROPERTIES_PANE___DIRECTIVES_ARGUMENTS_INFO_MODAL_BODY",
+										"featureNameForHelp": "GraphQL directives",
+										"buttons": ["contactSupport", "ok"]
+									}
+								},
+								{
+									"propertyName": "Raw argument values",
+									"propertyKeyword": "rawArgumentValues",
+									"propertyTooltip": "Enter raw argument values",
+									"propertyType": "details",
+									"template": "textarea",
+									"markdown": false,
+									"dependency": {
+										"type": "and",
+										"values": [
+											{
+												"key": "directiveFormat",
+												"value": "Structured"
+											},
+											{
+												"key": "argumentValueFormat",
+												"value": "Raw"
+											}
+										]
 									}
 								}
 							]
@@ -3610,8 +5461,8 @@ making sure that you maintain a proper JSON format.
 									"propertyKeyword": "directiveFormat",
 									"propertyTooltip": "Select directive format",
 									"propertyType": "select",
-									"options": ["Raw"],
-									"defaultValue": "Raw",
+									"options": ["Structured", "Raw"],
+									"defaultValue": "Structured",
 									"helpInfo": {
 										"type": "modal",
 										"title": "PROPERTIES_PANE___DIRECTIVES_INFO_MODAL_TITLE",
@@ -3630,6 +5481,70 @@ making sure that you maintain a proper JSON format.
 									"dependency": {
 										"key": "directiveFormat",
 										"value": "Raw"
+									}
+								},
+								{
+									"propertyName": "Directive",
+									"propertyKeyword": "directiveName",
+									"propertyTooltip": "Select directive",
+									"propertyType": "selecthashed",
+									"template": "definitions",
+									"withEmptyOption": true,
+									"templateOptions": {
+										"filter": {
+											"condition": {
+												"key": "childType",
+												"value": "directive"
+											},
+											"options": {
+												"useAllDefinitionsAsSource": true,
+												"presetOptions": ["@deprecated"]
+											}
+										}
+									},
+									"dependency": {
+										"key": "directiveFormat",
+										"value": "Structured"
+									}
+								},
+								{
+									"propertyName": "Argument value format",
+									"propertyKeyword": "argumentValueFormat",
+									"propertyTooltip": "Select argument value format",
+									"propertyType": "select",
+									"options": ["Raw"],
+									"defaultValue": "Raw",
+									"dependency": {
+										"key": "directiveFormat",
+										"value": "Structured"
+									},
+									"helpInfo": {
+										"type": "modal",
+										"title": "PROPERTIES_PANE___DIRECTIVES_ARGUMENTS_INFO_MODAL_TITLE",
+										"content": "PROPERTIES_PANE___DIRECTIVES_ARGUMENTS_INFO_MODAL_BODY",
+										"featureNameForHelp": "GraphQL directives",
+										"buttons": ["contactSupport", "ok"]
+									}
+								},
+								{
+									"propertyName": "Raw argument values",
+									"propertyKeyword": "rawArgumentValues",
+									"propertyTooltip": "Enter raw argument values",
+									"propertyType": "details",
+									"template": "textarea",
+									"markdown": false,
+									"dependency": {
+										"type": "and",
+										"values": [
+											{
+												"key": "directiveFormat",
+												"value": "Structured"
+											},
+											{
+												"key": "argumentValueFormat",
+												"value": "Raw"
+											}
+										]
 									}
 								}
 							]
@@ -3802,8 +5717,8 @@ making sure that you maintain a proper JSON format.
 									"propertyKeyword": "directiveFormat",
 									"propertyTooltip": "Select directive format",
 									"propertyType": "select",
-									"options": ["Raw"],
-									"defaultValue": "Raw",
+									"options": ["Structured", "Raw"],
+									"defaultValue": "Structured",
 									"helpInfo": {
 										"type": "modal",
 										"title": "PROPERTIES_PANE___DIRECTIVES_INFO_MODAL_TITLE",
@@ -3822,6 +5737,70 @@ making sure that you maintain a proper JSON format.
 									"dependency": {
 										"key": "directiveFormat",
 										"value": "Raw"
+									}
+								},
+								{
+									"propertyName": "Directive",
+									"propertyKeyword": "directiveName",
+									"propertyTooltip": "Select directive",
+									"propertyType": "selecthashed",
+									"template": "definitions",
+									"withEmptyOption": true,
+									"templateOptions": {
+										"filter": {
+											"condition": {
+												"key": "childType",
+												"value": "directive"
+											},
+											"options": {
+												"useAllDefinitionsAsSource": true,
+												"presetOptions": ["@deprecated"]
+											}
+										}
+									},
+									"dependency": {
+										"key": "directiveFormat",
+										"value": "Structured"
+									}
+								},
+								{
+									"propertyName": "Argument value format",
+									"propertyKeyword": "argumentValueFormat",
+									"propertyTooltip": "Select argument value format",
+									"propertyType": "select",
+									"options": ["Raw"],
+									"defaultValue": "Raw",
+									"dependency": {
+										"key": "directiveFormat",
+										"value": "Structured"
+									},
+									"helpInfo": {
+										"type": "modal",
+										"title": "PROPERTIES_PANE___DIRECTIVES_ARGUMENTS_INFO_MODAL_TITLE",
+										"content": "PROPERTIES_PANE___DIRECTIVES_ARGUMENTS_INFO_MODAL_BODY",
+										"featureNameForHelp": "GraphQL directives",
+										"buttons": ["contactSupport", "ok"]
+									}
+								},
+								{
+									"propertyName": "Raw argument values",
+									"propertyKeyword": "rawArgumentValues",
+									"propertyTooltip": "Enter raw argument values",
+									"propertyType": "details",
+									"template": "textarea",
+									"markdown": false,
+									"dependency": {
+										"type": "and",
+										"values": [
+											{
+												"key": "directiveFormat",
+												"value": "Structured"
+											},
+											{
+												"key": "argumentValueFormat",
+												"value": "Raw"
+											}
+										]
 									}
 								}
 							]

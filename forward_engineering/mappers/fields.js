@@ -56,7 +56,10 @@ function mapField({ name, fieldData, required, definitionsIdToNameMap, addArgume
 	const fieldNameStatement = joinInlineStatements({ statements: [name, argumentsStatement] });
 	const fieldTypeStatement = `${fieldNameStatement}: ${getFieldType({ field: fieldData, required })}`;
 	const fieldDefaultValue = addDefaultValue ? getFieldDefaultValueStatement({ field: fieldData }) : '';
-	const directivesStatement = getDirectivesUsageStatement({ directives: fieldData.fieldDirectives });
+	const directivesStatement = getDirectivesUsageStatement({
+		directives: fieldData.fieldDirectives,
+		definitionsIdToNameMap,
+	});
 
 	return {
 		statement: joinInlineStatements({ statements: [fieldTypeStatement, fieldDefaultValue, directivesStatement] }),

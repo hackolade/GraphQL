@@ -102,9 +102,18 @@ export type Directive = {
 export type DirectiveDefinitions = Record<string, Directive>
 
 export type DirectivePropertyData = {
-	directiveFormat: 'Raw';
-	rawDirective: string;
-}
+	directiveFormat: 'Structured' | 'Raw'; // Format of the directive
+} & (StructuredDirective | RawDirective);
+
+type RawDirective = {
+	rawDirective: string; // Raw directive string
+};
+
+type StructuredDirective = {
+	directiveName: string; // Name of a built-in directive or GUID of a custom directive
+	argumentValueFormat: 'Raw'; // Format of the argument values
+	rawArgumentValues: string; // Raw argument values
+};
 
 export type ImplementsInterface = {
 	interface: string; // ID of the interface

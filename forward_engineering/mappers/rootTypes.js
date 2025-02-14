@@ -16,9 +16,10 @@ const { getRootTypeFields } = require('./fields');
  * @param {RootTypeNamesParameter} param0.rootTypeNames - The root type names.
  * @param {FEStatement[]} param0.rootTypeStatements - The root types.
  * @param {ContainerDetails|undefined} param0.containerProperties - The container properties.
+ * @param {IdToNameMap} param0.definitionsIdToNameMap - The definitions id to name map.
  * @returns {FEStatement | null} - The root schema statement or null if all root types have default values.
  */
-function getRootSchemaStatement({ rootTypeNames, rootTypeStatements, containerProperties }) {
+function getRootSchemaStatement({ rootTypeNames, rootTypeStatements, containerProperties, definitionsIdToNameMap }) {
 	const rootTypeMap = {
 		query: QUERY_ROOT_TYPE,
 		mutation: MUTATION_ROOT_TYPE,
@@ -38,7 +39,10 @@ function getRootSchemaStatement({ rootTypeNames, rootTypeStatements, containerPr
 		return null;
 	}
 
-	const schemaDirectives = getDirectivesUsageStatement({ directives: containerProperties?.graphDirectives });
+	const schemaDirectives = getDirectivesUsageStatement({
+		directives: containerProperties?.graphDirectives,
+		definitionsIdToNameMap,
+	});
 
 	return {
 		statement: joinInlineStatements({ statements: ['schema', schemaDirectives] }),
@@ -93,33 +97,33 @@ function getRootTypeNames({ containerProperties }) {
  * For each root type, get the nested statements composed of the fields of the entities with the operation type equal to the root type.
  *
  * @param {Object} param0
- * @param {EntityIdToJsonSchemaMap} param0.entitiesJsonSchema - The entities JSON schema.
- * @param {EntityIdToPropertiesMap} param0.entityProperties - The entity properties.
+ * @param {EntityIdToJsonSchemaMap} param0.entityIdToJsonSchemaMap - The entities JSON schema.
+ * @param {EntityIdToPropertiesMap} param0.entityIdToPropertiesMap - The entity properties.
  * @param {RootTypeNamesParameter} param0.rootTypeNames - The root type names.
  * @param {IdToNameMap} param0.definitionsIdToNameMap - The definitions id to name map.
  * @returns {FEStatement[]} - The root types.
  */
-function getRootTypes({ entitiesJsonSchema, entityProperties, rootTypeNames, definitionsIdToNameMap }) {
+function getRootTypes({ entityIdToJsonSchemaMap, entityIdToPropertiesMap, rootTypeNames, definitionsIdToNameMap }) {
 	const { query, mutation, subscription } = rootTypeNames;
 
 	const rootTypes = [
 		getRootType({
-			entitiesJsonSchema,
-			entityProperties,
+			entityIdToJsonSchemaMap,
+			entityIdToPropertiesMap,
 			rootTypeName: query,
 			definitionsIdToNameMap,
 			rootType: QUERY_ROOT_TYPE,
 		}),
 		getRootType({
-			entitiesJsonSchema,
-			entityProperties,
+			entityIdToJsonSchemaMap,
+			entityIdToPropertiesMap,
 			rootTypeName: mutation,
 			definitionsIdToNameMap,
 			rootType: MUTATION_ROOT_TYPE,
 		}),
 		getRootType({
-			entitiesJsonSchema,
-			entityProperties,
+			entityIdToJsonSchemaMap,
+			entityIdToPropertiesMap,
 			rootTypeName: subscription,
 			definitionsIdToNameMap,
 			rootType: SUBSCRIPTION_ROOT_TYPE,
@@ -136,23 +140,37 @@ function getRootTypes({ entitiesJsonSchema, entityProperties, rootTypeNames, def
  * If there are no entities with the operation type equal to the root type, return null.
  *
  * @param {Object} param0
- * @param {EntityIdToJsonSchemaMap} param0.entitiesJsonSchema - The entities JSON schema.
- * @param {EntityIdToPropertiesMap} param0.entityProperties - The entity properties.
+ * @param {EntityIdToJsonSchemaMap} param0.entityIdToJsonSchemaMap - The entities JSON schema.
+ * @param {EntityIdToPropertiesMap} param0.entityIdToPropertiesMap - The entity properties.
  * @param {string} param0.rootTypeName - The root type name.
  * @param {IdToNameMap} param0.definitionsIdToNameMap - The definitions id to name map.
  * @param {string} param0.rootType - The root type.
  * @returns {FEStatement | null} - The root type or null if there are no entities with the operation type equal to the root type.
  */
-function getRootType({ entitiesJsonSchema, entityProperties, rootTypeName, definitionsIdToNameMap, rootType }) {
+function getRootType({
+	entityIdToJsonSchemaMap,
+	entityIdToPropertiesMap,
+	rootTypeName,
+	definitionsIdToNameMap,
+	rootType,
+}) {
 	const rootTypeNestedStatements = [];
+	const rootTypeDirectives = [];
 
-	Object.entries(entitiesJsonSchema).forEach(([entityId, entityJson]) => {
-		const entityOperationType = entityProperties[entityId]?.[0]?.operationType;
+	Object.entries(entityIdToJsonSchemaMap).forEach(([entityId, entityJson]) => {
+		const entityProperties = entityIdToPropertiesMap[entityId]?.[0];
+		const entityOperationType = entityProperties?.operationType;
 		if (entityOperationType !== rootType) {
 			return;
 		}
-
 		const entityData = JSON.parse(entityJson);
+
+		const entityDirectives = getDirectivesUsageStatement({
+			directives: entityProperties?.typeDirectives,
+			definitionsIdToNameMap,
+		});
+		rootTypeDirectives.push(entityDirectives);
+
 		const entityFields = getRootTypeFields({
 			fields: entityData.properties,
 			requiredFields: entityData.required,
@@ -174,8 +192,10 @@ function getRootType({ entitiesJsonSchema, entityProperties, rootTypeName, defin
 	if (rootTypeNestedStatements.length === 0) {
 		return null;
 	}
+
+	const rootTypeDirectivesStatement = joinInlineStatements({ statements: rootTypeDirectives });
 	return {
-		statement: `type ${rootTypeName}`,
+		statement: joinInlineStatements({ statements: [`type ${rootTypeName}`, rootTypeDirectivesStatement] }),
 		nestedStatements: rootTypeNestedStatements,
 	};
 }

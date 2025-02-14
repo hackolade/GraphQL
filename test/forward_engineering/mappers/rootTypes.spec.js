@@ -150,7 +150,7 @@ describe('getRootTypes', () => {
 	});
 
 	it('should return an array of root types', () => {
-		const entitiesJsonSchema = {
+		const entityIdToJsonSchemaMap = {
 			entity1: JSON.stringify({
 				properties: {
 					field1: { type: 'String' },
@@ -158,7 +158,7 @@ describe('getRootTypes', () => {
 				required: ['field1'],
 			}),
 		};
-		const entityProperties = {
+		const entityIdToPropertiesMap = {
 			entity1: [{ operationType: 'Query' }],
 		};
 		const rootTypeNames = {
@@ -169,8 +169,8 @@ describe('getRootTypes', () => {
 		getRootTypeFieldsMock.mock.mockImplementation(() => [{ statement: 'field1: String!' }]);
 
 		const result = getRootTypes({
-			entitiesJsonSchema,
-			entityProperties,
+			entityIdToJsonSchemaMap,
+			entityIdToPropertiesMap,
 			rootTypeNames,
 			definitionsIdToNameMap: {},
 		});
@@ -190,7 +190,7 @@ describe('getRootType', () => {
 	});
 
 	it('should return null if no entities match the root type', () => {
-		const entitiesJsonSchema = {
+		const entityIdToJsonSchemaMap = {
 			entity1: JSON.stringify({
 				properties: {
 					field1: { type: 'String' },
@@ -198,12 +198,12 @@ describe('getRootType', () => {
 				required: ['field1'],
 			}),
 		};
-		const entityProperties = {
+		const entityIdToPropertiesMap = {
 			entity1: [{ operationType: 'Mutation' }],
 		};
 		const result = getRootType({
-			entitiesJsonSchema,
-			entityProperties,
+			entityIdToJsonSchemaMap,
+			entityIdToPropertiesMap,
 			rootTypeName: 'CustomQuery',
 			definitionsIdToNameMap: {},
 			rootType: 'Query',
@@ -212,7 +212,7 @@ describe('getRootType', () => {
 	});
 
 	it('should return root type with nested statements', () => {
-		const entitiesJsonSchema = {
+		const entityIdToJsonSchemaMap = {
 			entity1: JSON.stringify({
 				properties: {
 					field1: { type: 'String' },
@@ -220,14 +220,14 @@ describe('getRootType', () => {
 				required: ['field1'],
 			}),
 		};
-		const entityProperties = {
+		const entityIdToPropertiesMap = {
 			entity1: [{ operationType: 'Query' }],
 		};
 		getRootTypeFieldsMock.mock.mockImplementation(() => [{ statement: 'field1: String!' }]);
 
 		const result = getRootType({
-			entitiesJsonSchema,
-			entityProperties,
+			entityIdToJsonSchemaMap,
+			entityIdToPropertiesMap,
 			rootTypeName: 'CustomQuery',
 			definitionsIdToNameMap: {},
 			rootType: 'Query',
@@ -239,7 +239,7 @@ describe('getRootType', () => {
 	});
 
 	it('should deactivate fields if entity is deactivated', () => {
-		const entitiesJsonSchema = {
+		const entityIdToJsonSchemaMap = {
 			entity1: JSON.stringify({
 				properties: {
 					field1: { type: 'String', isActivated: true },
@@ -248,14 +248,14 @@ describe('getRootType', () => {
 				isActivated: false,
 			}),
 		};
-		const entityProperties = {
+		const entityIdToPropertiesMap = {
 			entity1: [{ operationType: 'Query' }],
 		};
 		getRootTypeFieldsMock.mock.mockImplementation(() => [{ statement: 'field1: String!', isActivated: true }]);
 
 		const result = getRootType({
-			entitiesJsonSchema,
-			entityProperties,
+			entityIdToJsonSchemaMap,
+			entityIdToPropertiesMap,
 			rootTypeName: 'CustomQuery',
 			definitionsIdToNameMap: {},
 			rootType: 'Query',
