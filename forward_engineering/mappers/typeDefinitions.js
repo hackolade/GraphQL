@@ -45,7 +45,7 @@ function getTypeDefinitionStatements({ modelDefinitions, definitionsIdToNameMap 
 	});
 	const unions = getUnions({ unions: getModelDefinitionsBySubtype({ modelDefinitions, subtype: 'union' }) });
 
-	return [...customScalars, ...enums, ...objectTypes, ...interfaceTypes, ...inputTypes, ...unions];
+	return [...customScalars, ...enums, ...inputTypes, ...interfaceTypes, ...objectTypes, ...unions];
 }
 
 /**
