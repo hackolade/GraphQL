@@ -1,6 +1,6 @@
 {
     "name": "GraphQL",
-    "version": "0.2.2",
+    "version": "0.2.3",
     "author": "hackolade",
     "engines": {
         "hackolade": "8.0.0",
