@@ -19,13 +19,17 @@ const loggerMock = {
 	log: () => {},
 };
 
+const deleteSchemaVersionAndDate = script => script.split('\n').slice(3).join('\n');
+
 describe(() => {
 	it('should generate valid GraphQL schema from provided containerLevelSchema', async () => {
 		const result = await generateContainerScriptPromise(containerLevelShema, loggerMock);
-		// remove schema version and date from the script to avoid differences
-		const resultSchema = result.split('\n').slice(3).join('\n');
+		const rawSchema = (await fs.readFile(path.join(__dirname, './expectedSchema.graphql'))).toString();
 
-		const expectedSchema = (await fs.readFile(path.join(__dirname, './expectedSchema.graphql'))).toString();
+		// remove schema version and date from the scripta to avoid differences
+		const resultSchema = deleteSchemaVersionAndDate(result);
+		const expectedSchema = deleteSchemaVersionAndDate(rawSchema);
+
 		strictEqual(resultSchema, expectedSchema);
 	});
 });
