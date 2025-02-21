@@ -16,5 +16,9 @@ indent_size = 4
 [*.md]
 trim_trailing_whitespace = false
 
-[*.{sql,cql,hql,file,txt}]
+[*.{sql,cql,hql,file,txt,graphql}]
 insert_final_newline = false
+
+[*.graphql]
+indent_style = space
+indent_size = 2
