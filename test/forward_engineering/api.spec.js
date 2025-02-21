@@ -22,7 +22,8 @@ const loggerMock = {
 describe(() => {
 	it('should generate valid GraphQL schema from provided containerLevelSchema', async () => {
 		const result = await generateContainerScriptPromise(containerLevelShema, loggerMock);
-		const resultSchema = result.split('\n').slice(3).join('\n'); // Remove first 3 lines
+		// remove schema version and date from the script to avoid differences
+		const resultSchema = result.split('\n').slice(3).join('\n');
 
 		const expectedSchema = (await fs.readFile(path.join(__dirname, './expectedSchema.graphql'))).toString();
 		strictEqual(resultSchema, expectedSchema);
