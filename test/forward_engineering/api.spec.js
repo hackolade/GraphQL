@@ -26,7 +26,7 @@ describe(() => {
 		const result = await generateContainerScriptPromise(containerLevelShema, loggerMock);
 		const rawSchema = (await fs.readFile(path.join(__dirname, './expectedSchema.graphql'))).toString();
 
-		// remove schema version and date from the scripta to avoid differences
+		// remove schema version and date from the scripts to avoid differences
 		const resultSchema = deleteSchemaVersionAndDate(result);
 		const expectedSchema = deleteSchemaVersionAndDate(rawSchema);
 
