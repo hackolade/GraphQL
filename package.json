@@ -33,7 +33,7 @@
                     "model_definitions": false
                 },
                 "excel": false,
-                "plugin": false,
+                "plugin": true,
                 "uploadPowerDesignerFile": false
             },
             "disableDenormalization": true,
