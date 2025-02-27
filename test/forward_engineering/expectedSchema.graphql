@@ -1,0 +1,102 @@
+# Schema Version: 1.0.0
+# Generated on: 2/21/2025, 5:18:47 PM
+
+schema {
+  query: TestQuery
+  mutation: TestMutation
+  subscription: TestSubscription
+}
+
+"An active custom directive example"
+directive @activeDirective (
+  "An example argument"
+  arg1: String! = "TEST"
+) on ARGUMENT_DEFINITION | ENUM | ENUM_VALUE | FIELD | FIELD_DEFINITION | INPUT_FIELD_DEFINITION | INPUT_OBJECT | INTERFACE | MUTATION | OBJECT | QUERY | SCALAR | SCHEMA | SUBSCRIPTION | UNION
+
+# directive @deactivetedDirective on UNKNOWN_LOCATION # Please specify the directive locations
+
+type TestQuery {
+  student (
+    "Specify ID of user to fetch"
+    id: ID! = "1" @activeDirective(arg1: "TEST111")
+  ): Student
+}
+
+type TestMutation {
+  student (id: ID! = "1"): Student @activeDirective(arg1: "TEST222")
+}
+
+type TestSubscription {
+  studentAdded: Student
+}
+
+"A description example"
+scalar UUID @specifiedBy(url: "https://tools.ietf.org/html/rfc4122") @activeDirective(arg1: "TEST1")
+
+# scalar DeactivatedScalar
+
+"A description for enum"
+enum SortOrderEnum @activeDirective(arg1: "TEST2") {
+  "Ascending order"
+  ASC @deprecated(reason: "No longer supported")
+  "Descending order"
+  DESC
+}
+
+# enum DeactivatedOperatorKindEnum {
+#   GTE
+#   LTE
+#   NE
+#   LIKE
+# }
+
+"A description for input type"
+input SortOptions {
+  field: String!
+  "Sort order for specified field"
+  order: SortOrderEnum! = "ASC"
+  # deactivatedInputField: String
+}
+
+# input deactivatedInput {
+#   test: String
+# }
+
+"An user interface with base set of fields"
+interface BaseUser {
+  "Description for id field"
+  id: ID @activeDirective(arg1: "TEST6")
+  name: String
+}
+
+interface InterfaceImplAnotherInterface implements BaseUser {
+  id: ID
+  name: String
+  additionalFied: String
+}
+
+# interface DeactivatedInterface {
+#   test: String
+# }
+
+"A description for Student type"
+type Student implements BaseUser @activeDirective(arg1: "TEST3") {
+  id: ID! @activeDirective(arg1: "TEST4")
+  name: String!
+  faculty: String!
+  # deactivatedField: String
+}
+
+type Teacher implements BaseUser {
+  id: ID
+  name: String
+}
+
+# type DeactivatedType {
+#   test: String
+# }
+
+"A description for FacultyMember union"
+union FacultyMember = Student | Teacher
+
+# union DeactivatedUnion = Teacher
