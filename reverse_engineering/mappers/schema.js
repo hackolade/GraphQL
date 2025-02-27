@@ -3,8 +3,7 @@
  * @import { Logger, FileREEntityResponseData } from "../types/types"
  */
 
-const { parse, visit, Kind } = require('graphql');
-const { parseSchema } = require('../helpers/parseSchema');
+const { Kind } = require('graphql');
 const { mapRootSchemaTypesToContainer } = require('./rootSchemaTypes');
 const { findNodesByKind } = require('../helpers/findNodesByKind');
 

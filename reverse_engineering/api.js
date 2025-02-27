@@ -18,7 +18,7 @@ module.exports = {
 		try {
 			const fileContent = await readFileContent({ filePath: data.filePath });
 			const fileName = getFileName(data.filePath);
-			const { parsedSchema, validationErrors } = parseSchema({ schemaContent: fileContent }); // TODO: validation warnings can be returned in modelData
+			const { parsedSchema /*validationErrors*/ } = parseSchema({ schemaContent: fileContent }); // TODO: validation warnings can be returned in modelData
 			const mappedEntities = getMappedSchema({
 				schemaItems: parsedSchema.definitions,
 				graphName: fileName,
