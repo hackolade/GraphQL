@@ -47,6 +47,7 @@
             "disableCollibraDataDictionary": true,
             "disablePatternField": true,
             "disableChoices": true,
+			"useChoicesAsStructureTypes": true,
             "enableJsonType": false,
             "disableNamingConvention": {
                 "entityLevel": true,
