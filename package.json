@@ -1,6 +1,6 @@
 {
     "name": "GraphQL",
-    "version": "0.2.3",
+    "version": "0.2.4",
     "author": "hackolade",
     "engines": {
         "hackolade": "8.0.0",
@@ -47,7 +47,7 @@
             "disableCollibraDataDictionary": true,
             "disablePatternField": true,
             "disableChoices": true,
-			"useChoicesAsStructureTypes": true,
+            "useChoicesAsStructureTypes": true,
             "enableJsonType": false,
             "disableNamingConvention": {
                 "entityLevel": true,
