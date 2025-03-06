@@ -52,8 +52,14 @@ function getArgumentValue(value) {
 			return value.value;
 		case astNodeKind.LIST:
 			return `[${value.values.map(getArgumentValue).join(', ')}]`;
-		case astNodeKind.OBJECT:
-			return `{${value.fields.map(field => `${field.name.value}: ${getArgumentValue(field.value)}`).join(', ')}}`;
+		case astNodeKind.OBJECT: {
+			const fieldStrings = value.fields.map(field => {
+				const fieldName = field.name.value;
+				const fieldValue = getArgumentValue(field.value);
+				return `${fieldName}: ${fieldValue}`;
+			});
+			return `{${fieldStrings.join(', ')}}`;
+		}
 		case astNodeKind.VARIABLE:
 			return `$${value.name.value}`;
 		default:
