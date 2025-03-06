@@ -39,15 +39,17 @@ function getDirectiveTypeDefinitions({ directives = [] }) {
  */
 function mapDirective({ directive }) {
 	const locations = directive.locations.reduce((acc, location) => {
-		const locationKey = locationMap[location.value] || location.value.toLowerCase();
-		acc[locationKey] = true;
+		const locationKey = locationMap[location.value];
+		if (locationKey) {
+			acc[locationKey] = true;
+		}
 		return acc;
 	}, {});
 
 	return {
 		type: 'directive',
 		name: directive.name.value,
-		description: directive.description?.value,
+		description: directive.description?.value || '',
 		arguments: [], // TODO: implement argument mapping
 		directiveLocations: locations,
 	};
