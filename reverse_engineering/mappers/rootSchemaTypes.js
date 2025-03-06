@@ -6,6 +6,7 @@
 const { OperationTypeNode } = require('graphql');
 
 const { mapStringValueNode } = require('./stringValue');
+const { mapDirectivesUsage } = require('./directiveUsage');
 
 /**
  * Maps the root schema types to a container
@@ -23,7 +24,7 @@ function mapRootSchemaTypesToContainer({ rootSchemaNode, graphName = 'New Graph'
 		name: graphName,
 		description: mapStringValueNode({ node: rootSchemaNode.description }),
 		schemaRootTypes: mapSchemaRootTypes({ schemaRootTypes: rootSchemaNode.operationTypes }),
-		// TODO: add directives
+		graphDirectives: mapDirectivesUsage({ directives: rootSchemaNode.directives }),
 	};
 }
 

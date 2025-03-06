@@ -16,6 +16,7 @@ module.exports = {
 	 */
 	async reFromFile(data, logger, callback) {
 		try {
+			const fieldsOrder = data.fieldInference.active;
 			const fileContent = await readFileContent({ filePath: data.filePath });
 			const fileName = getFileName(data.filePath);
 			const { parsedSchema /*validationErrors*/ } = parseSchema({ schemaContent: fileContent }); // TODO: validation warnings can be returned in modelData
@@ -23,6 +24,7 @@ module.exports = {
 				schemaItems: parsedSchema.definitions,
 				graphName: fileName,
 				logger,
+				fieldsOrder,
 			});
 
 			callback(null, mappedEntities, {}, [], 'multipleSchema');
