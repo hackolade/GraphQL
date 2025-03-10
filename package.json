@@ -97,6 +97,7 @@
     "description": "Hackolade plugin for GraphQL",
     "disabled": false,
     "dependencies": {
+		"@hackolade/fetch": "1.1.1",
         "graphql": "16.10.0"
     },
     "lint-staged": {
