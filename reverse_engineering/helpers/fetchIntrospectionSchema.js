@@ -56,8 +56,9 @@ async function fetchIntrospectionSchema({ connectionInfo, logger }) {
 		logger.log('info', {}, 'Introspection schema fetched successfully');
 		return introspectionSchemaResponse.data;
 	} catch (error) {
-		logger.log('error', error, 'Failed to fetch introspection schema');
-		throw new error();
+		const message = 'Failed to fetch introspection schema';
+		logger.log('error', error, message);
+		throw new Error(message);
 	}
 }
 
