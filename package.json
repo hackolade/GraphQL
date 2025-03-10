@@ -1,130 +1,130 @@
 {
-    "name": "GraphQL",
-    "version": "0.2.3",
-    "author": "hackolade",
-    "engines": {
-        "hackolade": "8.0.0",
-        "hackoladePlugin": "1.0.0",
-        "node": ">=20.18.0"
-    },
-    "contributes": {
-        "target": {
-            "applicationTarget": "GraphQL",
-            "title": "GraphQL",
-            "versions": []
-        },
-        "features": {
-            "disableMultipleTypes": true,
-            "enableReverseEngineering": {
-                "jsonDocument": {
-                    "entities": false,
-                    "model_definitions": false
-                },
-                "jsonSchema": {
-                    "entities": false,
-                    "model_definitions": false
-                },
-                "ddl": {
-                    "entities": false,
-                    "model_definitions": false
-                },
-                "xsd": {
-                    "entities": false,
-                    "model_definitions": false
-                },
-                "excel": false,
-                "plugin": true,
-                "uploadPowerDesignerFile": false
-            },
-            "disableDenormalization": true,
-            "enableForwardEngineering": {
-                "jsonDocument": false,
-                "jsonSchema": false,
-                "plugin": true,
-                "excel": false,
-                "apiSchema": false
-            },
-            "disableCollibraDataDictionary": true,
-            "disablePatternField": true,
-            "disableChoices": true,
-            "enableJsonType": false,
-            "disableNamingConvention": {
-                "entityLevel": true,
-                "containerLevel": true,
-                "fieldLevel": {
-                    "type": true,
-                    "operationObject": true,
-                    "extensions": true,
-                    "media": true
-                }
-            },
-            "disableDefinitions": {
-                "internal": true,
-                "external": true
-            },
-            "disableRelationships": false,
-            "relationships": {
-                "definitionRelationships": true
-            },
-            "disableJsonPreview": false,
-            "enableErdToggle": true,
-            "externalDefinitionsFromTargetSchema": true,
-            "apiTarget": true,
-            "FEScriptCommentsSupported": true,
-            "displayOptions": {
-                "hideNonNullableAttributes": true
-            },
-            "openModelDefinitionsTabIfNoCollections": true,
-            "erdDefinitions": {
-                "enabled": true,
-                "propertyNames": [
-                    "schemas"
-                ]
-            },
-            "definitionSources": {
-                "multipleSources": true
-            },
-            "disablePickFromFieldList": true,
-            "hideDisabledAttributeTypes": true,
-            "showReferenceDefinitionNameInsteadOfType": true,
-            "disableReplaceByAttributes": true,
-            "polyglot": {
-                "disableDeriveFromPolyglotModel": true,
-                "disableConvertToPolyglotModel": true
-            }
-        }
-    },
-    "description": "Hackolade plugin for GraphQL",
-    "disabled": false,
-    "dependencies": {
+	"name": "GraphQL",
+	"version": "0.2.3",
+	"author": "hackolade",
+	"engines": {
+		"hackolade": "8.0.0",
+		"hackoladePlugin": "1.0.0",
+		"node": ">=20.18.0"
+	},
+	"contributes": {
+		"target": {
+			"applicationTarget": "GraphQL",
+			"title": "GraphQL",
+			"versions": []
+		},
+		"features": {
+			"disableMultipleTypes": true,
+			"enableReverseEngineering": {
+				"jsonDocument": {
+					"entities": false,
+					"model_definitions": false
+				},
+				"jsonSchema": {
+					"entities": false,
+					"model_definitions": false
+				},
+				"ddl": {
+					"entities": false,
+					"model_definitions": false
+				},
+				"xsd": {
+					"entities": false,
+					"model_definitions": false
+				},
+				"excel": false,
+				"plugin": true,
+				"uploadPowerDesignerFile": false
+			},
+			"disableDenormalization": true,
+			"enableForwardEngineering": {
+				"jsonDocument": false,
+				"jsonSchema": false,
+				"plugin": true,
+				"excel": false,
+				"apiSchema": false
+			},
+			"disableCollibraDataDictionary": true,
+			"disablePatternField": true,
+			"disableChoices": true,
+			"enableJsonType": false,
+			"disableNamingConvention": {
+				"entityLevel": true,
+				"containerLevel": true,
+				"fieldLevel": {
+					"type": true,
+					"operationObject": true,
+					"extensions": true,
+					"media": true
+				}
+			},
+			"disableDefinitions": {
+				"internal": true,
+				"external": true
+			},
+			"disableRelationships": false,
+			"relationships": {
+				"definitionRelationships": true
+			},
+			"disableJsonPreview": false,
+			"enableErdToggle": true,
+			"externalDefinitionsFromTargetSchema": true,
+			"apiTarget": true,
+			"FEScriptCommentsSupported": true,
+			"displayOptions": {
+				"hideNonNullableAttributes": true
+			},
+			"openModelDefinitionsTabIfNoCollections": true,
+			"erdDefinitions": {
+				"enabled": true,
+				"propertyNames": [
+					"schemas"
+				]
+			},
+			"definitionSources": {
+				"multipleSources": true
+			},
+			"disablePickFromFieldList": true,
+			"hideDisabledAttributeTypes": true,
+			"showReferenceDefinitionNameInsteadOfType": true,
+			"disableReplaceByAttributes": true,
+			"polyglot": {
+				"disableDeriveFromPolyglotModel": true,
+				"disableConvertToPolyglotModel": true
+			}
+		}
+	},
+	"description": "Hackolade plugin for GraphQL",
+	"disabled": false,
+	"dependencies": {
 		"@hackolade/fetch": "1.1.1",
-        "graphql": "16.10.0"
-    },
-    "lint-staged": {
-        "*.{js,json}": "prettier --write"
-    },
-    "simple-git-hooks": {
-        "pre-commit": "npx lint-staged",
-        "pre-push": "npx eslint . && npm run test:unit"
-    },
-    "scripts": {
-        "lint": "eslint . --max-warnings=0",
-        "test:unit": "node --experimental-test-module-mocks --test-reporter dot --test ./test",
-        "package": "node esbuild.package.js",
-        "postinstall": "npx simple-git-hooks"
-    },
-    "devDependencies": {
-        "@hackolade/hck-esbuild-plugins-pack": "0.0.1",
-        "esbuild": "0.25.0",
-        "esbuild-plugin-clean": "1.0.1",
-        "eslint": "9.20.1",
-        "eslint-config-prettier": "10.0.1",
-        "eslint-plugin-import": "2.31.0",
-        "eslint-plugin-prettier": "5.2.3",
-        "eslint-plugin-unused-imports": "4.1.4",
-        "globals": "15.15.0",
-        "lint-staged": "15.4.3",
-        "prettier": "3.5.0",
-        "simple-git-hooks": "2.11.1"
-    }
+		"graphql": "16.10.0"
+	},
+	"lint-staged": {
+		"*.{js,json}": "prettier --write"
+	},
+	"simple-git-hooks": {
+		"pre-commit": "npx lint-staged",
+		"pre-push": "npx eslint . && npm run test:unit"
+	},
+	"scripts": {
+		"lint": "eslint . --max-warnings=0",
+		"test:unit": "node --experimental-test-module-mocks --test-reporter dot --test ./test",
+		"package": "node esbuild.package.js",
+		"postinstall": "npx simple-git-hooks"
+	},
+	"devDependencies": {
+		"@hackolade/hck-esbuild-plugins-pack": "0.0.1",
+		"esbuild": "0.25.0",
+		"esbuild-plugin-clean": "1.0.1",
+		"eslint": "9.20.1",
+		"eslint-config-prettier": "10.0.1",
+		"eslint-plugin-import": "2.31.0",
+		"eslint-plugin-prettier": "5.2.3",
+		"eslint-plugin-unused-imports": "4.1.4",
+		"globals": "15.15.0",
+		"lint-staged": "15.4.3",
+		"prettier": "3.5.0",
+		"simple-git-hooks": "2.11.1"
+	}
 }
