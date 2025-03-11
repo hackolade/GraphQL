@@ -40,8 +40,67 @@ export type FileREData = {
 	};
 };
 
-export type Logger = {
-	log: (logType: string, logData: object, logMessage: string) => void;
+export type REFromFileCallback = (err: Error | null, entitiesData: FileREEntityResponseData[], modelData: FileREModelLevelResponseData) => void;
+
+type ConnectionSourceType = 'database' | 'dataDictionary' | 'cloud'
+
+export type AuthenticationType = 'none' | 'basic' | 'bearer'
+
+type RecordSamplingMode = 'absolute' | 'relative'
+
+type RecordSamplingModeOptions = {
+	value: number
+}
+
+type RecordSamplingSettings = {
+	absolute: RecordSamplingModeOptions;
+	relative: RecordSamplingModeOptions;
+	active: RecordSamplingMode;
+	maxValue: number;
+}
+
+export type ConnectionSettings = {
+	id: string;
+	name: string;
+	host: string;
+	connectionSourceType: ConnectionSourceType;
+	authType: AuthenticationType;
+	bearerToken?: string;
+	userName?: string;
+	userPassword?: string;
+	target: 'GraphQL';
+}
+
+type GeneralRESettings = {
+	appVersion?: string;
+	tempFolder: string;
+	pluginVersion: string;
+	includeSystemCollection?: boolean;
+	includeEmptyCollection?: boolean;
+	pagination?: PaginationSettings;
+	recordSamplingSettings: RecordSamplingSettings;
+	queryRequestTimeout: number;
+	applyToInstanceQueryRequestTimeout?: number;
+	schemaRegistryConfig: boolean;
+	target?: 'GraphQL';
+	appTarget?: 'GraphQL';
+	pluginPath: string;
+	hiddenKeys: string[];
+	excludeDocKind?: string[];
+	probabilisticSchema?: boolean;
+	fieldInference: {
+		active: string;
+	}
+}
+
+type PaginationSettings = {
+	enabled: boolean;
+	value: number;
+}
+
+export type TestConnectionInfo = ConnectionSettings & GeneralRESettings;
+export type REConnectionInfo = GeneralRESettings & {
+	connectionSettings: ConnectionSettings;
 };
 
 export type REFromFileCallback = (err: Error | null, entitiesData: FileREEntityResponseData[], modelData: FileREModelLevelResponseData) => void;
@@ -78,3 +137,6 @@ export type DirectiveDefinition = {
     arguments?: Object[]; // TODO: update when arguments are ready
     directiveLocations: DirectiveLocations;
 }
+
+export type TestConnectionCallback = (err: Error | null) => void;
+export type DisconnectCallback = TestConnectionCallback;

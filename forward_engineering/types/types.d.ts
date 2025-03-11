@@ -207,10 +207,6 @@ export type ContainerLevelScriptFEData = {
 	}
 };
 
-export type Logger = {
-	log: (logType: string, logData: object, logMessage: string) => void;
-};
-
 export type GenerateContainerLevelScriptCallback = (error: Error | null, script?: string) => void;
 
 export type ValidationResponseItem = {

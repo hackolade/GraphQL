@@ -1,5 +1,6 @@
 /**
- * @import { ContainerLevelScriptFEData, Logger, GenerateContainerLevelScriptCallback } from "./types/types"
+ * @import { ContainerLevelScriptFEData, GenerateContainerLevelScriptCallback } from "./types/types"
+ * @import { Logger } from "../shared/types/types"
  */
 
 const validationHelper = require('./helpers/schemaValidationHelper');
