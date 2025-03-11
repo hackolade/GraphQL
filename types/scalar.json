@@ -10,11 +10,7 @@
 		"foreignCollection": "",
 		"foreignField": [],
 		"ignore_z_value": true,
-		"subtype": "snippetChildrenOnly",
-		"hackoladeMeta": {
-			"disableAdd": true,
-			"disableAppend": true
-		}
+		"subtype": "snippetChildrenOnly"
 	},
 	"subtypes": {
 		"snippetChildrenOnly": {
