@@ -1,4 +1,5 @@
 const { astNodeKind } = require('../constants/graphqlAST');
+const { DIRECTIVE_FORMAT, ARGUMENT_VALUE_FORMAT } = require('../constants/properties');
 
 /**
  * @import { DirectiveNode, ArgumentNode, ValueNode } from "graphql"
@@ -14,9 +15,9 @@ const { astNodeKind } = require('../constants/graphqlAST');
 function mapDirectivesUsage({ directives = [] }) {
 	return directives.map(directive => {
 		return {
-			directiveFormat: 'Structured',
+			directiveFormat: DIRECTIVE_FORMAT.structured,
 			directiveName: directive.name.value,
-			argumentValueFormat: 'Raw',
+			argumentValueFormat: ARGUMENT_VALUE_FORMAT.raw,
 			rawArgumentValues: getRawArguments({ argumentNodes: directive.arguments }),
 		};
 	});

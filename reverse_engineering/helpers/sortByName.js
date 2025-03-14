@@ -14,7 +14,7 @@ function sortByName({ items, fieldsOrder }) {
 		return items;
 	}
 	if (fieldsOrder === 'alphabetical') {
-		return items.sort((a, b) => a.name.localeCompare(b.name));
+		return items.toSorted((a, b) => a.name.localeCompare(b.name));
 	}
 
 	return items;
