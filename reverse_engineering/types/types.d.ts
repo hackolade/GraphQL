@@ -138,5 +138,12 @@ export type DirectiveDefinition = {
     directiveLocations: DirectiveLocations;
 }
 
+export type CustomScalarDefinition = {
+	type: 'scalar';
+    name: string;
+    description?: string;
+    typeDirectives?: DirectiveUsage[];
+}
+
 export type TestConnectionCallback = (err: Error | null) => void;
 export type DisconnectCallback = TestConnectionCallback;
