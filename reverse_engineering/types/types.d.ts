@@ -4,6 +4,7 @@ export type ContainerInfo = {
 	name: ContainerName;
 	description?: string; // container description
 	schemaRootTypes?: ContainerSchemaRootTypes; // container schema root types
+	graphDirectives?: DirectiveUsage[]; // container graph directives
 };
 
 export type ContainerSchemaRootTypes = {
@@ -30,8 +31,13 @@ export type FileREModelLevelResponseData = {
 	description?: string; // model description
 };
 
+export type FieldsOrder = 'field' | 'alphabetical';
+
 export type FileREData = {
 	filePath: string;
+	fieldInference: {
+		active: FieldsOrder;
+	};
 };
 
 export type REFromFileCallback = (err: Error | null, entitiesData: FileREEntityResponseData[], modelData: FileREModelLevelResponseData) => void;
@@ -96,6 +102,41 @@ export type TestConnectionInfo = ConnectionSettings & GeneralRESettings;
 export type REConnectionInfo = GeneralRESettings & {
 	connectionSettings: ConnectionSettings;
 };
+
+export type REFromFileCallback = (err: Error | null, entitiesData: FileREEntityResponseData[], modelData: FileREModelLevelResponseData) => void;
+
+export type DirectiveUsage = {
+	directiveFormat: 'Structured';
+	directiveName: string;
+	argumentValueFormat: 'Raw';
+	rawArgumentValues: string;
+};
+
+export type DirectiveLocations = {
+    schema: boolean;
+    query: boolean;
+    mutation: boolean;
+    subscription: boolean;
+    scalar: boolean;
+    enum: boolean;
+    enumValue: boolean;
+    object: boolean;
+    interface: boolean;
+    union: boolean;
+    inputObject: boolean;
+    field: boolean;
+    fieldDefinition: boolean;
+    inputFieldDefinition: boolean;
+    argumentDefinition: boolean;
+};
+
+export type DirectiveDefinition = {
+	type: 'directive';
+    name: string;
+    description?: string;
+    arguments?: Object[]; // TODO: update when arguments are ready
+    directiveLocations: DirectiveLocations;
+}
 
 export type TestConnectionCallback = (err: Error | null) => void;
 export type DisconnectCallback = TestConnectionCallback;
