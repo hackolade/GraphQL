@@ -39,7 +39,7 @@ function getRawArguments({ argumentNodes = [] }) {
  * @returns {string} The string representation of the value
  */
 function getArgumentValue(value) {
-	switch (value.astNodeKind) {
+	switch (value.kind) {
 		case astNodeKind.INT:
 		case astNodeKind.FLOAT:
 			return value.value;
