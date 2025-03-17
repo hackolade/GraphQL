@@ -3,6 +3,8 @@
  * @import { DirectiveDefinition } from "../../types/types"
  */
 
+const { getDirectiveName } = require('../directiveName');
+
 const locationMap = {
 	'SCHEMA': 'schema',
 	'QUERY': 'query',
@@ -48,7 +50,7 @@ function mapDirective({ directive }) {
 
 	return {
 		type: 'directive',
-		name: directive.name.value,
+		name: getDirectiveName({ name: directive.name.value }),
 		description: directive.description?.value || '',
 		arguments: [], // TODO: implement argument mapping
 		directiveLocations: locations,

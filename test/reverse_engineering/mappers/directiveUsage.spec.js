@@ -18,7 +18,7 @@ describe('mapDirectivesUsage', () => {
 		const expected = [
 			{
 				directiveFormat: 'Structured',
-				directiveName: 'deprecated',
+				directiveName: '@deprecated',
 				argumentValueFormat: 'Raw',
 				rawArgumentValues: '',
 			},
@@ -50,7 +50,7 @@ describe('mapDirectivesUsage', () => {
 		const expected = [
 			{
 				directiveFormat: 'Structured',
-				directiveName: 'test',
+				directiveName: '@test',
 				argumentValueFormat: 'Raw',
 				rawArgumentValues: 'intArg: 42, stringArg: "hello", boolArg: true',
 			},
@@ -92,7 +92,7 @@ describe('mapDirectivesUsage', () => {
 		const expected = [
 			{
 				directiveFormat: 'Structured',
-				directiveName: 'complex',
+				directiveName: '@complex',
 				argumentValueFormat: 'Raw',
 				rawArgumentValues: 'listArg: [1, 2], objectArg: {field1: "value1"}',
 			},
@@ -120,7 +120,7 @@ describe('mapDirectivesUsage', () => {
 		const expected = [
 			{
 				directiveFormat: 'Structured',
-				directiveName: 'test',
+				directiveName: '@test',
 				argumentValueFormat: 'Raw',
 				rawArgumentValues: 'varArg: $var, enumArg: ENUM_VALUE',
 			},

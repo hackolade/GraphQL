@@ -67,7 +67,7 @@ describe('getCustomScalarTypeDefinitions', () => {
 
 	it('should correctly map a scalar with directives', () => {
 		const mockDirectiveResult = [
-			{ directiveName: 'specifiedBy', rawArgumentValues: 'url: "https://example.com/datetime"' },
+			{ directiveName: '@specifiedBy', rawArgumentValues: 'url: "https://example.com/datetime"' },
 		];
 		mapDirectivesUsageMock.mock.mockImplementationOnce(() => mockDirectiveResult);
 
