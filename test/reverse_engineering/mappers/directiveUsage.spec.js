@@ -34,15 +34,15 @@ describe('mapDirectivesUsage', () => {
 			arguments: [
 				{
 					name: { value: 'intArg' },
-					value: { astNodeKind: astNodeKind.INT, value: '42' },
+					value: { kind: astNodeKind.INT, value: '42' },
 				},
 				{
 					name: { value: 'stringArg' },
-					value: { astNodeKind: astNodeKind.STRING, value: 'hello' },
+					value: { kind: astNodeKind.STRING, value: 'hello' },
 				},
 				{
 					name: { value: 'boolArg' },
-					value: { astNodeKind: astNodeKind.BOOLEAN, value: true },
+					value: { kind: astNodeKind.BOOLEAN, value: true },
 				},
 			],
 		};
@@ -67,21 +67,21 @@ describe('mapDirectivesUsage', () => {
 				{
 					name: { value: 'listArg' },
 					value: {
-						astNodeKind: astNodeKind.LIST,
+						kind: astNodeKind.LIST,
 						values: [
-							{ astNodeKind: astNodeKind.INT, value: '1' },
-							{ astNodeKind: astNodeKind.INT, value: '2' },
+							{ kind: astNodeKind.INT, value: '1' },
+							{ kind: astNodeKind.INT, value: '2' },
 						],
 					},
 				},
 				{
 					name: { value: 'objectArg' },
 					value: {
-						astNodeKind: astNodeKind.OBJECT,
+						kind: astNodeKind.OBJECT,
 						fields: [
 							{
 								name: { value: 'field1' },
-								value: { astNodeKind: astNodeKind.STRING, value: 'value1' },
+								value: { kind: astNodeKind.STRING, value: 'value1' },
 							},
 						],
 					},
@@ -108,11 +108,11 @@ describe('mapDirectivesUsage', () => {
 			arguments: [
 				{
 					name: { value: 'varArg' },
-					value: { astNodeKind: astNodeKind.VARIABLE, name: { value: 'var' } },
+					value: { kind: astNodeKind.VARIABLE, name: { value: 'var' } },
 				},
 				{
 					name: { value: 'enumArg' },
-					value: { astNodeKind: astNodeKind.ENUM, value: 'ENUM_VALUE' },
+					value: { kind: astNodeKind.ENUM, value: 'ENUM_VALUE' },
 				},
 			],
 		};
