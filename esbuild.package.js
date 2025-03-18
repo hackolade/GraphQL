@@ -22,6 +22,7 @@ esbuild
 		outdir: RELEASE_FOLDER_PATH,
 		minify: true,
 		logLevel: 'info',
+		external: ['electron'],
 		plugins: [
 			clean({
 				patterns: [DEFAULT_RELEASE_FOLDER_PATH],
