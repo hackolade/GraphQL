@@ -1,10 +1,11 @@
 /**
- * @import {DirectiveDefinition, FieldsOrder} from "../../../shared/types/types"
+ * @import {DirectiveDefinition, FieldsOrder, CustomScalarDefinition} from "../../../shared/types/types"
  */
 
 const { astNodeKind } = require('../../constants/graphqlAST');
 const { findNodesByKind } = require('../../helpers/findNodesByKind');
 const { sortByName } = require('../../helpers/sortByName');
+const { getCustomScalarTypeDefinitions } = require('./customScalar');
 const { getDirectiveTypeDefinitions } = require('./directive');
 
 /**
@@ -19,8 +20,11 @@ function getTypeDefinitions({ typeDefinitions, fieldsOrder }) {
 	const directives = getDirectiveTypeDefinitions({
 		directives: findNodesByKind({ nodes: typeDefinitions, kind: astNodeKind.DIRECTIVE_DEFINITION }),
 	});
+	const customScalars = getCustomScalarTypeDefinitions({
+		customScalars: findNodesByKind({ nodes: typeDefinitions, kind: astNodeKind.SCALAR_TYPE_DEFINITION }),
+	});
 
-	const definitions = getTypeDefinitionsStructure({ fieldsOrder, directives });
+	const definitions = getTypeDefinitionsStructure({ fieldsOrder, directives, customScalars });
 
 	return definitions;
 }
@@ -31,14 +35,20 @@ function getTypeDefinitions({ typeDefinitions, fieldsOrder }) {
  * @param {object} params
  * @param {FieldsOrder} params.fieldsOrder - The fields order
  * @param {DirectiveDefinition[]} params.directives - The directive definitions
+ * @param {CustomScalarDefinition[]} params.customScalars - The custom scalar definitions
  * @returns {object} The type definitions structure
  */
-function getTypeDefinitionsStructure({ fieldsOrder, directives }) {
+function getTypeDefinitionsStructure({ fieldsOrder, directives, customScalars }) {
 	const definitions = {
 		['Directives']: getDefinitionCategoryStructure({
 			fieldsOrder,
 			subtype: 'directive',
 			properties: directives,
+		}),
+		['Scalars']: getDefinitionCategoryStructure({
+			fieldsOrder,
+			subtype: 'scalar',
+			properties: customScalars,
 		}),
 	};
 

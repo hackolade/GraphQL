@@ -5,6 +5,7 @@
 
 const { astNodeKind } = require('../constants/graphqlAST');
 const { DIRECTIVE_FORMAT, ARGUMENT_VALUE_FORMAT } = require('../constants/properties');
+const { getDirectiveName } = require('./directiveName');
 
 /**
  * Maps the directives usage
@@ -17,7 +18,7 @@ function mapDirectivesUsage({ directives = [] }) {
 	return directives.map(directive => {
 		return {
 			directiveFormat: DIRECTIVE_FORMAT.structured,
-			directiveName: directive.name.value,
+			directiveName: getDirectiveName({ name: directive.name.value }),
 			argumentValueFormat: ARGUMENT_VALUE_FORMAT.raw,
 			rawArgumentValues: getRawArguments({ argumentNodes: [...(directive.arguments || [])] }),
 		};
