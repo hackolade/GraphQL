@@ -17,7 +17,7 @@ describe('getDirectiveTypeDefinitions', () => {
 		const expected = [
 			{
 				type: 'directive',
-				name: 'testDirective',
+				name: '@testDirective',
 				arguments: [],
 				description: '',
 				directiveLocations: {
@@ -40,7 +40,7 @@ describe('getDirectiveTypeDefinitions', () => {
 		const expected = [
 			{
 				type: 'directive',
-				name: 'testDirective',
+				name: '@testDirective',
 				description: 'Test description',
 				arguments: [],
 				directiveLocations: {
@@ -62,7 +62,7 @@ describe('getDirectiveTypeDefinitions', () => {
 		const expected = [
 			{
 				type: 'directive',
-				name: 'testDirective',
+				name: '@testDirective',
 				arguments: [],
 				description: '',
 				directiveLocations: {
@@ -92,7 +92,7 @@ describe('getDirectiveTypeDefinitions', () => {
 		const expected = [
 			{
 				type: 'directive',
-				name: 'directive1',
+				name: '@directive1',
 				arguments: [],
 				description: '',
 				directiveLocations: {
@@ -101,7 +101,7 @@ describe('getDirectiveTypeDefinitions', () => {
 			},
 			{
 				type: 'directive',
-				name: 'directive2',
+				name: '@directive2',
 				arguments: [],
 				description: '',
 				directiveLocations: {
@@ -123,7 +123,7 @@ describe('getDirectiveTypeDefinitions', () => {
 		const expected = [
 			{
 				type: 'directive',
-				name: 'testDirective',
+				name: '@testDirective',
 				arguments: [],
 				description: '',
 				directiveLocations: {},
