@@ -1,6 +1,6 @@
 /**
- * @param {Object} params
- * @param {String} params.name
+ * @param {object} params
+ * @param {string} params.name
  * @returns {string} The directive name with "@" prefix
  */
 function getDirectiveName({ name }) {

@@ -16,9 +16,7 @@ function findNodesByKind({ kind, nodes }) {
 		return [];
 	}
 
-	return /**
-	 * @type {ASTKindToNode[K][]}
-	 */ (nodes.filter(node => node.kind === kind));
+	return /** @type {ASTKindToNode[K][]} */ (nodes.filter(node => node.kind === kind));
 }
 
 module.exports = {
