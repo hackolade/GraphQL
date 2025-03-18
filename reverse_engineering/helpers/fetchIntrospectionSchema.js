@@ -9,11 +9,11 @@ const { hckFetch } = require('@hackolade/fetch');
 /**
  * Encode credentials to base64 for base authorization purposes
  *
- * @param {string} userName
- * @param {string} userPassword
+ * @param {string} [userName]
+ * @param {string} [userPassword]
  * @returns {string}
  */
-function encodeCredentials(userName, userPassword) {
+function encodeCredentials(userName = '', userPassword = '') {
 	return Buffer.from(`${userName}:${userPassword}`).toString('base64');
 }
 

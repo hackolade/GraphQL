@@ -24,8 +24,8 @@ function mapRootSchemaTypesToContainer({ rootSchemaNode, graphName = 'New Graph'
 	return {
 		name: graphName,
 		description: mapStringValueNode({ node: rootSchemaNode.description }),
-		schemaRootTypes: mapSchemaRootTypes({ schemaRootTypes: rootSchemaNode.operationTypes }),
-		graphDirectives: mapDirectivesUsage({ directives: rootSchemaNode.directives }),
+		schemaRootTypes: mapSchemaRootTypes({ schemaRootTypes: [...rootSchemaNode.operationTypes] }),
+		graphDirectives: mapDirectivesUsage({ directives: [...(rootSchemaNode.directives || [])] }),
 	};
 }
 

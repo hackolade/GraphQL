@@ -34,6 +34,24 @@ module.exports = [
 		files: ['**/*.{js,cjs,mjs}'],
 		rules: {
 			...eslintConfigPrettier.rules,
+			'jsdoc/require-jsdoc': [
+				'error',
+				{
+					'publicOnly': false,
+					'require': {
+						'FunctionDeclaration': true,
+						'FunctionExpression': true,
+						'ArrowFunctionExpression': true,
+						'MethodDefinition': true,
+					},
+					'contexts': [
+						'FunctionDeclaration',
+						'FunctionExpression',
+						'ArrowFunctionExpression',
+						'MethodDefinition',
+					],
+				},
+			],
 			'jsdoc/tag-lines': 'off', // disabled due to conflict with prettier
 			'jsdoc/require-param-description': 'off',
 			'jsdoc/require-returns-description': 'off',

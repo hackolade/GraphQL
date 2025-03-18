@@ -13,11 +13,11 @@ module.exports = {
 	/**
 	 * Common disconnect method - not needed for GraphQL API
 	 *
-	 * @param {null} connectionInfo
-	 * @param {Logger} logger
+	 * @param {REConnectionInfo} _connectionInfo
+	 * @param {Logger} _logger
 	 * @param {DisconnectCallback} callback
 	 */
-	disconnect(connectionInfo, logger, callback) {
+	disconnect(_connectionInfo, _logger, callback) {
 		callback();
 	},
 
@@ -41,8 +41,8 @@ module.exports = {
 
 	/**
 	 * @param {REConnectionInfo} data
-	 * @param {Logger} logger
-	 * @param {() => void} callback
+	 * @param {Logger} logger - Logger instance
+	 * @param {(err?: Error | null, data?: object[], modelLevel: object, relationships: object[]) => void} callback
 	 * @returns {Promise<void>}
 	 */
 	async getDbCollectionsData(data, logger, callback) {
@@ -98,7 +98,7 @@ module.exports = {
 			const fileName = getFileName(data.filePath);
 			const { parsedSchema /*validationErrors*/ } = parseSchema({ schemaContent: fileContent }); // TODO: validation warnings can be returned in modelData
 			const mappedEntities = getMappedSchema({
-				schemaItems: parsedSchema.definitions,
+				schemaItems: [...parsedSchema.definitions],
 				graphName: fileName,
 				logger,
 				fieldsOrder,

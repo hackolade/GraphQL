@@ -108,11 +108,17 @@ function getFieldFromArrayItems({ items }) {
 	return items;
 }
 
+// TODO: Add proper JSDoc comments for the functions that are exported
 module.exports = {
+	// eslint-disable-next-line jsdoc/require-jsdoc
 	getObjectTypeFields: params => getFields({ ...params, addArguments: true, addDefaultValue: false }),
+	// eslint-disable-next-line jsdoc/require-jsdoc
 	getInterfaceTypeFields: params => getFields({ ...params, addArguments: true, addDefaultValue: false }),
+	// eslint-disable-next-line jsdoc/require-jsdoc
 	getInputTypeFields: params => getFields({ ...params, addArguments: false, addDefaultValue: true }),
+	// eslint-disable-next-line jsdoc/require-jsdoc
 	getRootTypeFields: params => getFields({ ...params, addArguments: true, addDefaultValue: false }),
+
 	// exported only for tests:
 	mapField,
 	getFieldType,

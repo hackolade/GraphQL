@@ -43,9 +43,11 @@ export type FileREData = {
 };
 
 export type REFromFileCallback = (
-	err: Error | null,
-	entitiesData: FileREEntityResponseData[],
-	modelData: FileREModelLevelResponseData,
+	err: Error | null | unknown,
+	entitiesData?: FileREEntityResponseData[],
+	modelData?: FileREModelLevelResponseData | {},
+	relationships?: object[], // no need in context in GraphQL
+	reType?: string,
 ) => void;
 
 type ConnectionSourceType = 'database' | 'dataDictionary' | 'cloud';
@@ -109,16 +111,10 @@ export type REConnectionInfo = GeneralRESettings & {
 	connectionSettings: ConnectionSettings;
 };
 
-export type REFromFileCallback = (
-	err: Error | null,
-	entitiesData: FileREEntityResponseData[],
-	modelData: FileREModelLevelResponseData,
-) => void;
-
 export type DirectiveUsage = {
-	directiveFormat: 'Structured';
+	directiveFormat: string;
 	directiveName: string;
-	argumentValueFormat: 'Raw';
+	argumentValueFormat: string;
 	rawArgumentValues: string;
 };
 
@@ -130,5 +126,5 @@ export type DirectiveDefinition = {
 	directiveLocations: DirectiveLocations;
 };
 
-export type TestConnectionCallback = (err: Error | null) => void;
+export type TestConnectionCallback = (err?: Error | unknown) => void;
 export type DisconnectCallback = TestConnectionCallback;

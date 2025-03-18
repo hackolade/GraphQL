@@ -1,20 +1,24 @@
 /**
- * @import {DocumentNode, Kind} from "graphql"
+ * @import {Kind, ASTNode, ASTKindToNode} from "graphql"
  */
 
 /**
- * Find nodes by kind
+ * Find nodes by kind with proper typing
  *
+ * @template {Kind} K
  * @param {object} options
- * @param {Kind} options.kind - The kind of node to find
- * @param {DocumentNode[]} options.nodes - The nodes to search
- * @returns {DocumentNode[]} The found nodes
+ * @param {K} options.kind - The kind of node to find
+ * @param {ASTNode[]} options.nodes - The nodes to search
+ * @returns {ASTKindToNode[K][]} The found nodes with proper type
  */
 function findNodesByKind({ kind, nodes }) {
 	if (!nodes || !Array.isArray(nodes)) {
 		return [];
 	}
-	return nodes.filter(node => node.kind === kind);
+
+	return /**
+	 * @type {ASTKindToNode[K][]}
+	 */ (nodes.filter(node => node.kind === kind));
 }
 
 module.exports = {

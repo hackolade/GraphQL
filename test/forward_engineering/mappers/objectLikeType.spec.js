@@ -56,6 +56,7 @@ describe('getObjectLikeTypes', () => {
 			objectTypes,
 			definitionsIdToNameMap,
 			typeKeyword: 'type',
+			// eslint-disable-next-line jsdoc/require-jsdoc
 			getFieldsFunction: ({ fields, requiredFields }) =>
 				Object.entries(fields).map(([name, fieldData]) => ({
 					statement: `${name}: ${fieldData.type}${requiredFields.includes(name) ? '!' : ''}`,
@@ -98,6 +99,7 @@ describe('getObjectLikeTypes', () => {
 			objectTypes: interfaceTypes,
 			definitionsIdToNameMap,
 			typeKeyword: 'interface',
+			// eslint-disable-next-line jsdoc/require-jsdoc
 			getFieldsFunction: ({ fields, requiredFields }) =>
 				Object.entries(fields).map(([name, fieldData]) => ({
 					statement: `${name}: ${fieldData.type}${requiredFields.includes(name) ? '!' : ''}`,
@@ -137,6 +139,7 @@ describe('getObjectLikeTypes', () => {
 			objectTypes: inputTypes,
 			definitionsIdToNameMap,
 			typeKeyword: 'input',
+			// eslint-disable-next-line jsdoc/require-jsdoc
 			getFieldsFunction: ({ fields, requiredFields }) =>
 				Object.entries(fields).map(([name, fieldData]) => ({
 					statement: `${name}: ${fieldData.type}${requiredFields.includes(name) ? '!' : ''}`,

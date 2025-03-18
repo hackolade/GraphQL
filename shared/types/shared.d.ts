@@ -6,7 +6,7 @@ type LogData =
 			error?: Error;
 	  }
 	| Error
-	| object;
+	| unknown;
 
 type LogTitle = string;
 

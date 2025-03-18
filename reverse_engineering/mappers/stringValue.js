@@ -6,7 +6,7 @@
  * Maps a string value node to a string
  *
  * @param {object} params
- * @param {StringValueNode} params.node - The string value node
+ * @param {StringValueNode} [params.node] - The string value node
  * @returns {string} The mapped string
  */
 function mapStringValueNode({ node }) {

@@ -10,7 +10,7 @@ const { DIRECTIVE_FORMAT, ARGUMENT_VALUE_FORMAT } = require('../constants/proper
  * Maps the directives usage
  *
  * @param {object} params
- * @param {DirectiveNode[]} params.directives - The directives
+ * @param {DirectiveNode[]} [params.directives] - The directives
  * @returns {DirectiveUsage[]} The mapped directives usage
  */
 function mapDirectivesUsage({ directives = [] }) {
@@ -19,7 +19,7 @@ function mapDirectivesUsage({ directives = [] }) {
 			directiveFormat: DIRECTIVE_FORMAT.structured,
 			directiveName: directive.name.value,
 			argumentValueFormat: ARGUMENT_VALUE_FORMAT.raw,
-			rawArgumentValues: getRawArguments({ argumentNodes: directive.arguments }),
+			rawArgumentValues: getRawArguments({ argumentNodes: [...(directive.arguments || [])] }),
 		};
 	});
 }
@@ -28,7 +28,7 @@ function mapDirectivesUsage({ directives = [] }) {
  * Gets the raw arguments
  *
  * @param {object} params
- * @param {ArgumentNode[]} params.argumentNodes - The arguments
+ * @param {ArgumentNode[]} [params.argumentNodes] - The arguments
  * @returns {string} The raw arguments
  */
 function getRawArguments({ argumentNodes = [] }) {
@@ -42,7 +42,7 @@ function getRawArguments({ argumentNodes = [] }) {
  * @returns {string} The string representation of the value
  */
 function getArgumentValue(value) {
-	switch (value.astNodeKind) {
+	switch (value.kind) {
 		case astNodeKind.INT:
 		case astNodeKind.FLOAT:
 			return value.value;

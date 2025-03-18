@@ -3,7 +3,7 @@
 		"baseUrl": ".",
 		"outDir": "./tscDist",
 		"allowJs": true,
-		"checkJs": false,
+		"checkJs": true,
 		"target": "ES2016",
 		"lib": ["ESNext", "DOM"],
 		"sourceMap": true,
@@ -11,11 +11,11 @@
 		"moduleResolution": "node",
 		"experimentalDecorators": true,
 		"noUnusedParameters": true,
-		"noUnusedLocals": true,
+		"noUnusedLocals": false,
 		"noImplicitThis": true,
 		"noImplicitAny": false,
 		"alwaysStrict": true,
-		"skipLibCheck": true,
+		"skipLibCheck": false,
 		"module": "ESNext",
 		"strict": true,
 		"useUnknownInCatchVariables": true,
@@ -24,7 +24,8 @@
 		"resolveJsonModule": true,
 		"esModuleInterop": true,
 		"forceConsistentCasingInFileNames": true,
-		"typeRoots": ["./node_modules/@types", "./types"]
+		"typeRoots": ["./node_modules/@types", "./shared"],
+		"types": ["node"]
 	},
 	"include": ["reverse_engineering", "forward_engineering"],
 	"exclude": ["**/node_modules/**", "release/**/*"]
