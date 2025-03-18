@@ -12,5 +12,5 @@
 	"plugins": ["prettier-plugin-jsdoc"],
 	"jsdocSeparateReturnsFromParam": false,
 	"jsdocSeparateTagGroups": false,
-	"jsdocCommentLineStrategy": "multiline"
+	"jsdocCommentLineStrategy": "keep"
 }
