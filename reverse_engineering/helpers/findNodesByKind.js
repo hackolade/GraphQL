@@ -1,10 +1,11 @@
 /**
- * @import { DocumentNode, Kind } from "graphql"
+ * @import {DocumentNode, Kind} from "graphql"
  */
 
 /**
  * Find nodes by kind
- * @param {Object} options
+ *
+ * @param {object} options
  * @param {Kind} options.kind - The kind of node to find
  * @param {DocumentNode[]} options.nodes - The nodes to search
  * @returns {DocumentNode[]} The found nodes

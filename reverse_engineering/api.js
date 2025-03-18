@@ -1,6 +1,5 @@
 /**
- * @import { FileREData, REFromFileCallback, TestConnectionInfo, TestConnectionCallback, DisconnectCallback, REConnectionInfo } from "./types/types"
- * @import { Logger } from "../shared/types/types"
+ * @import {FileREData, REFromFileCallback, TestConnectionInfo, TestConnectionCallback, DisconnectCallback, REConnectionInfo, Logger} from "../shared/types/types"
  */
 
 const { getFileName } = require('./helpers/getFileName');
@@ -13,6 +12,7 @@ const { convertIntrospectionSchemaToGraphQLSchema } = require('./helpers/convert
 module.exports = {
 	/**
 	 * Common disconnect method - not needed for GraphQL API
+	 *
 	 * @param {null} connectionInfo
 	 * @param {Logger} logger
 	 * @param {DisconnectCallback} callback
@@ -23,6 +23,7 @@ module.exports = {
 
 	/**
 	 * Test a connection to the GraphQL server - executes introspection query
+	 *
 	 * @param {TestConnectionInfo} connectionInfo
 	 * @param {Logger} logger
 	 * @param {TestConnectionCallback} callback
@@ -39,10 +40,9 @@ module.exports = {
 	},
 
 	/**
-	 *
 	 * @param {REConnectionInfo} data
 	 * @param {Logger} logger
-	 * @param callback
+	 * @param {() => void} callback
 	 * @returns {Promise<void>}
 	 */
 	async getDbCollectionsData(data, logger, callback) {
@@ -86,6 +86,7 @@ module.exports = {
 
 	/**
 	 * RE a GraphQL schema file and returns the mapped schema
+	 *
 	 * @param {FileREData} data
 	 * @param {Logger} logger
 	 * @param {REFromFileCallback} callback

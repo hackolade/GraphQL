@@ -31,46 +31,28 @@
 			"childValueType": {}
 		},
 		"scalar": {
-			"childValueType": [
-				"scalar"
-			]
+			"childValueType": ["scalar"]
 		},
 		"enum": {
-			"childValueType": [
-				"enum"
-			]
+			"childValueType": ["enum"]
 		},
 		"object": {
-			"childValueType": [
-				"object"
-			]
+			"childValueType": ["object"]
 		},
 		"interface": {
-			"childValueType": [
-				"interface"
-			]
+			"childValueType": ["interface"]
 		},
 		"union": {
-			"childValueType": [
-				"union"
-			]
+			"childValueType": ["union"]
 		},
 		"input": {
-			"childValueType": [
-				"input"
-			]
+			"childValueType": ["input"]
 		},
 		"extend": {
-			"childValueType": [
-				"object",
-				"interface",
-				"input"
-			]
+			"childValueType": ["object", "interface", "input"]
 		},
 		"directive": {
-			"childValueType": [
-				"directive"
-			]
+			"childValueType": ["directive"]
 		}
 	}
 }

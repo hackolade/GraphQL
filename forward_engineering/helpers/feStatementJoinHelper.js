@@ -1,9 +1,10 @@
 /**
- * Joins an array of statements into a single line.
- * Trims each statement, filters out empty statements, and joins them with a space.
+ * Joins an array of statements into a single line. Trims each statement, filters out empty statements, and joins them
+ * with a space.
  *
- * @param {Object} param0
+ * @param {object} param0
  * @param {string[]} param0.statements - The array of statements to join.
+ * @param {string} [param0.separator]
  * @returns {string} - The joined statements as a single line.
  */
 function joinInlineStatements({ statements, separator = ' ' }) {

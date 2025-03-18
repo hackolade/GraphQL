@@ -1,3 +1,5 @@
+import { DirectiveLocations } from './shared';
+
 type ContainerName = string;
 
 export type ContainerInfo = {
@@ -17,13 +19,13 @@ export type FileREEntityResponseData = {
 	jsonSchema: string; // entity JSON Schema
 	objectNames: {
 		collectionName: string; // collection name
-	}
+	};
 	doc: {
 		collectionName: string; // collection name
 		dbName: ContainerName;
 		modelDefinitions: string; // model definitions JSON Schema
 		bucketInfo: ContainerInfo;
-	}
+	};
 };
 
 export type FileREModelLevelResponseData = {
@@ -40,24 +42,28 @@ export type FileREData = {
 	};
 };
 
-export type REFromFileCallback = (err: Error | null, entitiesData: FileREEntityResponseData[], modelData: FileREModelLevelResponseData) => void;
+export type REFromFileCallback = (
+	err: Error | null,
+	entitiesData: FileREEntityResponseData[],
+	modelData: FileREModelLevelResponseData,
+) => void;
 
-type ConnectionSourceType = 'database' | 'dataDictionary' | 'cloud'
+type ConnectionSourceType = 'database' | 'dataDictionary' | 'cloud';
 
-export type AuthenticationType = 'none' | 'basic' | 'bearer'
+export type AuthenticationType = 'none' | 'basic' | 'bearer';
 
-type RecordSamplingMode = 'absolute' | 'relative'
+type RecordSamplingMode = 'absolute' | 'relative';
 
 type RecordSamplingModeOptions = {
-	value: number
-}
+	value: number;
+};
 
 type RecordSamplingSettings = {
 	absolute: RecordSamplingModeOptions;
 	relative: RecordSamplingModeOptions;
 	active: RecordSamplingMode;
 	maxValue: number;
-}
+};
 
 export type ConnectionSettings = {
 	id: string;
@@ -69,7 +75,7 @@ export type ConnectionSettings = {
 	userName?: string;
 	userPassword?: string;
 	target: 'GraphQL';
-}
+};
 
 type GeneralRESettings = {
 	appVersion?: string;
@@ -90,20 +96,24 @@ type GeneralRESettings = {
 	probabilisticSchema?: boolean;
 	fieldInference: {
 		active: string;
-	}
-}
+	};
+};
 
 type PaginationSettings = {
 	enabled: boolean;
 	value: number;
-}
+};
 
 export type TestConnectionInfo = ConnectionSettings & GeneralRESettings;
 export type REConnectionInfo = GeneralRESettings & {
 	connectionSettings: ConnectionSettings;
 };
 
-export type REFromFileCallback = (err: Error | null, entitiesData: FileREEntityResponseData[], modelData: FileREModelLevelResponseData) => void;
+export type REFromFileCallback = (
+	err: Error | null,
+	entitiesData: FileREEntityResponseData[],
+	modelData: FileREModelLevelResponseData,
+) => void;
 
 export type DirectiveUsage = {
 	directiveFormat: 'Structured';
@@ -112,31 +122,13 @@ export type DirectiveUsage = {
 	rawArgumentValues: string;
 };
 
-export type DirectiveLocations = {
-    schema: boolean;
-    query: boolean;
-    mutation: boolean;
-    subscription: boolean;
-    scalar: boolean;
-    enum: boolean;
-    enumValue: boolean;
-    object: boolean;
-    interface: boolean;
-    union: boolean;
-    inputObject: boolean;
-    field: boolean;
-    fieldDefinition: boolean;
-    inputFieldDefinition: boolean;
-    argumentDefinition: boolean;
-};
-
 export type DirectiveDefinition = {
 	type: 'directive';
-    name: string;
-    description?: string;
-    arguments?: Object[]; // TODO: update when arguments are ready
-    directiveLocations: DirectiveLocations;
-}
+	name: string;
+	description?: string;
+	arguments?: Object[]; // TODO: update when arguments are ready
+	directiveLocations: DirectiveLocations;
+};
 
 export type TestConnectionCallback = (err: Error | null) => void;
 export type DisconnectCallback = TestConnectionCallback;

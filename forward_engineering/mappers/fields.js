@@ -1,5 +1,5 @@
 /**
- * @import { FEStatement, DirectivePropertyData, FieldData, ArrayItem, IdToNameMap } from "../types/types"
+ * @import {FEStatement, FieldData, ArrayItem, IdToNameMap} from "../../shared/types/types"
  */
 
 const { joinInlineStatements } = require('../helpers/feStatementJoinHelper');
@@ -10,13 +10,13 @@ const { getFieldDefaultValueStatement } = require('./fieldDefaultValue');
 const { addRequired } = require('../helpers/addRequiredHelper');
 
 /**
- * @typedef {Object.<string, FieldData>} FieldsData
+ * @typedef {Record<string, FieldData>} FieldsData
  */
 
 /**
  * Gets the fields from the model definitions.
  *
- * @param {Object} param0
+ * @param {object} param0
  * @param {FieldsData} param0.fields - The fields to get.
  * @param {string[]} param0.requiredFields - The required fields list.
  * @param {IdToNameMap} param0.definitionsIdToNameMap - The definitions id to name map.
@@ -40,7 +40,7 @@ function getFields({ fields = [], requiredFields = [], definitionsIdToNameMap, a
 /**
  * Maps a field to an FEStatement.
  *
- * @param {Object} param0
+ * @param {object} param0
  * @param {string} param0.name - The name of the field.
  * @param {FieldData} param0.fieldData - The field data object.
  * @param {boolean} param0.required - Indicates if the field is required.
@@ -72,7 +72,7 @@ function mapField({ name, fieldData, required, definitionsIdToNameMap, addArgume
 /**
  * Gets the field type.
  *
- * @param {Object} param0
+ * @param {object} param0
  * @param {FieldData} param0.field - The field data object.
  * @param {boolean} param0.required - Indicates if the field is required.
  * @returns {string} - The field type.
@@ -97,7 +97,7 @@ function getFieldType({ field, required }) {
 /**
  * Gets the field from array items.
  *
- * @param {Object} param0
+ * @param {object} param0
  * @param {FieldData['items']} param0.items - The array items.
  * @returns {ArrayItem} - The field.
  */

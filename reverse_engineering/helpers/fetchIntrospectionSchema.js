@@ -1,6 +1,6 @@
 /**
- * @import { ConnectionSettings } from '../../types/types';
- * @import { IntrospectionQuery } from 'graphql';
+ * @import {ConnectionSettings, AuthenticationType, Logger} from '../../shared/types/types';
+ * @import {IntrospectionQuery} from 'graphql';
  */
 
 const { getIntrospectionQuery } = require('graphql');
@@ -8,6 +8,7 @@ const { hckFetch } = require('@hackolade/fetch');
 
 /**
  * Encode credentials to base64 for base authorization purposes
+ *
  * @param {string} userName
  * @param {string} userPassword
  * @returns {string}
@@ -18,10 +19,13 @@ function encodeCredentials(userName, userPassword) {
 
 /**
  * Build request headers for the fetch request
- * @param {AuthenticationType} authType
- * @param {string} [bearerToken]
- * @param {string} [userName]
- * @param {string} [userPassword]
+ *
+ * @param {object} params
+ * @param {AuthenticationType} params.authType
+ * @param {string} [params.bearerToken]
+ * @param {string} [params.userName]
+ * @param {string} [params.userPassword]
+ * @returns {Record<string, string>}
  */
 function buildRequestHeaders({ authType, bearerToken, userName, userPassword }) {
 	const headers = {
@@ -39,8 +43,10 @@ function buildRequestHeaders({ authType, bearerToken, userName, userPassword }) 
 
 /**
  * Fetch introspection schema from the GraphQL server
- * @param {ConnectionSettings} connectionInfo
- * @param {Logger} logger
+ *
+ * @param {object} params
+ * @param {ConnectionSettings} params.connectionInfo
+ * @param {Logger} params.logger
  * @returns {Promise<IntrospectionQuery>}
  */
 async function fetchIntrospectionSchema({ connectionInfo, logger }) {

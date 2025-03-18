@@ -1,5 +1,5 @@
 /**
- * @import { DirectiveDefinitions, Directive, FEStatement, DirectiveLocations, IdToNameMap } from "../types/types"
+ * @import {DirectiveDefinitions, Directive, FEStatement, DirectiveLocations, IdToNameMap} from "../../shared/types/types"
  */
 
 const { DIRECTIVE_LOCATIONS } = require('../constants/feScriptConstants');
@@ -10,9 +10,9 @@ const UNKNOWN_LOCATION = 'UNKNOWN_LOCATION';
 /**
  * Map directive locations to a string.
  *
- * @param {Object} args - The arguments object
+ * @param {object} args - The arguments object
  * @param {DirectiveLocations} [args.directiveLocations] - The directive locations object with all available locations
- * @return {string}
+ * @returns {string}
  */
 function mapDirectiveLocations({ directiveLocations = {} }) {
 	const directiveLocationsString = Object.keys(directiveLocations)
@@ -38,11 +38,12 @@ const getDirectiveName = name => (name.startsWith('@') ? name : `@${name}`);
 /**
  * Map a directive to an FEStatement object.
  *
- * @param {Object} args - The arguments object
+ * @param {object} args - The arguments object
  * @param {string} args.name - The name of directive
  * @param {Directive} args.directive - The directive object
- * @param {IdToNameMap} args.definitionsIdToNameMap - The ID to name map of all available types in model - needs for arguments
- * @return {FEStatement}
+ * @param {IdToNameMap} args.definitionsIdToNameMap - The ID to name map of all available types in model - needs for
+ *   arguments
+ * @returns {FEStatement}
  */
 function mapDirective({ name, directive, definitionsIdToNameMap }) {
 	const directiveName = getDirectiveName(name);
@@ -63,8 +64,9 @@ function mapDirective({ name, directive, definitionsIdToNameMap }) {
 /**
  * Maps directives to an FEStatement objects.
  *
- * @param {Object} args - The arguments object
+ * @param {object} args - The arguments object
  * @param {DirectiveDefinitions} args.definitionsIdToNameMap - The directives schema object
+ * @param {object} args.directives
  * @returns {FEStatement[]}
  */
 function getDirectives({ definitionsIdToNameMap, directives = {} }) {

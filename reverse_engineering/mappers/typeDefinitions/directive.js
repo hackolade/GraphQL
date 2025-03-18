@@ -1,6 +1,6 @@
 /**
- * @import { DirectiveDefinitionNode } from "graphql"
- * @import { DirectiveDefinition } from "../../types/types"
+ * @import {DirectiveDefinitionNode} from "graphql"
+ * @import {DirectiveDefinition} from "../../../shared/types/types"
  */
 
 const locationMap = {
@@ -23,7 +23,8 @@ const locationMap = {
 
 /**
  * Maps the directive type definitions
- * @param {Object} params
+ *
+ * @param {object} params
  * @param {DirectiveDefinitionNode[]} params.directives - The directives
  * @returns {DirectiveDefinition[]} The mapped directive type definitions
  */
@@ -33,7 +34,8 @@ function getDirectiveTypeDefinitions({ directives = [] }) {
 
 /**
  * Maps a single directive definition
- * @param {Object} params
+ *
+ * @param {object} params
  * @param {DirectiveDefinitionNode} params.directive - The directive to map
  * @returns {DirectiveDefinition} The mapped directive definition
  */

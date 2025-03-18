@@ -1,6 +1,6 @@
 /**
- * @import { DocumentNode } from "graphql"
- * @import { Logger, FileREEntityResponseData, FieldsOrder } from "../types/types"
+ * @import {DocumentNode} from "graphql"
+ * @import {Logger, FileREEntityResponseData, FieldsOrder} from "../../shred/types/types"
  */
 
 const { Kind } = require('graphql');
@@ -10,7 +10,8 @@ const { getTypeDefinitions } = require('./typeDefinitions/typeDefinitions');
 
 /**
  * Maps a GraphQL schema to a RE response
- * @param {Object} params
+ *
+ * @param {object} params
  * @param {DocumentNode[]} params.schemaItems - The schema items
  * @param {string} params.graphName - The name of the graph to be mapped as the container name
  * @param {Logger} params.logger - The logger

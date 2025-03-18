@@ -1,10 +1,11 @@
 /**
- * @import { StringValueNode } from "graphql"
+ * @import {StringValueNode} from "graphql"
  */
 
 /**
  * Maps a string value node to a string
- * @param {Object} params
+ *
+ * @param {object} params
  * @param {StringValueNode} params.node - The string value node
  * @returns {string} The mapped string
  */

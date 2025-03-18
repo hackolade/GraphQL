@@ -1,6 +1,6 @@
 /**
- * @import { SchemaDefinitionNode, OperationTypeDefinitionNode } from "graphql"
- * @import { ContainerInfo, ContainerSchemaRootTypes } from "../types/types"
+ * @import {SchemaDefinitionNode, OperationTypeDefinitionNode} from "graphql"
+ * @import {ContainerInfo, ContainerSchemaRootTypes} from "../../shared/types/types"
  */
 
 const { OperationTypeNode } = require('graphql');
@@ -10,7 +10,8 @@ const { mapDirectivesUsage } = require('./directiveUsage');
 
 /**
  * Maps the root schema types to a container
- * @param {Object} params
+ *
+ * @param {object} params
  * @param {SchemaDefinitionNode} params.rootSchemaNode - The root schema node
  * @param {string} params.graphName - The name of the graph
  * @returns {ContainerInfo} The mapped container
@@ -30,7 +31,8 @@ function mapRootSchemaTypesToContainer({ rootSchemaNode, graphName = 'New Graph'
 
 /**
  * Maps the schema root types
- * @param {Object} params
+ *
+ * @param {object} params
  * @param {OperationTypeDefinitionNode[]} params.schemaRootTypes - The schema root types
  * @returns {ContainerSchemaRootTypes} The mapped schema root types
  */

@@ -3,14 +3,17 @@ const prettierPlugin = require('eslint-plugin-prettier');
 const eslintConfigPrettier = require('eslint-config-prettier');
 const importPlugin = require('eslint-plugin-import');
 const unusedImportsPlugin = require('eslint-plugin-unused-imports');
+const jsdocPlugin = require('eslint-plugin-jsdoc');
 
 /**
  * @type {import('eslint').Linter.Config[]}
  */
 module.exports = [
+	jsdocPlugin.configs['flat/recommended'],
 	{
 		plugins: {
 			'import': importPlugin,
+			'jsdoc': jsdocPlugin,
 			'unused-imports': unusedImportsPlugin,
 			'prettier': prettierPlugin,
 		},
@@ -31,6 +34,9 @@ module.exports = [
 		files: ['**/*.{js,cjs,mjs}'],
 		rules: {
 			...eslintConfigPrettier.rules,
+			'jsdoc/tag-lines': 'off', // disabled due to conflict with prettier
+			'jsdoc/require-param-description': 'off',
+			'jsdoc/require-returns-description': 'off',
 			'no-cond-assign': 'error',
 			'no-const-assign': 'error',
 			'no-dupe-args': 'error',
