@@ -3,7 +3,7 @@
  */
 
 const { joinInlineStatements } = require('../helpers/feStatementJoinHelper');
-const { getDefinitionNameFromReferencePath } = require('../helpers/referencesHelper');
+const { getDefinitionNameFromReferencePath } = require('../helpers/referenceHelper');
 const { getArguments } = require('./arguments');
 const { getDirectivesUsageStatement } = require('./directiveUsageStatements');
 const { getFieldDefaultValueStatement } = require('./fieldDefaultValue');
