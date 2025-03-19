@@ -1,5 +1,5 @@
 /**
- * @import { IdToNameMap } from "../types/types"
+ * @import {IdToNameMap, FEStatement} from "../../shared/types/types"
  */
 
 const { getCustomScalars } = require('./customScalars');
@@ -11,8 +11,8 @@ const { getObjectTypeFields, getInterfaceTypeFields, getInputTypeFields } = requ
 /**
  * Gets the type definition statements from model definitions.
  *
- * @param {Object} param0
- * @param {Object} param0.modelDefinitions - The model definitions object.
+ * @param {object} param0
+ * @param {object} param0.modelDefinitions - The model definitions object.
  * @param {IdToNameMap} param0.definitionsIdToNameMap - The definitions id to name map.
  * @returns {FEStatement[]} - The formatted type definition statements.
  */
@@ -51,10 +51,10 @@ function getTypeDefinitionStatements({ modelDefinitions, definitionsIdToNameMap 
 /**
  * Gets the model definitions by parent's subtype, to not use definitions category name as it may change.
  *
- * @param {Object} param0 - The parameter object.
- * @param {Object} param0.modelDefinitions - The model definitions object.
+ * @param {object} param0 - The parameter object.
+ * @param {object} param0.modelDefinitions - The model definitions object.
  * @param {string} param0.subtype - The subtype to filter by.
- * @returns {Object} - The model definitions found by parent's subtype.
+ * @returns {object} - The model definitions found by parent's subtype.
  */
 function getModelDefinitionsBySubtype({ modelDefinitions, subtype }) {
 	const subtypeDefinitions = Object.values(modelDefinitions.properties).find(

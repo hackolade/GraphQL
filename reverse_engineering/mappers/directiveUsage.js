@@ -1,16 +1,17 @@
+/**
+ * @import {DirectiveNode, ArgumentNode, ValueNode} from "graphql"
+ * @import {DirectiveUsage} from "../../shared/types/types"
+ */
+
 const { astNodeKind } = require('../constants/graphqlAST');
 const { DIRECTIVE_FORMAT, ARGUMENT_VALUE_FORMAT } = require('../constants/properties');
 const { getDirectiveName } = require('./directiveName');
 
 /**
- * @import { DirectiveNode, ArgumentNode, ValueNode } from "graphql"
- * @import { DirectiveUsage } from "../types/types"
- */
-
-/**
  * Maps the directives usage
- * @param {Object} params
- * @param {DirectiveNode[]} params.directives - The directives
+ *
+ * @param {object} params
+ * @param {DirectiveNode[]} [params.directives] - The directives
  * @returns {DirectiveUsage[]} The mapped directives usage
  */
 function mapDirectivesUsage({ directives = [] }) {
@@ -19,15 +20,16 @@ function mapDirectivesUsage({ directives = [] }) {
 			directiveFormat: DIRECTIVE_FORMAT.structured,
 			directiveName: getDirectiveName({ name: directive.name.value }),
 			argumentValueFormat: ARGUMENT_VALUE_FORMAT.raw,
-			rawArgumentValues: getRawArguments({ argumentNodes: directive.arguments }),
+			rawArgumentValues: getRawArguments({ argumentNodes: [...(directive.arguments || [])] }),
 		};
 	});
 }
 
 /**
  * Gets the raw arguments
- * @param {Object} params
- * @param {ArgumentNode[]} params.argumentNodes - The arguments
+ *
+ * @param {object} params
+ * @param {ArgumentNode[]} [params.argumentNodes] - The arguments
  * @returns {string} The raw arguments
  */
 function getRawArguments({ argumentNodes = [] }) {
@@ -36,6 +38,7 @@ function getRawArguments({ argumentNodes = [] }) {
 
 /**
  * Gets the string representation of an argument value
+ *
  * @param {ValueNode} value - The value node
  * @returns {string} The string representation of the value
  */

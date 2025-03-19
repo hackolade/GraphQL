@@ -1,13 +1,14 @@
 /**
- * @import { ScalarTypeDefinitionNode } from "graphql"
- * @import { CustomScalarDefinition } from "../../types/types"
+ * @import {ScalarTypeDefinitionNode} from "graphql"
+ * @import {CustomScalarDefinition} from "../../../shared/types/types"
  */
 
 const { mapDirectivesUsage } = require('../directiveUsage');
 
 /**
  * Maps the custom scalar type definitions
- * @param {Object} params
+ *
+ * @param {object} params
  * @param {ScalarTypeDefinitionNode[]} params.customScalars - The custom scalars
  * @returns {CustomScalarDefinition[]} The mapped custom scalar type definitions
  */
@@ -17,7 +18,8 @@ function getCustomScalarTypeDefinitions({ customScalars = [] }) {
 
 /**
  * Maps a single custom scalar definition
- * @param {Object} params
+ *
+ * @param {object} params
  * @param {ScalarTypeDefinitionNode} params.scalar - The scalar to map
  * @returns {CustomScalarDefinition} The mapped custom scalar definition
  */
@@ -26,7 +28,7 @@ function mapCustomScalar({ scalar }) {
 		type: 'scalar',
 		name: scalar.name.value,
 		description: scalar.description?.value || '',
-		typeDirectives: mapDirectivesUsage({ directives: scalar.directives }),
+		typeDirectives: mapDirectivesUsage({ directives: [...(scalar.directives || [])] }),
 	};
 }
 

@@ -4,8 +4,8 @@ const SYSTEM_NAMES = ['Scalars', 'Enums', 'Objects', 'Interfaces', 'Input object
 /**
  * Generate the ID to Name map for the given model definitions schema.
  *
- * @param {Object} modelDefinitionsSchema - The model definitions object properties.
- * @returns {Object} - The ID to Name map
+ * @param {object} modelDefinitionsSchema - The model definitions object properties.
+ * @returns {object} - The ID to Name map
  */
 const generateIdToNameMap = (modelDefinitionsSchema = {}) => {
 	let idToNameMap = {};

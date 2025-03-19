@@ -149,6 +149,6 @@ describe('getCustomScalarTypeDefinitions', () => {
 		const result = getCustomScalarTypeDefinitions({ customScalars: [mockScalar] });
 		assert.deepStrictEqual(result, expected);
 		assert.strictEqual(mapDirectivesUsageMock.mock.calls.length, 1);
-		assert.strictEqual(mapDirectivesUsageMock.mock.calls[0].arguments[0].directives, undefined);
+		assert.deepStrictEqual(mapDirectivesUsageMock.mock.calls[0].arguments[0].directives, []);
 	});
 });

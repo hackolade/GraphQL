@@ -1,11 +1,11 @@
 /**
- * @import { FEStatement } from "../types/types"
+ * @import {FEStatement} from "../../shared/types/types"
  */
 
 /**
  * Generates a header containing the schema version and the generation date.
  *
- * @param {Object} param0
+ * @param {object} param0
  * @param {string} param0.schemaVersion - The version of the schema.
  * @returns {FEStatement} - The header containing the schema version and generation date.
  */

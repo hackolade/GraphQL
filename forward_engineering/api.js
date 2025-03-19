@@ -1,6 +1,5 @@
 /**
- * @import { ContainerLevelScriptFEData, GenerateContainerLevelScriptCallback } from "./types/types"
- * @import { Logger } from "../shared/types/types"
+ * @import {ContainerLevelScriptFEData, GenerateContainerLevelScriptCallback, ValidateScriptCallback, Logger} from "../shared/types/types"
  */
 
 const validationHelper = require('./helpers/schemaValidationHelper');
@@ -70,9 +69,9 @@ module.exports = {
 	/**
 	 * Validates the given script data.
 	 *
-	 * @param {Object} data - The data for validation.
+	 * @param {object} data - The data for validation.
 	 * @param {string} data.script - The script to be validated.
-	 * @param {Object} data.targetScriptOptions - Options for the target script.
+	 * @param {object} data.targetScriptOptions - Options for the target script.
 	 * @param {Logger} logger - The logger for logging errors.
 	 * @param {ValidateScriptCallback} cb - The callback function.
 	 */

@@ -1,7 +1,7 @@
 /**
  * Adds required indicator.
  *
- * @param {Object} param0
+ * @param {object} param0
  * @param {string} param0.type - The type name statement.
  * @param {boolean} param0.required - Indicates if the field is required.
  * @returns {string} - The type name with required indicator.

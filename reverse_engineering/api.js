@@ -1,6 +1,5 @@
 /**
- * @import { FileREData, REFromFileCallback, TestConnectionInfo, TestConnectionCallback, DisconnectCallback, REConnectionInfo } from "./types/types"
- * @import { Logger } from "../shared/types/types"
+ * @import {FileREData, REFromFileCallback, TestConnectionInfo, TestConnectionCallback, DisconnectCallback, REConnectionInfo, Logger} from "../shared/types/types"
  */
 
 const { getFileName } = require('./helpers/getFileName');
@@ -13,16 +12,18 @@ const { convertIntrospectionSchemaToGraphQLSchema } = require('./helpers/convert
 module.exports = {
 	/**
 	 * Common disconnect method - not needed for GraphQL API
-	 * @param {null} connectionInfo
-	 * @param {Logger} logger
+	 *
+	 * @param {REConnectionInfo} _connectionInfo
+	 * @param {Logger} _logger
 	 * @param {DisconnectCallback} callback
 	 */
-	disconnect(connectionInfo, logger, callback) {
+	disconnect(_connectionInfo, _logger, callback) {
 		callback();
 	},
 
 	/**
 	 * Test a connection to the GraphQL server - executes introspection query
+	 *
 	 * @param {TestConnectionInfo} connectionInfo
 	 * @param {Logger} logger
 	 * @param {TestConnectionCallback} callback
@@ -39,10 +40,9 @@ module.exports = {
 	},
 
 	/**
-	 *
 	 * @param {REConnectionInfo} data
-	 * @param {Logger} logger
-	 * @param callback
+	 * @param {Logger} logger - Logger instance
+	 * @param {(err?: Error | null, data?: object[], modelLevel: object, relationships: object[]) => void} callback
 	 * @returns {Promise<void>}
 	 */
 	async getDbCollectionsData(data, logger, callback) {
@@ -86,6 +86,7 @@ module.exports = {
 
 	/**
 	 * RE a GraphQL schema file and returns the mapped schema
+	 *
 	 * @param {FileREData} data
 	 * @param {Logger} logger
 	 * @param {REFromFileCallback} callback
@@ -97,7 +98,7 @@ module.exports = {
 			const fileName = getFileName(data.filePath);
 			const { parsedSchema /*validationErrors*/ } = parseSchema({ schemaContent: fileContent }); // TODO: validation warnings can be returned in modelData
 			const mappedEntities = getMappedSchema({
-				schemaItems: parsedSchema.definitions,
+				schemaItems: [...parsedSchema.definitions],
 				graphName: fileName,
 				logger,
 				fieldsOrder,

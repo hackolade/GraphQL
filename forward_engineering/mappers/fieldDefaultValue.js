@@ -1,11 +1,11 @@
 /**
- * @import { FieldData } from "../types/types"
+ * @import {FieldData} from "../../shared/types/types"
  */
 
 /**
  * Generates the default value statement for a field.
  *
- * @param {Object} param0
+ * @param {object} param0
  * @param {FieldData} param0.field - The field object.
  * @returns {string} - The default value statement.
  */
@@ -24,7 +24,7 @@ function getFieldDefaultValueStatement({ field }) {
 /**
  * Formats the default value for a field.
  *
- * @param {Object} param0
+ * @param {object} param0
  * @param {unknown} param0.defaultValue - The default value.
  * @param {string} param0.fieldType - The type of the field.
  * @returns {string} - The formatted default value.
@@ -44,7 +44,7 @@ function formatFieldDefaultValue({ defaultValue, fieldType }) {
 /**
  * Formats the default value for a reference field.
  *
- * @param {Object} param0
+ * @param {object} param0
  * @param {any} param0.defaultValue - The default value.
  * @returns {string} - The formatted default value.
  */
@@ -62,7 +62,7 @@ function formatRefFieldDefaultValue({ defaultValue }) {
 /**
  * Checks if the default value is complex (object or array).
  *
- * @param {Object} param0
+ * @param {object} param0
  * @param {unknown} param0.defaultValue - The default value.
  * @returns {boolean} - True if the default value is complex, false otherwise.
  */
@@ -90,7 +90,7 @@ function isValuePresent(value) {
 /**
  * Prepares a complex default value by removing newlines.
  *
- * @param {Object} param0
+ * @param {object} param0
  * @param {string} param0.defaultValue - The default value.
  * @returns {string} - The prepared default value.
  */

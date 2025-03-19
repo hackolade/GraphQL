@@ -1,5 +1,5 @@
 /**
- * @import { Argument, IdToNameMap, FEStatement } from "../types/types"
+ * @import {Argument, ArgumentsResultStatement, IdToNameMap, FEStatement} from "../../shared/types/types"
  */
 
 const { getDirectivesUsageStatement } = require('./directiveUsageStatements');
@@ -14,10 +14,11 @@ const EMPTY_LIST = '[]';
 
 /**
  * Gets the type of the argument with the required keyword.
- * @param {Object} args - arguments object.
+ *
+ * @param {object} args - Arguments object.
  * @param {Argument} args.graphqlArgument - The argument to map.
  * @param {IdToNameMap} [args.idToNameMap] - The ID to name map of all available types in model.
- * @returns {string} returns the type of the argument with the required keyword
+ * @returns {string} Returns the type of the argument with the required keyword
  */
 const getArgumentType = ({ graphqlArgument, idToNameMap = {} }) => {
 	let argumentType = idToNameMap[graphqlArgument.type] || getCheckedType({ type: graphqlArgument.type }) || '';
@@ -38,10 +39,11 @@ const getArgumentType = ({ graphqlArgument, idToNameMap = {} }) => {
 
 /**
  * Maps an argument to a string with all configured properties.
- * @param {Object} args - arguments object.
+ *
+ * @param {object} args - Arguments object.
  * @param {Argument} args.graphqlArgument - The argument to map.
  * @param {IdToNameMap} [args.idToNameMap] - The ID to name map of all available types in model.
- * @returns {FEStatement} returns the argument as a FEStatement
+ * @returns {FEStatement} Returns the argument as a FEStatement
  */
 const mapArgument = ({ graphqlArgument, idToNameMap = {} }) => {
 	const argumentName = `${graphqlArgument.name}:`;
@@ -67,12 +69,12 @@ const mapArgument = ({ graphqlArgument, idToNameMap = {} }) => {
 
 /**
  * Maps an array of arguments to a formatted string with all configured properties.
- * @param {Object} args - arguments object.
+ *
+ * @param {object} args - Arguments object.
  * @param {Argument[]} args.graphqlArguments - The arguments to map.
  * @param {IdToNameMap} [args.idToNameMap] - The ID to name map of all available types in model.
- * @returns {Object} returns an object containing the arguments as a formatted string and a warning comment if any.
- * @returns {string} returns.argumentsStatement - The formatted arguments string.
- * @returns {string} returns.argumentsWarningComment - The warning comment if any argument is missing a type.
+ * @returns {ArgumentsResultStatement} Returns an object containing the arguments as a formatted string and a warning
+ *   comment if any.
  */
 const getArguments = ({ graphqlArguments, idToNameMap = {} }) => {
 	if (!Array.isArray(graphqlArguments) || graphqlArguments.length === 0) {
@@ -111,10 +113,20 @@ const getArguments = ({ graphqlArguments, idToNameMap = {} }) => {
 	return { argumentsStatement, argumentsWarningComment: '' };
 };
 
+/**
+ * @param {object} params
+ * @param {string} params.type
+ * @returns {string}
+ */
 function getCheckedType({ type }) {
 	return isUUID(type) ? '' : type;
 }
 
+/**
+ * @param {object} params
+ * @param {string} params.type
+ * @returns {boolean}
+ */
 function isTypeEmpty({ type }) {
 	return !type || type === EMPTY_LIST || type === '!' || type === `${EMPTY_LIST}!`;
 }

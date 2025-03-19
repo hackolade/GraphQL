@@ -1,17 +1,19 @@
 /**
- * @import { DocumentNode, GraphQLError } from "graphql"
+ * @import {DocumentNode, GraphQLError} from "graphql"
  */
 
 const { parse } = require('graphql');
 
 /**
  * Parses GraphQL schema content into AST and validates it
- * @param {Object} params
+ *
+ * @param {object} params
  * @param {string} params.schemaContent - The GraphQL schema content to parse
  * @returns {{
- *   parsedSchema: DocumentNode,
- *   validationErrors: GraphQLError[]
- * }} The parsing result object containing parsed schema and validation errors
+ * 	parsedSchema: DocumentNode;
+ * 	validationErrors: GraphQLError[];
+ * }} The parsing result object containing
+ *   parsed schema and validation errors
  * @throws {GraphQLError} Throws if schema content cannot be parsed
  */
 function parseSchema({ schemaContent }) {

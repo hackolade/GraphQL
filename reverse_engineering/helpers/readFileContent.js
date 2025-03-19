@@ -1,5 +1,12 @@
 const fs = require('fs').promises;
 
+/**
+ * Reads the content of a file
+ *
+ * @param {object} params
+ * @param {string} params.filePath
+ * @returns {Promise<string>}
+ */
 const readFileContent = async ({ filePath }) => {
 	try {
 		if (!filePath) {
@@ -7,9 +14,10 @@ const readFileContent = async ({ filePath }) => {
 		}
 
 		const content = await fs.readFile(filePath, 'utf8');
-		return content;
+		return content.toString();
 	} catch (error) {
-		throw new Error(`Failed to read GraphQL schema file: ${error.message}`);
+		const errorMessage = error instanceof Error ? error.message : String(error);
+		throw new Error(`Failed to read GraphQL schema file: ${errorMessage}`);
 	}
 };
 

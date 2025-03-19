@@ -12,7 +12,7 @@ mock.module('../../../forward_engineering/helpers/feStatementJoinHelper', {
 		joinInlineStatements: joinInlineStatementsMock,
 	},
 });
-mock.module('../../../forward_engineering/helpers/referencesHelper', {
+mock.module('../../../forward_engineering/helpers/referenceHelper', {
 	namedExports: {
 		getDefinitionNameFromReferencePath: getDefinitionNameFromReferencePathMock,
 	},

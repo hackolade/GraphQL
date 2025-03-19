@@ -1,3 +1,7 @@
+/**
+ * @import {DirectiveDefinition, FieldsOrder, CustomScalarDefinition} from "../../../shared/types/types"
+ */
+
 const { astNodeKind } = require('../../constants/graphqlAST');
 const { findNodesByKind } = require('../../helpers/findNodesByKind');
 const { sortByName } = require('../../helpers/sortByName');
@@ -5,15 +9,12 @@ const { getCustomScalarTypeDefinitions } = require('./customScalar');
 const { getDirectiveTypeDefinitions } = require('./directive');
 
 /**
- * @import { FieldsOrder, DirectiveDefinition, CustomScalarDefinition } from "../../types/types"
- */
-
-/**
  * Gets the type definitions structure
- * @param {Object} params
- * @param {Object[]} params.typeDefinitions - The type definitions nodes
+ *
+ * @param {object} params
+ * @param {object[]} params.typeDefinitions - The type definitions nodes
  * @param {FieldsOrder} params.fieldsOrder - The fields order
- * @returns {Object} The mapped type definitions
+ * @returns {object} The mapped type definitions
  */
 function getTypeDefinitions({ typeDefinitions, fieldsOrder }) {
 	const directives = getDirectiveTypeDefinitions({
@@ -30,11 +31,12 @@ function getTypeDefinitions({ typeDefinitions, fieldsOrder }) {
 
 /**
  * Creates the model definitions structure
- * @param {Object} params
+ *
+ * @param {object} params
  * @param {FieldsOrder} params.fieldsOrder - The fields order
  * @param {DirectiveDefinition[]} params.directives - The directive definitions
  * @param {CustomScalarDefinition[]} params.customScalars - The custom scalar definitions
- * @returns {Object} The type definitions structure
+ * @returns {object} The type definitions structure
  */
 function getTypeDefinitionsStructure({ fieldsOrder, directives, customScalars }) {
 	const definitions = {
@@ -57,11 +59,12 @@ function getTypeDefinitionsStructure({ fieldsOrder, directives, customScalars })
 
 /**
  * Creates a definition category structure
- * @param {Object} params
+ *
+ * @param {object} params
  * @param {FieldsOrder} params.fieldsOrder - The fields order
  * @param {string} params.subtype - The subtype of the definition
- * @param {Object[]} params.properties - The properties to structure
- * @returns {Object} The definition category structure
+ * @param {object[]} params.properties - The properties to structure
+ * @returns {object} The definition category structure
  */
 function getDefinitionCategoryStructure({ fieldsOrder, subtype, properties }) {
 	const sortedFields = sortByName({ items: properties, fieldsOrder });
