@@ -1,8 +1,4 @@
 /**
- * @import {ArgumentValueFormat, DirectiveFormats} from '../../shared/types/types'
- */
-
-/**
  * @type {{ structured: 'Structured'; raw: 'Raw' }}
  * @readonly
  */
@@ -12,7 +8,7 @@ const DIRECTIVE_FORMAT = {
 };
 
 /**
- * @type {{ raw: ArgumentValueFormat }}
+ * @type {{ raw: 'Raw' }}
  * @readonly
  */
 const ARGUMENT_VALUE_FORMAT = {

@@ -47,12 +47,10 @@ type RawDirective = {
 	rawDirective: string; // Raw directive string
 };
 
-export type ArgumentValueFormat = 'Raw';
-
 type StructuredDirective = {
 	directiveFormat: 'Structured'; // Format of the directive
 	directiveName: string; // Name of a built-in directive or GUID of a custom directive
-	argumentValueFormat: ArgumentValueFormat; // Format of the argument values @see ARGUMENT_VALUE_FORMAT */
+	argumentValueFormat: 'Raw'; // Format of the argument values
 	rawArgumentValues: string; // Raw argument values
 };
 
