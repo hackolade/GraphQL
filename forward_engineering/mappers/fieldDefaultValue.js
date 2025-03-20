@@ -14,18 +14,22 @@ function getFieldDefaultValueStatement({ field }) {
 		return '';
 	}
 
-	if (field.$ref) {
+	if ('$ref' in field && field.$ref) {
 		return `= ${formatRefFieldDefaultValue({ defaultValue: field.default })}`;
 	}
 
-	return `= ${formatFieldDefaultValue({ defaultValue: field.default, fieldType: field.type })}`;
+	if ('type' in field) {
+		return `= ${formatFieldDefaultValue({ defaultValue: field.default, fieldType: field.type })}`;
+	}
+
+	return '';
 }
 
 /**
  * Formats the default value for a field.
  *
  * @param {object} param0
- * @param {unknown} param0.defaultValue - The default value.
+ * @param {string} [param0.defaultValue] - The default value.
  * @param {string} param0.fieldType - The type of the field.
  * @returns {string} - The formatted default value.
  */
@@ -80,7 +84,7 @@ function isComplexDefaultValue({ defaultValue }) {
 /**
  * Checks if a value is present (not undefined or empty).
  *
- * @param {unknown} value - The value to check.
+ * @param {string} [value] - The value to check.
  * @returns {boolean} - True if the value is present, false otherwise.
  */
 function isValuePresent(value) {
@@ -91,10 +95,10 @@ function isValuePresent(value) {
  * Prepares a complex default value by removing newlines.
  *
  * @param {object} param0
- * @param {string} param0.defaultValue - The default value.
+ * @param {string} [param0.defaultValue] - The default value.
  * @returns {string} - The prepared default value.
  */
-function prepareComplexDefaultValue({ defaultValue }) {
+function prepareComplexDefaultValue({ defaultValue = '' }) {
 	return defaultValue.trim().replace(/\n/g, ' ');
 }
 

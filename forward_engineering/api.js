@@ -55,7 +55,7 @@ module.exports = {
 				...rootTypeStatements,
 				...typeDefinitionStatements,
 			]
-				.filter(Boolean)
+				.filter(feStatement => feStatement !== null)
 				.map(feStatement => formatFEStatement({ feStatement }))
 				.join('\n\n');
 
@@ -82,7 +82,7 @@ module.exports = {
 			cb(null, validationResults);
 		} catch (e) {
 			logger.log('error', { error: e }, 'GraphQL schema validation error');
-			cb(e.message);
+			cb(e);
 		}
 	},
 };

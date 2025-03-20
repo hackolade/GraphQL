@@ -65,8 +65,8 @@ function mapDirective({ name, directive, definitionsIdToNameMap }) {
  * Maps directives to an FEStatement objects.
  *
  * @param {object} args - The arguments object
- * @param {DirectiveDefinitions} args.definitionsIdToNameMap - The directives schema object
- * @param {object} args.directives
+ * @param {IdToNameMap} args.definitionsIdToNameMap - The directives schema object
+ * @param {DirectiveDefinitions} args.directives
  * @returns {FEStatement[]}
  */
 function getDirectives({ definitionsIdToNameMap, directives = {} }) {

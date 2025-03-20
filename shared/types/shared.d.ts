@@ -16,6 +16,12 @@ export type Logger = {
 	progress: (data: object) => void;
 };
 
+export type ContainerSchemaRootTypes = {
+	rootQuery?: string; // root query name
+	rootMutation?: string; // root mutation name
+	rootSubscription?: string; // root subscription name
+};
+
 export type DirectiveLocations = {
 	argumentDefinition?: boolean;
 	enum?: boolean;

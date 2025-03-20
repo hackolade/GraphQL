@@ -1,4 +1,5 @@
 /**
+ * @import {GraphQLError} from "graphql"
  * @import {ValidationResponseItem} from "../../shared/types/types"
  */
 
@@ -16,7 +17,7 @@ function validate({ schema }) {
 	try {
 		builtSchema = buildSchema(schema);
 	} catch (error) {
-		return [mapValidationError(error)];
+		return [mapValidationError(/** @type {GraphQLError} */ (error))];
 	}
 
 	const errors = validateSchema(builtSchema);
@@ -30,9 +31,7 @@ function validate({ schema }) {
 /**
  * Maps a GraphQL validation error to a custom error format.
  *
- * @param {object} error - The GraphQL validation error.
- * @param {string} error.message - The error message.
- * @param {object[]} [error.locations] - The locations of the error in the schema.
+ * @param {GraphQLError} error - The GraphQL validation error.
  * @returns {ValidationResponseItem} The mapped error object.
  */
 function mapValidationError(error) {
@@ -46,10 +45,7 @@ function mapValidationError(error) {
 /**
  * Gets the error position message from a GraphQL validation error.
  *
- * @param {object} error - The GraphQL validation error.
- * @param {object[]} [error.locations] - The locations of the error in the schema.
- * @param {number} error.locations[].line - The line number of the error location.
- * @param {number} error.locations[].column - The column number of the error location.
+ * @param {GraphQLError} error - The GraphQL validation error.
  * @returns {string} The error position message.
  */
 function getErrorPositionMessage(error) {

@@ -1,4 +1,4 @@
-import { DirectiveLocations } from './shared';
+import { ContainerSchemaRootTypes, DirectiveLocations } from './shared';
 
 type ContainerName = string;
 
@@ -7,12 +7,6 @@ export type ContainerInfo = {
 	description?: string; // container description
 	schemaRootTypes?: ContainerSchemaRootTypes; // container schema root types
 	graphDirectives?: DirectiveUsage[]; // container graph directives
-};
-
-export type ContainerSchemaRootTypes = {
-	rootQuery?: string; // root query name
-	rootMutation?: string; // root mutation name
-	rootSubscription?: string; // root subscription name
 };
 
 export type FileREEntityResponseData = {

@@ -1,4 +1,4 @@
-import { DirectiveLocations } from './shared';
+import { ContainerSchemaRootTypes, DirectiveLocations } from './shared';
 
 export type FEStatement = {
 	statement: string;
@@ -23,19 +23,24 @@ export type ObjectLikeTypeDefinition = {
 	implementsInterfaces?: ImplementsInterface[]; // Interfaces that the object type implements
 	typeDirectives?: DirectivePropertyData[]; // Directives for the type
 	properties: Record<string, FieldData>; // Properties of the object type
+	required?: boolean;
 };
 
 // Field data type
 export type FieldData = RegularFieldData | ReferenceFieldData;
+
+export type FieldSchema = Record<string, FieldData>
+
+export type ArrayItems = ArrayItem | ArrayItem[];
 
 type RegularFieldData = {
 	type: string; // Type of the field
 	isActivated?: boolean; // If the field is activated
 	description?: string; // Description of the field
 	fieldDirectives?: DirectivePropertyData[]; // Directives for the field
-	items?: ArrayItem | ArrayItem[]; // Items of the List type
+	items?: ArrayItems; // Items of the List type
 	arguments?: Argument[]; // Arguments of the field
-	default?: unknown; // Default value of the field
+	default?: string; // Default value of the field
 };
 
 type ReferenceFieldData = {
@@ -44,7 +49,7 @@ type ReferenceFieldData = {
 	refDescription?: string; // Description of the reference
 	fieldDirectives?: DirectivePropertyData[]; // Directives for the field
 	arguments?: Argument[]; // Arguments of the field
-	default?: unknown; // Default value of the reference
+	default?: string; // Default value of the reference
 };
 
 export type ArrayItem = FieldData & {
@@ -149,8 +154,13 @@ export type RootTypeNamesParameter = {
 	subscription: string;
 };
 
+type EntityDetails = {
+	operationType?: string
+	typeDirectives?: DirectivePropertyData[];
+}
+
 export type EntityIdToJsonSchemaMap = Record<string, string>;
-export type EntityIdToPropertiesMap = Record<string, object[]>;
+export type EntityIdToPropertiesMap = Record<string, [EntityDetails]>;
 
 // API parameters
 
@@ -181,7 +191,7 @@ export type ContainerDetails = {
 	isActivated: boolean;
 	comments?: string;
 	businessName?: string;
-	schemaRootTypes: RootTypeNamesParameter;
+	schemaRootTypes: ContainerSchemaRootTypes;
 	graphDirectives: DirectivePropertyData[];
 };
 
@@ -199,7 +209,7 @@ export type ContainerLevelScriptFEData = {
 	};
 };
 
-export type GenerateContainerLevelScriptCallback = (error: Error | null, script?: string) => void;
+export type GenerateContainerLevelScriptCallback = (error: Error | null | unknown, script?: string) => void;
 
 export type ValidationResponseItem = {
 	type: string; // The type of the entity (e.g., 'error', 'success').
@@ -208,4 +218,15 @@ export type ValidationResponseItem = {
 	context?: string; // The context of the entity, typically additional information.
 };
 
-export type ValidateScriptCallback = (error: Error | null, validationErrors?: ValidationResponseItem[]) => void;
+export type ValidateScriptCallback = (error: Error | null | unknown, validationErrors?: ValidationResponseItem[]) => void;
+
+export type BaseGetFieldParams = {
+	fields?: FieldSchema; // The fields to get
+	requiredFields?: string[]; // The required fields list
+	definitionsIdToNameMap: IdToNameMap; // The definitions id to name map
+}
+
+export type GetFieldsParams = BaseGetFieldParams & {
+	addArguments: boolean; // Indicates if arguments should be added.
+	addDefaultValue: boolean; // Indicates if default value should be added.
+}
