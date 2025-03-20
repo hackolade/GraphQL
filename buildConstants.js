@@ -5,6 +5,7 @@ const DEFAULT_RELEASE_FOLDER_PATH = path.resolve(__dirname, 'release');
 const EXCLUDED_EXTENSIONS = ['.js', '.g4', '.interp', '.tokens'];
 const EXCLUDED_FILES = [
 	'.github',
+	'.eslint',
 	'.DS_Store',
 	'.editorconfig',
 	'.eslintignore',
