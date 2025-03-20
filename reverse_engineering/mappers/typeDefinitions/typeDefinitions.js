@@ -1,6 +1,6 @@
 /**
  * @import {DefinitionNode} from "graphql"
- * @import {REDirectiveDefinition, REDefinitionsSchema, FieldsOrder, RECustomScalarDefinition, REDefinition, DefinitionsRESchema, DefinitionREStructure, DirectiveStructureType, ScalarStructureType} from "../../../shared/types/types"
+ * @import {REDirectiveDefinition, REDefinitionsSchema, FieldsOrder, RECustomScalarDefinition, REDefinition, REModelDefinitionsSchema, DefinitionREStructure, DirectiveStructureType, ScalarStructureType} from "../../../shared/types/types"
  */
 
 const { astNodeKind } = require('../../constants/graphqlAST');
@@ -15,7 +15,7 @@ const { getDirectiveTypeDefinitions } = require('./directive');
  * @param {object} params
  * @param {DefinitionNode[]} params.typeDefinitions - The type definitions nodes
  * @param {FieldsOrder} params.fieldsOrder - The fields order
- * @returns {DefinitionsRESchema} The mapped type definitions
+ * @returns {REModelDefinitionsSchema} The mapped type definitions
  */
 function getTypeDefinitions({ typeDefinitions, fieldsOrder }) {
 	const directives = getDirectiveTypeDefinitions({
@@ -37,7 +37,7 @@ function getTypeDefinitions({ typeDefinitions, fieldsOrder }) {
  * @param {FieldsOrder} params.fieldsOrder - The fields order
  * @param {REDirectiveDefinition[]} params.directives - The directive definitions
  * @param {RECustomScalarDefinition[]} params.customScalars - The custom scalar definitions
- * @returns {DefinitionsRESchema} The type definitions structure
+ * @returns {REModelDefinitionsSchema} The type definitions structure
  */
 function getTypeDefinitionsStructure({ fieldsOrder, directives, customScalars }) {
 	const definitions = {

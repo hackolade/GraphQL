@@ -121,7 +121,7 @@ export type RECustomScalarDefinitionsSchema = Record<string, RECustomScalarDefin
 
 export type REDefinition = RECustomScalarDefinition | REDirectiveDefinition;
 
-export type DefinitionsRESchema = {
+export type REModelDefinitionsSchema = {
 	definitions: {
 		Directives: DirectiveStructureType;
 		Scalars: ScalarStructureType;
