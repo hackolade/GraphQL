@@ -1,5 +1,5 @@
 /**
- * @import {FEStatement, IdToNameMap, FECustomScalarDefinition, CustomScalarDefinitionsSchema} from "../../shared/types/types"
+ * @import {FEStatement, IdToNameMap, FECustomScalarDefinition, FECustomScalarDefinitionsSchema} from "../../shared/types/types"
  */
 
 const { joinInlineStatements } = require('../helpers/feStatementJoinHelper');
@@ -32,7 +32,7 @@ function mapCustomScalar({ name, customScalar, definitionsIdToNameMap }) {
  * Gets the custom scalars as an array of FEStatements.
  *
  * @param {object} param0
- * @param {CustomScalarDefinitionsSchema} param0.customScalars - The custom scalars object.
+ * @param {FECustomScalarDefinitionsSchema} param0.customScalars - The custom scalars object.
  * @param {IdToNameMap} param0.definitionsIdToNameMap - The definitions id to name map.
  * @returns {FEStatement[]}
  */

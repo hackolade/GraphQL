@@ -20,14 +20,14 @@ export type FEStatement = {
 
 export type IdToNameMap = Record<string, string>;
 
-export type DefinitionsSchema = ObjectLikeDefinitionsSchema
-	| CustomScalarDefinitionsSchema
-	| EnumDefinitionsSchema
-	| UnionDefinitionsSchema
-	| DirectiveDefinitionsSchema;
+export type FEDefinitionsSchema = FEObjectLikeDefinitionsSchema
+	| FECustomScalarDefinitionsSchema
+	| FEEnumDefinitionsSchema
+	| FEUnionDefinitionsSchema
+	| FEDirectiveDefinitionsSchema;
 
 // Custom scalars
-export type CustomScalarDefinitionsSchema = Record<string, FECustomScalarDefinition>;
+export type FECustomScalarDefinitionsSchema = Record<string, FECustomScalarDefinition>;
 
 export type FECustomScalarDefinition = CustomScalarDefinition<DirectivePropertyData>;
 
@@ -38,19 +38,19 @@ export type EnumValue = {
 	typeDirectives?: DirectivePropertyData[]; // The directives of the enum value
 };
 
-export type EnumDefinition = {
+export type FEEnumDefinition = {
 	description?: string; // The description of the enum
 	isActivated?: boolean; // Indicates if the enum is activated
 	typeDirectives?: DirectivePropertyData[]; // The directives of the enum
 	enumValues: EnumValue[]; // The values of the enum
 };
 
-export type EnumDefinitionsSchema = Record<string, EnumDefinition>;
+export type FEEnumDefinitionsSchema = Record<string, FEEnumDefinition>;
 
 // Object type definition
-export type ObjectLikeDefinitionsSchema = Record<string, ObjectLikeDefinition>;
+export type FEObjectLikeDefinitionsSchema = Record<string, FEObjectLikeDefinition>;
 
-export type ObjectLikeDefinition = {
+export type FEObjectLikeDefinition = {
 	description?: string; // Description of the object type
 	isActivated?: boolean; // If the object type is activated
 	implementsInterfaces?: ImplementsInterface[]; // Interfaces that the object type implements
@@ -124,7 +124,7 @@ export type FEDirectiveDefinition = DirectiveDefinition<Argument, FEDirectiveLoc
 	schemaType: string;
 };
 
-export type DirectiveDefinitionsSchema = Record<string, FEDirectiveDefinition>;
+export type FEDirectiveDefinitionsSchema = Record<string, FEDirectiveDefinition>;
 
 export type ImplementsInterface = {
 	interface: string; // ID of the interface
@@ -144,7 +144,7 @@ type OneOfMeta = {
 	isActivated: boolean;
 };
 
-export type Union = {
+export type FEUnionDefinition = {
 	type: 'union';
 	GUID: string;
 	description?: string;
@@ -159,7 +159,7 @@ export type Union = {
 	snippet: 'union';
 };
 
-export type UnionDefinitionsSchema = Record<string, Union>;
+export type FEUnionDefinitionsSchema = Record<string, FEUnionDefinition>;
 
 // Root types
 export type RootTypeNamesParameter = {

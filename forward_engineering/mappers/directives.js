@@ -1,5 +1,5 @@
 /**
- * @import {DirectiveDefinitionsSchema, FEDirectiveDefinition, FEStatement, DirectiveLocations, IdToNameMap} from "../../shared/types/types"
+ * @import {FEDirectiveDefinitionsSchema, FEDirectiveDefinition, FEStatement, DirectiveLocations, IdToNameMap} from "../../shared/types/types"
  */
 
 const { DIRECTIVE_LOCATIONS } = require('../constants/feScriptConstants');
@@ -66,7 +66,7 @@ function mapDirective({ name, directive, definitionsIdToNameMap }) {
  *
  * @param {object} args - The arguments object
  * @param {IdToNameMap} args.definitionsIdToNameMap - The directives schema object
- * @param {DirectiveDefinitionsSchema} args.directives
+ * @param {FEDirectiveDefinitionsSchema} args.directives
  * @returns {FEStatement[]}
  */
 function getDirectives({ definitionsIdToNameMap, directives = {} }) {

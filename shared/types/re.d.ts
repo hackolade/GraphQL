@@ -4,9 +4,6 @@ import {
 	DirectiveDefinition,
 	StructuredDirective,
 } from './shared';
-import {
-	DirectiveDefinitionsSchema,
-} from './fe';
 
 type ContainerName = string;
 
