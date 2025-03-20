@@ -1,5 +1,5 @@
 /**
- * @import {ContainerLevelScriptFEData, GenerateContainerLevelScriptCallback, ValidateScriptCallback, Logger} from "../shared/types/types"
+ * @import {ContainerLevelScriptFEData, GenerateContainerLevelScriptCallback, ValidateScriptCallback, Logger, DirectiveDefinitionsSchema} from "../shared/types/types"
  */
 
 const validationHelper = require('./helpers/schemaValidationHelper');
@@ -41,7 +41,12 @@ module.exports = {
 			});
 
 			const directiveStatements = getDirectives({
-				directives: getModelDefinitionsBySubtype({ modelDefinitions, subtype: 'directive' }),
+				directives: /** @type {DirectiveDefinitionsSchema} */ (
+					getModelDefinitionsBySubtype({
+						modelDefinitions,
+						subtype: 'directive',
+					})
+				),
 				definitionsIdToNameMap,
 			});
 

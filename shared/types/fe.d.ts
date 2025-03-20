@@ -1,4 +1,10 @@
-import { ContainerSchemaRootTypes, DirectiveLocations } from './shared';
+import {
+	ContainerSchemaRootTypes,
+	CustomScalarDefinition,
+	DirectiveDefinition,
+	DirectiveLocations,
+	DirectivePropertyData,
+} from './shared';
 
 export type FEStatement = {
 	statement: string;
@@ -14,10 +20,37 @@ export type FEStatement = {
 
 export type IdToNameMap = Record<string, string>;
 
-// Object type definition
-export type ObjectLikeTypeDefinitions = Record<string, ObjectLikeTypeDefinition>;
+export type DefinitionsSchema = ObjectLikeDefinitionsSchema
+	| CustomScalarDefinitionsSchema
+	| EnumDefinitionsSchema
+	| UnionDefinitionsSchema
+	| DirectiveDefinitionsSchema;
 
-export type ObjectLikeTypeDefinition = {
+// Custom scalars
+export type CustomScalarDefinitionsSchema = Record<string, FECustomScalarDefinition>;
+
+export type FECustomScalarDefinition = CustomScalarDefinition<DirectivePropertyData>;
+
+// Enum
+export type EnumValue = {
+	value: string; // The name of the enum value
+	description?: string; // The description of the enum value
+	typeDirectives?: DirectivePropertyData[]; // The directives of the enum value
+};
+
+export type EnumDefinition = {
+	description?: string; // The description of the enum
+	isActivated?: boolean; // Indicates if the enum is activated
+	typeDirectives?: DirectivePropertyData[]; // The directives of the enum
+	enumValues: EnumValue[]; // The values of the enum
+};
+
+export type EnumDefinitionsSchema = Record<string, EnumDefinition>;
+
+// Object type definition
+export type ObjectLikeDefinitionsSchema = Record<string, ObjectLikeDefinition>;
+
+export type ObjectLikeDefinition = {
 	description?: string; // Description of the object type
 	isActivated?: boolean; // If the object type is activated
 	implementsInterfaces?: ImplementsInterface[]; // Interfaces that the object type implements
@@ -83,34 +116,15 @@ export type FEDirectiveLocations = DirectiveLocations & {
 	GUID: string;
 };
 
-export type Directive = {
+export type FEDirectiveDefinition = DirectiveDefinition<Argument, FEDirectiveLocations> & {
 	GUID: string;
-	type: 'directive';
-	description?: string;
 	additionalProperties?: boolean;
-	comments?: string;
 	ignore_z_value: boolean;
 	isActivated?: boolean;
 	schemaType: string;
-	directiveLocations?: FEDirectiveLocations;
-	arguments?: Argument[];
 };
 
-export type DirectiveDefinitions = Record<string, Directive>;
-
-export type DirectivePropertyData = {
-	directiveFormat: 'Structured' | 'Raw'; // Format of the directive
-} & (StructuredDirective | RawDirective);
-
-type RawDirective = {
-	rawDirective: string; // Raw directive string
-};
-
-type StructuredDirective = {
-	directiveName: string; // Name of a built-in directive or GUID of a custom directive
-	argumentValueFormat: 'Raw'; // Format of the argument values
-	rawArgumentValues: string; // Raw argument values
-};
+export type DirectiveDefinitionsSchema = Record<string, FEDirectiveDefinition>;
 
 export type ImplementsInterface = {
 	interface: string; // ID of the interface
@@ -145,7 +159,7 @@ export type Union = {
 	snippet: 'union';
 };
 
-export type UnionDefinitions = Record<string, Union>;
+export type UnionDefinitionsSchema = Record<string, Union>;
 
 // Root types
 export type RootTypeNamesParameter = {

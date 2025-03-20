@@ -1,5 +1,5 @@
 /**
- * @import {DirectiveDefinitions, Directive, FEStatement, DirectiveLocations, IdToNameMap} from "../../shared/types/types"
+ * @import {DirectiveDefinitionsSchema, FEDirectiveDefinition, FEStatement, DirectiveLocations, IdToNameMap} from "../../shared/types/types"
  */
 
 const { DIRECTIVE_LOCATIONS } = require('../constants/feScriptConstants');
@@ -40,7 +40,7 @@ const getDirectiveName = name => (name.startsWith('@') ? name : `@${name}`);
  *
  * @param {object} args - The arguments object
  * @param {string} args.name - The name of directive
- * @param {Directive} args.directive - The directive object
+ * @param {FEDirectiveDefinition} args.directive - The directive object
  * @param {IdToNameMap} args.definitionsIdToNameMap - The ID to name map of all available types in model - needs for
  *   arguments
  * @returns {FEStatement}
@@ -66,7 +66,7 @@ function mapDirective({ name, directive, definitionsIdToNameMap }) {
  *
  * @param {object} args - The arguments object
  * @param {IdToNameMap} args.definitionsIdToNameMap - The directives schema object
- * @param {DirectiveDefinitions} args.directives
+ * @param {DirectiveDefinitionsSchema} args.directives
  * @returns {FEStatement[]}
  */
 function getDirectives({ definitionsIdToNameMap, directives = {} }) {

@@ -1,5 +1,5 @@
 /**
- * @import {UnionDefinitions, FEStatement, Union, UnionMemberType} from "../../shared/types/types"
+ * @import {UnionDefinitionsSchema, FEStatement, Union, UnionMemberType} from "../../shared/types/types"
  */
 
 const { getDefinitionNameFromReferencePath } = require('../helpers/referenceHelper');
@@ -45,7 +45,7 @@ const mapUnion = ({ name, union }) => {
  * Maps the union types to an array of FEStatement.
  *
  * @param {object} args - The arguments
- * @param {UnionDefinitions} args.unions - The union types schema.
+ * @param {UnionDefinitionsSchema} args.unions - The union types schema.
  * @returns {FEStatement[]}
  */
 const getUnions = ({ unions }) => {

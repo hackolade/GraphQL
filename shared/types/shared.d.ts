@@ -39,3 +39,33 @@ export type DirectiveLocations = {
 	subscription?: boolean;
 	union?: boolean;
 };
+
+export type DirectivePropertyData = StructuredDirective | RawDirective;
+
+type RawDirective = {
+	directiveFormat: 'Raw'; // Format of the directive
+	rawDirective: string; // Raw directive string
+};
+
+export type ArgumentValueFormat = 'Raw';
+
+type StructuredDirective = {
+	directiveFormat: 'Structured'; // Format of the directive
+	directiveName: string; // Name of a built-in directive or GUID of a custom directive
+	argumentValueFormat: ArgumentValueFormat; // Format of the argument values @see ARGUMENT_VALUE_FORMAT */
+	rawArgumentValues: string; // Raw argument values
+};
+
+export type CustomScalarDefinition<T> = {
+	description?: string;
+	isActivated?: boolean;
+	typeDirectives?: T[]
+}
+
+export type DirectiveDefinition<T, D = DirectiveLocations> = {
+	type: 'directive';
+	description?: string;
+	comments?: string;
+	arguments?: T[];
+	directiveLocations: D;
+}
