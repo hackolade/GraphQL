@@ -1,5 +1,5 @@
 /**
- * @import {ContainerLevelScriptFEData, GenerateContainerLevelScriptCallback, ValidateScriptCallback, Logger} from "../shared/types/types"
+ * @import {ContainerLevelScriptFEData, GenerateContainerLevelScriptCallback, ValidateScriptCallback, Logger, FEDirectiveDefinitionsSchema} from "../shared/types/types"
  */
 
 const validationHelper = require('./helpers/schemaValidationHelper');
@@ -41,7 +41,12 @@ module.exports = {
 			});
 
 			const directiveStatements = getDirectives({
-				directives: getModelDefinitionsBySubtype({ modelDefinitions, subtype: 'directive' }),
+				directives: /** @type {FEDirectiveDefinitionsSchema} */ (
+					getModelDefinitionsBySubtype({
+						modelDefinitions,
+						subtype: 'directive',
+					})
+				),
 				definitionsIdToNameMap,
 			});
 
@@ -55,7 +60,7 @@ module.exports = {
 				...rootTypeStatements,
 				...typeDefinitionStatements,
 			]
-				.filter(Boolean)
+				.filter(feStatement => feStatement !== null)
 				.map(feStatement => formatFEStatement({ feStatement }))
 				.join('\n\n');
 
@@ -82,7 +87,7 @@ module.exports = {
 			cb(null, validationResults);
 		} catch (e) {
 			logger.log('error', { error: e }, 'GraphQL schema validation error');
-			cb(e.message);
+			cb(e);
 		}
 	},
 };

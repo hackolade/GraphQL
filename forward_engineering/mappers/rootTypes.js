@@ -33,7 +33,7 @@ function getRootSchemaStatement({ rootTypeNames, rootTypeStatements, containerPr
 			acc.push({ statement: `${key}: ${rootTypeNames[key]}` });
 		}
 		return acc;
-	}, []);
+	}, /** @type {FEStatement[]} */ ([]));
 
 	if (nestedStatements.length === 0) {
 		return null;
@@ -56,7 +56,7 @@ function getRootSchemaStatement({ rootTypeNames, rootTypeStatements, containerPr
  * container properties.
  *
  * @param {object} param0
- * @param {ContainerDetails | undefined} param0.containerProperties - The container properties.
+ * @param {ContainerDetails} [param0.containerProperties] - The container properties.
  * @returns {RootTypeNamesParameter} - The root type names.
  */
 function getRootTypeNames({ containerProperties }) {
@@ -129,7 +129,7 @@ function getRootTypes({ entityIdToJsonSchemaMap, entityIdToPropertiesMap, rootTy
 		}),
 	];
 
-	return rootTypes.filter(Boolean);
+	return rootTypes.filter(feStatement => feStatement !== null);
 }
 
 /**
@@ -158,6 +158,7 @@ function getRootType({
 
 	Object.entries(entityIdToJsonSchemaMap).forEach(([entityId, entityJson]) => {
 		const entityProperties = entityIdToPropertiesMap[entityId]?.[0];
+
 		const entityOperationType = entityProperties?.operationType;
 		if (entityOperationType !== rootType) {
 			return;

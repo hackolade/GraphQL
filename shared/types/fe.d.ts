@@ -1,4 +1,10 @@
-import { DirectiveLocations } from './shared';
+import {
+	ContainerSchemaRootTypes,
+	CustomScalarDefinition,
+	DirectiveDefinition,
+	DirectiveLocations,
+	DirectivePropertyData,
+} from './shared';
 
 export type FEStatement = {
 	statement: string;
@@ -14,28 +20,60 @@ export type FEStatement = {
 
 export type IdToNameMap = Record<string, string>;
 
-// Object type definition
-export type ObjectLikeTypeDefinitions = Record<string, ObjectLikeTypeDefinition>;
+export type FEDefinitionsSchema = FEObjectLikeDefinitionsSchema
+	| FECustomScalarDefinitionsSchema
+	| FEEnumDefinitionsSchema
+	| FEUnionDefinitionsSchema
+	| FEDirectiveDefinitionsSchema;
 
-export type ObjectLikeTypeDefinition = {
+// Custom scalars
+export type FECustomScalarDefinitionsSchema = Record<string, FECustomScalarDefinition>;
+
+export type FECustomScalarDefinition = CustomScalarDefinition<DirectivePropertyData>;
+
+// Enum
+export type EnumValue = {
+	value: string; // The name of the enum value
+	description?: string; // The description of the enum value
+	typeDirectives?: DirectivePropertyData[]; // The directives of the enum value
+};
+
+export type FEEnumDefinition = {
+	description?: string; // The description of the enum
+	isActivated?: boolean; // Indicates if the enum is activated
+	typeDirectives?: DirectivePropertyData[]; // The directives of the enum
+	enumValues: EnumValue[]; // The values of the enum
+};
+
+export type FEEnumDefinitionsSchema = Record<string, FEEnumDefinition>;
+
+// Object type definition
+export type FEObjectLikeDefinitionsSchema = Record<string, FEObjectLikeDefinition>;
+
+export type FEObjectLikeDefinition = {
 	description?: string; // Description of the object type
 	isActivated?: boolean; // If the object type is activated
 	implementsInterfaces?: ImplementsInterface[]; // Interfaces that the object type implements
 	typeDirectives?: DirectivePropertyData[]; // Directives for the type
 	properties: Record<string, FieldData>; // Properties of the object type
+	required?: boolean;
 };
 
 // Field data type
 export type FieldData = RegularFieldData | ReferenceFieldData;
+
+export type FieldSchema = Record<string, FieldData>
+
+export type ArrayItems = ArrayItem | ArrayItem[];
 
 type RegularFieldData = {
 	type: string; // Type of the field
 	isActivated?: boolean; // If the field is activated
 	description?: string; // Description of the field
 	fieldDirectives?: DirectivePropertyData[]; // Directives for the field
-	items?: ArrayItem | ArrayItem[]; // Items of the List type
+	items?: ArrayItems; // Items of the List type
 	arguments?: Argument[]; // Arguments of the field
-	default?: unknown; // Default value of the field
+	default?: string; // Default value of the field
 };
 
 type ReferenceFieldData = {
@@ -44,7 +82,7 @@ type ReferenceFieldData = {
 	refDescription?: string; // Description of the reference
 	fieldDirectives?: DirectivePropertyData[]; // Directives for the field
 	arguments?: Argument[]; // Arguments of the field
-	default?: unknown; // Default value of the reference
+	default?: string; // Default value of the reference
 };
 
 export type ArrayItem = FieldData & {
@@ -78,34 +116,15 @@ export type FEDirectiveLocations = DirectiveLocations & {
 	GUID: string;
 };
 
-export type Directive = {
+export type FEDirectiveDefinition = DirectiveDefinition<Argument, FEDirectiveLocations> & {
 	GUID: string;
-	type: 'directive';
-	description?: string;
 	additionalProperties?: boolean;
-	comments?: string;
 	ignore_z_value: boolean;
 	isActivated?: boolean;
 	schemaType: string;
-	directiveLocations?: FEDirectiveLocations;
-	arguments?: Argument[];
 };
 
-export type DirectiveDefinitions = Record<string, Directive>;
-
-export type DirectivePropertyData = {
-	directiveFormat: 'Structured' | 'Raw'; // Format of the directive
-} & (StructuredDirective | RawDirective);
-
-type RawDirective = {
-	rawDirective: string; // Raw directive string
-};
-
-type StructuredDirective = {
-	directiveName: string; // Name of a built-in directive or GUID of a custom directive
-	argumentValueFormat: 'Raw'; // Format of the argument values
-	rawArgumentValues: string; // Raw argument values
-};
+export type FEDirectiveDefinitionsSchema = Record<string, FEDirectiveDefinition>;
 
 export type ImplementsInterface = {
 	interface: string; // ID of the interface
@@ -125,7 +144,7 @@ type OneOfMeta = {
 	isActivated: boolean;
 };
 
-export type Union = {
+export type FEUnionDefinition = {
 	type: 'union';
 	GUID: string;
 	description?: string;
@@ -140,7 +159,7 @@ export type Union = {
 	snippet: 'union';
 };
 
-export type UnionDefinitions = Record<string, Union>;
+export type FEUnionDefinitionsSchema = Record<string, FEUnionDefinition>;
 
 // Root types
 export type RootTypeNamesParameter = {
@@ -149,8 +168,13 @@ export type RootTypeNamesParameter = {
 	subscription: string;
 };
 
+type EntityDetails = {
+	operationType?: string
+	typeDirectives?: DirectivePropertyData[];
+}
+
 export type EntityIdToJsonSchemaMap = Record<string, string>;
-export type EntityIdToPropertiesMap = Record<string, object[]>;
+export type EntityIdToPropertiesMap = Record<string, [EntityDetails]>;
 
 // API parameters
 
@@ -181,7 +205,7 @@ export type ContainerDetails = {
 	isActivated: boolean;
 	comments?: string;
 	businessName?: string;
-	schemaRootTypes: RootTypeNamesParameter;
+	schemaRootTypes: ContainerSchemaRootTypes;
 	graphDirectives: DirectivePropertyData[];
 };
 
@@ -199,7 +223,7 @@ export type ContainerLevelScriptFEData = {
 	};
 };
 
-export type GenerateContainerLevelScriptCallback = (error: Error | null, script?: string) => void;
+export type GenerateContainerLevelScriptCallback = (error: Error | null | unknown, script?: string) => void;
 
 export type ValidationResponseItem = {
 	type: string; // The type of the entity (e.g., 'error', 'success').
@@ -208,4 +232,15 @@ export type ValidationResponseItem = {
 	context?: string; // The context of the entity, typically additional information.
 };
 
-export type ValidateScriptCallback = (error: Error | null, validationErrors?: ValidationResponseItem[]) => void;
+export type ValidateScriptCallback = (error: Error | null | unknown, validationErrors?: ValidationResponseItem[]) => void;
+
+export type BaseGetFieldParams = {
+	fields?: FieldSchema; // The fields to get
+	requiredFields?: string[]; // The required fields list
+	definitionsIdToNameMap: IdToNameMap; // The definitions id to name map
+}
+
+export type GetFieldsParams = BaseGetFieldParams & {
+	addArguments: boolean; // Indicates if arguments should be added.
+	addDefaultValue: boolean; // Indicates if default value should be added.
+}

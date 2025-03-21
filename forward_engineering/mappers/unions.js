@@ -1,5 +1,5 @@
 /**
- * @import {UnionDefinitions, FEStatement, Union, UnionMemberType} from "../../shared/types/types"
+ * @import {FEUnionDefinitionsSchema, FEStatement, FEUnionDefinition, UnionMemberType} from "../../shared/types/types"
  */
 
 const { getDefinitionNameFromReferencePath } = require('../helpers/referenceHelper');
@@ -29,7 +29,7 @@ const getUnionMemberTypes = ({ unionMemberTypes }) => {
  *
  * @param {object} args - The arguments
  * @param {string} args.name - The name of the union.
- * @param {Union} args.union - The union object with all properties
+ * @param {FEUnionDefinition} args.union - The union object with all properties
  * @returns {FEStatement}
  */
 const mapUnion = ({ name, union }) => {
@@ -45,7 +45,7 @@ const mapUnion = ({ name, union }) => {
  * Maps the union types to an array of FEStatement.
  *
  * @param {object} args - The arguments
- * @param {UnionDefinitions} args.unions - The union types schema.
+ * @param {FEUnionDefinitionsSchema} args.unions - The union types schema.
  * @returns {FEStatement[]}
  */
 const getUnions = ({ unions }) => {

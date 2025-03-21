@@ -1,5 +1,5 @@
 /**
- * @import {IdToNameMap, FEStatement} from "../../shared/types/types"
+ * @import {IdToNameMap, FEStatement, FEDefinitionsSchema, FEEnumDefinitionsSchema, FECustomScalarDefinitionsSchema, FEUnionDefinitionsSchema, FEObjectLikeDefinitionsSchema} from "../../shared/types/types"
  */
 
 const { getCustomScalars } = require('./customScalars');
@@ -18,32 +18,64 @@ const { getObjectTypeFields, getInterfaceTypeFields, getInputTypeFields } = requ
  */
 function getTypeDefinitionStatements({ modelDefinitions, definitionsIdToNameMap }) {
 	const customScalars = getCustomScalars({
-		customScalars: getModelDefinitionsBySubtype({ modelDefinitions, subtype: 'scalar' }),
+		customScalars: /** @type {FECustomScalarDefinitionsSchema} */ (
+			getModelDefinitionsBySubtype({
+				modelDefinitions,
+				subtype: 'scalar',
+			})
+		),
 		definitionsIdToNameMap,
 	});
 	const enums = getEnums({
-		enumsDefinitions: getModelDefinitionsBySubtype({ modelDefinitions, subtype: 'enum' }),
+		enumsDefinitions: /** @type {FEEnumDefinitionsSchema} */ (
+			getModelDefinitionsBySubtype({
+				modelDefinitions,
+				subtype: 'enum',
+			})
+		),
 		definitionsIdToNameMap,
 	});
 	const objectTypes = getObjectLikeTypes({
-		objectTypes: getModelDefinitionsBySubtype({ modelDefinitions, subtype: 'object' }),
+		objectTypes: /** @type {FEObjectLikeDefinitionsSchema} */ (
+			getModelDefinitionsBySubtype({
+				modelDefinitions,
+				subtype: 'object',
+			})
+		),
 		definitionsIdToNameMap,
 		typeKeyword: 'type',
 		getFieldsFunction: getObjectTypeFields,
 	});
 	const interfaceTypes = getObjectLikeTypes({
-		objectTypes: getModelDefinitionsBySubtype({ modelDefinitions, subtype: 'interface' }),
+		objectTypes: /** @type {FEObjectLikeDefinitionsSchema} */ (
+			getModelDefinitionsBySubtype({
+				modelDefinitions,
+				subtype: 'interface',
+			})
+		),
 		definitionsIdToNameMap,
 		typeKeyword: 'interface',
 		getFieldsFunction: getInterfaceTypeFields,
 	});
 	const inputTypes = getObjectLikeTypes({
-		objectTypes: getModelDefinitionsBySubtype({ modelDefinitions, subtype: 'input' }),
+		objectTypes: /** @type {FEObjectLikeDefinitionsSchema} */ (
+			getModelDefinitionsBySubtype({
+				modelDefinitions,
+				subtype: 'input',
+			})
+		),
 		definitionsIdToNameMap,
 		typeKeyword: 'input',
 		getFieldsFunction: getInputTypeFields,
 	});
-	const unions = getUnions({ unions: getModelDefinitionsBySubtype({ modelDefinitions, subtype: 'union' }) });
+	const unions = getUnions({
+		unions: /** @type {FEUnionDefinitionsSchema} */ (
+			getModelDefinitionsBySubtype({
+				modelDefinitions,
+				subtype: 'union',
+			})
+		),
+	});
 
 	return [...customScalars, ...enums, ...inputTypes, ...interfaceTypes, ...objectTypes, ...unions];
 }
@@ -54,7 +86,7 @@ function getTypeDefinitionStatements({ modelDefinitions, definitionsIdToNameMap 
  * @param {object} param0 - The parameter object.
  * @param {object} param0.modelDefinitions - The model definitions object.
  * @param {string} param0.subtype - The subtype to filter by.
- * @returns {object} - The model definitions found by parent's subtype.
+ * @returns {FEDefinitionsSchema} - The model definitions found by parent's subtype.
  */
 function getModelDefinitionsBySubtype({ modelDefinitions, subtype }) {
 	const subtypeDefinitions = Object.values(modelDefinitions.properties).find(

@@ -1,5 +1,5 @@
 /**
- * @import {FEStatement, ObjectLikeTypeDefinition, ObjectLikeTypeDefinitions, IdToNameMap} from "../../shared/types/types"
+ * @import {FEStatement, FEObjectLikeDefinition, FEObjectLikeDefinitionsSchema, IdToNameMap} from "../../shared/types/types"
  */
 
 const { joinInlineStatements } = require('../helpers/feStatementJoinHelper');
@@ -10,7 +10,7 @@ const { getImplementsInterfacesStatement } = require('./implementsInterfaces');
  * Gets the object-like types from the model definitions.
  *
  * @param {object} param0
- * @param {ObjectLikeTypeDefinitions} param0.objectTypes - The object-like types to get.
+ * @param {FEObjectLikeDefinitionsSchema} param0.objectTypes - The object-like types to get.
  * @param {IdToNameMap} param0.definitionsIdToNameMap - The definitions id to name map.
  * @param {string} param0.typeKeyword - The type keyword ("type", "interface", "input").
  * @param {Function} param0.getFieldsFunction - The function to get fields for the type.
@@ -27,7 +27,7 @@ function getObjectLikeTypes({ objectTypes, definitionsIdToNameMap, typeKeyword, 
  *
  * @param {object} param0
  * @param {string} param0.name - The name of the object.
- * @param {ObjectLikeTypeDefinition} param0.objectType - The object-like type definition object.
+ * @param {FEObjectLikeDefinition} param0.objectType - The object-like type definition object.
  * @param {IdToNameMap} param0.definitionsIdToNameMap - The definitions id to name map.
  * @param {string} param0.typeKeyword - The type keyword ("type", "interface", "input").
  * @param {Function} param0.getFieldsFunction - The function to get fields for the type.

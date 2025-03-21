@@ -1,6 +1,6 @@
 /**
  * @import {DirectiveDefinitionNode} from "graphql"
- * @import {DirectiveDefinition} from "../../../shared/types/types"
+ * @import {REDirectiveDefinition, DirectiveLocations} from "../../../shared/types/types"
  */
 
 const { getDirectiveName } = require('../directiveName');
@@ -28,7 +28,7 @@ const locationMap = {
  *
  * @param {object} params
  * @param {DirectiveDefinitionNode[]} params.directives - The directives
- * @returns {DirectiveDefinition[]} The mapped directive type definitions
+ * @returns {REDirectiveDefinition[]} The mapped directive type definitions
  */
 function getDirectiveTypeDefinitions({ directives = [] }) {
 	return directives.map(directive => mapDirective({ directive }));
@@ -39,16 +39,19 @@ function getDirectiveTypeDefinitions({ directives = [] }) {
  *
  * @param {object} params
  * @param {DirectiveDefinitionNode} params.directive - The directive to map
- * @returns {DirectiveDefinition} The mapped directive definition
+ * @returns {REDirectiveDefinition} The mapped directive definition
  */
 function mapDirective({ directive }) {
-	const locations = directive.locations.reduce((acc, location) => {
-		const locationKey = locationMap[location.value];
-		if (locationKey) {
-			acc[locationKey] = true;
-		}
-		return acc;
-	}, {});
+	const locations = directive.locations.reduce(
+		(acc, location) => {
+			const locationKey = locationMap[location.value];
+			if (locationKey) {
+				acc[locationKey] = true;
+			}
+			return acc;
+		},
+		/** @type {DirectiveLocations} */ {},
+	);
 
 	return {
 		type: 'directive',

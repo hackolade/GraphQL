@@ -1,5 +1,6 @@
 /**
- * @import {DirectiveDefinition, FieldsOrder, CustomScalarDefinition} from "../../../shared/types/types"
+ * @import {DefinitionNode} from "graphql"
+ * @import {REDirectiveDefinition, REDefinitionsSchema, FieldsOrder, RECustomScalarDefinition, REDefinition, REModelDefinitionsSchema, DefinitionREStructure, DirectiveStructureType, ScalarStructureType} from "../../../shared/types/types"
  */
 
 const { astNodeKind } = require('../../constants/graphqlAST');
@@ -12,9 +13,9 @@ const { getDirectiveTypeDefinitions } = require('./directive');
  * Gets the type definitions structure
  *
  * @param {object} params
- * @param {object[]} params.typeDefinitions - The type definitions nodes
+ * @param {DefinitionNode[]} params.typeDefinitions - The type definitions nodes
  * @param {FieldsOrder} params.fieldsOrder - The fields order
- * @returns {object} The mapped type definitions
+ * @returns {REModelDefinitionsSchema} The mapped type definitions
  */
 function getTypeDefinitions({ typeDefinitions, fieldsOrder }) {
 	const directives = getDirectiveTypeDefinitions({
@@ -34,22 +35,26 @@ function getTypeDefinitions({ typeDefinitions, fieldsOrder }) {
  *
  * @param {object} params
  * @param {FieldsOrder} params.fieldsOrder - The fields order
- * @param {DirectiveDefinition[]} params.directives - The directive definitions
- * @param {CustomScalarDefinition[]} params.customScalars - The custom scalar definitions
- * @returns {object} The type definitions structure
+ * @param {REDirectiveDefinition[]} params.directives - The directive definitions
+ * @param {RECustomScalarDefinition[]} params.customScalars - The custom scalar definitions
+ * @returns {REModelDefinitionsSchema} The type definitions structure
  */
 function getTypeDefinitionsStructure({ fieldsOrder, directives, customScalars }) {
 	const definitions = {
-		['Directives']: getDefinitionCategoryStructure({
-			fieldsOrder,
-			subtype: 'directive',
-			properties: directives,
-		}),
-		['Scalars']: getDefinitionCategoryStructure({
-			fieldsOrder,
-			subtype: 'scalar',
-			properties: customScalars,
-		}),
+		['Directives']: /** @type {DirectiveStructureType} */ (
+			getDefinitionCategoryStructure({
+				fieldsOrder,
+				subtype: 'directive',
+				properties: directives,
+			})
+		),
+		['Scalars']: /** @type {ScalarStructureType} */ (
+			getDefinitionCategoryStructure({
+				fieldsOrder,
+				subtype: 'scalar',
+				properties: customScalars,
+			})
+		),
 	};
 
 	return {
@@ -62,9 +67,9 @@ function getTypeDefinitionsStructure({ fieldsOrder, directives, customScalars })
  *
  * @param {object} params
  * @param {FieldsOrder} params.fieldsOrder - The fields order
- * @param {string} params.subtype - The subtype of the definition
- * @param {object[]} params.properties - The properties to structure
- * @returns {object} The definition category structure
+ * @param {DefinitionREStructure['subtype']} params.subtype - The subtype of the definition
+ * @param {REDefinition[]} params.properties - The properties to structure
+ * @returns {DefinitionREStructure} The definition category structure
  */
 function getDefinitionCategoryStructure({ fieldsOrder, subtype, properties }) {
 	const sortedFields = sortByName({ items: properties, fieldsOrder });
@@ -73,10 +78,13 @@ function getDefinitionCategoryStructure({ fieldsOrder, subtype, properties }) {
 		type: 'type',
 		subtype,
 		structureType: true,
-		properties: sortedFields.reduce((acc, prop) => {
-			acc[prop.name] = prop;
-			return acc;
-		}, {}),
+		properties: sortedFields.reduce(
+			(acc, prop) => {
+				acc[prop.name] = prop;
+				return acc;
+			},
+			/** @type {REDefinitionsSchema} */ {},
+		),
 	};
 }
 

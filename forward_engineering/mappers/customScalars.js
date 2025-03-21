@@ -1,27 +1,16 @@
 /**
- * @import {FEStatement, DirectivePropertyData, IdToNameMap} from "../../shared/types/types"
+ * @import {FEStatement, IdToNameMap, FECustomScalarDefinition, FECustomScalarDefinitionsSchema} from "../../shared/types/types"
  */
 
 const { joinInlineStatements } = require('../helpers/feStatementJoinHelper');
 const { getDirectivesUsageStatement } = require('./directiveUsageStatements');
 
 /**
- * @typedef {object} CustomScalar
- * @property {string} description - The description of the custom scalar.
- * @property {boolean} isActivated - Indicates if the custom scalar is activated.
- * @property {DirectivePropertyData[]} typeDirectives - The directives of the custom scalar.
- */
-
-/**
- * @typedef {Record<string, CustomScalar>} CustomScalars
- */
-
-/**
  * Maps a custom scalar to an FEStatement.
  *
  * @param {object} param0
  * @param {string} param0.name - The name of the custom scalar.
- * @param {CustomScalar} param0.customScalar - The custom scalar object.
+ * @param {FECustomScalarDefinition} param0.customScalar - The custom scalar object.
  * @param {IdToNameMap} param0.definitionsIdToNameMap - The definitions id to name map.
  * @returns {FEStatement}
  */
@@ -43,7 +32,7 @@ function mapCustomScalar({ name, customScalar, definitionsIdToNameMap }) {
  * Gets the custom scalars as an array of FEStatements.
  *
  * @param {object} param0
- * @param {CustomScalars} param0.customScalars - The custom scalars object.
+ * @param {FECustomScalarDefinitionsSchema} param0.customScalars - The custom scalars object.
  * @param {IdToNameMap} param0.definitionsIdToNameMap - The definitions id to name map.
  * @returns {FEStatement[]}
  */

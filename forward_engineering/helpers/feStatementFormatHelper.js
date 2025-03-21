@@ -64,7 +64,7 @@ function formatDescription(description) {
 }
 
 /**
- * @param {FEStatement & { isParentActivated: boolean }} params
+ * @param {Partial<FEStatement> & { isParentActivated: boolean }} params
  * @returns {string}
  */
 function formatNestedStatements({
@@ -73,7 +73,7 @@ function formatNestedStatements({
 	useNestedStatementSigns,
 	startNestedStatementsSign,
 	endNestedStatementsSign,
-	nestedStatementsSeparator,
+	nestedStatementsSeparator = '',
 	comment = '',
 }) {
 	if (!nestedStatements?.length) {

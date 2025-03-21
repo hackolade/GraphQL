@@ -16,6 +16,12 @@ export type Logger = {
 	progress: (data: object) => void;
 };
 
+export type ContainerSchemaRootTypes = {
+	rootQuery?: string; // root query name
+	rootMutation?: string; // root mutation name
+	rootSubscription?: string; // root subscription name
+};
+
 export type DirectiveLocations = {
 	argumentDefinition?: boolean;
 	enum?: boolean;
@@ -33,3 +39,31 @@ export type DirectiveLocations = {
 	subscription?: boolean;
 	union?: boolean;
 };
+
+export type DirectivePropertyData = StructuredDirective | RawDirective;
+
+type RawDirective = {
+	directiveFormat: 'Raw'; // Format of the directive
+	rawDirective: string; // Raw directive string
+};
+
+type StructuredDirective = {
+	directiveFormat: 'Structured'; // Format of the directive
+	directiveName: string; // Name of a built-in directive or GUID of a custom directive
+	argumentValueFormat: 'Raw'; // Format of the argument values
+	rawArgumentValues: string; // Raw argument values
+};
+
+export type CustomScalarDefinition<T> = {
+	description?: string;
+	isActivated?: boolean;
+	typeDirectives?: T[]
+}
+
+export type DirectiveDefinition<T, D = DirectiveLocations> = {
+	type: 'directive';
+	description?: string;
+	comments?: string;
+	arguments?: T[];
+	directiveLocations: D;
+}

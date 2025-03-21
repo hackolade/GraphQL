@@ -1,5 +1,5 @@
 /**
- * @import {FEStatement, FieldData, ArrayItem, IdToNameMap} from "../../shared/types/types"
+ * @import {FEStatement, BaseGetFieldParams, GetFieldsParams, ArrayItems, FieldData, ArrayItem, IdToNameMap} from "../../shared/types/types"
  */
 
 const { joinInlineStatements } = require('../helpers/feStatementJoinHelper');
@@ -10,21 +10,12 @@ const { getFieldDefaultValueStatement } = require('./fieldDefaultValue');
 const { addRequired } = require('../helpers/addRequiredHelper');
 
 /**
- * @typedef {Record<string, FieldData>} FieldsData
- */
-
-/**
  * Gets the fields from the model definitions.
  *
- * @param {object} param0
- * @param {FieldsData} param0.fields - The fields to get.
- * @param {string[]} param0.requiredFields - The required fields list.
- * @param {IdToNameMap} param0.definitionsIdToNameMap - The definitions id to name map.
- * @param {boolean} param0.addArguments - Indicates if arguments should be added.
- * @param {boolean} param0.addDefaultValue - Indicates if default value should be added.
+ * @param {GetFieldsParams} params
  * @returns {FEStatement[]} - The fields.
  */
-function getFields({ fields = [], requiredFields = [], definitionsIdToNameMap, addArguments, addDefaultValue }) {
+function getFields({ fields = {}, requiredFields = [], definitionsIdToNameMap, addArguments, addDefaultValue }) {
 	return Object.entries(fields).map(([name, fieldData]) =>
 		mapField({
 			name,
@@ -35,6 +26,21 @@ function getFields({ fields = [], requiredFields = [], definitionsIdToNameMap, a
 			addDefaultValue,
 		}),
 	);
+}
+
+/**
+ * @param {object} params
+ * @param {FieldData} params.fieldData
+ * @returns {string}
+ */
+function getFieldDescription({ fieldData }) {
+	if ('refDescription' in fieldData && fieldData.refDescription) {
+		return fieldData.refDescription;
+	} else if ('description' in fieldData && fieldData.description) {
+		return fieldData.description;
+	}
+
+	return '';
 }
 
 /**
@@ -63,7 +69,7 @@ function mapField({ name, fieldData, required, definitionsIdToNameMap, addArgume
 
 	return {
 		statement: joinInlineStatements({ statements: [fieldTypeStatement, fieldDefaultValue, directivesStatement] }),
-		description: fieldData.refDescription || fieldData.description,
+		description: getFieldDescription({ fieldData }),
 		isActivated: fieldData.isActivated,
 		comment: argumentsWarningComment,
 	};
@@ -74,32 +80,44 @@ function mapField({ name, fieldData, required, definitionsIdToNameMap, addArgume
  *
  * @param {object} param0
  * @param {FieldData} param0.field - The field data object.
- * @param {boolean} param0.required - Indicates if the field is required.
+ * @param {boolean} [param0.required] - Indicates if the field is required.
  * @returns {string} - The field type.
  */
 function getFieldType({ field, required }) {
-	if (field.$ref) {
+	if ('$ref' in field && field.$ref) {
 		const definitionName = getDefinitionNameFromReferencePath({ referencePath: field.$ref });
 		return addRequired({ type: definitionName, required });
 	}
 
-	if (field.type === 'List') {
+	if ('type' in field && field.type === 'List') {
 		const arrayItem = getFieldFromArrayItems({ items: field.items });
+
+		// When no array items are present, return a placeholder
+		if (!arrayItem) {
+			return `[Unknown]`;
+		}
+
 		return addRequired({
 			type: `[${getFieldType({ field: arrayItem, required: arrayItem.required })}]`,
 			required,
 		});
 	}
 
-	return addRequired({ type: field.type, required });
+	if ('type' in field) {
+		return addRequired({ type: field.type, required });
+	}
+
+	// Fallback return type for types that are not recognized
+	// Ideally, this should never be reached
+	return '';
 }
 
 /**
  * Gets the field from array items.
  *
  * @param {object} param0
- * @param {FieldData['items']} param0.items - The array items.
- * @returns {ArrayItem} - The field.
+ * @param {ArrayItems} [param0.items] - The array items.
+ * @returns {ArrayItem | undefined} - The field.
  */
 function getFieldFromArrayItems({ items }) {
 	if (Array.isArray(items)) {
@@ -108,16 +126,51 @@ function getFieldFromArrayItems({ items }) {
 	return items;
 }
 
-// TODO: Add proper JSDoc comments for the functions that are exported
+/**
+ * Gets the fields for an object type.
+ *
+ * @param {BaseGetFieldParams} params
+ * @returns {FEStatement[]}
+ */
+function getObjectTypeFields(params) {
+	return getFields({ ...params, addArguments: true, addDefaultValue: false });
+}
+
+/**
+ * Gets the fields for an interface type.
+ *
+ * @param {BaseGetFieldParams} params
+ * @returns {FEStatement[]}
+ */
+function getInterfaceTypeFields(params) {
+	return getFields({ ...params, addArguments: true, addDefaultValue: false });
+}
+
+/**
+ * Gets the fields for an input type.
+ *
+ * @param {BaseGetFieldParams} params
+ * @returns {FEStatement[]}
+ */
+function getInputTypeFields(params) {
+	return getFields({ ...params, addArguments: false, addDefaultValue: true });
+}
+
+/**
+ * Gets the fields for a root type.
+ *
+ * @param {BaseGetFieldParams} params
+ * @returns {FEStatement[]}
+ */
+function getRootTypeFields(params) {
+	return getFields({ ...params, addArguments: true, addDefaultValue: false });
+}
+
 module.exports = {
-	// eslint-disable-next-line jsdoc/require-jsdoc
-	getObjectTypeFields: params => getFields({ ...params, addArguments: true, addDefaultValue: false }),
-	// eslint-disable-next-line jsdoc/require-jsdoc
-	getInterfaceTypeFields: params => getFields({ ...params, addArguments: true, addDefaultValue: false }),
-	// eslint-disable-next-line jsdoc/require-jsdoc
-	getInputTypeFields: params => getFields({ ...params, addArguments: false, addDefaultValue: true }),
-	// eslint-disable-next-line jsdoc/require-jsdoc
-	getRootTypeFields: params => getFields({ ...params, addArguments: true, addDefaultValue: false }),
+	getObjectTypeFields,
+	getInterfaceTypeFields,
+	getInputTypeFields,
+	getRootTypeFields,
 
 	// exported only for tests:
 	mapField,

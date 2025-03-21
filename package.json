@@ -105,7 +105,7 @@
 	},
 	"simple-git-hooks": {
 		"pre-commit": "npx lint-staged",
-		"pre-push": "npx eslint . && npm run test:unit"
+		"pre-push": "npm run lint && npm run check:types && npm run test:unit"
 	},
 	"scripts": {
 		"lint": "eslint . --max-warnings=0",

@@ -1,4 +1,9 @@
-import { DirectiveLocations } from './shared';
+import {
+	ContainerSchemaRootTypes,
+	CustomScalarDefinition,
+	DirectiveDefinition,
+	StructuredDirective,
+} from './shared';
 
 type ContainerName = string;
 
@@ -6,13 +11,7 @@ export type ContainerInfo = {
 	name: ContainerName;
 	description?: string; // container description
 	schemaRootTypes?: ContainerSchemaRootTypes; // container schema root types
-	graphDirectives?: DirectiveUsage[]; // container graph directives
-};
-
-export type ContainerSchemaRootTypes = {
-	rootQuery?: string; // root query name
-	rootMutation?: string; // root mutation name
-	rootSubscription?: string; // root subscription name
+	graphDirectives?: StructuredDirective[]; // container graph directives
 };
 
 export type FileREEntityResponseData = {
@@ -111,26 +110,43 @@ export type REConnectionInfo = GeneralRESettings & {
 	connectionSettings: ConnectionSettings;
 };
 
-export type DirectiveUsage = {
-	directiveFormat: string;
-	directiveName: string;
-	argumentValueFormat: string;
-	rawArgumentValues: string;
-};
-
-export type DirectiveDefinition = {
-	type: 'directive';
+export type REDirectiveDefinition = DirectiveDefinition<Object> & {
 	name: string;
-	description?: string;
-	arguments?: Object[]; // TODO: update when arguments are ready
-	directiveLocations: DirectiveLocations;
 };
 
-export type CustomScalarDefinition = {
+export type REDefinitionsSchema = REDirectiveDefinitionsSchema | RECustomScalarDefinitionsSchema;
+
+export type REDirectiveDefinitionsSchema = Record<string, REDirectiveDefinition>;
+export type RECustomScalarDefinitionsSchema = Record<string, RECustomScalarDefinition>;
+
+export type REDefinition = RECustomScalarDefinition | REDirectiveDefinition;
+
+export type REModelDefinitionsSchema = {
+	definitions: {
+		Directives: DirectiveStructureType;
+		Scalars: ScalarStructureType;
+	}
+}
+
+export type DefinitionREStructure = DirectiveStructureType | ScalarStructureType;
+
+type StructureType<T> = {
+	type: 'type';
+	structureType: true,
+	properties: T
+}
+
+export type DirectiveStructureType = StructureType<REDirectiveDefinitionsSchema> & {
+	subtype: 'directive';
+}
+
+export type ScalarStructureType = StructureType<RECustomScalarDefinitionsSchema> & {
+	subtype: 'scalar';
+}
+
+export type RECustomScalarDefinition = CustomScalarDefinition<StructuredDirective> & {
 	type: 'scalar';
 	name: string;
-	description?: string;
-	typeDirectives?: DirectiveUsage[];
 }
 
 export type TestConnectionCallback = (err?: Error | unknown) => void;

@@ -6,7 +6,7 @@
  * Get implements interfaces statement
  *
  * @param {object} param0
- * @param {ImplementsInterface[]} param0.interfaces - The interfaces to implement.
+ * @param {ImplementsInterface[]} [param0.interfaces] - The interfaces to implement.
  * @param {IdToNameMap} param0.definitionsIdToNameMap - The definitions id to name map.
  * @returns {string} - The implements interfaces statement.
  */

@@ -4,6 +4,13 @@ const eslintConfigPrettier = require('eslint-config-prettier');
 const importPlugin = require('eslint-plugin-import');
 const unusedImportsPlugin = require('eslint-plugin-unused-imports');
 const jsdocPlugin = require('eslint-plugin-jsdoc');
+const noAmbiguousReturnTypes = require('./.eslint/noAmbiguousReturnTypes');
+
+const customRulesConfig = {
+	rules: {
+		'no-ambiguous-return-types': noAmbiguousReturnTypes,
+	},
+};
 
 /**
  * @type {import('eslint').Linter.Config[]}
@@ -16,6 +23,7 @@ module.exports = [
 			'jsdoc': jsdocPlugin,
 			'unused-imports': unusedImportsPlugin,
 			'prettier': prettierPlugin,
+			'custom': customRulesConfig,
 		},
 	},
 	{
@@ -34,6 +42,7 @@ module.exports = [
 		files: ['**/*.{js,cjs,mjs}'],
 		rules: {
 			...eslintConfigPrettier.rules,
+			'custom/no-ambiguous-return-types': 'error',
 			'jsdoc/require-jsdoc': [
 				'error',
 				{

@@ -13,13 +13,13 @@ const getArgumentDefaultValue = ({ type, defaultValue = '' }) => {
 			return `"${defaultValue}"`;
 		}
 		case 'Int': {
-			return Number.parseInt(defaultValue);
+			return Number.parseInt(String(defaultValue));
 		}
 		case 'Float': {
-			return Number.parseFloat(defaultValue);
+			return Number.parseFloat(String(defaultValue));
 		}
 		case 'Boolean': {
-			return defaultValue.toLowerCase() === 'true';
+			return String(defaultValue).toLowerCase() === 'true';
 		}
 		default: {
 			return defaultValue;

@@ -1,6 +1,6 @@
 /**
  * @import {DirectiveNode, ArgumentNode, ValueNode} from "graphql"
- * @import {DirectiveUsage} from "../../shared/types/types"
+ * @import {StructuredDirective} from "../../shared/types/types"
  */
 
 const { astNodeKind } = require('../constants/graphqlAST');
@@ -12,7 +12,7 @@ const { getDirectiveName } = require('./directiveName');
  *
  * @param {object} params
  * @param {DirectiveNode[]} [params.directives] - The directives
- * @returns {DirectiveUsage[]} The mapped directives usage
+ * @returns {StructuredDirective[]} The mapped directives usage
  */
 function mapDirectivesUsage({ directives = [] }) {
 	return directives.map(directive => {

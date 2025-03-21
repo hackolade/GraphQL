@@ -25,7 +25,8 @@ const getArgumentType = ({ graphqlArgument, idToNameMap = {} }) => {
 
 	if (argumentType === 'List') {
 		const firstListItem = graphqlArgument.listItems?.[0] || {};
-		const listItemType = idToNameMap[firstListItem.type] || getCheckedType({ type: firstListItem.type }) || '';
+		const listTypeKey = firstListItem.type || '';
+		const listItemType = idToNameMap[listTypeKey] || getCheckedType({ type: listTypeKey }) || '';
 
 		if (!listItemType) {
 			argumentType = EMPTY_LIST;
@@ -71,7 +72,7 @@ const mapArgument = ({ graphqlArgument, idToNameMap = {} }) => {
  * Maps an array of arguments to a formatted string with all configured properties.
  *
  * @param {object} args - Arguments object.
- * @param {Argument[]} args.graphqlArguments - The arguments to map.
+ * @param {Argument[]} [args.graphqlArguments] - The arguments to map.
  * @param {IdToNameMap} [args.idToNameMap] - The ID to name map of all available types in model.
  * @returns {ArgumentsResultStatement} Returns an object containing the arguments as a formatted string and a warning
  *   comment if any.
