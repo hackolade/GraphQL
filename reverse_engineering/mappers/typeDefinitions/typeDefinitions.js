@@ -94,31 +94,21 @@ function getTypeDefinitionsStructure({ fieldsOrder, directives, customScalars, o
  * @returns {DefinitionREStructure} The definition category structure
  */
 function getDefinitionCategoryStructure({ fieldsOrder, subtype, properties }) {
-	return {
-		type: 'type',
-		subtype,
-		structureType: true,
-		properties: handleProperties({ properties, fieldsOrder }),
-	};
-}
-
-/**
- * Processes properties, sorting them by name and converting them to JSON schema format
- *
- * @param {object} params
- * @param {REDefinition[]} params.properties - The properties to process
- * @param {FieldsOrder} params.fieldsOrder - The fields order
- * @returns {object} The processed properties as a map of name to property
- */
-function handleProperties({ properties, fieldsOrder }) {
 	const sortedFields = sortByName({ items: properties, fieldsOrder });
 
-	return sortedFields.reduce((acc, prop) => {
+	const convertedProperties = sortedFields.reduce((acc, prop) => {
 		const processedProp = { ...prop };
 
 		acc[processedProp.name] = processedProp;
 		return acc;
 	}, {});
+
+	return {
+		type: 'type',
+		subtype,
+		structureType: true,
+		properties: convertedProperties,
+	};
 }
 
 module.exports = {

@@ -92,6 +92,13 @@ function getTypeProperties({ type, definitionCategoryByNameMap }) {
 	};
 }
 
+/**
+ * Checks if a type name is a built-in scalar
+ *
+ * @param {object} params
+ * @param {string} params.typeName - The type name to check
+ * @returns {boolean} True if the type is a built-in scalar, false otherwise
+ */
 function isBuiltInScalar({ typeName }) {
 	return BUILT_IN_SCALAR_LIST.includes(typeName);
 }
