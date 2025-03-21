@@ -14,8 +14,8 @@ const { getDirectivesUsageStatement } = require('./directiveUsageStatements');
  * @returns {FEStatement[]}
  */
 function getEnums({ enumsDefinitions, definitionsIdToNameMap }) {
-	return Object.entries(enumsDefinitions).map(([name, FEEnumDefinition]) =>
-		mapEnum({ name, FEEnumDefinition, definitionsIdToNameMap }),
+	return Object.entries(enumsDefinitions).map(([name, enumDefinition]) =>
+		mapEnum({ name, enumDefinition, definitionsIdToNameMap }),
 	);
 }
 
@@ -24,22 +24,22 @@ function getEnums({ enumsDefinitions, definitionsIdToNameMap }) {
  *
  * @param {object} param0
  * @param {string} param0.name - The name of the enum.
- * @param {FEEnumDefinition} param0.FEEnumDefinition - The enum definition object.
+ * @param {FEEnumDefinition} param0.enumDefinition - The enum definition object.
  * @param {IdToNameMap} param0.definitionsIdToNameMap - The definitions id to name map.
  * @returns {FEStatement}
  */
-function mapEnum({ name, FEEnumDefinition, definitionsIdToNameMap }) {
+function mapEnum({ name, enumDefinition, definitionsIdToNameMap }) {
 	const nameStatement = `enum ${name}`;
 	const directivesStatement = getDirectivesUsageStatement({
-		directives: FEEnumDefinition.typeDirectives,
+		directives: enumDefinition.typeDirectives,
 		definitionsIdToNameMap,
 	});
 
 	return {
 		statement: joinInlineStatements({ statements: [nameStatement, directivesStatement] }),
-		description: FEEnumDefinition.description,
-		isActivated: FEEnumDefinition.isActivated,
-		nestedStatements: mapEnumValues({ enumValues: FEEnumDefinition.enumValues, definitionsIdToNameMap }),
+		description: enumDefinition.description,
+		isActivated: enumDefinition.isActivated,
+		nestedStatements: mapEnumValues({ enumValues: enumDefinition.enumValues, definitionsIdToNameMap }),
 	};
 }
 
