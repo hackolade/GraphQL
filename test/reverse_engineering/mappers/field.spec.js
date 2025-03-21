@@ -4,7 +4,7 @@ const assert = require('assert');
 // Mock dependencies
 const mapDirectivesUsageMock = mock.fn(() => []);
 
-mock.module('../../../../reverse_engineering/mappers/directiveUsage', {
+mock.module('../../../reverse_engineering/mappers/directiveUsage', {
 	namedExports: {
 		mapDirectivesUsage: mapDirectivesUsageMock,
 	},
@@ -16,7 +16,7 @@ const astNodeKindMock = {
 	LIST_TYPE: 'ListType',
 };
 
-const { mapField } = require('../../../../reverse_engineering/mappers/field');
+const { mapField } = require('../../../reverse_engineering/mappers/field');
 
 describe('field', () => {
 	afterEach(() => {
