@@ -1,6 +1,16 @@
 /**
  * @import {DefinitionNode} from "graphql"
- * @import {REDirectiveDefinition, REDefinitionsSchema, FieldsOrder, RECustomScalarDefinition, REDefinition, REModelDefinitionsSchema, DefinitionREStructure, DirectiveStructureType, ScalarStructureType} from "../../../shared/types/types"
+ * @import {REDirectiveDefinition,
+ * 		REDefinitionsSchema,
+ * 		FieldsOrder,
+ * 		RECustomScalarDefinition,
+ * 		REDefinition,
+ * 		REModelDefinitionsSchema,
+ * 		DefinitionREStructure,
+ * 		DirectiveStructureType,
+ * 		REEnumDefinition,
+ * 		EnumStructureType,
+ * 		ScalarStructureType} from "../../../shared/types/types"
  */
 
 const { astNodeKind } = require('../../constants/graphqlAST');
@@ -8,6 +18,7 @@ const { findNodesByKind } = require('../../helpers/findNodesByKind');
 const { sortByName } = require('../../helpers/sortByName');
 const { getCustomScalarTypeDefinitions } = require('./customScalar');
 const { getDirectiveTypeDefinitions } = require('./directive');
+const { getEnumTypeDefinitions } = require('./enum');
 
 /**
  * Gets the type definitions structure
@@ -24,8 +35,11 @@ function getTypeDefinitions({ typeDefinitions, fieldsOrder }) {
 	const customScalars = getCustomScalarTypeDefinitions({
 		customScalars: findNodesByKind({ nodes: typeDefinitions, kind: astNodeKind.SCALAR_TYPE_DEFINITION }),
 	});
+	const enums = getEnumTypeDefinitions({
+		enums: findNodesByKind({ nodes: typeDefinitions, kind: astNodeKind.ENUM_TYPE_DEFINITION }),
+	});
 
-	const definitions = getTypeDefinitionsStructure({ fieldsOrder, directives, customScalars });
+	const definitions = getTypeDefinitionsStructure({ fieldsOrder, directives, customScalars, enums });
 
 	return definitions;
 }
@@ -37,9 +51,10 @@ function getTypeDefinitions({ typeDefinitions, fieldsOrder }) {
  * @param {FieldsOrder} params.fieldsOrder - The fields order
  * @param {REDirectiveDefinition[]} params.directives - The directive definitions
  * @param {RECustomScalarDefinition[]} params.customScalars - The custom scalar definitions
+ * @param {REEnumDefinition[]} params.enums - The enum definitions
  * @returns {REModelDefinitionsSchema} The type definitions structure
  */
-function getTypeDefinitionsStructure({ fieldsOrder, directives, customScalars }) {
+function getTypeDefinitionsStructure({ fieldsOrder, directives, customScalars, enums }) {
 	const definitions = {
 		['Directives']: /** @type {DirectiveStructureType} */ (
 			getDefinitionCategoryStructure({
@@ -53,6 +68,13 @@ function getTypeDefinitionsStructure({ fieldsOrder, directives, customScalars })
 				fieldsOrder,
 				subtype: 'scalar',
 				properties: customScalars,
+			})
+		),
+		['Enums']: /** @type {EnumStructureType} */ (
+			getDefinitionCategoryStructure({
+				fieldsOrder,
+				subtype: 'enum',
+				properties: enums,
 			})
 		),
 	};

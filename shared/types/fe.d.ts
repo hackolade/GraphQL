@@ -3,7 +3,7 @@ import {
 	CustomScalarDefinition,
 	DirectiveDefinition,
 	DirectiveLocations,
-	DirectivePropertyData,
+	DirectivePropertyData, EnumDefinition, EnumValue,
 } from './shared';
 
 export type FEStatement = {
@@ -32,18 +32,9 @@ export type FECustomScalarDefinitionsSchema = Record<string, FECustomScalarDefin
 export type FECustomScalarDefinition = CustomScalarDefinition<DirectivePropertyData>;
 
 // Enum
-export type EnumValue = {
-	value: string; // The name of the enum value
-	description?: string; // The description of the enum value
-	typeDirectives?: DirectivePropertyData[]; // The directives of the enum value
-};
+export type FEEnumValue = EnumValue<DirectivePropertyData>;
 
-export type FEEnumDefinition = {
-	description?: string; // The description of the enum
-	isActivated?: boolean; // Indicates if the enum is activated
-	typeDirectives?: DirectivePropertyData[]; // The directives of the enum
-	enumValues: EnumValue[]; // The values of the enum
-};
+export type FEEnumDefinition = EnumDefinition<DirectivePropertyData>;
 
 export type FEEnumDefinitionsSchema = Record<string, FEEnumDefinition>;
 

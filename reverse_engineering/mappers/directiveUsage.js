@@ -15,6 +15,7 @@ const { getDirectiveName } = require('./directiveName');
  * @returns {StructuredDirective[]} The mapped directives usage
  */
 function mapDirectivesUsage({ directives = [] }) {
+	console.log('mapDirectivesUsage');
 	return directives.map(directive => {
 		return {
 			directiveFormat: DIRECTIVE_FORMAT.structured,
