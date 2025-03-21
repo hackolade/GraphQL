@@ -101,7 +101,7 @@
 		"graphql": "16.10.0"
 	},
 	"lint-staged": {
-		"*.{js,json}": "prettier --write"
+		"*.{js,ts,json}": "prettier --write"
 	},
 	"simple-git-hooks": {
 		"pre-commit": "npx lint-staged",
