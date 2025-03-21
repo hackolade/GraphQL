@@ -27,8 +27,13 @@ function getMappedSchema({ schemaItems, graphName, logger, fieldsOrder }) {
 			rootSchemaNode: findNodesByKind({ nodes: schemaItems, kind: Kind.SCHEMA_DEFINITION })[0],
 			graphName,
 		});
+		const rootTypeNames = [
+			container.schemaRootTypes?.rootQuery || 'Query',
+			container.schemaRootTypes?.rootMutation || 'Mutation',
+			container.schemaRootTypes?.rootSubscription || 'Subscription',
+		];
 
-		const typeDefinitions = getTypeDefinitions({ typeDefinitions: schemaItems, fieldsOrder });
+		const typeDefinitions = getTypeDefinitions({ typeDefinitions: schemaItems, fieldsOrder, rootTypeNames });
 
 		return [
 			// TODO: remove test collection

@@ -2,6 +2,8 @@ import {
 	ContainerSchemaRootTypes,
 	CustomScalarDefinition,
 	DirectiveDefinition,
+	FieldData,
+	ObjectLikeDefinition,
 	StructuredDirective,
 } from './shared';
 
@@ -118,17 +120,19 @@ export type REDefinitionsSchema = REDirectiveDefinitionsSchema | RECustomScalarD
 
 export type REDirectiveDefinitionsSchema = Record<string, REDirectiveDefinition>;
 export type RECustomScalarDefinitionsSchema = Record<string, RECustomScalarDefinition>;
+export type REObjectDefinitionsSchema = Record<string, REObjectTypeDefinition>;
 
-export type REDefinition = RECustomScalarDefinition | REDirectiveDefinition;
+export type REDefinition = RECustomScalarDefinition | REDirectiveDefinition | REObjectTypeDefinition;
 
 export type REModelDefinitionsSchema = {
 	definitions: {
 		Directives: DirectiveStructureType;
 		Scalars: ScalarStructureType;
+		Objects: ObjectStructureType;
 	}
 }
 
-export type DefinitionREStructure = DirectiveStructureType | ScalarStructureType;
+export type DefinitionREStructure = DirectiveStructureType | ScalarStructureType | ObjectStructureType;
 
 type StructureType<T> = {
 	type: 'type';
@@ -148,6 +152,47 @@ export type RECustomScalarDefinition = CustomScalarDefinition<StructuredDirectiv
 	type: 'scalar';
 	name: string;
 }
+
+export type ObjectStructureType = StructureType<REObjectDefinitionsSchema> & {
+	subtype: 'object';
+}
+
+type REImplementsInterface = {
+	name: string; // Name of the interface
+};
+
+export type REPropertiesSchema = Record<string, FieldData>;
+type REObjectLikeDefinition = ObjectLikeDefinition<REImplementsInterface[]>;
+
+export type REObjectTypeDefinition = REObjectLikeDefinition & {
+	type: 'object';
+	name: string;
+}
+
+export type PreProcessedFieldData = FieldData & FieldTypeProperties & {
+	name: string;
+}
+
+export type FieldTypeProperties = RegularFieldTypeProperties | ArrayFieldTypeProperties | ReferenceFieldTypeProperties;
+
+export type RegularFieldTypeProperties = {
+	type: string;
+	required: boolean;
+}
+
+export type ArrayFieldTypeProperties = {
+	type: 'List';
+	items?: [FieldTypeProperties];
+	required: boolean;
+};
+
+export type ReferenceFieldTypeProperties = {
+	$ref: string;
+	required: boolean;
+};
+
+export type DefinitionTypeName = 'Scalars' | 'Enums' | 'Objects' | 'Interfaces' | 'Unions' | 'Input objects' | 'Directives';
+export type DefinitionNameToTypeNameMap = Record<string, DefinitionTypeName>;
 
 export type TestConnectionCallback = (err?: Error | unknown) => void;
 export type DisconnectCallback = TestConnectionCallback;

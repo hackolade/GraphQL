@@ -1,14 +1,14 @@
 /**
- * @import {FieldsOrder, REDefinition} from "../../shared/types/types"
+ * @import {FieldsOrder, PreProcessedFieldData, REDefinition} from "../../shared/types/types"
  */
 
 /**
  * Sorts an array of objects by the name according to the fields order option
  *
  * @param {object} params
- * @param {REDefinition[]} params.items - The items to sort
+ * @param {REDefinition[] | PreProcessedFieldData[]} params.items - The items to sort
  * @param {FieldsOrder} params.fieldsOrder - The fields order
- * @returns {REDefinition[]} The sorted items
+ * @returns {REDefinition[] | PreProcessedFieldData[]} The sorted items
  */
 function sortByName({ items, fieldsOrder }) {
 	if (!Array.isArray(items)) {

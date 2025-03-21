@@ -1,13 +1,15 @@
 /**
  * @import {DefinitionNode} from "graphql"
- * @import {REDirectiveDefinition, REDefinitionsSchema, FieldsOrder, RECustomScalarDefinition, REDefinition, REModelDefinitionsSchema, DefinitionREStructure, DirectiveStructureType, ScalarStructureType} from "../../../shared/types/types"
+ * @import {REDirectiveDefinition, REDefinitionsSchema, FieldsOrder, RECustomScalarDefinition, REDefinition, REModelDefinitionsSchema, DefinitionREStructure, DirectiveStructureType, ScalarStructureType, REObjectTypeDefinition, ObjectStructureType, PreProcessedFieldData} from "../../../shared/types/types"
  */
 
 const { astNodeKind } = require('../../constants/graphqlAST');
 const { findNodesByKind } = require('../../helpers/findNodesByKind');
+const { getDefinitionCategoryByNameMap } = require('../../helpers/getDefinitionCategoryByNameMap');
 const { sortByName } = require('../../helpers/sortByName');
 const { getCustomScalarTypeDefinitions } = require('./customScalar');
 const { getDirectiveTypeDefinitions } = require('./directive');
+const { getObjectTypeDefinitions } = require('./objectType');
 
 /**
  * Gets the type definitions structure
@@ -15,17 +17,29 @@ const { getDirectiveTypeDefinitions } = require('./directive');
  * @param {object} params
  * @param {DefinitionNode[]} params.typeDefinitions - The type definitions nodes
  * @param {FieldsOrder} params.fieldsOrder - The fields order
+ * @param {string[]} params.rootTypeNames - The root type names
  * @returns {REModelDefinitionsSchema} The mapped type definitions
  */
-function getTypeDefinitions({ typeDefinitions, fieldsOrder }) {
+function getTypeDefinitions({ typeDefinitions, fieldsOrder, rootTypeNames }) {
+	const definitionCategoryByNameMap = getDefinitionCategoryByNameMap({ nodes: typeDefinitions });
+
 	const directives = getDirectiveTypeDefinitions({
 		directives: findNodesByKind({ nodes: typeDefinitions, kind: astNodeKind.DIRECTIVE_DEFINITION }),
 	});
 	const customScalars = getCustomScalarTypeDefinitions({
 		customScalars: findNodesByKind({ nodes: typeDefinitions, kind: astNodeKind.SCALAR_TYPE_DEFINITION }),
 	});
+	const objectDefinitionNodes = findNodesByKind({
+		nodes: typeDefinitions,
+		kind: astNodeKind.OBJECT_TYPE_DEFINITION,
+	}).filter(node => !rootTypeNames.includes(node.name.value));
+	const objectTypes = getObjectTypeDefinitions({
+		objectTypes: objectDefinitionNodes,
+		definitionCategoryByNameMap,
+		fieldsOrder,
+	});
 
-	const definitions = getTypeDefinitionsStructure({ fieldsOrder, directives, customScalars });
+	const definitions = getTypeDefinitionsStructure({ fieldsOrder, directives, customScalars, objectTypes });
 
 	return definitions;
 }
@@ -37,9 +51,10 @@ function getTypeDefinitions({ typeDefinitions, fieldsOrder }) {
  * @param {FieldsOrder} params.fieldsOrder - The fields order
  * @param {REDirectiveDefinition[]} params.directives - The directive definitions
  * @param {RECustomScalarDefinition[]} params.customScalars - The custom scalar definitions
+ * @param {REObjectTypeDefinition[]} params.objectTypes - The object type definitions
  * @returns {REModelDefinitionsSchema} The type definitions structure
  */
-function getTypeDefinitionsStructure({ fieldsOrder, directives, customScalars }) {
+function getTypeDefinitionsStructure({ fieldsOrder, directives, customScalars, objectTypes }) {
 	const definitions = {
 		['Directives']: /** @type {DirectiveStructureType} */ (
 			getDefinitionCategoryStructure({
@@ -53,6 +68,13 @@ function getTypeDefinitionsStructure({ fieldsOrder, directives, customScalars })
 				fieldsOrder,
 				subtype: 'scalar',
 				properties: customScalars,
+			})
+		),
+		['Objects']: /** @type {ObjectStructureType} */ (
+			getDefinitionCategoryStructure({
+				fieldsOrder,
+				subtype: 'object',
+				properties: objectTypes,
 			})
 		),
 	};
@@ -72,20 +94,31 @@ function getTypeDefinitionsStructure({ fieldsOrder, directives, customScalars })
  * @returns {DefinitionREStructure} The definition category structure
  */
 function getDefinitionCategoryStructure({ fieldsOrder, subtype, properties }) {
-	const sortedFields = sortByName({ items: properties, fieldsOrder });
-
 	return {
 		type: 'type',
 		subtype,
 		structureType: true,
-		properties: sortedFields.reduce(
-			(acc, prop) => {
-				acc[prop.name] = prop;
-				return acc;
-			},
-			/** @type {REDefinitionsSchema} */ {},
-		),
+		properties: handleProperties({ properties, fieldsOrder }),
 	};
+}
+
+/**
+ * Processes properties, sorting them by name and converting them to JSON schema format
+ *
+ * @param {object} params
+ * @param {REDefinition[]} params.properties - The properties to process
+ * @param {FieldsOrder} params.fieldsOrder - The fields order
+ * @returns {object} The processed properties as a map of name to property
+ */
+function handleProperties({ properties, fieldsOrder }) {
+	const sortedFields = sortByName({ items: properties, fieldsOrder });
+
+	return sortedFields.reduce((acc, prop) => {
+		const processedProp = { ...prop };
+
+		acc[processedProp.name] = processedProp;
+		return acc;
+	}, {});
 }
 
 module.exports = {

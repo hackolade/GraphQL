@@ -1,9 +1,12 @@
 import {
+	Argument,
 	ContainerSchemaRootTypes,
 	CustomScalarDefinition,
 	DirectiveDefinition,
 	DirectiveLocations,
 	DirectivePropertyData,
+	FieldSchema,
+	ObjectLikeDefinition,
 } from './shared';
 
 export type FEStatement = {
@@ -50,61 +53,7 @@ export type FEEnumDefinitionsSchema = Record<string, FEEnumDefinition>;
 // Object type definition
 export type FEObjectLikeDefinitionsSchema = Record<string, FEObjectLikeDefinition>;
 
-export type FEObjectLikeDefinition = {
-	description?: string; // Description of the object type
-	isActivated?: boolean; // If the object type is activated
-	implementsInterfaces?: ImplementsInterface[]; // Interfaces that the object type implements
-	typeDirectives?: DirectivePropertyData[]; // Directives for the type
-	properties: Record<string, FieldData>; // Properties of the object type
-	required?: boolean;
-};
-
-// Field data type
-export type FieldData = RegularFieldData | ReferenceFieldData;
-
-export type FieldSchema = Record<string, FieldData>
-
-export type ArrayItems = ArrayItem | ArrayItem[];
-
-type RegularFieldData = {
-	type: string; // Type of the field
-	isActivated?: boolean; // If the field is activated
-	description?: string; // Description of the field
-	fieldDirectives?: DirectivePropertyData[]; // Directives for the field
-	items?: ArrayItems; // Items of the List type
-	arguments?: Argument[]; // Arguments of the field
-	default?: string; // Default value of the field
-};
-
-type ReferenceFieldData = {
-	$ref: string; // Reference path to the type definition
-	isActivated?: boolean; // If the field is activated
-	refDescription?: string; // Description of the reference
-	fieldDirectives?: DirectivePropertyData[]; // Directives for the field
-	arguments?: Argument[]; // Arguments of the field
-	default?: string; // Default value of the reference
-};
-
-export type ArrayItem = FieldData & {
-	required?: boolean; // If the array item is required
-};
-
-// Field arguments
-type ArgumentListItem = {
-	type?: string;
-	required?: boolean;
-};
-
-export type Argument = {
-	id: string;
-	type: string;
-	name: string;
-	default?: string;
-	description?: string;
-	directives?: DirectivePropertyData[];
-	required?: boolean;
-	listItems?: ArgumentListItem[];
-};
+export type FEObjectLikeDefinition = ObjectLikeDefinition<ImplementsInterface[]>;
 
 export type ArgumentsResultStatement = {
 	argumentsStatement: string; // The formatted arguments string.
