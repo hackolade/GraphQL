@@ -4,6 +4,8 @@ import {
 	DirectiveDefinition,
 	DirectiveLocations,
 	DirectivePropertyData,
+	EnumDefinition,
+	EnumValue,
 } from './shared';
 
 export type FEStatement = {
@@ -20,7 +22,8 @@ export type FEStatement = {
 
 export type IdToNameMap = Record<string, string>;
 
-export type FEDefinitionsSchema = FEObjectLikeDefinitionsSchema
+export type FEDefinitionsSchema =
+	| FEObjectLikeDefinitionsSchema
 	| FECustomScalarDefinitionsSchema
 	| FEEnumDefinitionsSchema
 	| FEUnionDefinitionsSchema
@@ -32,18 +35,9 @@ export type FECustomScalarDefinitionsSchema = Record<string, FECustomScalarDefin
 export type FECustomScalarDefinition = CustomScalarDefinition<DirectivePropertyData>;
 
 // Enum
-export type EnumValue = {
-	value: string; // The name of the enum value
-	description?: string; // The description of the enum value
-	typeDirectives?: DirectivePropertyData[]; // The directives of the enum value
-};
+export type FEEnumValue = EnumValue<DirectivePropertyData>;
 
-export type FEEnumDefinition = {
-	description?: string; // The description of the enum
-	isActivated?: boolean; // Indicates if the enum is activated
-	typeDirectives?: DirectivePropertyData[]; // The directives of the enum
-	enumValues: EnumValue[]; // The values of the enum
-};
+export type FEEnumDefinition = EnumDefinition<DirectivePropertyData>;
 
 export type FEEnumDefinitionsSchema = Record<string, FEEnumDefinition>;
 
@@ -62,7 +56,7 @@ export type FEObjectLikeDefinition = {
 // Field data type
 export type FieldData = RegularFieldData | ReferenceFieldData;
 
-export type FieldSchema = Record<string, FieldData>
+export type FieldSchema = Record<string, FieldData>;
 
 export type ArrayItems = ArrayItem | ArrayItem[];
 
@@ -109,7 +103,7 @@ export type Argument = {
 export type ArgumentsResultStatement = {
 	argumentsStatement: string; // The formatted arguments string.
 	argumentsWarningComment: string; // The warning comment if any argument is missing a type.
-}
+};
 
 // Directives
 export type FEDirectiveLocations = DirectiveLocations & {
@@ -169,9 +163,9 @@ export type RootTypeNamesParameter = {
 };
 
 type EntityDetails = {
-	operationType?: string
+	operationType?: string;
 	typeDirectives?: DirectivePropertyData[];
-}
+};
 
 export type EntityIdToJsonSchemaMap = Record<string, string>;
 export type EntityIdToPropertiesMap = Record<string, [EntityDetails]>;
@@ -232,15 +226,18 @@ export type ValidationResponseItem = {
 	context?: string; // The context of the entity, typically additional information.
 };
 
-export type ValidateScriptCallback = (error: Error | null | unknown, validationErrors?: ValidationResponseItem[]) => void;
+export type ValidateScriptCallback = (
+	error: Error | null | unknown,
+	validationErrors?: ValidationResponseItem[],
+) => void;
 
 export type BaseGetFieldParams = {
 	fields?: FieldSchema; // The fields to get
 	requiredFields?: string[]; // The required fields list
 	definitionsIdToNameMap: IdToNameMap; // The definitions id to name map
-}
+};
 
 export type GetFieldsParams = BaseGetFieldParams & {
 	addArguments: boolean; // Indicates if arguments should be added.
 	addDefaultValue: boolean; // Indicates if default value should be added.
-}
+};

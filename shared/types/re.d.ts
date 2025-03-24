@@ -2,6 +2,8 @@ import {
 	ContainerSchemaRootTypes,
 	CustomScalarDefinition,
 	DirectiveDefinition,
+	EnumDefinition,
+	EnumValue,
 	StructuredDirective,
 } from './shared';
 
@@ -118,36 +120,48 @@ export type REDefinitionsSchema = REDirectiveDefinitionsSchema | RECustomScalarD
 
 export type REDirectiveDefinitionsSchema = Record<string, REDirectiveDefinition>;
 export type RECustomScalarDefinitionsSchema = Record<string, RECustomScalarDefinition>;
+export type REEnumDefinitionsSchema = Record<string, REEnumDefinition>;
 
-export type REDefinition = RECustomScalarDefinition | REDirectiveDefinition;
+export type REDefinition = RECustomScalarDefinition | REDirectiveDefinition | REEnumDefinition;
 
 export type REModelDefinitionsSchema = {
 	definitions: {
 		Directives: DirectiveStructureType;
 		Scalars: ScalarStructureType;
-	}
-}
+	};
+};
 
-export type DefinitionREStructure = DirectiveStructureType | ScalarStructureType;
+export type DefinitionREStructure = DirectiveStructureType | ScalarStructureType | EnumStructureType;
 
 type StructureType<T> = {
 	type: 'type';
-	structureType: true,
-	properties: T
-}
+	structureType: true;
+	properties: T;
+};
 
 export type DirectiveStructureType = StructureType<REDirectiveDefinitionsSchema> & {
 	subtype: 'directive';
-}
+};
 
 export type ScalarStructureType = StructureType<RECustomScalarDefinitionsSchema> & {
 	subtype: 'scalar';
-}
+};
+
+export type EnumStructureType = StructureType<REEnumDefinitionsSchema> & {
+	subtype: 'enum';
+};
 
 export type RECustomScalarDefinition = CustomScalarDefinition<StructuredDirective> & {
 	type: 'scalar';
 	name: string;
-}
+};
+
+export type REEnumDefinition = EnumDefinition<StructuredDirective> & {
+	type: 'enum';
+	name: string;
+};
+
+export type REEnumValue = EnumValue<StructuredDirective>;
 
 export type TestConnectionCallback = (err?: Error | unknown) => void;
 export type DisconnectCallback = TestConnectionCallback;
