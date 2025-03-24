@@ -1,6 +1,18 @@
 /**
  * @import {DefinitionNode} from "graphql"
- * @import {REDirectiveDefinition, REDefinitionsSchema, FieldsOrder, RECustomScalarDefinition, REDefinition, REModelDefinitionsSchema, DefinitionREStructure, DirectiveStructureType, ScalarStructureType, REObjectTypeDefinition, ObjectStructureType, PreProcessedFieldData} from "../../../shared/types/types"
+ * @import {REDirectiveDefinition,
+ * 		REDefinitionsSchema,
+ * 		FieldsOrder,
+ * 		RECustomScalarDefinition,
+ * 		REDefinition,
+ * 		REModelDefinitionsSchema,
+ * 		DefinitionREStructure,
+ * 		DirectiveStructureType,
+ * 		REEnumDefinition,
+ * 		EnumStructureType,
+ * 		ObjectStructureType,
+ * 		ScalarStructureType,
+ * REObjectTypeDefinition} from "../../../shared/types/types"
  */
 
 const { astNodeKind } = require('../../constants/graphqlAST');
@@ -10,6 +22,7 @@ const { sortByName } = require('../../helpers/sortByName');
 const { getCustomScalarTypeDefinitions } = require('./customScalar');
 const { getDirectiveTypeDefinitions } = require('./directive');
 const { getObjectTypeDefinitions } = require('./objectType');
+const { getEnumTypeDefinitions } = require('./enum');
 
 /**
  * Gets the type definitions structure
@@ -29,6 +42,10 @@ function getTypeDefinitions({ typeDefinitions, fieldsOrder, rootTypeNames }) {
 	const customScalars = getCustomScalarTypeDefinitions({
 		customScalars: findNodesByKind({ nodes: typeDefinitions, kind: astNodeKind.SCALAR_TYPE_DEFINITION }),
 	});
+
+	const enums = getEnumTypeDefinitions({
+		enums: findNodesByKind({ nodes: typeDefinitions, kind: astNodeKind.ENUM_TYPE_DEFINITION }),
+	});
 	const objectDefinitionNodes = findNodesByKind({
 		nodes: typeDefinitions,
 		kind: astNodeKind.OBJECT_TYPE_DEFINITION,
@@ -39,7 +56,7 @@ function getTypeDefinitions({ typeDefinitions, fieldsOrder, rootTypeNames }) {
 		fieldsOrder,
 	});
 
-	const definitions = getTypeDefinitionsStructure({ fieldsOrder, directives, customScalars, objectTypes });
+	const definitions = getTypeDefinitionsStructure({ fieldsOrder, directives, customScalars, enums, objectTypes });
 
 	return definitions;
 }
@@ -51,10 +68,11 @@ function getTypeDefinitions({ typeDefinitions, fieldsOrder, rootTypeNames }) {
  * @param {FieldsOrder} params.fieldsOrder - The fields order
  * @param {REDirectiveDefinition[]} params.directives - The directive definitions
  * @param {RECustomScalarDefinition[]} params.customScalars - The custom scalar definitions
+ * @param {REEnumDefinition[]} params.enums - The enum definitions
  * @param {REObjectTypeDefinition[]} params.objectTypes - The object type definitions
  * @returns {REModelDefinitionsSchema} The type definitions structure
  */
-function getTypeDefinitionsStructure({ fieldsOrder, directives, customScalars, objectTypes }) {
+function getTypeDefinitionsStructure({ fieldsOrder, directives, customScalars, enums, objectTypes }) {
 	const definitions = {
 		['Directives']: /** @type {DirectiveStructureType} */ (
 			getDefinitionCategoryStructure({
@@ -75,6 +93,13 @@ function getTypeDefinitionsStructure({ fieldsOrder, directives, customScalars, o
 				fieldsOrder,
 				subtype: 'object',
 				properties: objectTypes,
+			})
+		),
+		['Enums']: /** @type {EnumStructureType} */ (
+			getDefinitionCategoryStructure({
+				fieldsOrder,
+				subtype: 'enum',
+				properties: enums,
 			})
 		),
 	};

@@ -1,5 +1,5 @@
 /**
- * @import {FEStatement, FEEnumDefinition, FEEnumDefinitionsSchema, EnumValue, IdToNameMap} from "../../shared/types/types"
+ * @import {FEStatement, FEEnumDefinition, FEEnumDefinitionsSchema, FEEnumValue, IdToNameMap} from "../../shared/types/types"
  */
 
 const { joinInlineStatements } = require('../helpers/feStatementJoinHelper');
@@ -47,7 +47,7 @@ function mapEnum({ name, enumDefinition, definitionsIdToNameMap }) {
  * Maps the enum values to an array of FEStatement.
  *
  * @param {object} param0
- * @param {EnumValue[]} param0.enumValues - The enum values.
+ * @param {FEEnumValue[]} param0.enumValues - The enum values.
  * @param {IdToNameMap} param0.definitionsIdToNameMap - The definitions id to name map.
  * @returns {FEStatement[]}
  */

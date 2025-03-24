@@ -4,6 +4,8 @@ import {
 	DirectiveDefinition,
 	FieldData,
 	ObjectLikeDefinition,
+	EnumDefinition,
+	EnumValue,
 	StructuredDirective,
 } from './shared';
 
@@ -121,41 +123,58 @@ export type REDefinitionsSchema = REDirectiveDefinitionsSchema | RECustomScalarD
 export type REDirectiveDefinitionsSchema = Record<string, REDirectiveDefinition>;
 export type RECustomScalarDefinitionsSchema = Record<string, RECustomScalarDefinition>;
 export type REObjectDefinitionsSchema = Record<string, REObjectTypeDefinition>;
+export type REEnumDefinitionsSchema = Record<string, REEnumDefinition>;
 
-export type REDefinition = RECustomScalarDefinition | REDirectiveDefinition | REObjectTypeDefinition;
+export type REDefinition = RECustomScalarDefinition | REDirectiveDefinition | REEnumDefinition | REObjectTypeDefinition;
 
 export type REModelDefinitionsSchema = {
 	definitions: {
 		Directives: DirectiveStructureType;
 		Scalars: ScalarStructureType;
 		Objects: ObjectStructureType;
-	}
-}
+		Enums: EnumStructureType;
+	};
+};
 
-export type DefinitionREStructure = DirectiveStructureType | ScalarStructureType | ObjectStructureType;
+export type DefinitionREStructure =
+	| DirectiveStructureType
+	| ScalarStructureType
+	| EnumStructureType
+	| ObjectStructureType;
 
 type StructureType<T> = {
 	type: 'type';
-	structureType: true,
-	properties: T
-}
+	structureType: true;
+	properties: T;
+};
 
 export type DirectiveStructureType = StructureType<REDirectiveDefinitionsSchema> & {
 	subtype: 'directive';
-}
+};
 
 export type ScalarStructureType = StructureType<RECustomScalarDefinitionsSchema> & {
 	subtype: 'scalar';
-}
+};
+
+export type EnumStructureType = StructureType<REEnumDefinitionsSchema> & {
+	subtype: 'enum';
+};
 
 export type RECustomScalarDefinition = CustomScalarDefinition<StructuredDirective> & {
 	type: 'scalar';
 	name: string;
-}
+};
+
+export type REEnumDefinition = EnumDefinition<StructuredDirective> & {
+	type: 'enum';
+	name: string;
+};
+
+export type REEnumValue = EnumValue<StructuredDirective>;
 
 export type ObjectStructureType = StructureType<REObjectDefinitionsSchema> & {
 	subtype: 'object';
-}
+};
 
 type REImplementsInterface = {
 	name: string; // Name of the interface
@@ -167,18 +186,19 @@ type REObjectLikeDefinition = ObjectLikeDefinition<REImplementsInterface[]>;
 export type REObjectTypeDefinition = REObjectLikeDefinition & {
 	type: 'object';
 	name: string;
-}
+};
 
-export type PreProcessedFieldData = FieldData & FieldTypeProperties & {
-	name: string;
-}
+export type PreProcessedFieldData = FieldData &
+	FieldTypeProperties & {
+		name: string;
+	};
 
 export type FieldTypeProperties = RegularFieldTypeProperties | ArrayFieldTypeProperties | ReferenceFieldTypeProperties;
 
 export type RegularFieldTypeProperties = {
 	type: string;
 	required: boolean;
-}
+};
 
 export type ArrayFieldTypeProperties = {
 	type: 'List';
@@ -191,7 +211,14 @@ export type ReferenceFieldTypeProperties = {
 	required: boolean;
 };
 
-export type DefinitionTypeName = 'Scalars' | 'Enums' | 'Objects' | 'Interfaces' | 'Unions' | 'Input objects' | 'Directives';
+export type DefinitionTypeName =
+	| 'Scalars'
+	| 'Enums'
+	| 'Objects'
+	| 'Interfaces'
+	| 'Unions'
+	| 'Input objects'
+	| 'Directives';
 export type DefinitionNameToTypeNameMap = Record<string, DefinitionTypeName>;
 
 export type TestConnectionCallback = (err?: Error | unknown) => void;

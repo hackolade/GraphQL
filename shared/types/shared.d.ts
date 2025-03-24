@@ -57,8 +57,8 @@ type StructuredDirective = {
 export type CustomScalarDefinition<T> = {
 	description?: string;
 	isActivated?: boolean;
-	typeDirectives?: T[]
-}
+	typeDirectives?: T[];
+};
 
 export type DirectiveDefinition<T, D = DirectiveLocations> = {
 	type: 'directive';
@@ -66,7 +66,7 @@ export type DirectiveDefinition<T, D = DirectiveLocations> = {
 	comments?: string;
 	arguments?: T[];
 	directiveLocations: D;
-}
+};
 
 export type ObjectLikeDefinition<Interfaces> = {
 	description?: string; // Description of the object type
@@ -80,7 +80,7 @@ export type ObjectLikeDefinition<Interfaces> = {
 // Field data type
 export type FieldData = RegularFieldData | ReferenceFieldData;
 
-export type FieldSchema = Record<string, FieldData>
+export type FieldSchema = Record<string, FieldData>;
 
 export type ArrayItems = ArrayItem | ArrayItem[];
 
@@ -123,4 +123,18 @@ export type Argument = {
 	directives?: DirectivePropertyData[];
 	required?: boolean;
 	listItems?: ArgumentListItem[];
+};
+
+// Enum
+export type EnumValue<T> = {
+	value: string; // The name of the enum value
+	description?: string; // The description of the enum value
+	typeDirectives?: T[]; // The directives of the enum value
+};
+
+export type EnumDefinition<T> = {
+	description?: string; // The description of the enum
+	isActivated?: boolean; // Indicates if the enum is activated
+	typeDirectives?: T[]; // The directives of the enum
+	enumValues: EnumValue<T>[]; // The values of the enum
 };
