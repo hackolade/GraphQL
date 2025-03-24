@@ -188,7 +188,7 @@ export type REObjectTypeDefinition = REObjectLikeDefinition & {
 	name: string;
 };
 
-export type PreProcessedFieldData = FieldData &
+export type PreProcessedFieldData = FieldData<StructuredDirective> &
 	FieldTypeProperties & {
 		name: string;
 	};
