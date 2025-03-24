@@ -124,8 +124,14 @@ export type REDirectiveDefinitionsSchema = Record<string, REDirectiveDefinition>
 export type RECustomScalarDefinitionsSchema = Record<string, RECustomScalarDefinition>;
 export type REObjectDefinitionsSchema = Record<string, REObjectTypeDefinition>;
 export type REEnumDefinitionsSchema = Record<string, REEnumDefinition>;
+export type REInterfaceDefinitionsSchema = Record<string, REInterfaceDefinition>;
 
-export type REDefinition = RECustomScalarDefinition | REDirectiveDefinition | REEnumDefinition | REObjectTypeDefinition;
+export type REDefinition =
+	| RECustomScalarDefinition
+	| REDirectiveDefinition
+	| REEnumDefinition
+	| REObjectTypeDefinition
+	| REInterfaceDefinition;
 
 export type REModelDefinitionsSchema = {
 	definitions: {
@@ -133,6 +139,7 @@ export type REModelDefinitionsSchema = {
 		Scalars: ScalarStructureType;
 		Objects: ObjectStructureType;
 		Enums: EnumStructureType;
+		Interfaces: InterfaceStructureType;
 	};
 };
 
@@ -140,7 +147,8 @@ export type DefinitionREStructure =
 	| DirectiveStructureType
 	| ScalarStructureType
 	| EnumStructureType
-	| ObjectStructureType;
+	| ObjectStructureType
+	| InterfaceStructureType;
 
 type StructureType<T> = {
 	type: 'type';
@@ -158,6 +166,10 @@ export type ScalarStructureType = StructureType<RECustomScalarDefinitionsSchema>
 
 export type EnumStructureType = StructureType<REEnumDefinitionsSchema> & {
 	subtype: 'enum';
+};
+
+export type InterfaceStructureType = StructureType<REEnumDefinitionsSchema> & {
+	subtype: 'interface';
 };
 
 export type RECustomScalarDefinition = CustomScalarDefinition<StructuredDirective> & {
@@ -185,6 +197,11 @@ type REObjectLikeDefinition = ObjectLikeDefinition<REImplementsInterface, Struct
 
 export type REObjectTypeDefinition = REObjectLikeDefinition & {
 	type: 'object';
+	name: string;
+};
+
+export type REInterfaceDefinition = REObjectLikeDefinition & {
+	type: 'interface';
 	name: string;
 };
 
