@@ -1,12 +1,12 @@
 /**
- * @import {FieldData} from "../../shared/types/types"
+ * @import {DirectivePropertyData, FieldData} from "../../shared/types/types"
  */
 
 /**
  * Generates the default value statement for a field.
  *
  * @param {object} param0
- * @param {FieldData} param0.field - The field object.
+ * @param {FieldData<DirectivePropertyData>} param0.field - The field object.
  * @returns {string} - The default value statement.
  */
 function getFieldDefaultValueStatement({ field }) {

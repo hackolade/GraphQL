@@ -1,5 +1,5 @@
 /**
- * @import {FEStatement, BaseGetFieldParams, GetFieldsParams, ArrayItems, FieldData, ArrayItem, IdToNameMap} from "../../shared/types/types"
+ * @import {FEStatement, BaseGetFieldParams, GetFieldsParams, ArrayItems, FieldData, ArrayItem, IdToNameMap, DirectivePropertyData} from "../../shared/types/types"
  */
 
 const { joinInlineStatements } = require('../helpers/feStatementJoinHelper');
@@ -30,7 +30,7 @@ function getFields({ fields = {}, requiredFields = [], definitionsIdToNameMap, a
 
 /**
  * @param {object} params
- * @param {FieldData} params.fieldData
+ * @param {FieldData<DirectivePropertyData>} params.fieldData
  * @returns {string}
  */
 function getFieldDescription({ fieldData }) {
@@ -48,7 +48,7 @@ function getFieldDescription({ fieldData }) {
  *
  * @param {object} param0
  * @param {string} param0.name - The name of the field.
- * @param {FieldData} param0.fieldData - The field data object.
+ * @param {FieldData<DirectivePropertyData>} param0.fieldData - The field data object.
  * @param {boolean} param0.required - Indicates if the field is required.
  * @param {IdToNameMap} param0.definitionsIdToNameMap - The definitions id to name map.
  * @param {boolean} param0.addArguments - Indicates if arguments should be added.
@@ -79,7 +79,7 @@ function mapField({ name, fieldData, required, definitionsIdToNameMap, addArgume
  * Gets the field type.
  *
  * @param {object} param0
- * @param {FieldData} param0.field - The field data object.
+ * @param {FieldData<DirectivePropertyData>} param0.field - The field data object.
  * @param {boolean} [param0.required] - Indicates if the field is required.
  * @returns {string} - The field type.
  */
@@ -116,8 +116,8 @@ function getFieldType({ field, required }) {
  * Gets the field from array items.
  *
  * @param {object} param0
- * @param {ArrayItems} [param0.items] - The array items.
- * @returns {ArrayItem | undefined} - The field.
+ * @param {ArrayItems<DirectivePropertyData>} [param0.items] - The array items.
+ * @returns {ArrayItem<DirectivePropertyData> | undefined} - The field.
  */
 function getFieldFromArrayItems({ items }) {
 	if (Array.isArray(items)) {
