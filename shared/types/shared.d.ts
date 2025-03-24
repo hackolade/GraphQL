@@ -47,7 +47,7 @@ type RawDirective = {
 	rawDirective: string; // Raw directive string
 };
 
-type StructuredDirective = {
+export type StructuredDirective = {
 	directiveFormat: 'Structured'; // Format of the directive
 	directiveName: string; // Name of a built-in directive or GUID of a custom directive
 	argumentValueFormat: 'Raw'; // Format of the argument values
@@ -68,42 +68,42 @@ export type DirectiveDefinition<T, D = DirectiveLocations> = {
 	directiveLocations: D;
 };
 
-export type ObjectLikeDefinition<Interfaces> = {
+export type ObjectLikeDefinition<Interface, DirectiveUsage> = {
 	description?: string; // Description of the object type
 	isActivated?: boolean; // If the object type is activated
-	implementsInterfaces?: Interfaces; // Interfaces that the object type implements
-	typeDirectives?: DirectivePropertyData[]; // Directives for the type
-	properties: Record<string, FieldData>; // Properties of the object type
+	implementsInterfaces?: Interface[]; // Interfaces that the object type implements
+	typeDirectives?: DirectiveUsage[]; // Directives for the type
+	properties: Record<string, FieldData<DirectiveUsage>>; // Properties of the object type
 	required?: string[];
 };
 
 // Field data type
-export type FieldData = RegularFieldData | ReferenceFieldData;
+export type FieldData<DirectiveUsage> = RegularFieldData<DirectiveUsage> | ReferenceFieldData<DirectiveUsage>;
 
-export type FieldSchema = Record<string, FieldData>;
+export type FieldSchema<DirectiveUsage> = Record<string, FieldData<DirectiveUsage>>;
 
-export type ArrayItems = ArrayItem | ArrayItem[];
+export type ArrayItems<DirectiveUsage> = ArrayItem<DirectiveUsage> | ArrayItem<DirectiveUsage>[];
 
-type RegularFieldData = {
+type RegularFieldData<DirectiveUsage> = {
 	type: string; // Type of the field
 	isActivated?: boolean; // If the field is activated
 	description?: string; // Description of the field
-	fieldDirectives?: DirectivePropertyData[]; // Directives for the field
-	items?: ArrayItems; // Items of the List type
+	fieldDirectives?: DirectiveUsage[]; // Directives for the field
+	items?: ArrayItems<DirectiveUsage>; // Items of the List type
 	arguments?: Argument[]; // Arguments of the field
 	default?: string; // Default value of the field
 };
 
-type ReferenceFieldData = {
+type ReferenceFieldData<DirectiveUsage> = {
 	$ref: string; // Reference path to the type definition
 	isActivated?: boolean; // If the field is activated
 	refDescription?: string; // Description of the reference
-	fieldDirectives?: DirectivePropertyData[]; // Directives for the field
+	fieldDirectives?: DirectiveUsage[]; // Directives for the field
 	arguments?: Argument[]; // Arguments of the field
 	default?: string; // Default value of the reference
 };
 
-export type ArrayItem = FieldData & {
+export type ArrayItem<DirectiveUsage> = FieldData<DirectiveUsage> & {
 	required?: boolean; // If the array item is required
 	$ref?: string; // Reference path to the type definition
 };

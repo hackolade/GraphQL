@@ -176,12 +176,12 @@ export type ObjectStructureType = StructureType<REObjectDefinitionsSchema> & {
 	subtype: 'object';
 };
 
-type REImplementsInterface = {
-	name: string; // Name of the interface
+export type REImplementsInterface = {
+	interface: string; // Name of the interface
 };
 
-export type REPropertiesSchema = Record<string, FieldData>;
-type REObjectLikeDefinition = ObjectLikeDefinition<REImplementsInterface[]>;
+export type REPropertiesSchema = Record<string, FieldData<StructuredDirective>>;
+type REObjectLikeDefinition = ObjectLikeDefinition<REImplementsInterface, StructuredDirective>;
 
 export type REObjectTypeDefinition = REObjectLikeDefinition & {
 	type: 'object';
