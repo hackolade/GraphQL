@@ -6,6 +6,7 @@
 const { sortByName } = require('../../helpers/sortByName');
 const { mapDirectivesUsage } = require('../directiveUsage');
 const { mapField } = require('../field');
+const { mapImplementsInterfaces } = require('../implementsInterfaces');
 
 /**
  * Maps object type definitions
@@ -49,7 +50,7 @@ function mapObjectType({ objectType, definitionCategoryByNameMap, fieldsOrder })
 		required,
 		description: objectType.description?.value || '',
 		typeDirectives: mapDirectivesUsage({ directives: [...(objectType.directives || [])] }),
-		// TODO: add interfaces
+		implementsInterfaces: mapImplementsInterfaces({ implementsInterfaces: [...(objectType.interfaces || [])] }),
 	};
 }
 

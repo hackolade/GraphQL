@@ -19,7 +19,6 @@ mock.module('../../../../reverse_engineering/mappers/directiveUsage', {
 const mapFieldMock = mock.fn(({ field }) => ({
 	name: field.name.value,
 	required: field.type.kind === 'NON_NULL_TYPE',
-	// Add other properties that mapField would return
 }));
 mock.module('../../../../reverse_engineering/mappers/field', {
 	namedExports: {
@@ -34,9 +33,9 @@ mock.module('../../../../reverse_engineering/mappers/implementsInterfaces', {
 	},
 });
 
-const { getObjectTypeDefinitions } = require('../../../../reverse_engineering/mappers/typeDefinitions/objectType');
+const { getInterfaceDefinitions } = require('../../../../reverse_engineering/mappers/typeDefinitions/interface');
 
-describe('getObjectTypeDefinitions', () => {
+describe('getInterfaceDefinitions', () => {
 	afterEach(() => {
 		sortByNameMock.mock.resetCalls();
 		mapDirectivesUsageMock.mock.resetCalls();
@@ -44,18 +43,18 @@ describe('getObjectTypeDefinitions', () => {
 		mapImplementsInterfacesMock.mock.resetCalls();
 	});
 
-	it('should return an empty array when no object types are provided', () => {
-		const result = getObjectTypeDefinitions({
-			objectTypes: [],
+	it('should return an empty array when no interface types are provided', () => {
+		const result = getInterfaceDefinitions({
+			interfaces: [],
 			definitionCategoryByNameMap: {},
 			fieldsOrder: {},
 		});
 		assert.deepStrictEqual(result, []);
 	});
 
-	it('should correctly map a simple object type with no fields', () => {
-		const mockObjectType = {
-			name: { value: 'EmptyType' },
+	it('should correctly map a simple interface with no fields', () => {
+		const mockInterface = {
+			name: { value: 'EmptyInterface' },
 			fields: [],
 			directives: [],
 			interfaces: [],
@@ -63,8 +62,8 @@ describe('getObjectTypeDefinitions', () => {
 
 		const expected = [
 			{
-				type: 'object',
-				name: 'EmptyType',
+				type: 'interface',
+				name: 'EmptyInterface',
 				properties: {},
 				required: [],
 				description: '',
@@ -73,8 +72,8 @@ describe('getObjectTypeDefinitions', () => {
 			},
 		];
 
-		const result = getObjectTypeDefinitions({
-			objectTypes: [mockObjectType],
+		const result = getInterfaceDefinitions({
+			interfaces: [mockInterface],
 			definitionCategoryByNameMap: {},
 			fieldsOrder: {},
 		});
@@ -84,15 +83,12 @@ describe('getObjectTypeDefinitions', () => {
 		assert.strictEqual(sortByNameMock.mock.calls.length, 1);
 		assert.strictEqual(mapFieldMock.mock.calls.length, 0);
 		assert.strictEqual(mapImplementsInterfacesMock.mock.calls.length, 1);
-		assert.deepStrictEqual(mapImplementsInterfacesMock.mock.calls[0].arguments[0], {
-			implementsInterfaces: mockObjectType.interfaces,
-		});
 	});
 
-	it('should correctly map an object type with fields', () => {
-		const mockObjectType = {
-			name: { value: 'User' },
-			description: { value: 'A user object' },
+	it('should correctly map an interface with fields', () => {
+		const mockInterface = {
+			name: { value: 'Node' },
+			description: { value: 'An interface for objects with an ID' },
 			fields: [
 				{
 					name: { value: 'id' },
@@ -106,32 +102,27 @@ describe('getObjectTypeDefinitions', () => {
 				},
 			],
 			directives: [],
+			interfaces: [],
 		};
-
-		// Setup the mapField mock to return expected values
-		mapFieldMock.mock.mockImplementation(({ field }) => ({
-			name: field.name.value,
-			required: field.type.kind === 'NON_NULL_TYPE',
-		}));
 
 		// Expected result with the properties based on the mocked mapField responses
 		const expected = [
 			{
-				type: 'object',
-				name: 'User',
+				type: 'interface',
+				name: 'Node',
 				properties: {
 					id: { name: 'id', required: true },
 					name: { name: 'name', required: false },
 				},
 				required: ['id'],
-				description: 'A user object',
+				description: 'An interface for objects with an ID',
 				typeDirectives: [],
 				implementsInterfaces: [],
 			},
 		];
 
-		const result = getObjectTypeDefinitions({
-			objectTypes: [mockObjectType],
+		const result = getInterfaceDefinitions({
+			interfaces: [mockInterface],
 			definitionCategoryByNameMap: {},
 			fieldsOrder: {},
 		});
@@ -140,19 +131,20 @@ describe('getObjectTypeDefinitions', () => {
 		assert.strictEqual(mapDirectivesUsageMock.mock.calls.length, 1);
 		assert.strictEqual(sortByNameMock.mock.calls.length, 1);
 		assert.strictEqual(mapFieldMock.mock.calls.length, 2);
+		assert.strictEqual(mapImplementsInterfacesMock.mock.calls.length, 1);
 	});
 
-	it('should correctly map an object type with directives', () => {
-		const mockDirectiveResult = [{ directiveName: '@auth', rawArgumentValues: 'requires: "ADMIN"' }];
+	it('should correctly map an interface with directives', () => {
+		const mockDirectiveResult = [{ directiveName: '@deprecated', rawArgumentValues: 'reason: "Use Node instead"' }];
 		mapDirectivesUsageMock.mock.mockImplementationOnce(() => mockDirectiveResult);
 
-		const mockObjectType = {
-			name: { value: 'AdminType' },
+		const mockInterface = {
+			name: { value: 'OldInterface' },
 			fields: [],
 			directives: [
 				{
-					name: { value: 'auth' },
-					arguments: [{ name: { value: 'requires' }, value: { value: 'ADMIN' } }],
+					name: { value: 'deprecated' },
+					arguments: [{ name: { value: 'reason' }, value: { value: 'Use Node instead' } }],
 				},
 			],
 			interfaces: [],
@@ -160,8 +152,8 @@ describe('getObjectTypeDefinitions', () => {
 
 		const expected = [
 			{
-				type: 'object',
-				name: 'AdminType',
+				type: 'interface',
+				name: 'OldInterface',
 				properties: {},
 				required: [],
 				description: '',
@@ -170,8 +162,8 @@ describe('getObjectTypeDefinitions', () => {
 			},
 		];
 
-		const result = getObjectTypeDefinitions({
-			objectTypes: [mockObjectType],
+		const result = getInterfaceDefinitions({
+			interfaces: [mockInterface],
 			definitionCategoryByNameMap: {},
 			fieldsOrder: {},
 		});
@@ -179,36 +171,36 @@ describe('getObjectTypeDefinitions', () => {
 		assert.deepStrictEqual(result, expected);
 		assert.strictEqual(mapDirectivesUsageMock.mock.calls.length, 1);
 		assert.deepStrictEqual(mapDirectivesUsageMock.mock.calls[0].arguments[0], {
-			directives: mockObjectType.directives,
+			directives: mockInterface.directives,
 		});
+		assert.strictEqual(mapImplementsInterfacesMock.mock.calls.length, 1);
 	});
 
-	// Add new test for implements interfaces
-	it('should correctly map an object type that implements interfaces', () => {
-		const mockObjectType = {
-			name: { value: 'User' },
+	it('should correctly handle inherited interfaces', () => {
+		const mockInterface = {
+			name: { value: 'ExtendedNode' },
 			fields: [],
 			directives: [],
 			interfaces: [{ name: { value: 'Node' } }, { name: { value: 'Entity' } }],
 		};
 
-		const mockInterfacesResult = [{ interface: 'Node' }, { interface: 'Entity' }];
-		mapImplementsInterfacesMock.mock.mockImplementationOnce(() => mockInterfacesResult);
+		const mockImplementsResult = [{ interface: 'Node' }, { interface: 'Entity' }];
+		mapImplementsInterfacesMock.mock.mockImplementationOnce(() => mockImplementsResult);
 
 		const expected = [
 			{
-				type: 'object',
-				name: 'User',
+				type: 'interface',
+				name: 'ExtendedNode',
 				properties: {},
 				required: [],
 				description: '',
 				typeDirectives: [],
-				implementsInterfaces: mockInterfacesResult,
+				implementsInterfaces: mockImplementsResult,
 			},
 		];
 
-		const result = getObjectTypeDefinitions({
-			objectTypes: [mockObjectType],
+		const result = getInterfaceDefinitions({
+			interfaces: [mockInterface],
 			definitionCategoryByNameMap: {},
 			fieldsOrder: {},
 		});
@@ -216,13 +208,13 @@ describe('getObjectTypeDefinitions', () => {
 		assert.deepStrictEqual(result, expected);
 		assert.strictEqual(mapImplementsInterfacesMock.mock.calls.length, 1);
 		assert.deepStrictEqual(mapImplementsInterfacesMock.mock.calls[0].arguments[0], {
-			implementsInterfaces: mockObjectType.interfaces,
+			implementsInterfaces: mockInterface.interfaces,
 		});
 	});
 
 	it('should correctly handle fields order', () => {
-		const mockObjectType = {
-			name: { value: 'OrderedType' },
+		const mockInterface = {
+			name: { value: 'OrderedInterface' },
 			fields: [
 				{ name: { value: 'fieldB' }, type: { kind: 'NAMED_TYPE' }, directives: [] },
 				{ name: { value: 'fieldA' }, type: { kind: 'NAMED_TYPE' }, directives: [] },
@@ -253,6 +245,7 @@ describe('getObjectTypeDefinitions', () => {
 			// Reset mocks before each test case
 			sortByNameMock.mock.resetCalls();
 			mapFieldMock.mock.resetCalls();
+			mapImplementsInterfacesMock.mock.resetCalls();
 
 			// Mock sortByName to simulate behavior based on fieldsOrder value
 			if (testCase.fieldsOrder === 'alphabetical') {
@@ -265,8 +258,8 @@ describe('getObjectTypeDefinitions', () => {
 				sortByNameMock.mock.mockImplementationOnce(({ items }) => items);
 			}
 
-			const result = getObjectTypeDefinitions({
-				objectTypes: [mockObjectType],
+			const result = getInterfaceDefinitions({
+				interfaces: [mockInterface],
 				definitionCategoryByNameMap: {},
 				fieldsOrder: testCase.fieldsOrder,
 			});
@@ -277,7 +270,7 @@ describe('getObjectTypeDefinitions', () => {
 
 			// Verify the result structure
 			assert.strictEqual(result.length, 1);
-			assert.strictEqual(result[0].name, 'OrderedType');
+			assert.strictEqual(result[0].name, 'OrderedInterface');
 
 			const propertyNames = Object.keys(result[0].properties);
 
@@ -290,37 +283,38 @@ describe('getObjectTypeDefinitions', () => {
 		}
 	});
 
-	it('should correctly map multiple object types', () => {
-		const mockObjectTypes = [
+	it('should correctly map multiple interface types', () => {
+		const mockInterfaces = [
 			{
-				name: { value: 'Type1' },
+				name: { value: 'Interface1' },
 				fields: [],
 				directives: [],
 				interfaces: [],
 			},
 			{
-				name: { value: 'Type2' },
+				name: { value: 'Interface2' },
 				fields: [],
 				directives: [],
 				interfaces: [],
 			},
 		];
 
-		const result = getObjectTypeDefinitions({
-			objectTypes: mockObjectTypes,
+		const result = getInterfaceDefinitions({
+			interfaces: mockInterfaces,
 			definitionCategoryByNameMap: {},
 			fieldsOrder: {},
 		});
 
 		assert.strictEqual(result.length, 2);
-		assert.strictEqual(result[0].name, 'Type1');
-		assert.strictEqual(result[1].name, 'Type2');
+		assert.strictEqual(result[0].name, 'Interface1');
+		assert.strictEqual(result[1].name, 'Interface2');
 		assert.strictEqual(mapDirectivesUsageMock.mock.calls.length, 2);
+		assert.strictEqual(mapImplementsInterfacesMock.mock.calls.length, 2);
 	});
 
 	it('should handle undefined fields', () => {
-		const mockObjectType = {
-			name: { value: 'TypeWithoutFields' },
+		const mockInterface = {
+			name: { value: 'InterfaceWithoutFields' },
 			// fields is undefined
 			directives: [],
 			interfaces: [],
@@ -328,8 +322,8 @@ describe('getObjectTypeDefinitions', () => {
 
 		const expected = [
 			{
-				type: 'object',
-				name: 'TypeWithoutFields',
+				type: 'interface',
+				name: 'InterfaceWithoutFields',
 				properties: {},
 				required: [],
 				description: '',
@@ -338,8 +332,8 @@ describe('getObjectTypeDefinitions', () => {
 			},
 		];
 
-		const result = getObjectTypeDefinitions({
-			objectTypes: [mockObjectType],
+		const result = getInterfaceDefinitions({
+			interfaces: [mockInterface],
 			definitionCategoryByNameMap: {},
 			fieldsOrder: {},
 		});
@@ -355,8 +349,8 @@ describe('getObjectTypeDefinitions', () => {
 	});
 
 	it('should handle undefined directives', () => {
-		const mockObjectType = {
-			name: { value: 'TypeWithoutDirectives' },
+		const mockInterface = {
+			name: { value: 'InterfaceWithoutDirectives' },
 			fields: [],
 			// directives is undefined
 			interfaces: [],
@@ -364,8 +358,8 @@ describe('getObjectTypeDefinitions', () => {
 
 		const expected = [
 			{
-				type: 'object',
-				name: 'TypeWithoutDirectives',
+				type: 'interface',
+				name: 'InterfaceWithoutDirectives',
 				properties: {},
 				required: [],
 				description: '',
@@ -374,8 +368,8 @@ describe('getObjectTypeDefinitions', () => {
 			},
 		];
 
-		const result = getObjectTypeDefinitions({
-			objectTypes: [mockObjectType],
+		const result = getInterfaceDefinitions({
+			interfaces: [mockInterface],
 			definitionCategoryByNameMap: {},
 			fieldsOrder: {},
 		});
@@ -387,10 +381,9 @@ describe('getObjectTypeDefinitions', () => {
 		assert.deepStrictEqual(mapDirectivesUsageMock.mock.calls[0].arguments[0].directives, []);
 	});
 
-	// Add test for undefined interfaces
 	it('should handle undefined interfaces', () => {
-		const mockObjectType = {
-			name: { value: 'TypeWithoutInterfaces' },
+		const mockInterface = {
+			name: { value: 'InterfaceWithoutImplements' },
 			fields: [],
 			directives: [],
 			// interfaces is undefined
@@ -398,8 +391,8 @@ describe('getObjectTypeDefinitions', () => {
 
 		const expected = [
 			{
-				type: 'object',
-				name: 'TypeWithoutInterfaces',
+				type: 'interface',
+				name: 'InterfaceWithoutImplements',
 				properties: {},
 				required: [],
 				description: '',
@@ -408,8 +401,8 @@ describe('getObjectTypeDefinitions', () => {
 			},
 		];
 
-		const result = getObjectTypeDefinitions({
-			objectTypes: [mockObjectType],
+		const result = getInterfaceDefinitions({
+			interfaces: [mockInterface],
 			definitionCategoryByNameMap: {},
 			fieldsOrder: {},
 		});

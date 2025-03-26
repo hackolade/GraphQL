@@ -12,7 +12,9 @@
  * 		EnumStructureType,
  * 		ObjectStructureType,
  * 		ScalarStructureType,
- * REObjectTypeDefinition} from "../../../shared/types/types"
+ * REObjectTypeDefinition,
+ * InterfaceStructureType,
+ * REInterfaceDefinition} from "../../../shared/types/types"
  */
 
 const { astNodeKind } = require('../../constants/graphqlAST');
@@ -23,6 +25,7 @@ const { getCustomScalarTypeDefinitions } = require('./customScalar');
 const { getDirectiveTypeDefinitions } = require('./directive');
 const { getObjectTypeDefinitions } = require('./objectType');
 const { getEnumTypeDefinitions } = require('./enum');
+const { getInterfaceDefinitions } = require('./interface');
 
 /**
  * Gets the type definitions structure
@@ -56,7 +59,20 @@ function getTypeDefinitions({ typeDefinitions, fieldsOrder, rootTypeNames }) {
 		fieldsOrder,
 	});
 
-	const definitions = getTypeDefinitionsStructure({ fieldsOrder, directives, customScalars, enums, objectTypes });
+	const interfaces = getInterfaceDefinitions({
+		interfaces: findNodesByKind({ nodes: typeDefinitions, kind: astNodeKind.INTERFACE_TYPE_DEFINITION }),
+		definitionCategoryByNameMap,
+		fieldsOrder,
+	});
+
+	const definitions = getTypeDefinitionsStructure({
+		fieldsOrder,
+		directives,
+		customScalars,
+		enums,
+		objectTypes,
+		interfaces,
+	});
 
 	return definitions;
 }
@@ -70,9 +86,10 @@ function getTypeDefinitions({ typeDefinitions, fieldsOrder, rootTypeNames }) {
  * @param {RECustomScalarDefinition[]} params.customScalars - The custom scalar definitions
  * @param {REEnumDefinition[]} params.enums - The enum definitions
  * @param {REObjectTypeDefinition[]} params.objectTypes - The object type definitions
+ * @param {REInterfaceDefinition[]} params.interfaces - The interface definitions
  * @returns {REModelDefinitionsSchema} The type definitions structure
  */
-function getTypeDefinitionsStructure({ fieldsOrder, directives, customScalars, enums, objectTypes }) {
+function getTypeDefinitionsStructure({ fieldsOrder, directives, customScalars, enums, objectTypes, interfaces }) {
 	const definitions = {
 		['Directives']: /** @type {DirectiveStructureType} */ (
 			getDefinitionCategoryStructure({
@@ -100,6 +117,13 @@ function getTypeDefinitionsStructure({ fieldsOrder, directives, customScalars, e
 				fieldsOrder,
 				subtype: 'enum',
 				properties: enums,
+			})
+		),
+		['Interfaces']: /** @type {InterfaceStructureType} */ (
+			getDefinitionCategoryStructure({
+				fieldsOrder,
+				subtype: 'interface',
+				properties: interfaces,
 			})
 		),
 	};
