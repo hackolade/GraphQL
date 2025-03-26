@@ -119,11 +119,12 @@ export type REDirectiveDefinition = DirectiveDefinition<Object> & {
 	name: string;
 };
 
-export type REDirectiveDefinitionsSchema = Record<string, REDirectiveDefinition>;
-export type RECustomScalarDefinitionsSchema = Record<string, RECustomScalarDefinition>;
-export type REObjectDefinitionsSchema = Record<string, REObjectTypeDefinition>;
-export type REEnumDefinitionsSchema = Record<string, REEnumDefinition>;
-export type REInterfaceDefinitionsSchema = Record<string, REInterfaceDefinition>;
+type REDirectiveDefinitionsSchema = Record<string, REDirectiveDefinition>;
+type RECustomScalarDefinitionsSchema = Record<string, RECustomScalarDefinition>;
+type REObjectDefinitionsSchema = Record<string, REObjectTypeDefinition>;
+type REEnumDefinitionsSchema = Record<string, REEnumDefinition>;
+type REInterfaceDefinitionsSchema = Record<string, REInterfaceDefinition>;
+type REInputDefinitionsSchema = Record<string, REInputTypeDefinition>;
 
 export type REDefinition =
 	| RECustomScalarDefinition
@@ -169,11 +170,11 @@ export type EnumStructureType = StructureType<REEnumDefinitionsSchema> & {
 	subtype: 'enum';
 };
 
-export type InterfaceStructureType = StructureType<REEnumDefinitionsSchema> & {
+export type InterfaceStructureType = StructureType<REInterfaceDefinitionsSchema> & {
 	subtype: 'interface';
 };
 
-export type InputStructureType = StructureType<REEnumDefinitionsSchema> & {
+export type InputStructureType = StructureType<REInputDefinitionsSchema> & {
 	subtype: 'input';
 };
 
