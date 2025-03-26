@@ -29,7 +29,7 @@ function getFieldDefaultValueStatement({ field }) {
  * Formats the default value for a field.
  *
  * @param {object} param0
- * @param {string} [param0.defaultValue] - The default value.
+ * @param {FieldData<DirectivePropertyData>['default']} [param0.defaultValue] - The default value.
  * @param {string} param0.fieldType - The type of the field.
  * @returns {string} - The formatted default value.
  */
@@ -84,7 +84,7 @@ function isComplexDefaultValue({ defaultValue }) {
 /**
  * Checks if a value is present (not undefined or empty).
  *
- * @param {string} [value] - The value to check.
+ * @param {FieldData<DirectivePropertyData>['default']} [value] - The value to check.
  * @returns {boolean} - True if the value is present, false otherwise.
  */
 function isValuePresent(value) {
@@ -95,11 +95,14 @@ function isValuePresent(value) {
  * Prepares a complex default value by removing newlines.
  *
  * @param {object} param0
- * @param {string} [param0.defaultValue] - The default value.
+ * @param {FieldData<DirectivePropertyData>['default']} [param0.defaultValue] - The default value.
  * @returns {string} - The prepared default value.
  */
 function prepareComplexDefaultValue({ defaultValue = '' }) {
-	return defaultValue.trim().replace(/\n/g, ' ');
+	if (typeof defaultValue === 'string') {
+		return defaultValue.trim().replace(/\n/g, ' ');
+	}
+	return '';
 }
 
 module.exports = {

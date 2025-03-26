@@ -1,7 +1,6 @@
 /**
  * @import {DefinitionNode} from "graphql"
  * @import {REDirectiveDefinition,
- * 		REDefinitionsSchema,
  * 		FieldsOrder,
  * 		RECustomScalarDefinition,
  * 		REDefinition,
@@ -14,7 +13,9 @@
  * 		ScalarStructureType,
  * REObjectTypeDefinition,
  * InterfaceStructureType,
- * REInterfaceDefinition} from "../../../shared/types/types"
+ * REInterfaceDefinition,
+ * REInputTypeDefinition,
+ * InputStructureType} from "../../../shared/types/types"
  */
 
 const { astNodeKind } = require('../../constants/graphqlAST');
@@ -26,6 +27,7 @@ const { getDirectiveTypeDefinitions } = require('./directive');
 const { getObjectTypeDefinitions } = require('./objectType');
 const { getEnumTypeDefinitions } = require('./enum');
 const { getInterfaceDefinitions } = require('./interface');
+const { getInputObjectTypeDefinitions } = require('./inputType');
 
 /**
  * Gets the type definitions structure
@@ -65,6 +67,12 @@ function getTypeDefinitions({ typeDefinitions, fieldsOrder, rootTypeNames }) {
 		fieldsOrder,
 	});
 
+	const inputTypes = getInputObjectTypeDefinitions({
+		inputObjectTypes: findNodesByKind({ nodes: typeDefinitions, kind: astNodeKind.INPUT_OBJECT_TYPE_DEFINITION }),
+		definitionCategoryByNameMap,
+		fieldsOrder,
+	});
+
 	const definitions = getTypeDefinitionsStructure({
 		fieldsOrder,
 		directives,
@@ -72,6 +80,7 @@ function getTypeDefinitions({ typeDefinitions, fieldsOrder, rootTypeNames }) {
 		enums,
 		objectTypes,
 		interfaces,
+		inputTypes,
 	});
 
 	return definitions;
@@ -87,9 +96,18 @@ function getTypeDefinitions({ typeDefinitions, fieldsOrder, rootTypeNames }) {
  * @param {REEnumDefinition[]} params.enums - The enum definitions
  * @param {REObjectTypeDefinition[]} params.objectTypes - The object type definitions
  * @param {REInterfaceDefinition[]} params.interfaces - The interface definitions
+ * @param {REInputTypeDefinition[]} params.inputTypes - The input type definitions
  * @returns {REModelDefinitionsSchema} The type definitions structure
  */
-function getTypeDefinitionsStructure({ fieldsOrder, directives, customScalars, enums, objectTypes, interfaces }) {
+function getTypeDefinitionsStructure({
+	fieldsOrder,
+	directives,
+	customScalars,
+	enums,
+	objectTypes,
+	interfaces,
+	inputTypes,
+}) {
 	const definitions = {
 		['Directives']: /** @type {DirectiveStructureType} */ (
 			getDefinitionCategoryStructure({
@@ -124,6 +142,13 @@ function getTypeDefinitionsStructure({ fieldsOrder, directives, customScalars, e
 				fieldsOrder,
 				subtype: 'interface',
 				properties: interfaces,
+			})
+		),
+		['Input objects']: /** @type {InputStructureType} */ (
+			getDefinitionCategoryStructure({
+				fieldsOrder,
+				subtype: 'input',
+				properties: inputTypes,
 			})
 		),
 	};

@@ -47,7 +47,9 @@ export type FEEnumDefinitionsSchema = Record<string, FEEnumDefinition>;
 // Object type definition
 export type FEObjectLikeDefinitionsSchema = Record<string, FEObjectLikeDefinition>;
 
-export type FEObjectLikeDefinition = ObjectLikeDefinition<ImplementsInterface, DirectivePropertyData>;
+export type FEObjectLikeDefinition = ObjectLikeDefinition<DirectivePropertyData> & {
+	implementsInterfaces?: ImplementsInterface[];
+};
 
 export type ArgumentsResultStatement = {
 	argumentsStatement: string; // The formatted arguments string.
