@@ -47,7 +47,7 @@ function mapField({ field, definitionCategoryByNameMap }) {
  * Parses a default value from a ValueNode into a string representation
  *
  * @param {ValueNode} defaultValue - The default value node to parse
- * @param {boolean} [isNested=false] - Whether this value is nested inside an object or list. Default is `false`
+ * @param {boolean} [isNested] - Whether this value is nested inside an object or list. Default is `false`
  * @returns {InputTypeFieldProperties['default']} String representation of the default value
  */
 function parseDefaultValue(defaultValue, isNested = false) {
