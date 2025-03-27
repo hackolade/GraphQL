@@ -7,6 +7,7 @@ import {
 	EnumDefinition,
 	EnumValue,
 	StructuredDirective,
+	InputFieldDefaultValue,
 } from './shared';
 
 type ContainerName = string;
@@ -118,20 +119,20 @@ export type REDirectiveDefinition = DirectiveDefinition<Object> & {
 	name: string;
 };
 
-export type REDefinitionsSchema = REDirectiveDefinitionsSchema | RECustomScalarDefinitionsSchema;
-
-export type REDirectiveDefinitionsSchema = Record<string, REDirectiveDefinition>;
-export type RECustomScalarDefinitionsSchema = Record<string, RECustomScalarDefinition>;
-export type REObjectDefinitionsSchema = Record<string, REObjectTypeDefinition>;
-export type REEnumDefinitionsSchema = Record<string, REEnumDefinition>;
-export type REInterfaceDefinitionsSchema = Record<string, REInterfaceDefinition>;
+type REDirectiveDefinitionsSchema = Record<string, REDirectiveDefinition>;
+type RECustomScalarDefinitionsSchema = Record<string, RECustomScalarDefinition>;
+type REObjectDefinitionsSchema = Record<string, REObjectTypeDefinition>;
+type REEnumDefinitionsSchema = Record<string, REEnumDefinition>;
+type REInterfaceDefinitionsSchema = Record<string, REInterfaceDefinition>;
+type REInputDefinitionsSchema = Record<string, REInputTypeDefinition>;
 
 export type REDefinition =
 	| RECustomScalarDefinition
 	| REDirectiveDefinition
 	| REEnumDefinition
 	| REObjectTypeDefinition
-	| REInterfaceDefinition;
+	| REInterfaceDefinition
+	| REInputTypeDefinition;
 
 export type REModelDefinitionsSchema = {
 	definitions: {
@@ -148,7 +149,8 @@ export type DefinitionREStructure =
 	| ScalarStructureType
 	| EnumStructureType
 	| ObjectStructureType
-	| InterfaceStructureType;
+	| InterfaceStructureType
+	| InputStructureType;
 
 type StructureType<T> = {
 	type: 'type';
@@ -168,8 +170,12 @@ export type EnumStructureType = StructureType<REEnumDefinitionsSchema> & {
 	subtype: 'enum';
 };
 
-export type InterfaceStructureType = StructureType<REEnumDefinitionsSchema> & {
+export type InterfaceStructureType = StructureType<REInterfaceDefinitionsSchema> & {
 	subtype: 'interface';
+};
+
+export type InputStructureType = StructureType<REInputDefinitionsSchema> & {
+	subtype: 'input';
 };
 
 export type RECustomScalarDefinition = CustomScalarDefinition<StructuredDirective> & {
@@ -193,16 +199,20 @@ export type REImplementsInterface = {
 };
 
 export type REPropertiesSchema = Record<string, FieldData<StructuredDirective>>;
-type REObjectLikeDefinition = ObjectLikeDefinition<REImplementsInterface, StructuredDirective>;
+type REObjectLikeDefinition = ObjectLikeDefinition<StructuredDirective> & { name: string };
 
 export type REObjectTypeDefinition = REObjectLikeDefinition & {
 	type: 'object';
-	name: string;
+	implementsInterfaces?: REImplementsInterface[];
 };
 
 export type REInterfaceDefinition = REObjectLikeDefinition & {
 	type: 'interface';
-	name: string;
+	implementsInterfaces?: REImplementsInterface[];
+};
+
+export type REInputTypeDefinition = REObjectLikeDefinition & {
+	type: 'input';
 };
 
 export type PreProcessedFieldData = FieldData<StructuredDirective> &
@@ -210,20 +220,24 @@ export type PreProcessedFieldData = FieldData<StructuredDirective> &
 		name: string;
 	};
 
+export type InputTypeFieldProperties = {
+	default?: InputFieldDefaultValue;
+};
+
 export type FieldTypeProperties = RegularFieldTypeProperties | ArrayFieldTypeProperties | ReferenceFieldTypeProperties;
 
-export type RegularFieldTypeProperties = {
+type RegularFieldTypeProperties = InputTypeFieldProperties & {
 	type: string;
 	required: boolean;
 };
 
-export type ArrayFieldTypeProperties = {
+type ArrayFieldTypeProperties = InputTypeFieldProperties & {
 	type: 'List';
 	items?: [FieldTypeProperties];
 	required: boolean;
 };
 
-export type ReferenceFieldTypeProperties = {
+type ReferenceFieldTypeProperties = InputTypeFieldProperties & {
 	$ref: string;
 	required: boolean;
 };

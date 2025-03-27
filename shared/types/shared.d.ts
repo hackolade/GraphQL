@@ -68,10 +68,9 @@ export type DirectiveDefinition<T, D = DirectiveLocations> = {
 	directiveLocations: D;
 };
 
-export type ObjectLikeDefinition<Interface, DirectiveUsage> = {
+export type ObjectLikeDefinition<DirectiveUsage> = {
 	description?: string; // Description of the object type
 	isActivated?: boolean; // If the object type is activated
-	implementsInterfaces?: Interface[]; // Interfaces that the object type implements
 	typeDirectives?: DirectiveUsage[]; // Directives for the type
 	properties: Record<string, FieldData<DirectiveUsage>>; // Properties of the object type
 	required?: string[];
@@ -84,6 +83,8 @@ export type FieldSchema<DirectiveUsage> = Record<string, FieldData<DirectiveUsag
 
 export type ArrayItems<DirectiveUsage> = ArrayItem<DirectiveUsage> | ArrayItem<DirectiveUsage>[];
 
+export type InputFieldDefaultValue = string | number;
+
 type RegularFieldData<DirectiveUsage> = {
 	type: string; // Type of the field
 	isActivated?: boolean; // If the field is activated
@@ -91,7 +92,7 @@ type RegularFieldData<DirectiveUsage> = {
 	fieldDirectives?: DirectiveUsage[]; // Directives for the field
 	items?: ArrayItems<DirectiveUsage>; // Items of the List type
 	arguments?: Argument[]; // Arguments of the field
-	default?: string; // Default value of the field
+	default?: InputFieldDefaultValue; // Default value of the field
 };
 
 type ReferenceFieldData<DirectiveUsage> = {
@@ -100,7 +101,7 @@ type ReferenceFieldData<DirectiveUsage> = {
 	refDescription?: string; // Description of the reference
 	fieldDirectives?: DirectiveUsage[]; // Directives for the field
 	arguments?: Argument[]; // Arguments of the field
-	default?: string; // Default value of the reference
+	default?: InputFieldDefaultValue; // Default value of the reference
 };
 
 export type ArrayItem<DirectiveUsage> = FieldData<DirectiveUsage> & {
