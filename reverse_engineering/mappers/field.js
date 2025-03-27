@@ -6,6 +6,7 @@
 const { mapDirectivesUsage } = require('./directiveUsage');
 const { astNodeKind } = require('../constants/graphqlAST');
 const { BUILT_IN_SCALAR_LIST } = require('../constants/types');
+const { getDefinitionReferencePath } = require('../helpers/getDefinitionReferencePath');
 
 /**
  * Maps a field
@@ -121,7 +122,7 @@ function getTypeProperties({ type, definitionCategoryByNameMap }) {
 		const definitionCategoryName = definitionCategoryByNameMap[typeName];
 		if (definitionCategoryName) {
 			return {
-				'$ref': `#model/definitions/${definitionCategoryName}/${typeName}`,
+				'$ref': getDefinitionReferencePath({ definitionCategoryName, definitionName: typeName }),
 				required: false,
 			};
 		}
