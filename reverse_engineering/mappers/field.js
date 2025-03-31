@@ -1,11 +1,38 @@
 /**
  * @import {FieldDefinitionNode, TypeNode, InputValueDefinitionNode, ValueNode} from "graphql"
- * @import {DefinitionNameToTypeNameMap, FieldTypeProperties, InputTypeFieldProperties, PreProcessedFieldData} from "./../../shared/types/types"
+ * @import {DefinitionNameToTypeNameMap, FieldsOrder, FieldTypeProperties, InputTypeFieldProperties, PreProcessedFieldData, REFieldsSchemaProperties, REPropertiesSchema} from "./../../shared/types/types"
  */
 
 const { mapDirectivesUsage } = require('./directiveUsage');
 const { astNodeKind } = require('../constants/graphqlAST');
 const { BUILT_IN_SCALAR_LIST } = require('../constants/types');
+const { sortByName } = require('../helpers/sortByName');
+
+/**
+ * Maps a list of fields to a schema
+ *
+ * @param {object} params
+ * @param {FieldDefinitionNode[] | InputValueDefinitionNode[]} params.fields - The fields to map
+ * @param {DefinitionNameToTypeNameMap} params.definitionCategoryByNameMap - The definition category by name map
+ * @param {FieldsOrder} params.fieldsOrder - The fields order
+ * @returns {REFieldsSchemaProperties} The mapped schema
+ */
+function getFieldsSchema({ fields, definitionCategoryByNameMap, fieldsOrder }) {
+	const properties = fields ? fields.map(field => mapField({ field, definitionCategoryByNameMap })) : [];
+	const required = properties.filter(property => property.required).map(property => property.name);
+	const convertedProperties = sortByName({ items: properties, fieldsOrder }).reduce(
+		(acc, property) => {
+			acc[property.name] = property;
+			return acc;
+		},
+		/** @type {REPropertiesSchema} */ {},
+	);
+
+	return {
+		properties: convertedProperties,
+		required,
+	};
+}
 
 /**
  * Maps a field
@@ -147,4 +174,5 @@ function isBuiltInScalar({ typeName }) {
 
 module.exports = {
 	mapField,
+	getFieldsSchema,
 };

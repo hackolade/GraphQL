@@ -8,6 +8,7 @@ import {
 	EnumValue,
 	StructuredDirective,
 	InputFieldDefaultValue,
+	EntityDetails,
 } from './shared';
 
 type ContainerName = string;
@@ -17,6 +18,14 @@ export type ContainerInfo = {
 	description?: string; // container description
 	schemaRootTypes?: ContainerSchemaRootTypes; // container schema root types
 	graphDirectives?: StructuredDirective[]; // container graph directives
+};
+
+type REEntityDetails = EntityDetails<StructuredDirective[]> &
+	ObjectLikeDefinition<StructuredDirective> & { type: 'object' };
+
+export type RootTypeEntity = {
+	name: string; // entity name
+	data: REEntityDetails; // specify the type for data
 };
 
 export type FileREEntityResponseData = {
@@ -200,6 +209,11 @@ export type REImplementsInterface = {
 
 export type REPropertiesSchema = Record<string, FieldData<StructuredDirective>>;
 type REObjectLikeDefinition = ObjectLikeDefinition<StructuredDirective> & { name: string };
+
+export type REFieldsSchemaProperties = {
+	properties: REPropertiesSchema;
+	required: string[];
+};
 
 export type REObjectTypeDefinition = REObjectLikeDefinition & {
 	type: 'object';
