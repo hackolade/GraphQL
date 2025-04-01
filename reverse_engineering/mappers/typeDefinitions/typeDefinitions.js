@@ -1,21 +1,23 @@
 /**
  * @import {DefinitionNode} from "graphql"
  * @import {REDirectiveDefinition,
- * 		FieldsOrder,
- * 		RECustomScalarDefinition,
- * 		REDefinition,
- * 		REModelDefinitionsSchema,
- * 		DefinitionREStructure,
- * 		DirectiveStructureType,
- * 		REEnumDefinition,
- * 		EnumStructureType,
- * 		ObjectStructureType,
- * 		ScalarStructureType,
+ * FieldsOrder,
+ * RECustomScalarDefinition,
+ * REDefinition,
+ * REModelDefinitionsSchema,
+ * DefinitionREStructure,
+ * DirectiveStructureType,
+ * REEnumDefinition,
+ * EnumStructureType,
+ * ObjectStructureType,
+ * ScalarStructureType,
  * REObjectTypeDefinition,
  * InterfaceStructureType,
  * REInterfaceDefinition,
  * REInputTypeDefinition,
  * InputStructureType,
+ * REUnionDefinition,
+ * UnionStructureType,
  * DefinitionNameToTypeNameMap} from "../../../shared/types/types"
  */
 
@@ -28,6 +30,7 @@ const { getObjectTypeDefinitions } = require('./objectType');
 const { getEnumTypeDefinitions } = require('./enum');
 const { getInterfaceDefinitions } = require('./interface');
 const { getInputObjectTypeDefinitions } = require('./inputType');
+const { getUnionTypeDefinitions } = require('./union');
 
 /**
  * Gets the type definitions structure
@@ -72,6 +75,11 @@ function getTypeDefinitions({ typeDefinitions, fieldsOrder, rootTypeNames, defin
 		fieldsOrder,
 	});
 
+	const unions = getUnionTypeDefinitions({
+		unions: findNodesByKind({ nodes: typeDefinitions, kind: astNodeKind.UNION_TYPE_DEFINITION }),
+		definitionCategoryByNameMap,
+	});
+
 	const definitions = getTypeDefinitionsStructure({
 		fieldsOrder,
 		directives,
@@ -80,6 +88,7 @@ function getTypeDefinitions({ typeDefinitions, fieldsOrder, rootTypeNames, defin
 		objectTypes,
 		interfaces,
 		inputTypes,
+		unions,
 	});
 
 	return definitions;
@@ -96,6 +105,7 @@ function getTypeDefinitions({ typeDefinitions, fieldsOrder, rootTypeNames, defin
  * @param {REObjectTypeDefinition[]} params.objectTypes - The object type definitions
  * @param {REInterfaceDefinition[]} params.interfaces - The interface definitions
  * @param {REInputTypeDefinition[]} params.inputTypes - The input type definitions
+ * @param {REUnionDefinition[]} params.unions - The union definitions
  * @returns {REModelDefinitionsSchema} The type definitions structure
  */
 function getTypeDefinitionsStructure({
@@ -106,6 +116,7 @@ function getTypeDefinitionsStructure({
 	objectTypes,
 	interfaces,
 	inputTypes,
+	unions,
 }) {
 	const definitions = {
 		['Directives']: /** @type {DirectiveStructureType} */ (
@@ -148,6 +159,13 @@ function getTypeDefinitionsStructure({
 				fieldsOrder,
 				subtype: 'input',
 				properties: inputTypes,
+			})
+		),
+		['Unions']: /** @type {UnionStructureType} */ (
+			getDefinitionCategoryStructure({
+				fieldsOrder,
+				subtype: 'union',
+				properties: unions,
 			})
 		),
 	};

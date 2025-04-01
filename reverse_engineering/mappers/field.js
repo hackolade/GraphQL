@@ -1,11 +1,12 @@
 /**
- * @import {FieldDefinitionNode, TypeNode, InputValueDefinitionNode, ValueNode} from "graphql"
- * @import {DefinitionNameToTypeNameMap, FieldsOrder, FieldTypeProperties, InputTypeFieldProperties, PreProcessedFieldData, REFieldsSchemaProperties, REPropertiesSchema} from "./../../shared/types/types"
+ * @import {FieldDefinitionNode, TypeNode, InputValueDefinitionNode} from "graphql"
+ * @import {DefinitionNameToTypeNameMap, FieldsOrder, FieldTypeProperties, PreProcessedFieldData, REFieldsSchemaProperties, REPropertiesSchema} from "./../../shared/types/types"
  */
 
 const { mapDirectivesUsage } = require('./directiveUsage');
 const { astNodeKind } = require('../constants/graphqlAST');
 const { BUILT_IN_SCALAR_LIST } = require('../constants/types');
+const { getDefinitionReferencePath } = require('../helpers/getDefinitionReferencePath');
 const { getArguments } = require('./arguments');
 const { parseDefaultValue } = require('./defaultValue');
 const { sortByName } = require('../helpers/sortByName');
@@ -118,7 +119,7 @@ function getTypeProperties({ type, definitionCategoryByNameMap }) {
 		const definitionCategoryName = definitionCategoryByNameMap[typeName];
 		if (definitionCategoryName) {
 			return {
-				'$ref': `#model/definitions/${definitionCategoryName}/${typeName}`,
+				'$ref': getDefinitionReferencePath({ definitionCategoryName, definitionName: typeName }),
 				required: false,
 			};
 		}

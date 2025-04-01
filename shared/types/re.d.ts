@@ -135,6 +135,7 @@ type REObjectDefinitionsSchema = Record<string, REObjectTypeDefinition>;
 type REEnumDefinitionsSchema = Record<string, REEnumDefinition>;
 type REInterfaceDefinitionsSchema = Record<string, REInterfaceDefinition>;
 type REInputDefinitionsSchema = Record<string, REInputTypeDefinition>;
+type REUnionDefinitionsSchema = Record<string, REUnionDefinition>;
 
 export type REDefinition =
 	| RECustomScalarDefinition
@@ -142,7 +143,8 @@ export type REDefinition =
 	| REEnumDefinition
 	| REObjectTypeDefinition
 	| REInterfaceDefinition
-	| REInputTypeDefinition;
+	| REInputTypeDefinition
+	| REUnionDefinition;
 
 export type REModelDefinitionsSchema = {
 	definitions: {
@@ -151,6 +153,8 @@ export type REModelDefinitionsSchema = {
 		Objects: ObjectStructureType;
 		Enums: EnumStructureType;
 		Interfaces: InterfaceStructureType;
+		'Input objects': InputStructureType;
+		Unions: UnionStructureType;
 	};
 };
 
@@ -160,7 +164,8 @@ export type DefinitionREStructure =
 	| EnumStructureType
 	| ObjectStructureType
 	| InterfaceStructureType
-	| InputStructureType;
+	| InputStructureType
+	| UnionStructureType;
 
 type StructureType<T> = {
 	type: 'type';
@@ -186,6 +191,10 @@ export type InterfaceStructureType = StructureType<REInterfaceDefinitionsSchema>
 
 export type InputStructureType = StructureType<REInputDefinitionsSchema> & {
 	subtype: 'input';
+};
+
+export type UnionStructureType = StructureType<REUnionDefinitionsSchema> & {
+	subtype: 'union';
 };
 
 export type RECustomScalarDefinition = CustomScalarDefinition<StructuredDirective> & {
@@ -228,6 +237,18 @@ export type REInterfaceDefinition = REObjectLikeDefinition & {
 
 export type REInputTypeDefinition = REObjectLikeDefinition & {
 	type: 'input';
+};
+
+export type REUnionDefinition = {
+	type: 'union';
+	name: string;
+	description?: string;
+	typeDirectives?: StructuredDirective[];
+	oneOf: REUnionMemberType[];
+};
+
+export type REUnionMemberType = {
+	$ref: string;
 };
 
 export type PreProcessedFieldData = FieldData<StructuredDirective> &
