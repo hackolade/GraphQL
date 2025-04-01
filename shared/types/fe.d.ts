@@ -62,7 +62,9 @@ export type FEDirectiveLocations = DirectiveLocations & {
 	GUID: string;
 };
 
-export type FEDirectiveDefinition = DirectiveDefinition<Argument, FEDirectiveLocations> & {
+export type FEArgument = Argument<DirectivePropertyData>;
+
+export type FEDirectiveDefinition = DirectiveDefinition<FEArgument, FEDirectiveLocations> & {
 	GUID: string;
 	additionalProperties?: boolean;
 	ignore_z_value: boolean;

@@ -8,6 +8,7 @@ import {
 	EnumValue,
 	StructuredDirective,
 	InputFieldDefaultValue,
+	Argument,
 	EntityDetails,
 } from './shared';
 
@@ -265,6 +266,16 @@ export type DefinitionTypeName =
 	| 'Input objects'
 	| 'Directives';
 export type DefinitionNameToTypeNameMap = Record<string, DefinitionTypeName>;
+
+export type REArgument = Argument<StructuredDirective>;
+
+export type ArgumentTypeInfo = {
+	typeName: string;
+	required: boolean;
+	isList?: boolean;
+	innerTypeName?: string;
+	innerRequired?: boolean;
+};
 
 export type TestConnectionCallback = (err?: Error | unknown) => void;
 export type DisconnectCallback = TestConnectionCallback;
