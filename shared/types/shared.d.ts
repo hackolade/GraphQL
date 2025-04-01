@@ -91,7 +91,7 @@ type RegularFieldData<DirectiveUsage> = {
 	description?: string; // Description of the field
 	fieldDirectives?: DirectiveUsage[]; // Directives for the field
 	items?: ArrayItems<DirectiveUsage>; // Items of the List type
-	arguments?: Argument[]; // Arguments of the field
+	arguments?: Argument<DirectiveUsage>[]; // Arguments of the field
 	default?: InputFieldDefaultValue; // Default value of the field
 };
 
@@ -100,7 +100,7 @@ type ReferenceFieldData<DirectiveUsage> = {
 	isActivated?: boolean; // If the field is activated
 	refDescription?: string; // Description of the reference
 	fieldDirectives?: DirectiveUsage[]; // Directives for the field
-	arguments?: Argument[]; // Arguments of the field
+	arguments?: Argument<DirectiveUsage>[]; // Arguments of the field
 	default?: InputFieldDefaultValue; // Default value of the reference
 };
 
@@ -115,13 +115,12 @@ type ArgumentListItem = {
 	required?: boolean;
 };
 
-export type Argument = {
-	id: string;
+export type Argument<DirectiveUsage> = {
 	type: string;
 	name: string;
 	default?: string;
 	description?: string;
-	directives?: DirectivePropertyData[];
+	directives?: DirectiveUsage[];
 	required?: boolean;
 	listItems?: ArgumentListItem[];
 };

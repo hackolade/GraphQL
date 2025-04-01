@@ -3,6 +3,7 @@
  * @import {REDirectiveDefinition, DirectiveLocations} from "../../../shared/types/types"
  */
 
+const { getArguments } = require('../arguments');
 const { getDirectiveName } = require('../directiveName');
 
 const locationMap = {
@@ -57,7 +58,7 @@ function mapDirective({ directive }) {
 		type: 'directive',
 		name: getDirectiveName({ name: directive.name.value }),
 		description: directive.description?.value || '',
-		arguments: [], // TODO: implement argument mapping
+		arguments: getArguments({ fieldArguments: [...(directive.arguments || [])] }),
 		directiveLocations: locations,
 	};
 }
