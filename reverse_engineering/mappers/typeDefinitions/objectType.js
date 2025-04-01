@@ -3,9 +3,8 @@
  * @import {DefinitionNameToTypeNameMap, FieldsOrder, REObjectTypeDefinition, REPropertiesSchema} from "../../../shared/types/types"
  */
 
-const { sortByName } = require('../../helpers/sortByName');
 const { mapDirectivesUsage } = require('../directiveUsage');
-const { mapField } = require('../field');
+const { getFieldsSchema } = require('../field');
 const { mapImplementsInterfaces } = require('../implementsInterfaces');
 
 /**
@@ -31,22 +30,16 @@ function getObjectTypeDefinitions({ objectTypes = [], definitionCategoryByNameMa
  * @returns {REObjectTypeDefinition} The mapped object type definition
  */
 function mapObjectType({ objectType, definitionCategoryByNameMap, fieldsOrder }) {
-	const properties = objectType.fields
-		? objectType.fields.map(field => mapField({ field, definitionCategoryByNameMap }))
-		: [];
-	const required = properties.filter(property => property.required).map(property => property.name);
-	const convertedProperties = sortByName({ items: properties, fieldsOrder }).reduce(
-		(acc, property) => {
-			acc[property.name] = property;
-			return acc;
-		},
-		/** @type {REPropertiesSchema} */ {},
-	);
+	const { properties, required } = getFieldsSchema({
+		fields: [...(objectType.fields || [])],
+		definitionCategoryByNameMap,
+		fieldsOrder,
+	});
 
 	return {
 		type: 'object',
 		name: objectType.name.value,
-		properties: convertedProperties,
+		properties,
 		required,
 		description: objectType.description?.value || '',
 		typeDirectives: mapDirectivesUsage({ directives: [...(objectType.directives || [])] }),

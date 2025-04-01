@@ -22,6 +22,11 @@ export type ContainerSchemaRootTypes = {
 	rootSubscription?: string; // root subscription name
 };
 
+type EntityDetails<TypeDirectives> = {
+	operationType: string;
+	typeDirectives?: TypeDirectives;
+};
+
 export type DirectiveLocations = {
 	argumentDefinition?: boolean;
 	enum?: boolean;

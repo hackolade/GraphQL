@@ -9,6 +9,7 @@ import {
 	ObjectLikeDefinition,
 	EnumDefinition,
 	EnumValue,
+	EntityDetails,
 } from './shared';
 
 export type FEStatement = {
@@ -115,13 +116,10 @@ export type RootTypeNamesParameter = {
 	subscription: string;
 };
 
-type EntityDetails = {
-	operationType?: string;
-	typeDirectives?: DirectivePropertyData[];
-};
+type FEEntityDetails = EntityDetails<DirectivePropertyData[]>;
 
 export type EntityIdToJsonSchemaMap = Record<string, string>;
-export type EntityIdToPropertiesMap = Record<string, [EntityDetails]>;
+export type EntityIdToPropertiesMap = Record<string, [FEEntityDetails]>;
 
 // API parameters
 
