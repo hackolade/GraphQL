@@ -17,12 +17,12 @@
  * REInputTypeDefinition,
  * InputStructureType,
  * REUnionDefinition,
- * UnionStructureType} from "../../../shared/types/types"
+ * UnionStructureType,
+ * DefinitionNameToTypeNameMap} from "../../../shared/types/types"
  */
 
 const { astNodeKind } = require('../../constants/graphqlAST');
 const { findNodesByKind } = require('../../helpers/findNodesByKind');
-const { getDefinitionCategoryByNameMap } = require('../../helpers/getDefinitionCategoryByNameMap');
 const { sortByName } = require('../../helpers/sortByName');
 const { getCustomScalarTypeDefinitions } = require('./customScalar');
 const { getDirectiveTypeDefinitions } = require('./directive');
@@ -39,11 +39,10 @@ const { getUnionTypeDefinitions } = require('./union');
  * @param {DefinitionNode[]} params.typeDefinitions - The type definitions nodes
  * @param {FieldsOrder} params.fieldsOrder - The fields order
  * @param {string[]} params.rootTypeNames - The root type names
+ * @param {DefinitionNameToTypeNameMap} params.definitionCategoryByNameMap - The definition category by name map
  * @returns {REModelDefinitionsSchema} The mapped type definitions
  */
-function getTypeDefinitions({ typeDefinitions, fieldsOrder, rootTypeNames }) {
-	const definitionCategoryByNameMap = getDefinitionCategoryByNameMap({ nodes: typeDefinitions });
-
+function getTypeDefinitions({ typeDefinitions, fieldsOrder, rootTypeNames, definitionCategoryByNameMap }) {
 	const directives = getDirectiveTypeDefinitions({
 		directives: findNodesByKind({ nodes: typeDefinitions, kind: astNodeKind.DIRECTIVE_DEFINITION }),
 	});

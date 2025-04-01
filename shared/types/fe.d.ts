@@ -9,6 +9,7 @@ import {
 	ObjectLikeDefinition,
 	EnumDefinition,
 	EnumValue,
+	EntityDetails,
 } from './shared';
 
 export type FEStatement = {
@@ -61,7 +62,9 @@ export type FEDirectiveLocations = DirectiveLocations & {
 	GUID: string;
 };
 
-export type FEDirectiveDefinition = DirectiveDefinition<Argument, FEDirectiveLocations> & {
+export type FEArgument = Argument<DirectivePropertyData>;
+
+export type FEDirectiveDefinition = DirectiveDefinition<FEArgument, FEDirectiveLocations> & {
 	GUID: string;
 	additionalProperties?: boolean;
 	ignore_z_value: boolean;
@@ -113,13 +116,10 @@ export type RootTypeNamesParameter = {
 	subscription: string;
 };
 
-type EntityDetails = {
-	operationType?: string;
-	typeDirectives?: DirectivePropertyData[];
-};
+type FEEntityDetails = EntityDetails<DirectivePropertyData[]>;
 
 export type EntityIdToJsonSchemaMap = Record<string, string>;
-export type EntityIdToPropertiesMap = Record<string, [EntityDetails]>;
+export type EntityIdToPropertiesMap = Record<string, [FEEntityDetails]>;
 
 // API parameters
 

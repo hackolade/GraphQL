@@ -1,11 +1,10 @@
 /**
  * @import {InterfaceTypeDefinitionNode} from "graphql"
- * @import {DefinitionNameToTypeNameMap, FieldsOrder, REInterfaceDefinition, REPropertiesSchema} from "../../../shared/types/types"
+ * @import {DefinitionNameToTypeNameMap, FieldsOrder, REInterfaceDefinition} from "../../../shared/types/types"
  */
 
-const { sortByName } = require('../../helpers/sortByName');
 const { mapDirectivesUsage } = require('../directiveUsage');
-const { mapField } = require('../field');
+const { getFieldsSchema } = require('../field');
 const { mapImplementsInterfaces } = require('../implementsInterfaces');
 
 /**
@@ -31,22 +30,16 @@ function getInterfaceDefinitions({ interfaces = [], definitionCategoryByNameMap,
  * @returns {REInterfaceDefinition} The mapped interface type definition
  */
 function mapInterface({ interfaceType, definitionCategoryByNameMap, fieldsOrder }) {
-	const properties = interfaceType.fields
-		? interfaceType.fields.map(field => mapField({ field, definitionCategoryByNameMap }))
-		: [];
-	const required = properties.filter(property => property.required).map(property => property.name);
-	const convertedProperties = sortByName({ items: properties, fieldsOrder }).reduce(
-		(acc, property) => {
-			acc[property.name] = property;
-			return acc;
-		},
-		/** @type {REPropertiesSchema} */ {},
-	);
+	const { properties, required } = getFieldsSchema({
+		fields: [...(interfaceType.fields || [])],
+		definitionCategoryByNameMap,
+		fieldsOrder,
+	});
 
 	return {
 		type: 'interface',
 		name: interfaceType.name.value,
-		properties: convertedProperties,
+		properties,
 		required,
 		description: interfaceType.description?.value || '',
 		typeDirectives: mapDirectivesUsage({ directives: [...(interfaceType.directives || [])] }),

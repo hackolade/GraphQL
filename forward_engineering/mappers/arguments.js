@@ -1,5 +1,5 @@
 /**
- * @import {Argument, ArgumentsResultStatement, IdToNameMap, FEStatement} from "../../shared/types/types"
+ * @import {ArgumentsResultStatement, IdToNameMap, FEStatement, FEArgument} from "../../shared/types/types"
  */
 
 const { getDirectivesUsageStatement } = require('./directiveUsageStatements');
@@ -16,7 +16,7 @@ const EMPTY_LIST = '[]';
  * Gets the type of the argument with the required keyword.
  *
  * @param {object} args - Arguments object.
- * @param {Argument} args.graphqlArgument - The argument to map.
+ * @param {FEArgument} args.graphqlArgument - The argument to map.
  * @param {IdToNameMap} [args.idToNameMap] - The ID to name map of all available types in model.
  * @returns {string} Returns the type of the argument with the required keyword
  */
@@ -42,7 +42,7 @@ const getArgumentType = ({ graphqlArgument, idToNameMap = {} }) => {
  * Maps an argument to a string with all configured properties.
  *
  * @param {object} args - Arguments object.
- * @param {Argument} args.graphqlArgument - The argument to map.
+ * @param {FEArgument} args.graphqlArgument - The argument to map.
  * @param {IdToNameMap} [args.idToNameMap] - The ID to name map of all available types in model.
  * @returns {FEStatement} Returns the argument as a FEStatement
  */
@@ -72,7 +72,7 @@ const mapArgument = ({ graphqlArgument, idToNameMap = {} }) => {
  * Maps an array of arguments to a formatted string with all configured properties.
  *
  * @param {object} args - Arguments object.
- * @param {Argument[]} [args.graphqlArguments] - The arguments to map.
+ * @param {FEArgument[]} [args.graphqlArguments] - The arguments to map.
  * @param {IdToNameMap} [args.idToNameMap] - The ID to name map of all available types in model.
  * @returns {ArgumentsResultStatement} Returns an object containing the arguments as a formatted string and a warning
  *   comment if any.

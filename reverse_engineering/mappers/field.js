@@ -1,12 +1,41 @@
 /**
- * @import {FieldDefinitionNode, TypeNode, InputValueDefinitionNode, ValueNode} from "graphql"
- * @import {DefinitionNameToTypeNameMap, FieldTypeProperties, InputTypeFieldProperties, PreProcessedFieldData} from "./../../shared/types/types"
+ * @import {FieldDefinitionNode, TypeNode, InputValueDefinitionNode} from "graphql"
+ * @import {DefinitionNameToTypeNameMap, FieldsOrder, FieldTypeProperties, PreProcessedFieldData, REFieldsSchemaProperties, REPropertiesSchema} from "./../../shared/types/types"
  */
 
 const { mapDirectivesUsage } = require('./directiveUsage');
 const { astNodeKind } = require('../constants/graphqlAST');
 const { BUILT_IN_SCALAR_LIST } = require('../constants/types');
 const { getDefinitionReferencePath } = require('../helpers/getDefinitionReferencePath');
+const { getArguments } = require('./arguments');
+const { parseDefaultValue } = require('./defaultValue');
+const { sortByName } = require('../helpers/sortByName');
+
+/**
+ * Maps a list of fields to a schema
+ *
+ * @param {object} params
+ * @param {FieldDefinitionNode[] | InputValueDefinitionNode[]} params.fields - The fields to map
+ * @param {DefinitionNameToTypeNameMap} params.definitionCategoryByNameMap - The definition category by name map
+ * @param {FieldsOrder} params.fieldsOrder - The fields order
+ * @returns {REFieldsSchemaProperties} The mapped schema
+ */
+function getFieldsSchema({ fields, definitionCategoryByNameMap, fieldsOrder }) {
+	const properties = fields ? fields.map(field => mapField({ field, definitionCategoryByNameMap })) : [];
+	const required = properties.filter(property => property.required).map(property => property.name);
+	const convertedProperties = sortByName({ items: properties, fieldsOrder }).reduce(
+		(acc, property) => {
+			acc[property.name] = property;
+			return acc;
+		},
+		/** @type {REPropertiesSchema} */ {},
+	);
+
+	return {
+		properties: convertedProperties,
+		required,
+	};
+}
 
 /**
  * Maps a field
@@ -30,55 +59,23 @@ function mapField({ field, definitionCategoryByNameMap }) {
 		sharedProperties.default = parseDefaultValue(field.defaultValue);
 	}
 
+	let mappedArguments;
+	if ('arguments' in field) {
+		mappedArguments = getArguments({ fieldArguments: [...(field.arguments || [])] });
+	}
+
 	if ('$ref' in fieldTypeProperties) {
 		return {
 			...sharedProperties,
 			refDescription: description,
-			// TODO: add arguments
+			...(mappedArguments && { arguments: mappedArguments }),
 		};
 	}
 	return {
 		...sharedProperties,
 		description,
-		// TODO: add arguments
+		...(mappedArguments && { arguments: mappedArguments }), // Added handling for mappedArguments
 	};
-}
-
-/**
- * Parses a default value from a ValueNode into a string representation
- *
- * @param {ValueNode} defaultValue - The default value node to parse
- * @param {boolean} [isNested] - Whether this value is nested inside an object or list. Default is `false`
- * @returns {InputTypeFieldProperties['default']} String representation of the default value
- */
-function parseDefaultValue(defaultValue, isNested = false) {
-	switch (defaultValue.kind) {
-		case astNodeKind.INT:
-			return parseInt(defaultValue.value);
-		case astNodeKind.FLOAT:
-			return parseFloat(defaultValue.value);
-		case astNodeKind.ENUM:
-			return defaultValue.value;
-		case astNodeKind.STRING:
-			// Add quotes only if the string is nested in an object or list
-			return isNested ? `"${defaultValue.value}"` : defaultValue.value;
-		case astNodeKind.BOOLEAN:
-			return defaultValue.value.toString();
-		case astNodeKind.NULL:
-			return 'null';
-		case astNodeKind.LIST: {
-			const listValues = defaultValue.values.map(value => parseDefaultValue(value, true));
-			return `[${listValues.join(', ')}]`;
-		}
-		case astNodeKind.OBJECT: {
-			const objectFields = defaultValue.fields.map(
-				field => `${field.name.value}: ${parseDefaultValue(field.value, true)}`,
-			);
-			return `{ ${objectFields.join(', ')} }`;
-		}
-		default:
-			return '';
-	}
 }
 
 /**
@@ -148,4 +145,5 @@ function isBuiltInScalar({ typeName }) {
 
 module.exports = {
 	mapField,
+	getFieldsSchema,
 };
