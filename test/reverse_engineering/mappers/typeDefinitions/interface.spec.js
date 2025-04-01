@@ -2,13 +2,6 @@ const { describe, it, mock, afterEach } = require('node:test');
 const assert = require('assert');
 
 // Mock dependencies
-const sortByNameMock = mock.fn(({ items }) => items);
-mock.module('../../../../reverse_engineering/helpers/sortByName', {
-	namedExports: {
-		sortByName: sortByNameMock,
-	},
-});
-
 const mapDirectivesUsageMock = mock.fn(() => []);
 mock.module('../../../../reverse_engineering/mappers/directiveUsage', {
 	namedExports: {
@@ -16,13 +9,11 @@ mock.module('../../../../reverse_engineering/mappers/directiveUsage', {
 	},
 });
 
-const mapFieldMock = mock.fn(({ field }) => ({
-	name: field.name.value,
-	required: field.type.kind === 'NON_NULL_TYPE',
-}));
+// Mock getFieldsSchema instead of mapField
+const getFieldsSchemaMock = mock.fn(() => ({ properties: {}, required: [] }));
 mock.module('../../../../reverse_engineering/mappers/field', {
 	namedExports: {
-		mapField: mapFieldMock,
+		getFieldsSchema: getFieldsSchemaMock,
 	},
 });
 
@@ -37,9 +28,8 @@ const { getInterfaceDefinitions } = require('../../../../reverse_engineering/map
 
 describe('getInterfaceDefinitions', () => {
 	afterEach(() => {
-		sortByNameMock.mock.resetCalls();
 		mapDirectivesUsageMock.mock.resetCalls();
-		mapFieldMock.mock.resetCalls();
+		getFieldsSchemaMock.mock.resetCalls();
 		mapImplementsInterfacesMock.mock.resetCalls();
 	});
 
@@ -50,6 +40,7 @@ describe('getInterfaceDefinitions', () => {
 			fieldsOrder: {},
 		});
 		assert.deepStrictEqual(result, []);
+		assert.strictEqual(getFieldsSchemaMock.mock.calls.length, 0);
 	});
 
 	it('should correctly map a simple interface with no fields', () => {
@@ -59,6 +50,12 @@ describe('getInterfaceDefinitions', () => {
 			directives: [],
 			interfaces: [],
 		};
+
+		// Mock getFieldsSchema to return empty properties and required arrays
+		getFieldsSchemaMock.mock.mockImplementationOnce(() => ({
+			properties: {},
+			required: [],
+		}));
 
 		const expected = [
 			{
@@ -80,9 +77,14 @@ describe('getInterfaceDefinitions', () => {
 
 		assert.deepStrictEqual(result, expected);
 		assert.strictEqual(mapDirectivesUsageMock.mock.calls.length, 1);
-		assert.strictEqual(sortByNameMock.mock.calls.length, 1);
-		assert.strictEqual(mapFieldMock.mock.calls.length, 0);
+		assert.strictEqual(getFieldsSchemaMock.mock.calls.length, 1);
 		assert.strictEqual(mapImplementsInterfacesMock.mock.calls.length, 1);
+
+		// Verify the correct parameters were passed to getFieldsSchema
+		const fieldsSchemaParams = getFieldsSchemaMock.mock.calls[0].arguments[0];
+		assert.deepStrictEqual(fieldsSchemaParams.fields, []);
+		assert.deepStrictEqual(fieldsSchemaParams.definitionCategoryByNameMap, {});
+		assert.deepStrictEqual(fieldsSchemaParams.fieldsOrder, {});
 	});
 
 	it('should correctly map an interface with fields', () => {
@@ -105,7 +107,15 @@ describe('getInterfaceDefinitions', () => {
 			interfaces: [],
 		};
 
-		// Expected result with the properties based on the mocked mapField responses
+		// Mock getFieldsSchema to return properties and required fields
+		getFieldsSchemaMock.mock.mockImplementationOnce(() => ({
+			properties: {
+				id: { name: 'id', required: true },
+				name: { name: 'name', required: false },
+			},
+			required: ['id'],
+		}));
+
 		const expected = [
 			{
 				type: 'interface',
@@ -129,9 +139,12 @@ describe('getInterfaceDefinitions', () => {
 
 		assert.deepStrictEqual(result, expected);
 		assert.strictEqual(mapDirectivesUsageMock.mock.calls.length, 1);
-		assert.strictEqual(sortByNameMock.mock.calls.length, 1);
-		assert.strictEqual(mapFieldMock.mock.calls.length, 2);
+		assert.strictEqual(getFieldsSchemaMock.mock.calls.length, 1);
 		assert.strictEqual(mapImplementsInterfacesMock.mock.calls.length, 1);
+
+		// Verify that getFieldsSchema was called with the correct fields
+		const fieldsSchemaParams = getFieldsSchemaMock.mock.calls[0].arguments[0];
+		assert.deepStrictEqual(fieldsSchemaParams.fields, mockInterface.fields);
 	});
 
 	it('should correctly map an interface with directives', () => {
@@ -149,6 +162,12 @@ describe('getInterfaceDefinitions', () => {
 			],
 			interfaces: [],
 		};
+
+		// Mock getFieldsSchema for empty fields
+		getFieldsSchemaMock.mock.mockImplementationOnce(() => ({
+			properties: {},
+			required: [],
+		}));
 
 		const expected = [
 			{
@@ -170,9 +189,7 @@ describe('getInterfaceDefinitions', () => {
 
 		assert.deepStrictEqual(result, expected);
 		assert.strictEqual(mapDirectivesUsageMock.mock.calls.length, 1);
-		assert.deepStrictEqual(mapDirectivesUsageMock.mock.calls[0].arguments[0], {
-			directives: mockInterface.directives,
-		});
+		assert.deepStrictEqual(mapDirectivesUsageMock.mock.calls[0].arguments[0].directives, mockInterface.directives);
 		assert.strictEqual(mapImplementsInterfacesMock.mock.calls.length, 1);
 	});
 
@@ -186,6 +203,12 @@ describe('getInterfaceDefinitions', () => {
 
 		const mockImplementsResult = [{ interface: 'Node' }, { interface: 'Entity' }];
 		mapImplementsInterfacesMock.mock.mockImplementationOnce(() => mockImplementsResult);
+
+		// Mock getFieldsSchema for empty fields
+		getFieldsSchemaMock.mock.mockImplementationOnce(() => ({
+			properties: {},
+			required: [],
+		}));
 
 		const expected = [
 			{
@@ -212,7 +235,7 @@ describe('getInterfaceDefinitions', () => {
 		});
 	});
 
-	it('should correctly handle fields order', () => {
+	it('should correctly pass fields order to getFieldsSchema', () => {
 		const mockInterface = {
 			name: { value: 'OrderedInterface' },
 			fields: [
@@ -224,39 +247,38 @@ describe('getInterfaceDefinitions', () => {
 			interfaces: [],
 		};
 
-		mapFieldMock.mock.mockImplementation(({ field }) => ({
-			name: field.name.value,
-			required: false,
-		}));
-
 		// Test both fieldsOrder options
 		const testCases = [
 			{
 				fieldsOrder: 'alphabetical',
-				expectedOrder: ['fieldA', 'fieldB', 'fieldC'], // Alphabetical order
+				mockResult: {
+					properties: {
+						fieldA: { name: 'fieldA' },
+						fieldB: { name: 'fieldB' },
+						fieldC: { name: 'fieldC' },
+					},
+					required: [],
+				},
 			},
 			{
 				fieldsOrder: 'field',
-				expectedOrder: ['fieldB', 'fieldA', 'fieldC'], // Original order
+				mockResult: {
+					properties: {
+						fieldB: { name: 'fieldB' },
+						fieldA: { name: 'fieldA' },
+						fieldC: { name: 'fieldC' },
+					},
+					required: [],
+				},
 			},
 		];
 
 		for (const testCase of testCases) {
-			// Reset mocks before each test case
-			sortByNameMock.mock.resetCalls();
-			mapFieldMock.mock.resetCalls();
+			getFieldsSchemaMock.mock.resetCalls();
 			mapImplementsInterfacesMock.mock.resetCalls();
 
-			// Mock sortByName to simulate behavior based on fieldsOrder value
-			if (testCase.fieldsOrder === 'alphabetical') {
-				// For 'alphabetical', sort alphabetically
-				sortByNameMock.mock.mockImplementationOnce(({ items }) => {
-					return [...items].sort((a, b) => a.name.localeCompare(b.name));
-				});
-			} else {
-				// For 'field', maintain original order
-				sortByNameMock.mock.mockImplementationOnce(({ items }) => items);
-			}
+			// Mock getFieldsSchema to return properties in the correct order
+			getFieldsSchemaMock.mock.mockImplementationOnce(() => testCase.mockResult);
 
 			const result = getInterfaceDefinitions({
 				interfaces: [mockInterface],
@@ -264,21 +286,26 @@ describe('getInterfaceDefinitions', () => {
 				fieldsOrder: testCase.fieldsOrder,
 			});
 
-			// Check that sortByName was called correctly
-			assert.strictEqual(sortByNameMock.mock.calls.length, 1);
-			assert.strictEqual(sortByNameMock.mock.calls[0].arguments[0].fieldsOrder, testCase.fieldsOrder);
+			// Verify the result matches what getFieldsSchema returned
+			assert.deepStrictEqual(result[0].properties, testCase.mockResult.properties);
 
-			// Verify the result structure
-			assert.strictEqual(result.length, 1);
-			assert.strictEqual(result[0].name, 'OrderedInterface');
+			// Verify that getFieldsSchema was called with the correct fieldsOrder
+			assert.strictEqual(getFieldsSchemaMock.mock.calls.length, 1);
+			const fieldsSchemaParams = getFieldsSchemaMock.mock.calls[0].arguments[0];
+			assert.strictEqual(
+				fieldsSchemaParams.fieldsOrder,
+				testCase.fieldsOrder,
+				`getFieldsSchema should be called with fieldsOrder: "${testCase.fieldsOrder}"`,
+			);
 
+			// Verify property order in the result
 			const propertyNames = Object.keys(result[0].properties);
+			const expectedOrder = Object.keys(testCase.mockResult.properties);
 
-			// Verify the properties are in the expected order for this test case
 			assert.deepStrictEqual(
 				propertyNames,
-				testCase.expectedOrder,
-				`Field order should be ${testCase.expectedOrder.join(', ')} when fieldsOrder is "${testCase.fieldsOrder}"`,
+				expectedOrder,
+				`Field order should be ${expectedOrder.join(', ')} when fieldsOrder is "${testCase.fieldsOrder}"`,
 			);
 		}
 	});
@@ -299,6 +326,12 @@ describe('getInterfaceDefinitions', () => {
 			},
 		];
 
+		// Mock getFieldsSchema to return empty properties for both calls
+		getFieldsSchemaMock.mock.mockImplementation(() => ({
+			properties: {},
+			required: [],
+		}));
+
 		const result = getInterfaceDefinitions({
 			interfaces: mockInterfaces,
 			definitionCategoryByNameMap: {},
@@ -309,6 +342,7 @@ describe('getInterfaceDefinitions', () => {
 		assert.strictEqual(result[0].name, 'Interface1');
 		assert.strictEqual(result[1].name, 'Interface2');
 		assert.strictEqual(mapDirectivesUsageMock.mock.calls.length, 2);
+		assert.strictEqual(getFieldsSchemaMock.mock.calls.length, 2);
 		assert.strictEqual(mapImplementsInterfacesMock.mock.calls.length, 2);
 	});
 
@@ -319,6 +353,12 @@ describe('getInterfaceDefinitions', () => {
 			directives: [],
 			interfaces: [],
 		};
+
+		// Mock getFieldsSchema to return empty properties
+		getFieldsSchemaMock.mock.mockImplementationOnce(() => ({
+			properties: {},
+			required: [],
+		}));
 
 		const expected = [
 			{
@@ -340,12 +380,10 @@ describe('getInterfaceDefinitions', () => {
 
 		assert.deepStrictEqual(result, expected);
 
-		// Verify no fields were processed
-		assert.strictEqual(mapFieldMock.mock.calls.length, 0);
-
-		// Verify sortByName was still called (but with empty array)
-		assert.strictEqual(sortByNameMock.mock.calls.length, 1);
-		assert.deepStrictEqual(sortByNameMock.mock.calls[0].arguments[0].items, []);
+		// Verify getFieldsSchema was called with empty array
+		assert.strictEqual(getFieldsSchemaMock.mock.calls.length, 1);
+		const fieldsSchemaParams = getFieldsSchemaMock.mock.calls[0].arguments[0];
+		assert.deepStrictEqual(fieldsSchemaParams.fields, []);
 	});
 
 	it('should handle undefined directives', () => {
@@ -355,6 +393,12 @@ describe('getInterfaceDefinitions', () => {
 			// directives is undefined
 			interfaces: [],
 		};
+
+		// Mock getFieldsSchema to return empty properties
+		getFieldsSchemaMock.mock.mockImplementationOnce(() => ({
+			properties: {},
+			required: [],
+		}));
 
 		const expected = [
 			{
@@ -376,7 +420,7 @@ describe('getInterfaceDefinitions', () => {
 
 		assert.deepStrictEqual(result, expected);
 
-		// Verify the mapDirectivesUsage was called with empty directives array
+		// Verify mapDirectivesUsage was called with empty directives array
 		assert.strictEqual(mapDirectivesUsageMock.mock.calls.length, 1);
 		assert.deepStrictEqual(mapDirectivesUsageMock.mock.calls[0].arguments[0].directives, []);
 	});
@@ -388,6 +432,12 @@ describe('getInterfaceDefinitions', () => {
 			directives: [],
 			// interfaces is undefined
 		};
+
+		// Mock getFieldsSchema to return empty properties
+		getFieldsSchemaMock.mock.mockImplementationOnce(() => ({
+			properties: {},
+			required: [],
+		}));
 
 		const expected = [
 			{
@@ -412,5 +462,99 @@ describe('getInterfaceDefinitions', () => {
 		// Verify mapImplementsInterfaces was called with empty array
 		assert.strictEqual(mapImplementsInterfacesMock.mock.calls.length, 1);
 		assert.deepStrictEqual(mapImplementsInterfacesMock.mock.calls[0].arguments[0].implementsInterfaces, []);
+	});
+
+	it('should correctly handle interfaces with complex field structures', () => {
+		const mockInterface = {
+			name: { value: 'ComplexInterface' },
+			fields: [
+				{
+					name: { value: 'reference' },
+					type: { kind: 'NAMED_TYPE', name: { value: 'SomeType' } },
+					directives: [],
+				},
+				{
+					name: { value: 'list' },
+					type: {
+						kind: 'LIST_TYPE',
+						type: { kind: 'NAMED_TYPE', name: { value: 'OtherType' } },
+					},
+					directives: [],
+				},
+			],
+			directives: [],
+			interfaces: [],
+		};
+
+		// Mock getFieldsSchema to return a complex structure with references and lists
+		getFieldsSchemaMock.mock.mockImplementationOnce(() => ({
+			properties: {
+				reference: {
+					name: 'reference',
+					required: false,
+					$ref: '#model/definitions/Objects/SomeType',
+				},
+				list: {
+					name: 'list',
+					required: false,
+					type: 'List',
+					items: [
+						{
+							$ref: '#model/definitions/Objects/OtherType',
+							required: false,
+						},
+					],
+				},
+			},
+			required: [],
+		}));
+
+		const expected = [
+			{
+				type: 'interface',
+				name: 'ComplexInterface',
+				properties: {
+					reference: {
+						name: 'reference',
+						required: false,
+						$ref: '#model/definitions/Objects/SomeType',
+					},
+					list: {
+						name: 'list',
+						required: false,
+						type: 'List',
+						items: [
+							{
+								$ref: '#model/definitions/Objects/OtherType',
+								required: false,
+							},
+						],
+					},
+				},
+				required: [],
+				description: '',
+				typeDirectives: [],
+				implementsInterfaces: [],
+			},
+		];
+
+		const result = getInterfaceDefinitions({
+			interfaces: [mockInterface],
+			definitionCategoryByNameMap: {
+				SomeType: 'Objects',
+				OtherType: 'Objects',
+			},
+			fieldsOrder: {},
+		});
+
+		assert.deepStrictEqual(result, expected);
+		assert.strictEqual(getFieldsSchemaMock.mock.calls.length, 1);
+
+		// Verify getFieldsSchema received the right definition map
+		const fieldsSchemaParams = getFieldsSchemaMock.mock.calls[0].arguments[0];
+		assert.deepStrictEqual(fieldsSchemaParams.definitionCategoryByNameMap, {
+			SomeType: 'Objects',
+			OtherType: 'Objects',
+		});
 	});
 });

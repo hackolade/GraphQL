@@ -2,13 +2,6 @@ const { describe, it, mock, afterEach } = require('node:test');
 const assert = require('assert');
 
 // Mock dependencies
-const sortByNameMock = mock.fn(({ items }) => items);
-mock.module('../../../../reverse_engineering/helpers/sortByName', {
-	namedExports: {
-		sortByName: sortByNameMock,
-	},
-});
-
 const mapDirectivesUsageMock = mock.fn(() => []);
 mock.module('../../../../reverse_engineering/mappers/directiveUsage', {
 	namedExports: {
@@ -16,13 +9,11 @@ mock.module('../../../../reverse_engineering/mappers/directiveUsage', {
 	},
 });
 
-const mapFieldMock = mock.fn(({ field }) => ({
-	name: field.name.value,
-	required: field.type.kind === 'NON_NULL_TYPE',
-}));
+// Mock getFieldsSchema instead of mapField
+const getFieldsSchemaMock = mock.fn(() => ({ properties: {}, required: [] }));
 mock.module('../../../../reverse_engineering/mappers/field', {
 	namedExports: {
-		mapField: mapFieldMock,
+		getFieldsSchema: getFieldsSchemaMock,
 	},
 });
 
@@ -30,9 +21,8 @@ const { getInputObjectTypeDefinitions } = require('../../../../reverse_engineeri
 
 describe('getInputObjectTypeDefinitions', () => {
 	afterEach(() => {
-		sortByNameMock.mock.resetCalls();
 		mapDirectivesUsageMock.mock.resetCalls();
-		mapFieldMock.mock.resetCalls();
+		getFieldsSchemaMock.mock.resetCalls();
 	});
 
 	it('should return an empty array when no input object types are provided', () => {
@@ -42,6 +32,7 @@ describe('getInputObjectTypeDefinitions', () => {
 			fieldsOrder: {},
 		});
 		assert.deepStrictEqual(result, []);
+		assert.strictEqual(getFieldsSchemaMock.mock.calls.length, 0);
 	});
 
 	it('should correctly map a simple input object type with no fields', () => {
@@ -50,6 +41,12 @@ describe('getInputObjectTypeDefinitions', () => {
 			fields: [],
 			directives: [],
 		};
+
+		// Mock getFieldsSchema to return empty properties and required arrays
+		getFieldsSchemaMock.mock.mockImplementationOnce(() => ({
+			properties: {},
+			required: [],
+		}));
 
 		const expected = [
 			{
@@ -70,8 +67,13 @@ describe('getInputObjectTypeDefinitions', () => {
 
 		assert.deepStrictEqual(result, expected);
 		assert.strictEqual(mapDirectivesUsageMock.mock.calls.length, 1);
-		assert.strictEqual(sortByNameMock.mock.calls.length, 1);
-		assert.strictEqual(mapFieldMock.mock.calls.length, 0);
+		assert.strictEqual(getFieldsSchemaMock.mock.calls.length, 1);
+
+		// Verify the correct parameters were passed to getFieldsSchema
+		const fieldsSchemaParams = getFieldsSchemaMock.mock.calls[0].arguments[0];
+		assert.deepStrictEqual(fieldsSchemaParams.fields, []);
+		assert.deepStrictEqual(fieldsSchemaParams.definitionCategoryByNameMap, {});
+		assert.deepStrictEqual(fieldsSchemaParams.fieldsOrder, {});
 	});
 
 	it('should correctly map an input object type with fields', () => {
@@ -93,7 +95,15 @@ describe('getInputObjectTypeDefinitions', () => {
 			directives: [],
 		};
 
-		// Expected result with the properties based on the mocked mapField responses
+		// Mock getFieldsSchema to return properties and required fields
+		getFieldsSchemaMock.mock.mockImplementationOnce(() => ({
+			properties: {
+				username: { name: 'username', required: true },
+				email: { name: 'email', required: false },
+			},
+			required: ['username'],
+		}));
+
 		const expected = [
 			{
 				type: 'input',
@@ -116,8 +126,11 @@ describe('getInputObjectTypeDefinitions', () => {
 
 		assert.deepStrictEqual(result, expected);
 		assert.strictEqual(mapDirectivesUsageMock.mock.calls.length, 1);
-		assert.strictEqual(sortByNameMock.mock.calls.length, 1);
-		assert.strictEqual(mapFieldMock.mock.calls.length, 2);
+		assert.strictEqual(getFieldsSchemaMock.mock.calls.length, 1);
+
+		// Verify that getFieldsSchema was called with the correct fields
+		const fieldsSchemaParams = getFieldsSchemaMock.mock.calls[0].arguments[0];
+		assert.deepStrictEqual(fieldsSchemaParams.fields, mockInputObjectType.fields);
 	});
 
 	it('should correctly map an input object type with fields with default values', () => {
@@ -140,11 +153,13 @@ describe('getInputObjectTypeDefinitions', () => {
 			directives: [],
 		};
 
-		// Mock mapField to return field with default value
-		mapFieldMock.mock.mockImplementation(({ field }) => ({
-			name: field.name.value,
-			required: field.type.kind === 'NON_NULL_TYPE',
-			default: field.defaultValue ? field.defaultValue.value : undefined,
+		// Mock getFieldsSchema to return fields with default values
+		getFieldsSchemaMock.mock.mockImplementationOnce(() => ({
+			properties: {
+				limit: { name: 'limit', required: false, default: 10 },
+				sortBy: { name: 'sortBy', required: false, default: 'createdAt' },
+			},
+			required: [],
 		}));
 
 		const expected = [
@@ -152,7 +167,7 @@ describe('getInputObjectTypeDefinitions', () => {
 				type: 'input',
 				name: 'FilterInput',
 				properties: {
-					limit: { name: 'limit', required: false, default: '10' },
+					limit: { name: 'limit', required: false, default: 10 },
 					sortBy: { name: 'sortBy', required: false, default: 'createdAt' },
 				},
 				required: [],
@@ -169,8 +184,11 @@ describe('getInputObjectTypeDefinitions', () => {
 
 		assert.deepStrictEqual(result, expected);
 		assert.strictEqual(mapDirectivesUsageMock.mock.calls.length, 1);
-		assert.strictEqual(sortByNameMock.mock.calls.length, 1);
-		assert.strictEqual(mapFieldMock.mock.calls.length, 2);
+		assert.strictEqual(getFieldsSchemaMock.mock.calls.length, 1);
+
+		// Verify getFieldsSchema received fields with default values
+		const fieldsSchemaParams = getFieldsSchemaMock.mock.calls[0].arguments[0];
+		assert.deepStrictEqual(fieldsSchemaParams.fields, mockInputObjectType.fields);
 	});
 
 	it('should correctly map an input object type with directives', () => {
@@ -189,6 +207,12 @@ describe('getInputObjectTypeDefinitions', () => {
 				},
 			],
 		};
+
+		// Mock getFieldsSchema for empty fields
+		getFieldsSchemaMock.mock.mockImplementationOnce(() => ({
+			properties: {},
+			required: [],
+		}));
 
 		const expected = [
 			{
@@ -209,12 +233,13 @@ describe('getInputObjectTypeDefinitions', () => {
 
 		assert.deepStrictEqual(result, expected);
 		assert.strictEqual(mapDirectivesUsageMock.mock.calls.length, 1);
-		assert.deepStrictEqual(mapDirectivesUsageMock.mock.calls[0].arguments[0], {
-			directives: mockInputObjectType.directives,
-		});
+		assert.deepStrictEqual(
+			mapDirectivesUsageMock.mock.calls[0].arguments[0].directives,
+			mockInputObjectType.directives,
+		);
 	});
 
-	it('should correctly handle fields order', () => {
+	it('should correctly pass fields order to getFieldsSchema', () => {
 		const mockInputObjectType = {
 			name: { value: 'OrderedInput' },
 			fields: [
@@ -225,37 +250,37 @@ describe('getInputObjectTypeDefinitions', () => {
 			directives: [],
 		};
 
-		mapFieldMock.mock.mockImplementation(({ field }) => ({
-			name: field.name.value,
-			required: false,
-		}));
-
 		// Test both fieldsOrder options
 		const testCases = [
 			{
 				fieldsOrder: 'alphabetical',
-				expectedOrder: ['fieldA', 'fieldB', 'fieldC'], // Alphabetical order
+				mockResult: {
+					properties: {
+						fieldA: { name: 'fieldA' },
+						fieldB: { name: 'fieldB' },
+						fieldC: { name: 'fieldC' },
+					},
+					required: [],
+				},
 			},
 			{
 				fieldsOrder: 'field',
-				expectedOrder: ['fieldB', 'fieldA', 'fieldC'], // Original order
+				mockResult: {
+					properties: {
+						fieldB: { name: 'fieldB' },
+						fieldA: { name: 'fieldA' },
+						fieldC: { name: 'fieldC' },
+					},
+					required: [],
+				},
 			},
 		];
 
 		for (const testCase of testCases) {
-			sortByNameMock.mock.resetCalls();
-			mapFieldMock.mock.resetCalls();
+			getFieldsSchemaMock.mock.resetCalls();
 
-			// Mock sortByName to simulate behavior based on fieldsOrder value
-			if (testCase.fieldsOrder === 'alphabetical') {
-				// For 'alphabetical', sort alphabetically
-				sortByNameMock.mock.mockImplementationOnce(({ items }) => {
-					return [...items].sort((a, b) => a.name.localeCompare(b.name));
-				});
-			} else {
-				// For 'field', maintain original order
-				sortByNameMock.mock.mockImplementationOnce(({ items }) => items);
-			}
+			// Mock getFieldsSchema to return properties in the correct order
+			getFieldsSchemaMock.mock.mockImplementationOnce(() => testCase.mockResult);
 
 			const result = getInputObjectTypeDefinitions({
 				inputObjectTypes: [mockInputObjectType],
@@ -263,21 +288,16 @@ describe('getInputObjectTypeDefinitions', () => {
 				fieldsOrder: testCase.fieldsOrder,
 			});
 
-			// Check that sortByName was called correctly
-			assert.strictEqual(sortByNameMock.mock.calls.length, 1);
-			assert.strictEqual(sortByNameMock.mock.calls[0].arguments[0].fieldsOrder, testCase.fieldsOrder);
+			// Verify the result matches what getFieldsSchema returned
+			assert.deepStrictEqual(result[0].properties, testCase.mockResult.properties);
 
-			// Verify the result structure
-			assert.strictEqual(result.length, 1);
-			assert.strictEqual(result[0].name, 'OrderedInput');
-
-			const propertyNames = Object.keys(result[0].properties);
-
-			// Verify the properties are in the expected order for this test case
-			assert.deepStrictEqual(
-				propertyNames,
-				testCase.expectedOrder,
-				`Field order should be ${testCase.expectedOrder.join(', ')} when fieldsOrder is "${testCase.fieldsOrder}"`,
+			// Verify that getFieldsSchema was called with the correct fieldsOrder
+			assert.strictEqual(getFieldsSchemaMock.mock.calls.length, 1);
+			const fieldsSchemaParams = getFieldsSchemaMock.mock.calls[0].arguments[0];
+			assert.strictEqual(
+				fieldsSchemaParams.fieldsOrder,
+				testCase.fieldsOrder,
+				`getFieldsSchema should be called with fieldsOrder: "${testCase.fieldsOrder}"`,
 			);
 		}
 	});
@@ -296,6 +316,12 @@ describe('getInputObjectTypeDefinitions', () => {
 			},
 		];
 
+		// Mock getFieldsSchema to return empty properties for both calls
+		getFieldsSchemaMock.mock.mockImplementation(() => ({
+			properties: {},
+			required: [],
+		}));
+
 		const result = getInputObjectTypeDefinitions({
 			inputObjectTypes: mockInputObjectTypes,
 			definitionCategoryByNameMap: {},
@@ -306,6 +332,7 @@ describe('getInputObjectTypeDefinitions', () => {
 		assert.strictEqual(result[0].name, 'Input1');
 		assert.strictEqual(result[1].name, 'Input2');
 		assert.strictEqual(mapDirectivesUsageMock.mock.calls.length, 2);
+		assert.strictEqual(getFieldsSchemaMock.mock.calls.length, 2);
 	});
 
 	it('should handle undefined fields', () => {
@@ -314,6 +341,12 @@ describe('getInputObjectTypeDefinitions', () => {
 			// fields is undefined
 			directives: [],
 		};
+
+		// Mock getFieldsSchema to return empty properties
+		getFieldsSchemaMock.mock.mockImplementationOnce(() => ({
+			properties: {},
+			required: [],
+		}));
 
 		const expected = [
 			{
@@ -334,12 +367,10 @@ describe('getInputObjectTypeDefinitions', () => {
 
 		assert.deepStrictEqual(result, expected);
 
-		// Verify no fields were processed
-		assert.strictEqual(mapFieldMock.mock.calls.length, 0);
-
-		// Verify sortByName was still called (but with empty array)
-		assert.strictEqual(sortByNameMock.mock.calls.length, 1);
-		assert.deepStrictEqual(sortByNameMock.mock.calls[0].arguments[0].items, []);
+		// Verify getFieldsSchema was called with empty array
+		assert.strictEqual(getFieldsSchemaMock.mock.calls.length, 1);
+		const fieldsSchemaParams = getFieldsSchemaMock.mock.calls[0].arguments[0];
+		assert.deepStrictEqual(fieldsSchemaParams.fields, []);
 	});
 
 	it('should handle undefined directives', () => {
@@ -348,6 +379,12 @@ describe('getInputObjectTypeDefinitions', () => {
 			fields: [],
 			// directives is undefined
 		};
+
+		// Mock getFieldsSchema to return empty properties
+		getFieldsSchemaMock.mock.mockImplementationOnce(() => ({
+			properties: {},
+			required: [],
+		}));
 
 		const expected = [
 			{
@@ -368,12 +405,12 @@ describe('getInputObjectTypeDefinitions', () => {
 
 		assert.deepStrictEqual(result, expected);
 
-		// Verify the mapDirectivesUsage was called with empty directives array
+		// Verify mapDirectivesUsage was called with empty directives array
 		assert.strictEqual(mapDirectivesUsageMock.mock.calls.length, 1);
 		assert.deepStrictEqual(mapDirectivesUsageMock.mock.calls[0].arguments[0].directives, []);
 	});
 
-	it('should correctly handle input types with complex nested references', () => {
+	it('should correctly handle input types with complex field structures', () => {
 		const mockInputObjectType = {
 			name: { value: 'ComplexInput' },
 			fields: [
@@ -394,29 +431,28 @@ describe('getInputObjectTypeDefinitions', () => {
 			directives: [],
 		};
 
-		// Mock mapField to return different types of fields
-		mapFieldMock.mock.mockImplementationOnce(
-			({ field }) => ({
-				name: field.name.value,
-				required: false,
-				$ref: '#model/definitions/Input objects/NestedInput',
-			}),
-			0,
-		);
-		mapFieldMock.mock.mockImplementationOnce(
-			({ field }) => ({
-				name: field.name.value,
-				required: false,
-				type: 'List',
-				items: [
-					{
-						$ref: '#model/definitions/Input objects/NestedInput',
-						required: false,
-					},
-				],
-			}),
-			1,
-		);
+		// Mock getFieldsSchema to return a complex structure with references and lists
+		getFieldsSchemaMock.mock.mockImplementationOnce(() => ({
+			properties: {
+				nestedInput: {
+					name: 'nestedInput',
+					required: false,
+					$ref: '#model/definitions/Input objects/NestedInput',
+				},
+				inputList: {
+					name: 'inputList',
+					required: false,
+					type: 'List',
+					items: [
+						{
+							$ref: '#model/definitions/Input objects/NestedInput',
+							required: false,
+						},
+					],
+				},
+			},
+			required: [],
+		}));
 
 		const expected = [
 			{
@@ -455,6 +491,10 @@ describe('getInputObjectTypeDefinitions', () => {
 		});
 
 		assert.deepStrictEqual(result, expected);
-		assert.strictEqual(mapFieldMock.mock.calls.length, 2);
+		assert.strictEqual(getFieldsSchemaMock.mock.calls.length, 1);
+
+		// Verify getFieldsSchema received the right definition map
+		const fieldsSchemaParams = getFieldsSchemaMock.mock.calls[0].arguments[0];
+		assert.deepStrictEqual(fieldsSchemaParams.definitionCategoryByNameMap, { 'NestedInput': 'Input objects' });
 	});
 });

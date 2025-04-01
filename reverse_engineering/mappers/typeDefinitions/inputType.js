@@ -1,11 +1,10 @@
 /**
  * @import {InputObjectTypeDefinitionNode} from "graphql"
- * @import {DefinitionNameToTypeNameMap, FieldsOrder, REInputTypeDefinition, REPropertiesSchema} from "../../../shared/types/types"
+ * @import {DefinitionNameToTypeNameMap, FieldsOrder, REInputTypeDefinition} from "../../../shared/types/types"
  */
 
-const { sortByName } = require('../../helpers/sortByName');
 const { mapDirectivesUsage } = require('../directiveUsage');
-const { mapField } = require('../field');
+const { getFieldsSchema } = require('../field');
 
 /**
  * Maps input object type definitions
@@ -32,22 +31,16 @@ function getInputObjectTypeDefinitions({ inputObjectTypes = [], definitionCatego
  * @returns {REInputTypeDefinition} The mapped input object type definition
  */
 function mapInputObjectType({ inputObjectType, definitionCategoryByNameMap, fieldsOrder }) {
-	const properties = inputObjectType.fields
-		? inputObjectType.fields.map(field => mapField({ field, definitionCategoryByNameMap }))
-		: [];
-	const required = properties.filter(property => property.required).map(property => property.name);
-	const convertedProperties = sortByName({ items: properties, fieldsOrder }).reduce(
-		(acc, property) => {
-			acc[property.name] = property;
-			return acc;
-		},
-		/** @type {REPropertiesSchema} */ {},
-	);
+	const { properties, required } = getFieldsSchema({
+		fields: [...(inputObjectType.fields || [])],
+		definitionCategoryByNameMap,
+		fieldsOrder,
+	});
 
 	return {
 		type: 'input',
 		name: inputObjectType.name.value,
-		properties: convertedProperties,
+		properties,
 		required,
 		description: inputObjectType.description?.value || '',
 		typeDirectives: mapDirectivesUsage({ directives: [...(inputObjectType.directives || [])] }),

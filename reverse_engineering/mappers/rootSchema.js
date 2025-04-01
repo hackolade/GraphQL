@@ -16,7 +16,7 @@ const { mapDirectivesUsage } = require('./directiveUsage');
  * @param {string} params.graphName - The name of the graph
  * @returns {ContainerInfo} The mapped container
  */
-function mapRootSchemaTypesToContainer({ rootSchemaNode, graphName = 'New Graph' }) {
+function mapRootSchemaToContainer({ rootSchemaNode, graphName = 'New Graph' }) {
 	if (!rootSchemaNode) {
 		return { name: graphName };
 	}
@@ -56,5 +56,5 @@ function mapSchemaRootTypes({ schemaRootTypes }) {
 }
 
 module.exports = {
-	mapRootSchemaTypesToContainer,
+	mapRootSchemaToContainer,
 };

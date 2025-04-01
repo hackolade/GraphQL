@@ -3,10 +3,12 @@
  * @import {Logger, FileREEntityResponseData, FieldsOrder} from "../../shared/types/types"
  */
 
-const { Kind } = require('graphql');
-const { mapRootSchemaTypesToContainer } = require('./rootSchemaTypes');
+const { mapRootSchemaToContainer } = require('./rootSchema');
 const { findNodesByKind } = require('../helpers/findNodesByKind');
 const { getTypeDefinitions } = require('./typeDefinitions/typeDefinitions');
+const { mapRootTypesToEntities } = require('./rootTypes');
+const { astNodeKind } = require('../constants/graphqlAST');
+const { getDefinitionCategoryByNameMap } = require('../helpers/getDefinitionCategoryByNameMap');
 
 /**
  * Maps a GraphQL schema to a RE response
@@ -23,8 +25,8 @@ function getMappedSchema({ schemaItems, graphName, logger, fieldsOrder }) {
 		if (!schemaItems) {
 			throw new Error('Schema items are empty');
 		}
-		const container = mapRootSchemaTypesToContainer({
-			rootSchemaNode: findNodesByKind({ nodes: schemaItems, kind: Kind.SCHEMA_DEFINITION })[0],
+		const container = mapRootSchemaToContainer({
+			rootSchemaNode: findNodesByKind({ nodes: schemaItems, kind: astNodeKind.SCHEMA_DEFINITION })[0],
 			graphName,
 		});
 		const rootTypeNames = [
@@ -33,23 +35,38 @@ function getMappedSchema({ schemaItems, graphName, logger, fieldsOrder }) {
 			container.schemaRootTypes?.rootSubscription || 'Subscription',
 		];
 
-		const typeDefinitions = getTypeDefinitions({ typeDefinitions: schemaItems, fieldsOrder, rootTypeNames });
+		const definitionCategoryByNameMap = getDefinitionCategoryByNameMap({ nodes: schemaItems });
 
-		return [
-			// TODO: remove test collection
-			{
-				jsonSchema: '{ "type": "object", "operationType": "Query" }',
-				objectNames: {
-					collectionName: 'Test Collection',
-				},
-				doc: {
-					bucketInfo: container,
-					collectionName: 'Test Collection',
-					dbName: container.name,
-					modelDefinitions: JSON.stringify(typeDefinitions),
-				},
+		const rootTypeNodes = findNodesByKind({
+			nodes: schemaItems,
+			kind: astNodeKind.OBJECT_TYPE_DEFINITION,
+		}).filter(node => rootTypeNames.includes(node.name.value));
+		const entities = mapRootTypesToEntities({
+			rootTypeNodes,
+			definitionCategoryByNameMap,
+			fieldsOrder,
+			schemaRootTypesMap: rootTypeNames,
+		});
+
+		const typeDefinitions = getTypeDefinitions({
+			typeDefinitions: schemaItems,
+			fieldsOrder,
+			rootTypeNames,
+			definitionCategoryByNameMap,
+		});
+
+		return entities.map(entity => ({
+			jsonSchema: JSON.stringify(entity.data),
+			objectNames: {
+				collectionName: entity.name,
 			},
-		];
+			doc: {
+				bucketInfo: container,
+				collectionName: entity.name,
+				dbName: container.name,
+				modelDefinitions: JSON.stringify(typeDefinitions),
+			},
+		}));
 	} catch (error) {
 		logger.log('error', error, 'Failed to map GraphQL schema');
 		const errorMessage = error instanceof Error ? error.message : String(error);
