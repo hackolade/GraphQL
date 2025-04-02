@@ -3,7 +3,7 @@ const assert = require('assert');
 
 const mapDirectivesUsageMock = mock.fn(() => []);
 
-mock.module('../../../../reverse_engineering/mappers/directiveUsage', {
+mock.module('../../../../reverse_engineering/mappers/directiveUsage.js', {
 	namedExports: {
 		mapDirectivesUsage: mapDirectivesUsageMock,
 	},

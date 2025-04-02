@@ -3,7 +3,7 @@ const assert = require('assert');
 
 // Mock dependencies
 const mapDirectivesUsageMock = mock.fn(() => []);
-mock.module('../../../../reverse_engineering/mappers/directiveUsage', {
+mock.module('../../../../reverse_engineering/mappers/directiveUsage.js', {
 	namedExports: {
 		mapDirectivesUsage: mapDirectivesUsageMock,
 	},
@@ -11,14 +11,14 @@ mock.module('../../../../reverse_engineering/mappers/directiveUsage', {
 
 // Mock getFieldsSchema instead of mapField
 const getFieldsSchemaMock = mock.fn(() => ({ properties: {}, required: [] }));
-mock.module('../../../../reverse_engineering/mappers/field', {
+mock.module('../../../../reverse_engineering/mappers/field.js', {
 	namedExports: {
 		getFieldsSchema: getFieldsSchemaMock,
 	},
 });
 
 const mapImplementsInterfacesMock = mock.fn(() => []);
-mock.module('../../../../reverse_engineering/mappers/implementsInterfaces', {
+mock.module('../../../../reverse_engineering/mappers/implementsInterfaces.js', {
 	namedExports: {
 		mapImplementsInterfaces: mapImplementsInterfacesMock,
 	},
