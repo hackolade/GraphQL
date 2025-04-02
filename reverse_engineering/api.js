@@ -96,7 +96,18 @@ module.exports = {
 			const fieldsOrder = data.fieldInference.active;
 			const fileContent = await readFileContent({ filePath: data.filePath });
 			const fileName = getFileName(data.filePath);
-			const { parsedSchema /*validationErrors*/ } = parseSchema({ schemaContent: fileContent }); // TODO: validation warnings can be returned in modelData
+			const { parsedSchema, validationErrors } = parseSchema({ schemaContent: fileContent });
+
+			let warning;
+			if (Array.isArray(validationErrors) && validationErrors.length > 0) {
+				warning = {
+					title: 'Anomalies were detected during reverse-engineering',
+					message: 'Review the log file for more details.',
+					openLog: true,
+				};
+				logger.log('error', { validationErrors }, '[Warning] Invalid GraphQL Schema');
+			}
+
 			const mappedEntities = getMappedSchema({
 				schemaItems: [...parsedSchema.definitions],
 				graphName: fileName,
@@ -104,7 +115,7 @@ module.exports = {
 				fieldsOrder,
 			});
 
-			callback(null, mappedEntities, {}, [], 'multipleSchema');
+			callback(null, mappedEntities, { warning }, [], 'multipleSchema');
 		} catch (error) {
 			logger.log('error', error, 'Failed to read GraphQL schema file');
 			callback(error);
