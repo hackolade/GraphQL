@@ -12,13 +12,15 @@ function getStatementDescription({ description }) {
 	}
 
 	const trimmedDescription = description.trim();
-	const escapedDescription = trimmedDescription.replace(/"/g, '\\"');
-	const isMultiLine = escapedDescription.includes('\n');
+	const isMultiLine = trimmedDescription.includes('\n');
 
-	// Format the description based on whether it is multi-line or single-line
-	const formattedDescription = isMultiLine ? `"""\n${escapedDescription}\n"""` : `"${escapedDescription}"`;
+	if (!isMultiLine) {
+		// Escape double quotes for single-line descriptions
+		const escapedDescription = trimmedDescription.replace(/"/g, '\\"');
+		return `"${escapedDescription}"`;
+	}
 
-	return formattedDescription;
+	return `"""\n${trimmedDescription}\n"""`;
 }
 
 module.exports = {
