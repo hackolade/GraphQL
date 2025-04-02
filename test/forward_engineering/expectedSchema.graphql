@@ -8,7 +8,7 @@ schema {
 }
 
 "An active custom directive example"
-directive @activeDirective (
+directive @activeDirective(
   "An example argument"
   arg1: String! = "TEST"
 ) on ARGUMENT_DEFINITION | ENUM | ENUM_VALUE | FIELD | FIELD_DEFINITION | INPUT_FIELD_DEFINITION | INPUT_OBJECT | INTERFACE | MUTATION | OBJECT | QUERY | SCALAR | SCHEMA | SUBSCRIPTION | UNION
@@ -16,14 +16,14 @@ directive @activeDirective (
 # directive @deactivetedDirective on UNKNOWN_LOCATION # Please specify the directive locations
 
 type TestQuery {
-  student (
+  student(
     "Specify ID of user to fetch"
     id: ID! = "1" @activeDirective(arg1: "TEST111")
   ): Student
 }
 
 type TestMutation {
-  student (id: ID! = "1"): Student @activeDirective(arg1: "TEST222")
+  student(id: ID! = "1"): Student @activeDirective(arg1: "TEST222")
 }
 
 type TestSubscription {
