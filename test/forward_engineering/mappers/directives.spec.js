@@ -3,7 +3,7 @@ const { strictEqual, deepStrictEqual } = require('node:assert');
 
 const getArgumentsMock = mock.fn(() => ({ argumentsStatement: '', argumentsWarningComment: '' }));
 
-mock.module('../../../forward_engineering/mappers/arguments', {
+mock.module('../../../forward_engineering/mappers/arguments.js', {
 	namedExports: {
 		getArguments: getArgumentsMock,
 	},

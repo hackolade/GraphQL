@@ -5,17 +5,17 @@ const joinInlineStatementsMock = mock.fn();
 const getDirectivesUsageStatementMock = mock.fn(() => '');
 const getImplementsInterfacesStatementMock = mock.fn(() => '');
 
-mock.module('../../../forward_engineering/helpers/feStatementJoinHelper', {
+mock.module('../../../forward_engineering/helpers/feStatementJoinHelper.js', {
 	namedExports: {
 		joinInlineStatements: joinInlineStatementsMock,
 	},
 });
-mock.module('../../../forward_engineering/mappers/directiveUsageStatements', {
+mock.module('../../../forward_engineering/mappers/directiveUsageStatements.js', {
 	namedExports: {
 		getDirectivesUsageStatement: getDirectivesUsageStatementMock,
 	},
 });
-mock.module('../../../forward_engineering/mappers/implementsInterfaces', {
+mock.module('../../../forward_engineering/mappers/implementsInterfaces.js', {
 	namedExports: {
 		getImplementsInterfacesStatement: getImplementsInterfacesStatementMock,
 	},

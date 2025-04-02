@@ -5,19 +5,19 @@ const getDefinitionNameFromReferencePathMock = mock.fn(() => '');
 const joinInlineStatementsMock = mock.fn(() => '');
 const getDirectivesUsageStatementMock = mock.fn(() => '');
 
-mock.module('../../../forward_engineering/helpers/referenceHelper', {
+mock.module('../../../forward_engineering/helpers/referenceHelper.js', {
 	namedExports: {
 		getDefinitionNameFromReferencePath: getDefinitionNameFromReferencePathMock,
 	},
 });
 
-mock.module('../../../forward_engineering/helpers/feStatementJoinHelper', {
+mock.module('../../../forward_engineering/helpers/feStatementJoinHelper.js', {
 	namedExports: {
 		joinInlineStatements: joinInlineStatementsMock,
 	},
 });
 
-mock.module('../../../forward_engineering/mappers/directiveUsageStatements', {
+mock.module('../../../forward_engineering/mappers/directiveUsageStatements.js', {
 	namedExports: {
 		getDirectivesUsageStatement: getDirectivesUsageStatementMock,
 	},

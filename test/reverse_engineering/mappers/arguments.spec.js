@@ -3,7 +3,7 @@ const assert = require('assert');
 
 // Mock dependencies
 const mapDirectivesUsageMock = mock.fn(() => []);
-mock.module('../../../reverse_engineering/mappers/directiveUsage', {
+mock.module('../../../reverse_engineering/mappers/directiveUsage.js', {
 	namedExports: {
 		mapDirectivesUsage: mapDirectivesUsageMock,
 	},
@@ -24,7 +24,7 @@ const astNodeKindMock = {
 	OBJECT_FIELD: 'ObjectField',
 };
 
-mock.module('../../../reverse_engineering/constants/graphqlAST', {
+mock.module('../../../reverse_engineering/constants/graphqlAST.js', {
 	namedExports: {
 		astNodeKind: astNodeKindMock,
 	},
@@ -43,7 +43,7 @@ const parseDefaultValueMock = mock.fn(value => {
 	return 'default-value';
 });
 
-mock.module('../../../reverse_engineering/mappers/defaultValue', {
+mock.module('../../../reverse_engineering/mappers/defaultValue.js', {
 	namedExports: {
 		parseDefaultValue: parseDefaultValueMock,
 	},
