@@ -70,9 +70,10 @@ const mapArgument = ({ graphqlArgument, idToNameMap = {} }) => {
  * @param {Object} args - arguments object.
  * @param {Argument[]} args.graphqlArguments - The arguments to map.
  * @param {IdToNameMap} [args.idToNameMap] - The ID to name map of all available types in model.
- * @returns {Object} returns an object containing the arguments as a formatted string and a warning comment if any.
- * @returns {string} returns.argumentsStatement - The formatted arguments string.
- * @returns {string} returns.argumentsWarningComment - The warning comment if any argument is missing a type.
+ * @returns {{
+ *   argumentsStatement: string,
+ *   argumentsWarningComment: string
+ * }} An object containing the arguments as a formatted string and a warning comment if any argument is missing the type.
  */
 const getArguments = ({ graphqlArguments, idToNameMap = {} }) => {
 	if (!Array.isArray(graphqlArguments) || graphqlArguments.length === 0) {
