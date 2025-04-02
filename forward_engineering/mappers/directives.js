@@ -53,7 +53,7 @@ function mapDirective({ name, directive, definitionsIdToNameMap }) {
 	});
 
 	return {
-		statement: `directive ${directiveName}${argumentsStatement} on ${directiveLocations}`,
+		statement: `directive ${directiveName}${argumentsStatement.trimStart()} on ${directiveLocations}`,
 		description: directive.description || '',
 		isActivated: directive.isActivated,
 		comment: argumentsWarningComment,
