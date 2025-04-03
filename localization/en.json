@@ -162,5 +162,6 @@
 	"MODAL_WINDOW___FE_SCRIPT_OPTION_CREATE": "Kibana Script",
 	"DEFINITIONS___MODEL_DEFINITION_ROOT_ELEMENT_NAME": "types",
 	"CONTEXT_MENU___CONVERT_TO_DEFINITION": "Convert to Type",
-	"CONTEXT_MENU___REPLACE_BY_DEFINITION": "Replace by Type"
+	"CONTEXT_MENU___REPLACE_BY_DEFINITION": "Replace by Type",
+	"RE_INVALID_SCHEMA_ERROR_MESSAGE": "The file contains unexpected syntax that could not be parsed. This may be due to syntax errors or keywords that are not yet supported.\nPlease verify your GraphQL Schema file. If it doesn’t contain any syntax error, please contact our support team to enhance parsing to better accommodate this syntax."
 }

@@ -56,8 +56,15 @@ export type FileREData = {
 	};
 };
 
+export type REError = {
+	title?: string;
+	message: string;
+	type: string;
+	stack?: string;
+};
+
 export type REFromFileCallback = (
-	err: Error | null | unknown,
+	err: REError | null | unknown,
 	entitiesData?: FileREEntityResponseData[],
 	modelData?: FileREModelLevelResponseData | {},
 	relationships?: object[], // no need in context in GraphQL

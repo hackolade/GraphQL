@@ -8,6 +8,7 @@ const { readFileContent } = require('./helpers/readFileContent');
 const { getMappedSchema } = require('./mappers/schema');
 const { fetchIntrospectionSchema } = require('./helpers/fetchIntrospectionSchema');
 const { convertIntrospectionSchemaToGraphQLSchema } = require('./helpers/convertIntrospectionSchemaToGraphQLSchema');
+const { mapError } = require('./helpers/mapError');
 
 module.exports = {
 	/**
@@ -118,7 +119,8 @@ module.exports = {
 			callback(null, mappedEntities, { warning }, [], 'multipleSchema');
 		} catch (error) {
 			logger.log('error', error, 'Failed to read GraphQL schema file');
-			callback(error);
+			const mappedError = mapError(error);
+			callback(mappedError);
 		}
 	},
 };
