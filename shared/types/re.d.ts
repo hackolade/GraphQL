@@ -29,6 +29,12 @@ export type RootTypeEntity = {
 	data: REEntityDetails; // specify the type for data
 };
 
+export type MappedRESchema = {
+	container: ContainerInfo;
+	entities: RootTypeEntity[];
+	typeDefinitions: REModelDefinitionsSchema;
+};
+
 export type FileREEntityResponseData = {
 	jsonSchema: string; // entity JSON Schema
 	objectNames: {
@@ -41,6 +47,25 @@ export type FileREEntityResponseData = {
 		bucketInfo: ContainerInfo;
 	};
 };
+
+export type InstanceREEntityResponseData = {
+	dbName: string;
+	collectionName: string;
+	entityLevel: Partial<Omit<REEntityDetails, 'required' | 'properties'>>;
+	validation: {
+		jsonSchema: Pick<REEntityDetails, 'required' | 'properties'>;
+	};
+	emptyBucket: boolean;
+	bucketInfo: ContainerInfo;
+	modelDefinitions: {
+		properties: REDefinitionsSchema;
+	};
+};
+
+export type REFromInstanceCallback = (
+	err: Error | null | unknown,
+	entitiesData?: InstanceREEntityResponseData[],
+) => void;
 
 export type FileREModelLevelResponseData = {
 	modelName: string; // model name
@@ -153,16 +178,18 @@ export type REDefinition =
 	| REInputTypeDefinition
 	| REUnionDefinition;
 
+type REDefinitionsSchema = {
+	Directives: DirectiveStructureType;
+	Scalars: ScalarStructureType;
+	Objects: ObjectStructureType;
+	Enums: EnumStructureType;
+	Interfaces: InterfaceStructureType;
+	'Input objects': InputStructureType;
+	Unions: UnionStructureType;
+};
+
 export type REModelDefinitionsSchema = {
-	definitions: {
-		Directives: DirectiveStructureType;
-		Scalars: ScalarStructureType;
-		Objects: ObjectStructureType;
-		Enums: EnumStructureType;
-		Interfaces: InterfaceStructureType;
-		'Input objects': InputStructureType;
-		Unions: UnionStructureType;
-	};
+	definitions: REDefinitionsSchema;
 };
 
 export type DefinitionREStructure =

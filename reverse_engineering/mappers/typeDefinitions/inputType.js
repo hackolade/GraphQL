@@ -12,7 +12,7 @@ const { getFieldsSchema } = require('../field');
  * @param {object} params
  * @param {InputObjectTypeDefinitionNode[]} params.inputObjectTypes - The input object types
  * @param {DefinitionNameToTypeNameMap} params.definitionCategoryByNameMap - The definition category by name map
- * @param {FieldsOrder} params.fieldsOrder - The fields order
+ * @param {FieldsOrder} [params.fieldsOrder] - The fields order
  * @returns {REInputTypeDefinition[]} The mapped input object type definitions
  */
 function getInputObjectTypeDefinitions({ inputObjectTypes = [], definitionCategoryByNameMap, fieldsOrder }) {
@@ -27,7 +27,7 @@ function getInputObjectTypeDefinitions({ inputObjectTypes = [], definitionCatego
  * @param {object} params
  * @param {InputObjectTypeDefinitionNode} params.inputObjectType - The input object type to map
  * @param {DefinitionNameToTypeNameMap} params.definitionCategoryByNameMap - The definition category by name map
- * @param {FieldsOrder} params.fieldsOrder - The fields order
+ * @param {FieldsOrder} [params.fieldsOrder] - The fields order
  * @returns {REInputTypeDefinition} The mapped input object type definition
  */
 function mapInputObjectType({ inputObjectType, definitionCategoryByNameMap, fieldsOrder }) {
