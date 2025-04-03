@@ -282,7 +282,7 @@ describe('field', () => {
 
 			assert.deepStrictEqual(result, {
 				name: 'customType',
-				type: 'string', // Fallback to string
+				type: 'String', // Fallback to string
 				required: false,
 				fieldDirectives: [],
 				description: undefined,
