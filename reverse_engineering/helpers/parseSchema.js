@@ -20,7 +20,7 @@ const localization = require('../../localization/en.json');
  */
 function parseSchema({ schemaContent }) {
 	if (!schemaContent) {
-		throw { title: 'Invalid GraphQL Schema', message: 'Schema is empty', type: 'warning' };
+		throw new InvalidSchemaError({ title: 'Invalid GraphQL Schema', message: 'Schema is empty', type: 'warning' });
 	}
 
 	try {
@@ -34,7 +34,12 @@ function parseSchema({ schemaContent }) {
 		const errorStack = error instanceof Error ? error.stack : undefined;
 		const message = localization.RE_INVALID_SCHEMA_ERROR_MESSAGE + '\n' + errorMessage;
 
-		throw new InvalidSchemaError('Invalid GraphQL Schema', message, 'warning', errorStack);
+		throw new InvalidSchemaError({
+			title: 'Invalid GraphQL Schema',
+			message,
+			type: 'warning',
+			stacktrace: errorStack,
+		});
 	}
 }
 
@@ -62,12 +67,13 @@ function validateSchema(schemaContent) {
  */
 class InvalidSchemaError extends Error {
 	/**
-	 * @param {string} title - The title of the error
-	 * @param {string} message - The error message
-	 * @param {string} type - The type of error
-	 * @param {string} [stacktrace] - The stack trace of the error (optional)
+	 * @param {object} params
+	 * @param {string} params.title - The title of the error
+	 * @param {string} params.message - The error message
+	 * @param {string} params.type - The type of error
+	 * @param {string} [params.stacktrace] - The stack trace of the error (optional)
 	 */
-	constructor(title, message, type, stacktrace) {
+	constructor({ title, message, type, stacktrace }) {
 		super(message);
 		this.title = title;
 		this.type = type;
