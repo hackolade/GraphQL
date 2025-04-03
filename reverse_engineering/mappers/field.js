@@ -127,7 +127,7 @@ function getTypeProperties({ type, definitionCategoryByNameMap }) {
 
 	// fallback
 	return {
-		type: 'string',
+		type: 'String',
 		required: false,
 	};
 }
