@@ -1,0 +1,120 @@
+{
+	"collections": [
+		"{\"$schema\":\"http://json-schema.org/draft-04/schema#\",\"type\":\"object\",\"title\":\"TestQuery\",\"properties\":{\"student\":{\"$ref\":\"#model/definitions/Objects/Student\",\"GUID\":\"68f0de73-ebaf-4c4e-8fd5-846cfb0a17ac\",\"arguments\":[{\"id\":\"b6e32018-de7a-4579-b491-f9c700eba1bb\",\"type\":\"ID\",\"description\":\"Specify ID of user to fetch\",\"dataType\":\"object\",\"default\":\"1\",\"directives\":[{\"id\":\"2151eefe-7adc-4fc4-808f-437bf53ee237\",\"argumentValueFormat\":\"Raw\",\"dataType\":\"object\",\"directiveFormat\":\"Structured\",\"directiveName\":\"e153ba00-3894-40ef-9c0c-b5a05d5fc21c\",\"rawArgumentValues\":\"arg1: \\\"TEST111\\\"\"}],\"name\":\"id\",\"required\":true}],\"isActivated\":true}},\"GUID\":\"b2e9f03d-2894-4441-b7e7-e5cbafc5aece\",\"additionalProperties\":false,\"isActivated\":true,\"operationType\":\"Query\",\"collectionName\":\"TestQuery\",\"bucketId\":\"588f0e51-d507-4750-ba40-a090e57110a0\",\"bucketName\":\"TestGraph\"}",
+		"{\"$schema\":\"http://json-schema.org/draft-04/schema#\",\"type\":\"object\",\"title\":\"TestMutation\",\"properties\":{\"student\":{\"$ref\":\"#model/definitions/Objects/Student\",\"GUID\":\"665be780-600a-47a8-a9b3-77268750d304\",\"arguments\":[{\"id\":\"4afb0c03-2714-4164-97ec-f6ca7f3cc34b\",\"type\":\"ID\",\"dataType\":\"object\",\"default\":\"1\",\"name\":\"id\",\"required\":true}],\"fieldDirectives\":[{\"id\":\"f72ff2f0-9870-45d2-bf4d-ca12c7d6905b\",\"argumentValueFormat\":\"Raw\",\"dataType\":\"object\",\"directiveFormat\":\"Structured\",\"directiveName\":\"e153ba00-3894-40ef-9c0c-b5a05d5fc21c\",\"rawArgumentValues\":\"arg1: \\\"TEST222\\\"\"}],\"isActivated\":true}},\"GUID\":\"b53144e9-4095-4936-9417-f2c50fb0356c\",\"additionalProperties\":false,\"isActivated\":true,\"operationType\":\"Mutation\",\"collectionName\":\"TestMutation\",\"bucketId\":\"588f0e51-d507-4750-ba40-a090e57110a0\",\"bucketName\":\"TestGraph\"}",
+		"{\"$schema\":\"http://json-schema.org/draft-04/schema#\",\"type\":\"object\",\"title\":\"TestSubscription\",\"properties\":{\"studentAdded\":{\"$ref\":\"#model/definitions/Objects/Student\",\"GUID\":\"fa434d61-09f4-437e-9d04-322333c4f66e\",\"isActivated\":true}},\"GUID\":\"ab3a5740-25ee-485a-91af-9ea0000b071a\",\"additionalProperties\":false,\"isActivated\":true,\"operationType\":\"Subscription\",\"collectionName\":\"TestSubscription\",\"bucketId\":\"588f0e51-d507-4750-ba40-a090e57110a0\",\"bucketName\":\"TestGraph\"}"
+	],
+	"relationships": [],
+	"modelData": [
+		{
+			"modelName": "New GraphQL model",
+			"version": "1.0.0",
+			"dbVendor": "GraphQL",
+			"isLineageEnabled": false
+		},
+		{
+			"sources": []
+		},
+		{}
+	],
+	"containerData": [
+		{
+			"name": "TestGraph",
+			"schemaRootTypes": {
+				"rootQuery": "TestQuery",
+				"rootMutation": "TestMutation",
+				"rootSubscription": "TestSubscription",
+				"id": "f1a1108b-11f2-4a0e-b1e8-d8eaf7cbb718"
+			},
+			"isActivated": true
+		},
+		{
+			"backgroundColor": {
+				"r": 216,
+				"g": 0,
+				"b": 115,
+				"a": 1
+			}
+		}
+	],
+	"jsonData": {
+		"b2e9f03d-2894-4441-b7e7-e5cbafc5aece": "{\n    \"student\": {\n        \"id\": \"50554d6e-29bb-11e5-b345-feff819cdc9e\",\n        \"name\": \"Lorem\",\n        \"faculty\": \"HIDDEN\",\n        \"deactivatedField\": \"Lorem\"\n    }\n}",
+		"b53144e9-4095-4936-9417-f2c50fb0356c": "{\n    \"student\": {\n        \"id\": \"50554d6e-29bb-11e5-b345-feff819cdc9e\",\n        \"name\": \"Lorem\",\n        \"faculty\": \"HIDDEN\",\n        \"deactivatedField\": \"Lorem\"\n    }\n}",
+		"ab3a5740-25ee-485a-91af-9ea0000b071a": "{\n    \"studentAdded\": {\n        \"id\": \"50554d6e-29bb-11e5-b345-feff819cdc9e\",\n        \"name\": \"Lorem\",\n        \"faculty\": \"HIDDEN\",\n        \"deactivatedField\": \"Lorem\"\n    }\n}"
+	},
+	"isUpdateScript": false,
+	"jsonSchema": {
+		"b2e9f03d-2894-4441-b7e7-e5cbafc5aece": "{\"$schema\":\"http://json-schema.org/draft-04/schema#\",\"type\":\"object\",\"title\":\"TestQuery\",\"properties\":{\"student\":{\"$ref\":\"#model/definitions/Objects/Student\",\"GUID\":\"68f0de73-ebaf-4c4e-8fd5-846cfb0a17ac\",\"arguments\":[{\"id\":\"b6e32018-de7a-4579-b491-f9c700eba1bb\",\"type\":\"ID\",\"description\":\"Specify ID of user to fetch\",\"dataType\":\"object\",\"default\":\"1\",\"directives\":[{\"id\":\"2151eefe-7adc-4fc4-808f-437bf53ee237\",\"argumentValueFormat\":\"Raw\",\"dataType\":\"object\",\"directiveFormat\":\"Structured\",\"directiveName\":\"e153ba00-3894-40ef-9c0c-b5a05d5fc21c\",\"rawArgumentValues\":\"arg1: \\\"TEST111\\\"\"}],\"name\":\"id\",\"required\":true}],\"isActivated\":true}},\"GUID\":\"b2e9f03d-2894-4441-b7e7-e5cbafc5aece\",\"additionalProperties\":false,\"isActivated\":true,\"operationType\":\"Query\",\"collectionName\":\"TestQuery\",\"bucketId\":\"588f0e51-d507-4750-ba40-a090e57110a0\",\"bucketName\":\"TestGraph\"}",
+		"b53144e9-4095-4936-9417-f2c50fb0356c": "{\"$schema\":\"http://json-schema.org/draft-04/schema#\",\"type\":\"object\",\"title\":\"TestMutation\",\"properties\":{\"student\":{\"$ref\":\"#model/definitions/Objects/Student\",\"GUID\":\"665be780-600a-47a8-a9b3-77268750d304\",\"arguments\":[{\"id\":\"4afb0c03-2714-4164-97ec-f6ca7f3cc34b\",\"type\":\"ID\",\"dataType\":\"object\",\"default\":\"1\",\"name\":\"id\",\"required\":true}],\"fieldDirectives\":[{\"id\":\"f72ff2f0-9870-45d2-bf4d-ca12c7d6905b\",\"argumentValueFormat\":\"Raw\",\"dataType\":\"object\",\"directiveFormat\":\"Structured\",\"directiveName\":\"e153ba00-3894-40ef-9c0c-b5a05d5fc21c\",\"rawArgumentValues\":\"arg1: \\\"TEST222\\\"\"}],\"isActivated\":true}},\"GUID\":\"b53144e9-4095-4936-9417-f2c50fb0356c\",\"additionalProperties\":false,\"isActivated\":true,\"operationType\":\"Mutation\",\"collectionName\":\"TestMutation\",\"bucketId\":\"588f0e51-d507-4750-ba40-a090e57110a0\",\"bucketName\":\"TestGraph\"}",
+		"ab3a5740-25ee-485a-91af-9ea0000b071a": "{\"$schema\":\"http://json-schema.org/draft-04/schema#\",\"type\":\"object\",\"title\":\"TestSubscription\",\"properties\":{\"studentAdded\":{\"$ref\":\"#model/definitions/Objects/Student\",\"GUID\":\"fa434d61-09f4-437e-9d04-322333c4f66e\",\"isActivated\":true}},\"GUID\":\"ab3a5740-25ee-485a-91af-9ea0000b071a\",\"additionalProperties\":false,\"isActivated\":true,\"operationType\":\"Subscription\",\"collectionName\":\"TestSubscription\",\"bucketId\":\"588f0e51-d507-4750-ba40-a090e57110a0\",\"bucketName\":\"TestGraph\"}"
+	},
+	"entityData": {
+		"b2e9f03d-2894-4441-b7e7-e5cbafc5aece": [
+			{
+				"collectionName": "TestQuery",
+				"isActivated": true,
+				"bucketId": "588f0e51-d507-4750-ba40-a090e57110a0",
+				"operationType": "Query",
+				"additionalProperties": false
+			},
+			{},
+			{}
+		],
+		"b53144e9-4095-4936-9417-f2c50fb0356c": [
+			{
+				"collectionName": "TestMutation",
+				"isActivated": true,
+				"bucketId": "588f0e51-d507-4750-ba40-a090e57110a0",
+				"operationType": "Mutation",
+				"additionalProperties": false
+			},
+			{},
+			{}
+		],
+		"ab3a5740-25ee-485a-91af-9ea0000b071a": [
+			{
+				"collectionName": "TestSubscription",
+				"isActivated": true,
+				"bucketId": "588f0e51-d507-4750-ba40-a090e57110a0",
+				"operationType": "Subscription",
+				"additionalProperties": false
+			},
+			{},
+			{}
+		]
+	},
+	"modelDefinitions": "{\"$schema\":\"http://json-schema.org/draft-04/schema#\",\"type\":\"definitions\",\"properties\":{\"Scalars\":{\"type\":\"type\",\"properties\":{\"UUID\":{\"type\":\"scalar\",\"description\":\"A description example\",\"GUID\":\"e533d89e-4b78-444f-b613-05280a71dbbb\",\"ignore_z_value\":true,\"isActivated\":true,\"subtype\":\"snippetChildrenOnly\",\"typeDirectives\":[{\"id\":\"e67572d0-afbe-40ef-b452-0f0850900fcd\",\"argumentValueFormat\":\"Raw\",\"directiveFormat\":\"Structured\",\"directiveName\":\"@specifiedBy\",\"rawArgumentValues\":\"url: \\\"https://tools.ietf.org/html/rfc4122\\\"\"},{\"id\":\"46099da8-4aca-424a-a4ac-ce7bfc8123d1\",\"directiveFormat\":\"Raw\",\"rawDirective\":\"@activeDirective(arg1: \\\"TEST1\\\")\"}]},\"DeactivatedScalar\":{\"type\":\"scalar\",\"GUID\":\"eeb822f8-5f76-4746-b235-1262122859a2\",\"ignore_z_value\":true,\"isActivated\":false,\"subtype\":\"snippetChildrenOnly\"}},\"GUID\":\"cf6002dc-976d-4f71-b442-4e601f78b3c8\",\"additionalProperties\":false,\"ignore_z_value\":true,\"isActivated\":true,\"structureType\":true,\"subtype\":\"scalar\"},\"Enums\":{\"type\":\"type\",\"properties\":{\"SortOrderEnum\":{\"type\":\"enum\",\"description\":\"A description for enum\",\"GUID\":\"5e6ecbe5-a0f0-45f1-9560-b187f04fbf48\",\"definitionRefs\":[[\"8f9d3913-d033-48de-b276-05608c143afc\",\"d6dc6f1f-eb06-4cf0-b05f-0ad4da762a40\",\"1f5944c6-2f2c-4213-897d-405f9a2f6ee1\",\"53fd3c15-806b-412b-96c4-2c031a5d0ce7\",\"fe5c1ef9-95e6-4a2c-abbd-29823d7617d7\"]],\"enumValues\":[{\"id\":\"eb4b8271-a383-475e-8678-4654e6291507\",\"description\":\"Ascending order\",\"typeDirectives\":[{\"id\":\"c198ba72-3151-4c8b-8b4c-540c3ef40b96\",\"argumentValueFormat\":\"Raw\",\"directiveFormat\":\"Structured\",\"directiveName\":\"@deprecated\",\"rawArgumentValues\":\"reason: \\\"No longer supported\\\"\"}],\"value\":\"ASC\"},{\"id\":\"84566f12-245d-48ad-9ec0-2895a3d2fce8\",\"description\":\"Descending order\",\"value\":\"DESC\"}],\"ignore_z_value\":true,\"isActivated\":true,\"subtype\":\"snippetChildrenOnly\",\"typeDirectives\":[{\"id\":\"aca50314-cdcf-481a-ad6f-81afa774ccd1\",\"argumentValueFormat\":\"Raw\",\"directiveFormat\":\"Structured\",\"directiveName\":\"e153ba00-3894-40ef-9c0c-b5a05d5fc21c\",\"rawArgumentValues\":\"arg1: \\\"TEST2\\\"\"}]},\"DeactivatedOperatorKindEnum\":{\"type\":\"enum\",\"GUID\":\"9d946a57-0d85-45e6-8c5e-c223a67dfd0b\",\"enumValues\":[{\"id\":\"24a161b1-752f-4576-8f00-0fdc1f85aef9\",\"value\":\"GTE\"},{\"id\":\"60b5ba4d-fa9e-40bd-b05f-95675e6e3e10\",\"value\":\"LTE\"},{\"id\":\"62051886-9cc5-4c88-ba19-09d28e4af458\",\"value\":\"NE\"},{\"id\":\"3dcb037e-03dc-451f-ab90-cb49ebd4ccec\",\"value\":\"LIKE\"}],\"ignore_z_value\":true,\"isActivated\":false,\"subtype\":\"snippetChildrenOnly\"}},\"GUID\":\"a31bcf32-88c1-48cb-bb2e-fa37ff22db84\",\"additionalProperties\":false,\"ignore_z_value\":true,\"isActivated\":true,\"structureType\":true,\"subtype\":\"enum\"},\"Objects\":{\"type\":\"type\",\"properties\":{\"Student\":{\"type\":\"object\",\"description\":\"A description for Student type\",\"properties\":{\"id\":{\"type\":\"ID\",\"GUID\":\"8d421f5b-d677-44df-9641-e2ea14be2ebe\",\"fieldDirectives\":[{\"id\":\"7fd7c1e3-2e36-4382-8fad-a0b043cad6f9\",\"argumentValueFormat\":\"Raw\",\"directiveFormat\":\"Structured\",\"directiveName\":\"e153ba00-3894-40ef-9c0c-b5a05d5fc21c\",\"rawArgumentValues\":\"arg1: \\\"TEST4\\\"\"}],\"isActivated\":true},\"name\":{\"type\":\"String\",\"GUID\":\"3a6e55c3-0c50-4691-9898-c62252dd5556\",\"isActivated\":true,\"nullable\":false},\"faculty\":{\"type\":\"String\",\"GUID\":\"c3504fa7-1571-4878-8756-0f42293ada0f\",\"default\":\"HIDDEN\",\"isActivated\":true,\"nullable\":false},\"deactivatedField\":{\"type\":\"String\",\"GUID\":\"d716dd95-5f6b-427b-8c72-f59a6aff3769\",\"isActivated\":false,\"nullable\":false}},\"GUID\":\"c8095e03-9215-449c-b5e5-f87f91e3882c\",\"additionalProperties\":false,\"definitionRefs\":[[\"8f9d3913-d033-48de-b276-05608c143afc\",\"d6dc6f1f-eb06-4cf0-b05f-0ad4da762a40\",\"b3f25e0d-dde8-4fc6-af79-b48b5acaed13\",\"d8cb5319-6d86-42ff-bb1d-4cf2dbb5a6cf\",\"332fbe2a-5eda-41ee-ac8f-651f0ca8cdca\",\"700f2c56-41d1-4295-b767-de416789b79a\"],[\"b2e9f03d-2894-4441-b7e7-e5cbafc5aece\",\"68f0de73-ebaf-4c4e-8fd5-846cfb0a17ac\"],[\"b53144e9-4095-4936-9417-f2c50fb0356c\",\"665be780-600a-47a8-a9b3-77268750d304\"],[\"ab3a5740-25ee-485a-91af-9ea0000b071a\",\"fa434d61-09f4-437e-9d04-322333c4f66e\"]],\"ignore_z_value\":true,\"implementsInterfaces\":[{\"id\":\"354a8f3b-1875-4e0f-aa27-4d87af00bdd2\",\"interface\":\"513e90c7-b318-43d8-bbc1-61aeecabe684\"}],\"isActivated\":true,\"required\":[\"id\",\"name\",\"faculty\"],\"typeDirectives\":[{\"id\":\"4a668682-fa8c-43a7-93e4-fc35e9e4a438\",\"argumentValueFormat\":\"Raw\",\"directiveFormat\":\"Structured\",\"directiveName\":\"e153ba00-3894-40ef-9c0c-b5a05d5fc21c\",\"rawArgumentValues\":\"arg1: \\\"TEST3\\\"\"}]},\"Teacher\":{\"type\":\"object\",\"properties\":{\"id\":{\"type\":\"ID\",\"GUID\":\"522134f6-5cca-499d-a169-b230e7924f40\",\"isActivated\":true},\"name\":{\"type\":\"String\",\"GUID\":\"715b7fce-160c-4c2f-86ed-d82c3cfaeb7f\",\"isActivated\":true,\"nullable\":false}},\"GUID\":\"05c40a79-42bf-4f1b-84bb-aea5c6320b67\",\"additionalProperties\":false,\"definitionRefs\":[[\"8f9d3913-d033-48de-b276-05608c143afc\",\"d6dc6f1f-eb06-4cf0-b05f-0ad4da762a40\",\"b3f25e0d-dde8-4fc6-af79-b48b5acaed13\",\"d8cb5319-6d86-42ff-bb1d-4cf2dbb5a6cf\",\"332fbe2a-5eda-41ee-ac8f-651f0ca8cdca\",\"6542bdb9-342c-43a3-85ac-9bdc54b3d83b\"],[\"8f9d3913-d033-48de-b276-05608c143afc\",\"d6dc6f1f-eb06-4cf0-b05f-0ad4da762a40\",\"b3f25e0d-dde8-4fc6-af79-b48b5acaed13\",\"cdde6953-84ed-44a8-8475-3e16aa61cdeb\",\"f14a561a-af0e-43f2-ab4c-0b375a63ce1a\",\"de3fa40d-a459-4877-9866-37db02e59add\"]],\"ignore_z_value\":true,\"implementsInterfaces\":[{\"id\":\"aa63e355-8243-4069-ac7e-b76196b6f0de\",\"interface\":\"513e90c7-b318-43d8-bbc1-61aeecabe684\"}],\"isActivated\":true},\"DeactivatedType\":{\"type\":\"object\",\"properties\":{\"test\":{\"type\":\"String\",\"GUID\":\"e1e3bf9e-fac4-4b5f-af77-1f3e6722c688\",\"isActivated\":true,\"nullable\":false}},\"GUID\":\"accc25e2-07b4-4030-96af-14a6da0f606b\",\"additionalProperties\":false,\"ignore_z_value\":true,\"isActivated\":false}},\"GUID\":\"825b7dbc-8996-4fc3-b84a-e7bedddc0faa\",\"additionalProperties\":false,\"ignore_z_value\":true,\"isActivated\":true,\"structureType\":true,\"subtype\":\"object\"},\"Interfaces\":{\"type\":\"type\",\"properties\":{\"BaseUser\":{\"type\":\"interface\",\"description\":\"An user interface with base set of fields\",\"properties\":{\"id\":{\"type\":\"ID\",\"description\":\"Description for id field\",\"GUID\":\"e680c96f-9270-4484-8059-9877ba5eec10\",\"default\":\"1\",\"fieldDirectives\":[{\"id\":\"86f3cfc0-2a71-4f48-a9d0-73826d76354c\",\"argumentValueFormat\":\"Raw\",\"directiveFormat\":\"Structured\",\"directiveName\":\"e153ba00-3894-40ef-9c0c-b5a05d5fc21c\",\"rawArgumentValues\":\"arg1: \\\"TEST6\\\"\"}],\"isActivated\":true},\"name\":{\"type\":\"String\",\"GUID\":\"eda6eb36-4649-423b-9477-8cec8ea109cc\",\"isActivated\":true,\"nullable\":false}},\"GUID\":\"513e90c7-b318-43d8-bbc1-61aeecabe684\",\"additionalProperties\":false,\"ignore_z_value\":true,\"isActivated\":true},\"InterfaceImplAnotherInterface\":{\"type\":\"interface\",\"properties\":{\"id\":{\"type\":\"ID\",\"GUID\":\"c383f0b9-34ed-47fe-bb3c-79c790d98155\",\"isActivated\":true},\"name\":{\"type\":\"String\",\"GUID\":\"c8f525c0-84a3-4777-9eda-ce578622d2aa\",\"isActivated\":true,\"nullable\":false},\"additionalFied\":{\"type\":\"String\",\"GUID\":\"9c00f1be-4205-4623-adc9-965bc9a9417e\",\"isActivated\":true,\"nullable\":false}},\"GUID\":\"cf518c4b-a07a-4d38-9c77-ced57af93d11\",\"additionalProperties\":false,\"ignore_z_value\":true,\"implementsInterfaces\":[{\"id\":\"69471a55-cd04-4da4-b2e5-5c39f2508a13\",\"interface\":\"513e90c7-b318-43d8-bbc1-61aeecabe684\"}],\"isActivated\":true},\"DeactivatedInterface\":{\"type\":\"interface\",\"properties\":{\"test\":{\"type\":\"String\",\"GUID\":\"9be514f7-0437-436c-9c87-6956a5cfdc89\",\"isActivated\":true,\"nullable\":false}},\"GUID\":\"9e300bad-28b5-476f-bf49-2e683bc6098d\",\"additionalProperties\":false,\"ignore_z_value\":true,\"isActivated\":false}},\"GUID\":\"9dbeb76f-1ae2-419a-9848-4eee006aaca9\",\"additionalProperties\":false,\"ignore_z_value\":true,\"isActivated\":true,\"structureType\":true,\"subtype\":\"interface\"},\"Unions\":{\"type\":\"type\",\"properties\":{\"FacultyMember\":{\"type\":\"union\",\"description\":\"A description for FacultyMember union\",\"GUID\":\"d8cb5319-6d86-42ff-bb1d-4cf2dbb5a6cf\",\"additionalProperties\":false,\"ignore_z_value\":true,\"isActivated\":true,\"oneOf\":[{\"$ref\":\"#model/definitions/Objects/Student\",\"GUID\":\"700f2c56-41d1-4295-b767-de416789b79a\",\"displayName\":\"Student\",\"isActivated\":true},{\"$ref\":\"#model/definitions/Objects/Teacher\",\"GUID\":\"6542bdb9-342c-43a3-85ac-9bdc54b3d83b\",\"displayName\":\"Teacher\",\"isActivated\":true}],\"oneOf_meta\":{\"choice\":\"oneOf\",\"index\":0,\"isActivated\":true},\"snippet\":\"union\",\"typeDirectives\":[{\"id\":\"7cfce211-8773-4a23-b224-2a3fc69d562d\",\"argumentValueFormat\":\"Raw\",\"directiveFormat\":\"Structured\",\"directiveName\":\"e153ba00-3894-40ef-9c0c-b5a05d5fc21c\",\"rawArgumentValues\":\"arg1: \\\"TEST5\\\"\"}]},\"DeactivatedUnion\":{\"type\":\"union\",\"GUID\":\"cdde6953-84ed-44a8-8475-3e16aa61cdeb\",\"additionalProperties\":false,\"ignore_z_value\":true,\"isActivated\":false,\"oneOf\":[{\"$ref\":\"#model/definitions/Objects/Teacher\",\"GUID\":\"de3fa40d-a459-4877-9866-37db02e59add\",\"displayName\":\"Teacher\",\"isActivated\":true}],\"oneOf_meta\":{\"choice\":\"oneOf\",\"index\":0,\"isActivated\":true},\"snippet\":\"union\"}},\"GUID\":\"b3f25e0d-dde8-4fc6-af79-b48b5acaed13\",\"additionalProperties\":false,\"ignore_z_value\":true,\"isActivated\":true,\"structureType\":true,\"subtype\":\"union\"},\"Input objects\":{\"type\":\"type\",\"properties\":{\"SortOptions\":{\"type\":\"input\",\"description\":\"A description for input type\",\"properties\":{\"field\":{\"type\":\"String\",\"GUID\":\"05ea264e-20a5-43d6-8bfb-52544755e94b\",\"isActivated\":true,\"nullable\":false},\"order\":{\"$ref\":\"#model/definitions/Enums/SortOrderEnum\",\"GUID\":\"fe5c1ef9-95e6-4a2c-abbd-29823d7617d7\",\"default\":\"ASC\",\"isActivated\":true,\"refDescription\":\"Sort order for specified field\"},\"deactivatedInputField\":{\"type\":\"String\",\"GUID\":\"05e55872-83d6-4505-bf84-3b7da18f7b5c\",\"isActivated\":false,\"nullable\":false}},\"GUID\":\"53fd3c15-806b-412b-96c4-2c031a5d0ce7\",\"additionalProperties\":false,\"ignore_z_value\":true,\"isActivated\":true,\"required\":[\"field\",\"order\"]},\"deactivatedInput\":{\"type\":\"input\",\"properties\":{\"test\":{\"type\":\"String\",\"GUID\":\"6317254a-2d3d-4f11-9a76-3934793b050a\",\"isActivated\":true,\"nullable\":false}},\"GUID\":\"dc5adaf4-8dce-4358-b840-b54d879c15e1\",\"additionalProperties\":false,\"ignore_z_value\":true,\"isActivated\":false}},\"GUID\":\"1f5944c6-2f2c-4213-897d-405f9a2f6ee1\",\"additionalProperties\":false,\"ignore_z_value\":true,\"isActivated\":true,\"structureType\":true,\"subtype\":\"input\"},\"Directives\":{\"type\":\"type\",\"properties\":{\"@activeDirective\":{\"type\":\"directive\",\"description\":\"An active custom directive example\",\"GUID\":\"e153ba00-3894-40ef-9c0c-b5a05d5fc21c\",\"additionalProperties\":false,\"arguments\":[{\"id\":\"9a572131-9797-4533-8a40-b70f41e3c42b\",\"type\":\"String\",\"description\":\"An example argument\",\"default\":\"TEST\",\"name\":\"arg1\",\"required\":true}],\"directiveLocations\":{\"id\":\"0799b46f-994f-4e3a-8773-00d1b607b16a\",\"argumentDefinition\":true,\"enum\":true,\"enumValue\":true,\"field\":true,\"fieldDefinition\":true,\"inputFieldDefinition\":true,\"inputObject\":true,\"interface\":true,\"mutation\":true,\"object\":true,\"query\":true,\"scalar\":true,\"schema\":true,\"subscription\":true,\"union\":true},\"ignore_z_value\":true,\"isActivated\":true},\"@deactivetedDirective\":{\"type\":\"directive\",\"GUID\":\"64e86f74-7fa8-4599-b10a-d88ce22a708c\",\"additionalProperties\":false,\"ignore_z_value\":true,\"isActivated\":false}},\"GUID\":\"7643fdd1-21bc-4dbe-a3bf-6f1bd520a654\",\"additionalProperties\":false,\"ignore_z_value\":true,\"isActivated\":true,\"structureType\":true,\"subtype\":\"directive\"}},\"GUID\":\"d6dc6f1f-eb06-4cf0-b05f-0ad4da762a40\"}",
+	"externalDefinitions": "{\"$schema\":\"http://json-schema.org/draft-04/schema#\",\"type\":\"externalDefinitions\",\"GUID\":\"f116f35d-4b50-4b82-a2ec-32e1f85bf48f\"}",
+	"internalDefinitions": {
+		"b2e9f03d-2894-4441-b7e7-e5cbafc5aece": "{\"$schema\":\"http://json-schema.org/draft-04/schema#\",\"type\":\"definitions\",\"GUID\":\"743589bf-4e15-4bd7-b5bd-5919e67ca81d\"}",
+		"b53144e9-4095-4936-9417-f2c50fb0356c": "{\"$schema\":\"http://json-schema.org/draft-04/schema#\",\"type\":\"definitions\",\"GUID\":\"cabf5061-0cad-4e79-80de-b5d66777ec09\"}",
+		"ab3a5740-25ee-485a-91af-9ea0000b071a": "{\"$schema\":\"http://json-schema.org/draft-04/schema#\",\"type\":\"definitions\",\"GUID\":\"399502da-2996-4963-a508-896acc0bb2a1\"}"
+	},
+	"entities": [
+		"b2e9f03d-2894-4441-b7e7-e5cbafc5aece",
+		"b53144e9-4095-4936-9417-f2c50fb0356c",
+		"ab3a5740-25ee-485a-91af-9ea0000b071a"
+	],
+	"options": {
+		"isUpdateScript": false,
+		"additionalOptions": [],
+		"origin": "ui",
+		"fakerLocalization": "en",
+		"showIndexStatementsInEndDdl": false
+	},
+	"views": [],
+	"viewData": {},
+	"collectionRefsDefinitionsMap": {},
+	"appVersion": "8.0.2",
+	"appTarget": "GraphQL",
+	"pluginVersion": "0.2.2",
+	"pluginConfiguration": {
+		"containerLevelConfig": [],
+		"entityLevelConfig": [],
+		"fieldLevelConfig": {},
+		"viewLevelConfig": []
+	},
+	"relatedEntities": [],
+	"relatedSchemas": {},
+	"relatedContainers": {}
+}

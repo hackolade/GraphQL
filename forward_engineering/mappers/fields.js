@@ -59,7 +59,7 @@ function mapField({ name, fieldData, required, definitionsIdToNameMap, addArgume
 	const { argumentsStatement, argumentsWarningComment } = addArguments
 		? getArguments({ graphqlArguments: fieldData.arguments, idToNameMap: definitionsIdToNameMap })
 		: { argumentsStatement: '', argumentsWarningComment: '' };
-	const fieldNameStatement = joinInlineStatements({ statements: [name, argumentsStatement] });
+	const fieldNameStatement = joinInlineStatements({ statements: [name, argumentsStatement], separator: '' });
 	const fieldTypeStatement = `${fieldNameStatement}: ${getFieldType({ field: fieldData, required })}`;
 	const fieldDefaultValue = addDefaultValue ? getFieldDefaultValueStatement({ field: fieldData }) : '';
 	const directivesStatement = getDirectivesUsageStatement({
