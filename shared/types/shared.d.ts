@@ -6,14 +6,21 @@ type LogData =
 			error?: Error;
 	  }
 	| Error
+	| string
 	| unknown;
 
 type LogTitle = string;
 
+type ProgressData = {
+	message: string;
+	containerName?: string;
+	entityName?: string;
+};
+
 export type Logger = {
 	log: (logType: LogType, logData: LogData, logTitle: LogTitle, hiddenKeys?: string[]) => void;
 	clear: () => void;
-	progress: (data: object) => void;
+	progress: (progressData: ProgressData) => void;
 };
 
 export type ContainerSchemaRootTypes = {

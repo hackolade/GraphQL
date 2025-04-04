@@ -17,7 +17,7 @@ const { sortByName } = require('../helpers/sortByName');
  * @param {object} params
  * @param {FieldDefinitionNode[] | InputValueDefinitionNode[]} params.fields - The fields to map
  * @param {DefinitionNameToTypeNameMap} params.definitionCategoryByNameMap - The definition category by name map
- * @param {FieldsOrder} params.fieldsOrder - The fields order
+ * @param {FieldsOrder} [params.fieldsOrder] - The fields order
  * @returns {REFieldsSchemaProperties} The mapped schema
  */
 function getFieldsSchema({ fields, definitionCategoryByNameMap, fieldsOrder }) {

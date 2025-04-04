@@ -13,7 +13,7 @@ const { getFieldsSchema } = require('./field');
  * @param {ObjectTypeDefinitionNode[]} params.rootTypeNodes - The schema root type nodes
  * @param {string[]} params.schemaRootTypesMap - The schema root types names map
  * @param {DefinitionNameToTypeNameMap} params.definitionCategoryByNameMap - The definition category by name map
- * @param {FieldsOrder} params.fieldsOrder - The fields order
+ * @param {FieldsOrder} [params.fieldsOrder] - The fields order
  * @returns {RootTypeEntity[]} The mapped container
  */
 function mapRootTypesToEntities({ rootTypeNodes, schemaRootTypesMap, definitionCategoryByNameMap, fieldsOrder }) {

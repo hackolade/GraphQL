@@ -37,7 +37,7 @@ const { getUnionTypeDefinitions } = require('./union');
  *
  * @param {object} params
  * @param {DefinitionNode[]} params.typeDefinitions - The type definitions nodes
- * @param {FieldsOrder} params.fieldsOrder - The fields order
+ * @param {FieldsOrder} [params.fieldsOrder] - The fields order
  * @param {string[]} params.rootTypeNames - The root type names
  * @param {DefinitionNameToTypeNameMap} params.definitionCategoryByNameMap - The definition category by name map
  * @returns {REModelDefinitionsSchema} The mapped type definitions
@@ -98,7 +98,7 @@ function getTypeDefinitions({ typeDefinitions, fieldsOrder, rootTypeNames, defin
  * Creates the model definitions structure
  *
  * @param {object} params
- * @param {FieldsOrder} params.fieldsOrder - The fields order
+ * @param {FieldsOrder} [params.fieldsOrder] - The fields order
  * @param {REDirectiveDefinition[]} params.directives - The directive definitions
  * @param {RECustomScalarDefinition[]} params.customScalars - The custom scalar definitions
  * @param {REEnumDefinition[]} params.enums - The enum definitions
@@ -179,7 +179,7 @@ function getTypeDefinitionsStructure({
  * Creates a definition category structure
  *
  * @param {object} params
- * @param {FieldsOrder} params.fieldsOrder - The fields order
+ * @param {FieldsOrder} [params.fieldsOrder] - The fields order
  * @param {DefinitionREStructure['subtype']} params.subtype - The subtype of the definition
  * @param {REDefinition[]} params.properties - The properties to structure
  * @returns {DefinitionREStructure} The definition category structure

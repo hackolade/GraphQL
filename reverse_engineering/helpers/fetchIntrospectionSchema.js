@@ -59,10 +59,15 @@ async function fetchIntrospectionSchema({ connectionInfo, logger }) {
 		const response = await hckFetch(connectionInfo.host, options);
 		const introspectionSchemaResponse = await response.json();
 
-		logger.log('info', {}, 'Introspection schema fetched successfully');
+		if (response.status !== 200 && !introspectionSchemaResponse.data) {
+			throw new Error('Failed to fetch introspection schema. Please verify the connection settings', {
+				cause: introspectionSchemaResponse,
+			});
+		}
+
 		return introspectionSchemaResponse.data;
 	} catch (error) {
-		const message = 'Failed to fetch introspection schema';
+		const message = error instanceof Error ? error?.message : 'Failed to fetch introspection schema';
 		logger.log('error', error, message);
 		throw new Error(message);
 	}

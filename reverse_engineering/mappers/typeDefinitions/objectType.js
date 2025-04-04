@@ -13,7 +13,7 @@ const { mapImplementsInterfaces } = require('../implementsInterfaces');
  * @param {object} params
  * @param {ObjectTypeDefinitionNode[]} params.objectTypes - The object types
  * @param {DefinitionNameToTypeNameMap} params.definitionCategoryByNameMap - The definition category by name map
- * @param {FieldsOrder} params.fieldsOrder - The fields order
+ * @param {FieldsOrder} [params.fieldsOrder] - The fields order
  * @returns {REObjectTypeDefinition[]} The mapped object type definitions
  */
 function getObjectTypeDefinitions({ objectTypes = [], definitionCategoryByNameMap, fieldsOrder }) {
@@ -26,7 +26,7 @@ function getObjectTypeDefinitions({ objectTypes = [], definitionCategoryByNameMa
  * @param {object} params
  * @param {ObjectTypeDefinitionNode} params.objectType - The object type to map
  * @param {DefinitionNameToTypeNameMap} params.definitionCategoryByNameMap - The definition category by name map
- * @param {FieldsOrder} params.fieldsOrder - The fields order
+ * @param {FieldsOrder} [params.fieldsOrder] - The fields order
  * @returns {REObjectTypeDefinition} The mapped object type definition
  */
 function mapObjectType({ objectType, definitionCategoryByNameMap, fieldsOrder }) {
