@@ -1,0 +1,68 @@
+/**
+ * @import {DirectiveDefinitionNode} from "graphql"
+ * @import {REDirectiveDefinition, DirectiveLocations} from "../../../shared/types/types"
+ */
+
+const { getArguments } = require('../arguments');
+const { getDirectiveName } = require('../directiveName');
+
+const locationMap = {
+	'SCHEMA': 'schema',
+	'QUERY': 'query',
+	'MUTATION': 'mutation',
+	'SUBSCRIPTION': 'subscription',
+	'SCALAR': 'scalar',
+	'ENUM': 'enum',
+	'ENUM_VALUE': 'enumValue',
+	'OBJECT': 'object',
+	'INTERFACE': 'interface',
+	'UNION': 'union',
+	'INPUT_OBJECT': 'inputObject',
+	'FIELD': 'field',
+	'FIELD_DEFINITION': 'fieldDefinition',
+	'INPUT_FIELD_DEFINITION': 'inputFieldDefinition',
+	'ARGUMENT_DEFINITION': 'argumentDefinition',
+};
+
+/**
+ * Maps the directive type definitions
+ *
+ * @param {object} params
+ * @param {DirectiveDefinitionNode[]} params.directives - The directives
+ * @returns {REDirectiveDefinition[]} The mapped directive type definitions
+ */
+function getDirectiveTypeDefinitions({ directives = [] }) {
+	return directives.map(directive => mapDirective({ directive }));
+}
+
+/**
+ * Maps a single directive definition
+ *
+ * @param {object} params
+ * @param {DirectiveDefinitionNode} params.directive - The directive to map
+ * @returns {REDirectiveDefinition} The mapped directive definition
+ */
+function mapDirective({ directive }) {
+	const locations = directive.locations.reduce(
+		(acc, location) => {
+			const locationKey = locationMap[location.value];
+			if (locationKey) {
+				acc[locationKey] = true;
+			}
+			return acc;
+		},
+		/** @type {DirectiveLocations} */ {},
+	);
+
+	return {
+		type: 'directive',
+		name: getDirectiveName({ name: directive.name.value }),
+		description: directive.description?.value || '',
+		arguments: getArguments({ fieldArguments: [...(directive.arguments || [])] }),
+		directiveLocations: locations,
+	};
+}
+
+module.exports = {
+	getDirectiveTypeDefinitions,
+};

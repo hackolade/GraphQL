@@ -1,12 +1,12 @@
 /**
- * @import { IdToNameMap, ImplementsInterface } from "../types/types"
+ * @import {IdToNameMap, ImplementsInterface} from "../../shared/types/types"
  */
 
 /**
  * Get implements interfaces statement
  *
- * @param {Object} param0
- * @param {ImplementsInterface[]} param0.interfaces - The interfaces to implement.
+ * @param {object} param0
+ * @param {ImplementsInterface[]} [param0.interfaces] - The interfaces to implement.
  * @param {IdToNameMap} param0.definitionsIdToNameMap - The definitions id to name map.
  * @returns {string} - The implements interfaces statement.
  */
@@ -22,7 +22,7 @@ function getImplementsInterfacesStatement({ interfaces = [], definitionsIdToName
 /**
  * Get implemented interfaces list
  *
- * @param {Object} param0
+ * @param {object} param0
  * @param {ImplementsInterface[]} param0.interfaces - The interfaces to implement.
  * @param {IdToNameMap} param0.definitionsIdToNameMap - The definitions id to name map.
  * @returns {string[]} - The implemented interfaces list.

@@ -1,0 +1,88 @@
+[
+	{
+		"lowerTab": "Connection",
+		"structure": [
+			{
+				"inputLabel": "Name",
+				"inputKeyword": "name",
+				"inputType": "text",
+				"inputPlaceholder": "Name",
+				"description": "Choose a friendly connection name"
+			},
+			{
+				"inputLabel": "GraphQL endpoint",
+				"inputKeyword": "host",
+				"inputType": "text",
+				"inputPlaceholder": "https://api.com/graphql",
+				"description": "Specify the GraphQL API endpoint URL",
+				"regex": "([^\\s])"
+			}
+		]
+	},
+	{
+		"tab": "Authentication",
+		"structure": [
+			{
+				"inputLabel": "Authentication Type",
+				"inputKeyword": "authType",
+				"inputType": "select",
+				"defaultValue": "none",
+				"options": [
+					{
+						"label": "None",
+						"value": "none"
+					},
+					{
+						"label": "Basic",
+						"value": "basic"
+					},
+					{
+						"label": "Bearer",
+						"value": "bearer"
+					}
+				]
+			},
+			{
+				"inputLabel": "Bearer Token",
+				"inputKeyword": "bearerToken",
+				"inputType": "text",
+				"inputPlaceholder": "Bearer Token",
+				"isHiddenKey": true,
+				"validation": {
+					"regex": "([^\\s])"
+				},
+				"dependency": {
+					"key": "authType",
+					"value": ["bearer"]
+				}
+			},
+			{
+				"inputLabel": "User Name",
+				"inputKeyword": "userName",
+				"inputType": "text",
+				"inputPlaceholder": "User Name",
+				"validation": {
+					"regex": "([^\\s])"
+				},
+				"dependency": {
+					"key": "authType",
+					"value": ["basic"]
+				}
+			},
+			{
+				"inputLabel": "Password",
+				"inputKeyword": "userPassword",
+				"inputType": "password",
+				"inputPlaceholder": "Password",
+				"isHiddenKey": true,
+				"validation": {
+					"regex": "([^\\s])"
+				},
+				"dependency": {
+					"key": "authType",
+					"value": ["basic"]
+				}
+			}
+		]
+	}
+]

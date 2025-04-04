@@ -7,27 +7,27 @@ const getArgumentsMock = mock.fn(() => ({ argumentsStatement: '', argumentsWarni
 const getDirectivesUsageStatementMock = mock.fn(() => '');
 const getFieldDefaultValueStatementMock = mock.fn(() => '');
 
-mock.module('../../../forward_engineering/helpers/feStatementJoinHelper', {
+mock.module('../../../forward_engineering/helpers/feStatementJoinHelper.js', {
 	namedExports: {
 		joinInlineStatements: joinInlineStatementsMock,
 	},
 });
-mock.module('../../../forward_engineering/helpers/referencesHelper', {
+mock.module('../../../forward_engineering/helpers/referenceHelper.js', {
 	namedExports: {
 		getDefinitionNameFromReferencePath: getDefinitionNameFromReferencePathMock,
 	},
 });
-mock.module('../../../forward_engineering/mappers/arguments', {
+mock.module('../../../forward_engineering/mappers/arguments.js', {
 	namedExports: {
 		getArguments: getArgumentsMock,
 	},
 });
-mock.module('../../../forward_engineering/mappers/directiveUsageStatements', {
+mock.module('../../../forward_engineering/mappers/directiveUsageStatements.js', {
 	namedExports: {
 		getDirectivesUsageStatement: getDirectivesUsageStatementMock,
 	},
 });
-mock.module('../../../forward_engineering/mappers/fieldDefaultValue', {
+mock.module('../../../forward_engineering/mappers/fieldDefaultValue.js', {
 	namedExports: {
 		getFieldDefaultValueStatement: getFieldDefaultValueStatementMock,
 	},

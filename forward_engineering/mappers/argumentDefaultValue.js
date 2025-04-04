@@ -1,8 +1,10 @@
 /**
  * Get the default value for the given type with proper formatting.
- * @param {Object} args - getArgumentDefaultValue arguments object
+ *
+ * @param {object} args - GetArgumentDefaultValue arguments object
  * @param {string} args.type - GraphQL type
- * @param {string|number|boolean} [args.defaultValue] - Default value from Properties pane Default field
+ * @param {string | number | boolean} [args.defaultValue] - Default value from Properties pane Default field
+ * @returns {string | number | boolean} - The default value
  */
 const getArgumentDefaultValue = ({ type, defaultValue = '' }) => {
 	switch (type) {
@@ -11,13 +13,13 @@ const getArgumentDefaultValue = ({ type, defaultValue = '' }) => {
 			return `"${defaultValue}"`;
 		}
 		case 'Int': {
-			return Number.parseInt(defaultValue);
+			return Number.parseInt(String(defaultValue));
 		}
 		case 'Float': {
-			return Number.parseFloat(defaultValue);
+			return Number.parseFloat(String(defaultValue));
 		}
 		case 'Boolean': {
-			return defaultValue.toLowerCase() === 'true';
+			return String(defaultValue).toLowerCase() === 'true';
 		}
 		default: {
 			return defaultValue;

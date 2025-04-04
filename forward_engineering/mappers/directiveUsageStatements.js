@@ -1,5 +1,5 @@
 /**
- * @import { DirectivePropertyData, IdToNameMap } from "../types/types"
+ * @import {DirectivePropertyData, IdToNameMap} from "../../shared/types/types"
  */
 
 const { joinInlineStatements } = require('../helpers/feStatementJoinHelper');
@@ -8,8 +8,8 @@ const { isUUID } = require('../helpers/isUUID');
 /**
  * Gets the directives usage statement by mapping directives to strings and joining them.
  *
- * @param {Object} params
- * @param {DirectivePropertyData[]} params.directives - Array of directive definitions
+ * @param {object} params
+ * @param {DirectivePropertyData[]} [params.directives] - Array of directive definitions
  * @param {IdToNameMap} [params.definitionsIdToNameMap] - The definitions id to name map.
  * @returns {string} - The joined directive statements
  */
@@ -22,17 +22,18 @@ function getDirectivesUsageStatement({ directives = [], definitionsIdToNameMap =
 
 /**
  * Maps a single directive to its string representation with name and arguments.
- * @param {Object} params - The parameters object
+ *
+ * @param {object} params - The parameters object
  * @param {DirectivePropertyData} params.directive - The directive to map
  * @param {IdToNameMap} [params.definitionsIdToNameMap] - The definitions id to name map.
  * @returns {string} - The directive statement or empty string if invalid
  */
 function mapDirective({ directive, definitionsIdToNameMap }) {
-	if (directive.directiveFormat === 'Raw') {
+	if ('rawDirective' in directive && directive.directiveFormat === 'Raw') {
 		return formatRawDirective({ rawDirective: directive.rawDirective });
 	}
 
-	if (directive.directiveFormat === 'Structured') {
+	if ('directiveName' in directive && directive.directiveFormat === 'Structured') {
 		const directiveName = getDirectiveName({ directiveName: directive.directiveName, definitionsIdToNameMap });
 		if (!directiveName) {
 			return '';
@@ -45,14 +46,14 @@ function mapDirective({ directive, definitionsIdToNameMap }) {
 }
 
 /**
- * Maps a directive's raw arguments to a formatted string.
- * Handles adding parentheses and cleaning up newlines.
- * @param {Object} params
+ * Maps a directive's raw arguments to a formatted string. Handles adding parentheses and cleaning up newlines.
+ *
+ * @param {object} params
  * @param {DirectivePropertyData} params.directive - The directive containing the arguments
  * @returns {string} - The formatted arguments string or empty string if no valid arguments
  */
 function mapDirectiveRawArguments({ directive }) {
-	if (directive.argumentValueFormat === 'Raw') {
+	if ('argumentValueFormat' in directive && directive.argumentValueFormat === 'Raw') {
 		const argumentsValue = directive.rawArgumentValues?.replace(/\n/g, ' ').trim() || '';
 		if (!argumentsValue) {
 			return '';
@@ -67,13 +68,14 @@ function mapDirectiveRawArguments({ directive }) {
 
 /**
  * Resolves and formats a directive name, ensuring proper @ prefix.
- * @param {Object} params
+ *
+ * @param {object} params
  * @param {string} params.directiveName - The raw directive name or ID
  * @param {IdToNameMap} [params.definitionsIdToNameMap] - The definitions id to name map.
  * @returns {string} - The formatted directive name or empty string if invalid
  */
 function getDirectiveName({ directiveName, definitionsIdToNameMap }) {
-	const resolvedDirectiveName = (definitionsIdToNameMap[directiveName] || directiveName || '').trim();
+	const resolvedDirectiveName = (definitionsIdToNameMap?.[directiveName] || directiveName || '').trim();
 	if (typeof resolvedDirectiveName !== 'string' || resolvedDirectiveName === '' || isUUID(resolvedDirectiveName)) {
 		return '';
 	}
@@ -85,7 +87,8 @@ function getDirectiveName({ directiveName, definitionsIdToNameMap }) {
 
 /**
  * Formats a raw directive string by trimming whitespace and normalizing newlines.
- * @param {Object} params
+ *
+ * @param {object} params
  * @param {string} params.rawDirective - The raw directive string to format
  * @returns {string} - The formatted directive string or empty string if invalid
  */

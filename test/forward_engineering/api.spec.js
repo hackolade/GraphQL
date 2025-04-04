@@ -1,5 +1,5 @@
 /**
- * @import { Logger } from '../../types/types
+ * @import {Logger} from '../../shared/types/types';
  */
 
 const { describe, it } = require('node:test');
@@ -16,9 +16,15 @@ const generateContainerScriptPromise = promisify(generateContainerScript);
  * @type {Logger}
  */
 const loggerMock = {
+	/**
+	 * @type {() => void}
+	 */
 	log: () => {},
 };
 
+/**
+ * @type {(string) => string}
+ */
 const deleteSchemaVersionAndDate = script => script.split('\n').slice(3).join('\n');
 
 describe(() => {

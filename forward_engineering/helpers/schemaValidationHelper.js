@@ -1,12 +1,14 @@
 /**
- * @import { ValidationResponseItem } from "../types/types"
+ * @import {GraphQLError} from "graphql"
+ * @import {ValidationResponseItem} from "../../shared/types/types"
  */
 
 const { buildSchema, validateSchema } = require('graphql');
 
 /**
  * Validates the given GraphQL schema.
- * @param {Object} params - The parameters for validation.
+ *
+ * @param {object} params - The parameters for validation.
  * @param {string} params.schema - The GraphQL schema to be validated.
  * @returns {ValidationResponseItem[]} An array of validation results.
  */
@@ -15,7 +17,7 @@ function validate({ schema }) {
 	try {
 		builtSchema = buildSchema(schema);
 	} catch (error) {
-		return [mapValidationError(error)];
+		return [mapValidationError(/** @type {GraphQLError} */ (error))];
 	}
 
 	const errors = validateSchema(builtSchema);
@@ -28,9 +30,8 @@ function validate({ schema }) {
 
 /**
  * Maps a GraphQL validation error to a custom error format.
- * @param {Object} error - The GraphQL validation error.
- * @param {string} error.message - The error message.
- * @param {Object[]} [error.locations] - The locations of the error in the schema.
+ *
+ * @param {GraphQLError} error - The GraphQL validation error.
  * @returns {ValidationResponseItem} The mapped error object.
  */
 function mapValidationError(error) {
@@ -43,10 +44,8 @@ function mapValidationError(error) {
 
 /**
  * Gets the error position message from a GraphQL validation error.
- * @param {Object} error - The GraphQL validation error.
- * @param {Object[]} [error.locations] - The locations of the error in the schema.
- * @param {number} error.locations[].line - The line number of the error location.
- * @param {number} error.locations[].column - The column number of the error location.
+ *
+ * @param {GraphQLError} error - The GraphQL validation error.
  * @returns {string} The error position message.
  */
 function getErrorPositionMessage(error) {
@@ -59,6 +58,7 @@ function getErrorPositionMessage(error) {
 
 /**
  * Gets the success response for a valid GraphQL schema.
+ *
  * @returns {ValidationResponseItem[]} An array containing the success response.
  */
 function getSucceedResponse() {
@@ -67,7 +67,8 @@ function getSucceedResponse() {
 
 /**
  * Gets a response entity.
- * @param {Object} params - The parameters for the response entity.
+ *
+ * @param {object} params - The parameters for the response entity.
  * @param {string} params.type - The type of the entity.
  * @param {string} params.label - The label for the entity.
  * @param {string} params.title - The title of the entity.

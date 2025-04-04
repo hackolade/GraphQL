@@ -8,5 +8,9 @@
 	"trailingComma": "all",
 	"bracketSpacing": true,
 	"bracketSameLine": false,
-	"arrowParens": "avoid"
+	"arrowParens": "avoid",
+	"plugins": ["prettier-plugin-jsdoc"],
+	"jsdocSeparateReturnsFromParam": false,
+	"jsdocSeparateTagGroups": false,
+	"jsdocCommentLineStrategy": "keep"
 }

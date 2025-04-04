@@ -1,5 +1,5 @@
 /**
- * @import { FEStatement } from "../types/types"
+ * @import {FEStatement} from "../../shared/types/types";
  */
 
 const { commentLines } = require('./commentLinesHelper');
@@ -7,10 +7,10 @@ const { getStatementDescription } = require('./descriptionsHelper');
 const { addIndentToStatement } = require('./feStatementIndentHelper');
 
 /**
- * Combines the description and statement, and comments out the statement if it is deactivated.
- * Adds formatted nested statements if they exist.
+ * Combines the description and statement, and comments out the statement if it is deactivated. Adds formatted nested
+ * statements if they exist.
  *
- * @param {Object} param0
+ * @param {object} param0
  * @param {FEStatement} param0.feStatement - The forward engineering statement object.
  * @returns {string} - The final formatted statement.
  */
@@ -51,6 +51,10 @@ function formatFEStatement({ feStatement }) {
 	return result;
 }
 
+/**
+ * @param {string} [description]
+ * @returns {string}
+ */
 function formatDescription(description) {
 	if (description?.trim()) {
 		const formattedDescription = getStatementDescription({ description });
@@ -59,13 +63,17 @@ function formatDescription(description) {
 	return '';
 }
 
+/**
+ * @param {Partial<FEStatement> & { isParentActivated: boolean }} params
+ * @returns {string}
+ */
 function formatNestedStatements({
 	nestedStatements,
 	isParentActivated,
 	useNestedStatementSigns,
 	startNestedStatementsSign,
 	endNestedStatementsSign,
-	nestedStatementsSeparator,
+	nestedStatementsSeparator = '',
 	comment = '',
 }) {
 	if (!nestedStatements?.length) {
@@ -113,6 +121,10 @@ function formatNestedStatements({
 	return `${formatSingleLineComment(comment)}\n${formattedNestedStatements}`;
 }
 
+/**
+ * @param {string} comment
+ * @returns {string}
+ */
 function formatSingleLineComment(comment) {
 	return comment ? ` # ${comment}` : '';
 }

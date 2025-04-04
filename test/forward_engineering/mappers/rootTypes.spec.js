@@ -4,12 +4,12 @@ const { strictEqual, deepStrictEqual } = require('assert');
 const formatFEStatementMock = mock.fn();
 const getRootTypeFieldsMock = mock.fn();
 
-mock.module('../../../forward_engineering/helpers/feStatementFormatHelper', {
+mock.module('../../../forward_engineering/helpers/feStatementFormatHelper.js', {
 	namedExports: {
 		formatFEStatement: formatFEStatementMock,
 	},
 });
-mock.module('../../../forward_engineering/mappers/fields', {
+mock.module('../../../forward_engineering/mappers/fields.js', {
 	namedExports: {
 		getRootTypeFields: getRootTypeFieldsMock,
 	},

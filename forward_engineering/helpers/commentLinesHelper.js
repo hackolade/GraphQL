@@ -1,9 +1,8 @@
 /**
- * Adds comment markers to each line of a GraphQL statement.
- * This function takes a GraphQL statement and prepends a '#' character
- * to each line, commenting out the entire statement.
+ * Adds comment markers to each line of a GraphQL statement. This function takes a GraphQL statement and prepends a '#'
+ * character to each line, commenting out the entire statement.
  *
- * @param {Object} param0
+ * @param {object} param0
  * @param {string} param0.statement - The GraphQL statement to comment out
  * @returns {string} - Commented out statement
  */

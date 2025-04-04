@@ -6,22 +6,22 @@ const getArgumentDefaultValueMock = mock.fn(() => '');
 const joinInlineStatementsMock = mock.fn(() => '');
 const formatFEStatementMock = mock.fn(() => '');
 
-mock.module('../../../forward_engineering/mappers/directiveUsageStatements', {
+mock.module('../../../forward_engineering/mappers/directiveUsageStatements.js', {
 	namedExports: {
 		getDirectivesUsageStatement: getDirectivesUsageStatementMock,
 	},
 });
-mock.module('../../../forward_engineering/mappers/argumentDefaultValue', {
+mock.module('../../../forward_engineering/mappers/argumentDefaultValue.js', {
 	namedExports: {
 		getArgumentDefaultValue: getArgumentDefaultValueMock,
 	},
 });
-mock.module('../../../forward_engineering/helpers/feStatementJoinHelper', {
+mock.module('../../../forward_engineering/helpers/feStatementJoinHelper.js', {
 	namedExports: {
 		joinInlineStatements: joinInlineStatementsMock,
 	},
 });
-mock.module('../../../forward_engineering/helpers/feStatementFormatHelper', {
+mock.module('../../../forward_engineering/helpers/feStatementFormatHelper.js', {
 	namedExports: {
 		formatFEStatement: formatFEStatementMock,
 	},

@@ -5,17 +5,17 @@ const joinInlineStatementsMock = mock.fn();
 const getDirectivesUsageStatementMock = mock.fn(() => '');
 const getImplementsInterfacesStatementMock = mock.fn(() => '');
 
-mock.module('../../../forward_engineering/helpers/feStatementJoinHelper', {
+mock.module('../../../forward_engineering/helpers/feStatementJoinHelper.js', {
 	namedExports: {
 		joinInlineStatements: joinInlineStatementsMock,
 	},
 });
-mock.module('../../../forward_engineering/mappers/directiveUsageStatements', {
+mock.module('../../../forward_engineering/mappers/directiveUsageStatements.js', {
 	namedExports: {
 		getDirectivesUsageStatement: getDirectivesUsageStatementMock,
 	},
 });
-mock.module('../../../forward_engineering/mappers/implementsInterfaces', {
+mock.module('../../../forward_engineering/mappers/implementsInterfaces.js', {
 	namedExports: {
 		getImplementsInterfacesStatement: getImplementsInterfacesStatementMock,
 	},
@@ -56,6 +56,7 @@ describe('getObjectLikeTypes', () => {
 			objectTypes,
 			definitionsIdToNameMap,
 			typeKeyword: 'type',
+			// eslint-disable-next-line jsdoc/require-jsdoc
 			getFieldsFunction: ({ fields, requiredFields }) =>
 				Object.entries(fields).map(([name, fieldData]) => ({
 					statement: `${name}: ${fieldData.type}${requiredFields.includes(name) ? '!' : ''}`,
@@ -98,6 +99,7 @@ describe('getObjectLikeTypes', () => {
 			objectTypes: interfaceTypes,
 			definitionsIdToNameMap,
 			typeKeyword: 'interface',
+			// eslint-disable-next-line jsdoc/require-jsdoc
 			getFieldsFunction: ({ fields, requiredFields }) =>
 				Object.entries(fields).map(([name, fieldData]) => ({
 					statement: `${name}: ${fieldData.type}${requiredFields.includes(name) ? '!' : ''}`,
@@ -137,6 +139,7 @@ describe('getObjectLikeTypes', () => {
 			objectTypes: inputTypes,
 			definitionsIdToNameMap,
 			typeKeyword: 'input',
+			// eslint-disable-next-line jsdoc/require-jsdoc
 			getFieldsFunction: ({ fields, requiredFields }) =>
 				Object.entries(fields).map(([name, fieldData]) => ({
 					statement: `${name}: ${fieldData.type}${requiredFields.includes(name) ? '!' : ''}`,

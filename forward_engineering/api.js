@@ -1,5 +1,5 @@
 /**
- * @import { ContainerLevelScriptFEData, Logger, GenerateContainerLevelScriptCallback } from "./types/types"
+ * @import {ContainerLevelScriptFEData, GenerateContainerLevelScriptCallback, ValidateScriptCallback, Logger, FEDirectiveDefinitionsSchema} from "../shared/types/types"
  */
 
 const validationHelper = require('./helpers/schemaValidationHelper');
@@ -41,7 +41,12 @@ module.exports = {
 			});
 
 			const directiveStatements = getDirectives({
-				directives: getModelDefinitionsBySubtype({ modelDefinitions, subtype: 'directive' }),
+				directives: /** @type {FEDirectiveDefinitionsSchema} */ (
+					getModelDefinitionsBySubtype({
+						modelDefinitions,
+						subtype: 'directive',
+					})
+				),
 				definitionsIdToNameMap,
 			});
 
@@ -55,7 +60,7 @@ module.exports = {
 				...rootTypeStatements,
 				...typeDefinitionStatements,
 			]
-				.filter(Boolean)
+				.filter(feStatement => feStatement !== null)
 				.map(feStatement => formatFEStatement({ feStatement }))
 				.join('\n\n');
 
@@ -69,9 +74,9 @@ module.exports = {
 	/**
 	 * Validates the given script data.
 	 *
-	 * @param {Object} data - The data for validation.
+	 * @param {object} data - The data for validation.
 	 * @param {string} data.script - The script to be validated.
-	 * @param {Object} data.targetScriptOptions - Options for the target script.
+	 * @param {object} data.targetScriptOptions - Options for the target script.
 	 * @param {Logger} logger - The logger for logging errors.
 	 * @param {ValidateScriptCallback} cb - The callback function.
 	 */
@@ -82,7 +87,7 @@ module.exports = {
 			cb(null, validationResults);
 		} catch (e) {
 			logger.log('error', { error: e }, 'GraphQL schema validation error');
-			cb(e.message);
+			cb(e);
 		}
 	},
 };

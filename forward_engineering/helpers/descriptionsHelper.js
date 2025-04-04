@@ -1,8 +1,8 @@
 /**
- * Formats the description for a GraphQL statement.
- * Uses triple quotes for multi-line descriptions and single quotes for single-line descriptions.
+ * Formats the description for a GraphQL statement. Uses triple quotes for multi-line descriptions and single quotes for
+ * single-line descriptions.
  *
- * @param {Object} param0
+ * @param {object} param0
  * @param {string} param0.description - The description to format
  * @returns {string} - The formatted description
  */

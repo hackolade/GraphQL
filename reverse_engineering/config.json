@@ -1,5 +1,17 @@
-{
-	"menu_label": "GraphQL Schema File",
-	"name": "GraphQL",
-	"extensions": ["graphql", "gql"]
-}
+[
+	{
+		"type": "file",
+		"menu_label": "GraphQL Schema File...",
+		"name": "GraphQL",
+		"extensions": ["graphql", "gql"],
+		"useMultipleFileReverse": false
+	},
+	{
+		"errors": {},
+		"excludeDocKind": ["id"],
+		"type": "database",
+		"scenario": "getDataFromDB",
+		"connectionList": ["name", "host", "authType"],
+		"widestColumn": "host"
+	}
+]
