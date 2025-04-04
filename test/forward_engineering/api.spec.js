@@ -16,9 +16,15 @@ const generateContainerScriptPromise = promisify(generateContainerScript);
  * @type {Logger}
  */
 const loggerMock = {
+	/**
+	 * @type {() => void}
+	 */
 	log: () => {},
 };
 
+/**
+ * @type {(string) => string}
+ */
 const deleteSchemaVersionAndDate = script => script.split('\n').slice(3).join('\n');
 
 describe(() => {
