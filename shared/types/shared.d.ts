@@ -13,8 +13,8 @@ type LogTitle = string;
 
 type ProgressData = {
 	message: string;
-	dbName?: string;
-	tableName?: string;
+	containerName?: string;
+	entityName?: string;
 };
 
 export type Logger = {

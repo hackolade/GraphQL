@@ -61,21 +61,29 @@ module.exports = {
 			const logTitle = 'RE schema from GraphQL server';
 
 			logger.log('info', data.connectionSettings, logTitle, data.hiddenKeys);
-			logger.progress({ message: 'Start reverse engineering ...' });
+			logger.progress({ message: 'Start reverse engineering ...', containerName: '', entityName: '' });
 
 			logger.log('info', 'Fetching Introspection schema', logTitle);
-			logger.progress({ message: 'Fetching Introspection schema from GraphQL server' });
+			logger.progress({
+				message: 'Fetching Introspection schema from GraphQL server',
+				containerName: '',
+				entityName: '',
+			});
 			const introspectionSchema = await fetchIntrospectionSchema({
 				connectionInfo: data.connectionSettings,
 				logger,
 			});
 
 			logger.log('info', 'Converting Introspection schema to GraphQL SDL schema', logTitle);
-			logger.progress({ message: 'Converting Introspection schema to GraphQL SDL schema' });
+			logger.progress({
+				message: 'Converting Introspection schema to GraphQL SDL schema',
+				containerName: '',
+				entityName: '',
+			});
 			const graphQLSDLSchema = convertIntrospectionSchemaToGraphQLSchema(introspectionSchema);
 
 			logger.log('info', 'Parsing GraphQL SQL schema', logTitle);
-			logger.progress({ message: 'Parsing GraphQL SQL schema' });
+			logger.progress({ message: 'Parsing GraphQL SQL schema', containerName: '', entityName: '' });
 			const { parsedSchema } = parseSchema({ schemaContent: graphQLSDLSchema });
 
 			logger.log('info', 'Converting the parsed GraphQL schema to internal RE schema', logTitle);
