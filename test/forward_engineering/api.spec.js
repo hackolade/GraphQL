@@ -1,7 +1,3 @@
-/**
- * @import {Logger} from '../../types/types
- */
-
 const { describe, it } = require('node:test');
 const fs = require('node:fs/promises');
 const { promisify } = require('node:util');
@@ -12,9 +8,6 @@ const path = require('node:path');
 
 const generateContainerScriptPromise = promisify(generateContainerScript);
 
-/**
- * @type {Logger}
- */
 const loggerMock = {
 	log: () => {},
 };
