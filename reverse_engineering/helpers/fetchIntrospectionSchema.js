@@ -5,6 +5,7 @@
 
 const { getIntrospectionQuery } = require('graphql');
 const { hckFetch } = require('@hackolade/fetch');
+const { FetchIntrospectionSchemaError } = require('../errors/FetchIntrospectionSchemaError');
 
 /**
  * Encode credentials to base64 for base authorization purposes
@@ -42,35 +43,40 @@ function buildRequestHeaders({ authType, bearerToken, userName, userPassword }) 
 }
 
 /**
+ * @param {Response} response
+ * @returns {Promise<IntrospectionQuery>}
+ */
+async function parseResponse(response) {
+	if (response.status !== 200) {
+		const errorText = await response.text();
+		throw new FetchIntrospectionSchemaError(
+			`Failed to fetch introspection schema. Status: ${response.status}. Response: ${errorText}`,
+		);
+	}
+
+	const responseSchema = await response.json();
+	if (!responseSchema?.data) {
+		throw new FetchIntrospectionSchemaError('Failed to fetch introspection schema. No data returned.');
+	}
+
+	return responseSchema.data;
+}
+
+/**
  * Fetch introspection schema from the GraphQL server
  *
  * @param {object} params
  * @param {ConnectionSettings} params.connectionInfo
- * @param {Logger} params.logger
  * @returns {Promise<IntrospectionQuery>}
  */
-async function fetchIntrospectionSchema({ connectionInfo, logger }) {
-	try {
-		const options = {
-			method: 'POST',
-			headers: buildRequestHeaders(connectionInfo),
-			body: JSON.stringify({ query: getIntrospectionQuery() }),
-		};
-		const response = await hckFetch(connectionInfo.host, options);
-		const introspectionSchemaResponse = await response.json();
-
-		if (response.status !== 200 && !introspectionSchemaResponse.data) {
-			throw new Error('Failed to fetch introspection schema. Please verify the connection settings', {
-				cause: introspectionSchemaResponse,
-			});
-		}
-
-		return introspectionSchemaResponse.data;
-	} catch (error) {
-		const message = error instanceof Error ? error?.message : 'Failed to fetch introspection schema';
-		logger.log('error', error, message);
-		throw new Error(message);
-	}
+async function fetchIntrospectionSchema({ connectionInfo }) {
+	const options = {
+		method: 'POST',
+		headers: buildRequestHeaders(connectionInfo),
+		body: JSON.stringify({ query: getIntrospectionQuery() }),
+	};
+	const response = await hckFetch(connectionInfo.host, options);
+	return await parseResponse(response);
 }
 
 module.exports = {

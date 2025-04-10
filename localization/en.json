@@ -101,6 +101,8 @@
 	"MODAL_WINDOW___CONTAIN_COLLECTION": "operations",
 	"MODAL_WINDOW___DB_CONNECTION_PROCESS": "GraphQL server Reverse-Engineering Process",
 	"MODAL_WINDOW___DB_CONNECTIONS_LIST_TITLE": "GraphQL Connections",
+	"CONNECTION_ERROR": "Reverse-engineer error from URL",
+	"CONNECTION_ERROR___CANNOT_FETCH_INTROSPECTION": "The GraphQL schema could not be retrieved from the provided URL.\n\nPlease ensure that the URL is correct and accessible. You can verify it by testing the URL in a GraphQL client tool, such as Apollo Sandbox, which allows you to explore GraphQL endpoints directly in your browser.\n\nIf the issue persists, the API may have disabled introspection or require authentication.\n\nIf the endpoint works in the client tool but not in Hackolade Studio, please contact our support team for further assistance.",
 	"PROGRESS_BAR___DATABASE": "Operation",
 	"PROGRESS_BAR___COLLECTION": "Request",
 	"PROGRESS_BAR___PROCESS": "Process",

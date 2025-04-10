@@ -9,6 +9,7 @@ const { getMappedSchemaFromFile, getMappedSchemaFromInstance } = require('./mapp
 const { fetchIntrospectionSchema } = require('./helpers/fetchIntrospectionSchema');
 const { convertIntrospectionSchemaToGraphQLSchema } = require('./helpers/convertIntrospectionSchemaToGraphQLSchema');
 const { mapError } = require('./helpers/mapError');
+const { FetchIntrospectionSchemaError } = require('./errors/FetchIntrospectionSchemaError');
 
 module.exports = {
 	/**
@@ -38,7 +39,7 @@ module.exports = {
 			logger.log('info', connectionInfo, testConnectionTitle, connectionInfo.hiddenKeys);
 			logger.log('info', 'Start test connection', testConnectionTitle);
 
-			await fetchIntrospectionSchema({ connectionInfo, logger });
+			await fetchIntrospectionSchema({ connectionInfo });
 
 			logger.log('info', 'Test connection successful', testConnectionTitle);
 
@@ -71,7 +72,6 @@ module.exports = {
 			});
 			const introspectionSchema = await fetchIntrospectionSchema({
 				connectionInfo: data.connectionSettings,
-				logger,
 			});
 
 			logger.log('info', 'Converting Introspection schema to GraphQL SDL schema', logTitle);
@@ -99,7 +99,8 @@ module.exports = {
 			logger.log('error', error, title);
 			const message = error instanceof Error ? error?.message : title;
 			const stack = error instanceof Error ? error?.stack : undefined;
-			callback({ message, stack });
+			const customMsgCode = error instanceof FetchIntrospectionSchemaError ? error?.customMsgCode : undefined;
+			callback({ message, stack, customMsgCode });
 		}
 	},
 
