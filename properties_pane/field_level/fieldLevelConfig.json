@@ -2617,6 +2617,26 @@ making sure that you maintain a proper JSON format.
 							"propertyName": "Argument definition",
 							"propertyKeyword": "argumentDefinition",
 							"propertyType": "checkbox"
+						},
+						{
+							"propertyName": "Fragment definition",
+							"propertyKeyword": "fragmentDefinition",
+							"propertyType": "checkbox"
+						},
+						{
+							"propertyName": "Fragment spread",
+							"propertyKeyword": "fragmentSpread",
+							"propertyType": "checkbox"
+						},
+						{
+							"propertyName": "Inline fragment",
+							"propertyKeyword": "inlineFragment",
+							"propertyType": "checkbox"
+						},
+						{
+							"propertyName": "Variable definition",
+							"propertyKeyword": "variableDefinition",
+							"propertyType": "checkbox"
 						}
 					]
 				},

@@ -5,24 +5,10 @@
 
 const { getArguments } = require('../arguments');
 const { getDirectiveName } = require('../directiveName');
+const { DIRECTIVE_LOCATIONS } = require('../../../shared/constants/directive');
 
-const locationMap = {
-	'SCHEMA': 'schema',
-	'QUERY': 'query',
-	'MUTATION': 'mutation',
-	'SUBSCRIPTION': 'subscription',
-	'SCALAR': 'scalar',
-	'ENUM': 'enum',
-	'ENUM_VALUE': 'enumValue',
-	'OBJECT': 'object',
-	'INTERFACE': 'interface',
-	'UNION': 'union',
-	'INPUT_OBJECT': 'inputObject',
-	'FIELD': 'field',
-	'FIELD_DEFINITION': 'fieldDefinition',
-	'INPUT_FIELD_DEFINITION': 'inputFieldDefinition',
-	'ARGUMENT_DEFINITION': 'argumentDefinition',
-};
+// Inverted the DIRECTIVE_LOCATIONS object to map location names from GraphQL SDL to location names in Hackolade properties
+const locationMap = Object.fromEntries(Object.entries(DIRECTIVE_LOCATIONS).map(([key, value]) => [value, key]));
 
 /**
  * Maps the directive type definitions
