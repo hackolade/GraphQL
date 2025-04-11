@@ -2,7 +2,7 @@
  * @import {FEDirectiveDefinitionsSchema, FEDirectiveDefinition, FEStatement, DirectiveLocations, IdToNameMap} from "../../shared/types/types"
  */
 
-const { DIRECTIVE_LOCATIONS } = require('../constants/feScriptConstants');
+const { DIRECTIVE_LOCATIONS } = require('../../shared/constants/directive');
 const { getArguments } = require('./arguments');
 
 const UNKNOWN_LOCATION = 'UNKNOWN_LOCATION';
