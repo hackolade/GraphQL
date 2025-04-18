@@ -11,7 +11,7 @@
 		"excludeDocKind": ["id"],
 		"type": "database",
 		"scenario": "getDataFromDB",
-		"connectionList": ["name", "host", "authType"],
-		"widestColumn": "host"
+		"connectionList": ["name", "url", "authType"],
+		"widestColumn": "url"
 	}
 ]

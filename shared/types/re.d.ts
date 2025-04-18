@@ -116,7 +116,8 @@ type RecordSamplingSettings = {
 export type ConnectionSettings = {
 	id: string;
 	name: string;
-	host: string;
+	host: string; // should be empty - not used in GraphQL connections
+	url: string;
 	connectionSourceType: ConnectionSourceType;
 	authType: AuthenticationType;
 	bearerToken?: string;
