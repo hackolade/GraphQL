@@ -75,7 +75,7 @@ async function fetchIntrospectionSchema({ connectionInfo }) {
 		headers: buildRequestHeaders(connectionInfo),
 		body: JSON.stringify({ query: getIntrospectionQuery() }),
 	};
-	const response = await hckFetch(connectionInfo.host, options);
+	const response = await hckFetch(connectionInfo.url, options);
 	return await parseResponse(response);
 }
 

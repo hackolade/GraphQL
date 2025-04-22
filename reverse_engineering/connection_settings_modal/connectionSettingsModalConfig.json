@@ -11,7 +11,7 @@
 			},
 			{
 				"inputLabel": "GraphQL endpoint",
-				"inputKeyword": "host",
+				"inputKeyword": "url",
 				"inputType": "text",
 				"inputPlaceholder": "https://api.com/graphql",
 				"description": "Specify the GraphQL API endpoint URL",
