@@ -7,7 +7,6 @@
 		"useMultipleFileReverse": false
 	},
 	{
-		"errors": {},
 		"excludeDocKind": ["id"],
 		"type": "database",
 		"scenario": "getDataFromDB",

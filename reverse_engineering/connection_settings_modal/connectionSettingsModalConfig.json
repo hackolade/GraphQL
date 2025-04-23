@@ -15,7 +15,9 @@
 				"inputType": "text",
 				"inputPlaceholder": "https://api.com/graphql",
 				"description": "Specify the GraphQL API endpoint URL",
-				"regex": "([^\\s])"
+				"validation": {
+					"regex": "^https?:\\/\\/[^\\s\\/$.?#].[^\\s]*$"
+				}
 			}
 		]
 	},

@@ -32,10 +32,9 @@ module.exports = {
 	 * @returns {Promise<void>}
 	 */
 	async testConnection(connectionInfo, logger, callback) {
+		const testConnectionTitle = 'Test connection';
 		try {
 			logger.clear();
-
-			const testConnectionTitle = 'Test connection';
 			logger.log('info', connectionInfo, testConnectionTitle, connectionInfo.hiddenKeys);
 			logger.log('info', 'Start test connection', testConnectionTitle);
 
@@ -45,8 +44,11 @@ module.exports = {
 
 			callback();
 		} catch (error) {
-			logger.log('error', error, 'Test connection error');
-			callback(error);
+			logger.log('error', error, testConnectionTitle);
+			const message = error instanceof Error ? error?.message : testConnectionTitle;
+			const stack = error instanceof Error ? error?.stack : undefined;
+			const customMsgCode = error instanceof FetchIntrospectionSchemaError ? error?.customMsgCode : undefined;
+			callback({ message, stack, customMsgCode });
 		}
 	},
 
