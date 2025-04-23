@@ -115,6 +115,9 @@ module.exports = {
 	 */
 	async reFromFile(data, logger, callback) {
 		try {
+			logger.clear();
+			logger.log('info', 'Start RE from file process', 'RE from file');
+
 			const fieldsOrder = data.fieldInference.active;
 			const fileContent = await readFileContent({ filePath: data.filePath });
 			const fileName = getFileName(data.filePath);
