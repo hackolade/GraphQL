@@ -23,7 +23,7 @@ esbuild
 		outdir: RELEASE_FOLDER_PATH,
 		minify: true,
 		logLevel: 'info',
-		external: ['electron'],
+		external: ['electron', '@hackolade/fetch'],
 		plugins: [
 			clean({
 				patterns: [DEFAULT_RELEASE_FOLDER_PATH],
