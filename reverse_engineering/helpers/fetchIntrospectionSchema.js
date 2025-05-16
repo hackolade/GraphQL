@@ -6,6 +6,7 @@
 const { getIntrospectionQuery } = require('graphql');
 const { hckFetch } = require('@hackolade/fetch');
 const { FetchIntrospectionSchemaError } = require('../errors/FetchIntrospectionSchemaError');
+const { escapeUrlIpV6WithBraces } = require('./escapeUrlIpV6WithBraces');
 
 /**
  * Encode credentials to base64 for base authorization purposes
@@ -78,7 +79,7 @@ async function fetchIntrospectionSchema({ connectionInfo }) {
 
 	// If the URL is not provided, use the host keyword for backward compatibility with the less than 8.1.4 app version
 	const url = connectionInfo.url || connectionInfo.host;
-	const response = await hckFetch(url, options);
+	const response = await hckFetch(escapeUrlIpV6WithBraces({ url }), options);
 	return await parseResponse(response);
 }
 
