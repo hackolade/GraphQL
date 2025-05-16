@@ -27,8 +27,8 @@ function escapeUrlIpV6WithBraces({ url }) {
 		return url;
 	}
 
-	const urlWithIpV6HostRegExp = new RegExp(/^http(s)?:\/\/(?<unescapedIpWithPort>([a-z0-9]{0,4}:?)+)/gim);
-	const { unescapedIpWithPort } = urlWithIpV6HostRegExp.exec(url)?.groups ?? {};
+	const urlWithIpV6HostRegExp = new RegExp(/^http(s)?:\/\/(:?([a-z0-9]{0,4}:?)+)/gim);
+	const [unescapedIpWithPort] = url.match(urlWithIpV6HostRegExp) ?? [];
 
 	if (!unescapedIpWithPort) {
 		return url;
