@@ -33,7 +33,7 @@ function getMappedSchema({ schemaItems, graphName, fieldsOrder }) {
 		container.schemaRootTypes?.rootSubscription || 'Subscription',
 	];
 
-	const definitionCategoryByNameMap = getDefinitionCategoryByNameMap({ nodes: schemaItems });
+	const definitionCategoryByNameMap = getDefinitionCategoryByNameMap({ nodes: schemaItems, rootTypeNames });
 
 	const rootTypeNodes = findNodesByKind({
 		nodes: schemaItems,

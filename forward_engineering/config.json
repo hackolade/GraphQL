@@ -11,5 +11,7 @@
 		"model": false
 	},
 	"mode": "graphqlschema",
-	"isApiSchema": false
+	"isApiSchema": false,
+	"disableJSONDataGeneration": true,
+	"disableAttributesSorting": true
 }
