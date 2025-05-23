@@ -85,7 +85,7 @@ function mapField({ name, fieldData, required, definitionsIdToNameMap, addArgume
  */
 function getFieldType({ field, required }) {
 	if ('$ref' in field && field.$ref) {
-		const definitionName = getDefinitionNameFromReferencePath({ referencePath: field.$ref });
+		const definitionName = getDefinitionNameFromReferencePath({ referencePath: field.$ref }) || 'String';
 		return addRequired({ type: definitionName, required });
 	}
 

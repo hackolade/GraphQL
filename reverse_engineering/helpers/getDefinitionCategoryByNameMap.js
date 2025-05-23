@@ -20,14 +20,18 @@ const kindToDefinitionTypeName = {
  *
  * @param {object} options
  * @param {DefinitionNode[]} options.nodes - The nodes to search
+ * @param {string[]} options.rootTypeNames - The root type names to exclude
  * @returns {DefinitionNameToTypeNameMap} The found nodes with proper type
  */
-function getDefinitionCategoryByNameMap({ nodes }) {
+function getDefinitionCategoryByNameMap({ nodes, rootTypeNames }) {
 	return nodes
 		.filter(node => kindToDefinitionTypeName[node.kind])
 		.reduce((acc, node) => {
 			if ('name' in node && node.name !== undefined) {
-				acc[node.name.value] = kindToDefinitionTypeName[node.kind];
+				const isRootType = rootTypeNames.includes(node.name.value);
+				if (!isRootType) {
+					acc[node.name.value] = kindToDefinitionTypeName[node.kind];
+				}
 			}
 			return acc;
 		}, {});
