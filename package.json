@@ -34,7 +34,8 @@
                 },
                 "excel": false,
                 "plugin": true,
-                "uploadPowerDesignerFile": false
+                "uploadPowerDesignerFile": false,
+				"mermaid": false
             },
             "disableDenormalization": true,
             "enableForwardEngineering": {
