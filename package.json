@@ -1,6 +1,6 @@
 {
     "name": "GraphQL",
-    "version": "0.2.10",
+    "version": "0.2.11",
     "author": "hackolade",
     "engines": {
         "hackolade": "8.0.0",
@@ -35,7 +35,7 @@
                 "excel": false,
                 "plugin": true,
                 "uploadPowerDesignerFile": false,
-				"mermaid": false
+                "mermaid": false
             },
             "disableDenormalization": true,
             "enableForwardEngineering": {
