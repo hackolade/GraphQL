@@ -72,9 +72,6 @@
             "externalDefinitionsFromTargetSchema": true,
             "apiTarget": true,
             "FEScriptCommentsSupported": true,
-            "displayOptions": {
-                "hideNonNullableAttributes": true
-            },
             "openModelDefinitionsTabIfNoCollections": true,
             "erdDefinitions": {
                 "enabled": true,
