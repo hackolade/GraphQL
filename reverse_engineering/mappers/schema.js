@@ -112,6 +112,7 @@ function getMappedSchemaFromInstance({ schemaItems, graphName, logger }) {
 					jsonSchema: {
 						properties,
 						required,
+						type: 'object',
 					},
 				},
 				emptyBucket: false,
