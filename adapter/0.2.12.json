@@ -1,0 +1,54 @@
+/**
+ * {
+ * 		"add": {
+ * 			"entity": [<names of new property>],
+ * 			"container": [<names of new property>],
+ * 			"model": [<names of new property>],
+ * 			"view": [<names of new property>],
+ *			"field": {
+ *				"<type>": [<names of new property>]
+ *			}
+ * 		},
+ * 		"delete": {
+ * 			"entity": [<names of new property>],
+ * 			"container": [<names of new property>],
+ * 			"model": [<names of new property>],
+ * 			"view": [<names of new property>],
+ *			"field": {
+ *				"<type>": [<names of new property>]
+ *			}
+ * 		},
+ * 		"modify": {
+ *	 		"entity": [
+ *	 			{
+ *					"from": { <properties that identify record> },
+ *					"to": { <properties that need to be changed> }
+ *				}
+ *			],
+ *			"container": [],
+ *			"model": [],
+ *			"view": [],
+ *			"field": []
+ * 		},
+ * }
+ *
+ * Set type to object if it is missing in entity definition
+ */
+{
+	"add": {},
+	"modify": {
+		"entity": [
+			[
+				"assignProperties",
+				{
+					"key": "type",
+					"exist": false
+				},
+				{
+					"type": "object"
+				}
+			]
+		]
+	},
+	"delete": {}
+}
