@@ -24,7 +24,7 @@ esbuild
 		outdir: RELEASE_FOLDER_PATH,
 		minify: true,
 		logLevel: 'info',
-		external: ['electron', '@hackolade/fetch'],
+		external: ['electron', '@hackolade/fetch', '@webpod/ip'],
 		plugins: [
 			clean({
 				patterns: [DEFAULT_RELEASE_FOLDER_PATH],
@@ -45,6 +45,12 @@ esbuild
 				assets: {
 					from: [path.join('node_modules', '@hackolade', 'fetch', 'LICENSE')],
 					to: [path.join('node_modules', '@hackolade', 'fetch')],
+				},
+			}),
+			copy({
+				assets: {
+					from: [path.join('node_modules', '@webpod/ip', '**', '*')],
+					to: [path.join('node_modules', '@webpod/ip')],
 				},
 			}),
 			copyFolderFiles({
