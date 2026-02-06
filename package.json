@@ -104,7 +104,7 @@
         "*.{js,ts,json}": "prettier --write"
     },
     "simple-git-hooks": {
-        "pre-commit": "npx lint-staged",
+        "pre-commit": "npm run package && npx lint-staged",
         "pre-push": "npm run lint && npm run check:types && npm run test:unit"
     },
     "scripts": {
