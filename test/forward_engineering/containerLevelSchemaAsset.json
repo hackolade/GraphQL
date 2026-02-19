@@ -99,8 +99,7 @@
 		"isUpdateScript": false,
 		"additionalOptions": [],
 		"origin": "ui",
-		"fakerLocalization": "en",
-		"showIndexStatementsInEndDdl": false
+		"fakerLocalization": "en"
 	},
 	"views": [],
 	"viewData": {},
