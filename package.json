@@ -129,5 +129,8 @@
         "typescript": "5.8.2",
         "oxlint": "1.38.0",
         "oxlint-tsgolint": "0.10.1"
+    },
+    "overrides": {
+        "minimatch": "10.2.1"
     }
 }
