@@ -100,11 +100,8 @@
         "@webpod/ip": "0.6.1",
         "graphql": "16.10.0"
     },
-    "lint-staged": {
-        "*.{js,ts,json}": "prettier --write"
-    },
     "simple-git-hooks": {
-        "pre-commit": "npm run package && npx lint-staged",
+        "pre-commit": "npm run package && npx lint-staged --config lint-staged.config.js",
         "pre-push": "npm run lint && npm run check:types && npm run test:unit"
     },
     "scripts": {
@@ -113,7 +110,8 @@
         "package": "node esbuild.package.js",
         "postinstall": "npx simple-git-hooks",
         "check:types": "tsc --noEmit",
-        "lint:check": "oxlint --type-aware --type-check . || true"
+        "lint:check": "oxlint --type-aware --type-check . || true",
+        "format": "prettier --write ."
     },
     "devDependencies": {
         "@hackolade/hck-esbuild-plugins-pack": "0.0.1",
