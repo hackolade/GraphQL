@@ -5,23 +5,21 @@ const DEFAULT_RELEASE_FOLDER_PATH = path.resolve(__dirname, 'release');
 const EXCLUDED_EXTENSIONS = ['.js', '.g4', '.interp', '.tokens'];
 const EXCLUDED_FILES = [
 	'.github',
-	'.eslint',
 	'.DS_Store',
 	'.editorconfig',
-	'.eslintignore',
-	'.eslintrc',
 	'.git',
 	'.gitignore',
 	'.vscode',
 	'.idea',
 	'.prettierignore',
-	'.prettierrc',
 	'.dockerignore',
-	'test',
+	'.oxlintrc.json',
 	'build',
 	'release',
 	'node_modules',
 	'package-lock.json',
+	'prettier.config.js',
+	'lint-staged.config.js',
 ];
 
 module.exports = {
