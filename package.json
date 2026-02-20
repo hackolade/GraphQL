@@ -100,38 +100,36 @@
         "@webpod/ip": "0.6.1",
         "graphql": "16.10.0"
     },
-    "lint-staged": {
-        "*.{js,ts,json}": "prettier --write"
-    },
     "simple-git-hooks": {
-        "pre-commit": "npm run package && npx lint-staged",
+        "pre-commit": "npm run package && npx lint-staged --config lint-staged.config.js",
         "pre-push": "npm run lint && npm run check:types && npm run test:unit"
     },
     "scripts": {
-        "lint": "eslint . --max-warnings=0",
+        "lint": "oxlint . || true",
         "test:unit": "node --experimental-test-module-mocks --test-reporter dot --test ./test/**/*.spec.js",
         "package": "node esbuild.package.js",
         "postinstall": "npx simple-git-hooks",
-        "check:types": "tsc --noEmit"
+        "check:types": "tsc --noEmit",
+        "lint:check": "oxlint --type-aware --type-check . || true",
+        "format": "prettier --write ."
     },
     "devDependencies": {
         "@hackolade/hck-esbuild-plugins-pack": "0.0.1",
         "@types/node": "22.13.10",
-        "esbuild": "0.27.2",
+        "esbuild": "0.27.3",
         "esbuild-node-externals": "1.20.1",
         "esbuild-plugin-clean": "1.0.1",
         "esbuild-plugin-copy": "2.1.1",
-        "eslint": "9.39.2",
-        "eslint-config-prettier": "10.1.8",
-        "eslint-plugin-import": "2.31.0",
-        "eslint-plugin-jsdoc": "50.6.8",
-        "eslint-plugin-prettier": "5.2.3",
-        "eslint-plugin-unused-imports": "4.1.4",
-        "globals": "15.15.0",
         "lint-staged": "16.2.7",
-        "prettier": "3.5.0",
+        "prettier": "3.8.1",
         "prettier-plugin-jsdoc": "1.3.2",
-        "simple-git-hooks": "2.11.1",
-        "typescript": "5.8.2"
+        "simple-git-hooks": "2.13.1",
+        "typescript": "5.8.2",
+        "oxlint": "1.38.0",
+        "oxlint-tsgolint": "0.10.1",
+        "@ianvs/prettier-plugin-sort-imports": "4.7.1"
+    },
+    "overrides": {
+        "minimatch": "10.2.1"
     }
 }
